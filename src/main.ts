@@ -110,7 +110,7 @@ function renderGallery(index: DataIndex) {
   const container = document.getElementById('main-content')!
 
   container.innerHTML = `
-    <div class="p-6 max-w-3xl mx-auto">
+    <div class="p-4 sm:p-6 max-w-3xl mx-auto overflow-x-hidden">
       <!-- Hero / Hunt launcher -->
       <div class="mb-4"></div>
 
@@ -121,7 +121,7 @@ function renderGallery(index: DataIndex) {
           <div class="font-semibold text-xl tracking-tight text-[#111] dark:text-white">Start a Hunt</div>
         </div>
 
-        <div class="mosaic-card p-5 border-2 border-[#3f3b33] dark:border-[#d4cebf]">
+        <div class="mosaic-card p-4 sm:p-5 border-2 border-[#3f3b33] dark:border-[#d4cebf] overflow-hidden">
           <p class="text-[15px] leading-snug mb-4 text-[#1a1816] dark:text-[#f4f1e9]">Tell the research agents what to hunt. They will open an Issue, run deep LLM research (Grok), validate locations &amp; evidence, and commit fresh structured data to the static maps.</p>
 
           <div class="flex flex-wrap gap-2 mb-4" id="suggestions">
@@ -130,9 +130,9 @@ function renderGallery(index: DataIndex) {
             <button data-suggestion="Hidden swimming holes in the Adirondacks" class="sugg text-sm px-4 py-1.5 rounded-full border-2 border-[#1f1d1a] bg-white text-[#1f1d1a] hover:bg-[#f1efea] dark:border-[#f4f1e9] dark:bg-[#111] dark:text-[#f4f1e9] dark:hover:bg-[#2a2924] transition-colors">Adirondack swimming holes</button>
           </div>
 
-          <div class="flex gap-2">
-            <input id="hunt-input" type="text" placeholder="What topic should the agents research?" class="flex-1 px-4 py-3 text-sm border-2 border-[#1f1d1a] bg-white text-[#111] rounded-lg focus:outline-none focus:border-[#0a0a0a] dark:bg-[#1a1916] dark:border-[#f4f1e9] dark:text-[#f4f1e9]" value="Ice Cream in the Capital District">
-            <button id="launch-hunt" class="px-7 py-3 bg-[#111] hover:bg-black active:bg-[#000] text-white text-sm font-bold rounded-lg border-2 border-[#111] transition-all active:scale-[0.985] dark:bg-white dark:text-[#111] dark:border-white dark:hover:bg-[#f4f1e9]">Launch Hunt</button>
+          <div class="grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_auto] gap-2">
+            <input id="hunt-input" type="text" placeholder="What topic should the agents research?" class="min-w-0 w-full px-4 py-3 text-[16px] sm:text-sm border-2 border-[#1f1d1a] bg-white text-[#111] rounded-lg focus:outline-none focus:border-[#0a0a0a] dark:bg-[#1a1916] dark:border-[#f4f1e9] dark:text-[#f4f1e9]" value="Ice Cream in the Capital District">
+            <button id="launch-hunt" class="w-full sm:w-auto px-6 sm:px-7 py-3 bg-[#111] hover:bg-black active:bg-[#000] text-white text-[16px] sm:text-sm font-bold rounded-lg border-2 border-[#111] transition-all active:scale-[0.985] dark:bg-white dark:text-[#111] dark:border-white dark:hover:bg-[#f4f1e9]">Launch Hunt</button>
           </div>
 
           <!-- Advanced guidance toggle -->
@@ -147,7 +147,7 @@ function renderGallery(index: DataIndex) {
             <label class="block text-xs font-semibold text-[#3f3b33] dark:text-[#d4cebf] mb-1">
               Additional instructions for the research agents (highly recommended for niche results)
             </label>
-            <textarea id="hunt-guidance" rows="3" placeholder="Example: Only soft serve. Must have offered coffee flavors before (not flavorburst). Not gas stations. Must have gluten-free cones available." class="w-full px-3 py-2 text-sm border border-[#a39a8c] rounded-md bg-white dark:bg-[#111] text-[#111] dark:text-[#f4f1e9] focus:outline-none"></textarea>
+            <textarea id="hunt-guidance" rows="3" placeholder="Example: Only soft serve. Must have offered coffee flavors before (not flavorburst). Not gas stations. Must have gluten-free cones available." class="w-full px-3 py-2 text-[16px] sm:text-sm border border-[#a39a8c] rounded-md bg-white dark:bg-[#111] text-[#111] dark:text-[#f4f1e9] focus:outline-none"></textarea>
             <div class="text-[10px] text-[#6b6761] dark:text-[#8a8178] mt-1">This will be included in the GitHub Issue the agents receive.</div>
           </div>
 
