@@ -1,0 +1,40 @@
+{
+  "slug": "upside-down-pizza",
+  "title": "Upside Down Pizza",
+  "tagline": "Verified cheese-under-sauce pizza styles with location-grounded evidence",
+  "version": "1.0.0",
+  "totalEntries": 27,
+  "lastUpdated": "2026-05-28",
+  "defaultCenter": [
+    41.51375,
+    -82.58340000000001
+  ],
+  "defaultZoom": 8,
+  "filterFields": [
+    "city",
+    "confidence"
+  ],
+  "chunks": [
+    "entries.json"
+  ],
+  "intent": {
+    "statement": "Document high-confidence upside down pizza practitioners with product-level evidence and verified photo context.",
+    "scope": "Use precise city/state coordinates and preserve niche-style classification metadata.",
+    "photoPolicy": "Keep only source-attributed product photos that are archetypical of the map intent."
+  },
+  "intentHistory": [
+    {
+      "changedAt": "2026-05-28T23:00:46.191Z",
+      "author": "import-enriched-index",
+      "summary": "Imported 27 enriched records from external niche index."
+    }
+  ],
+  "validation": {
+    "coordinateBounds": {
+      "minLat": 39.7,
+      "maxLat": 43.3275,
+      "minLng": -93.9168,
+      "maxLng": -71.25
+    }
+  }
+}
