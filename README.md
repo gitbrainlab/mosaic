@@ -1,6 +1,6 @@
-# Mosaic
+# mosaic
 
-**Mosaic** is a 100% static, mobile-first platform for high-quality, community-curated knowledge maps on any topic.
+**mosaic** is a 100% static, mobile-first platform for high-quality, community-curated knowledge maps on any topic.
 
 Everything runs on GitHub Pages. All research, enrichment, and data updates are powered by GitHub Actions agents that call Grok (xAI) and commit structured data back to the repo.
 
@@ -51,7 +51,7 @@ The `vite.config.ts` already handles the correct base path (`/mosaic/`) for GitH
 
 ## Running Research Batches (The Real Power)
 
-Mosaic's research system can run large, targeted enrichment jobs.
+mosaic's research system can run large, targeted enrichment jobs.
 
 ### Locally (for testing)
 ```bash
@@ -92,7 +92,17 @@ New maps and updated data will appear on the live site after the next deploy.
 - `public/data/` — All committed map data (manifests + entries + photos)
 - `scripts/` — Research tools (`research-agent.ts`, `run-batch-research.ts`, ingest, photo helpers, validators, etc.)
 - `batches/` — JSON configs for large multi-location research waves
-- `.github/workflows/` — `deploy.yml` (Pages) + `research-agent.yml` (enrichment)
+- `.github/workflows/` — `deploy.yml` (Pages) + `research-agent.yml` (single + batch) + `batch-enrichment.yml` (long-running dedicated workflow)
+
+## Troubleshooting First Deploy
+
+If the "Deploy to GitHub Pages" workflow fails with "Get Pages site failed" or 404:
+
+1. Go to **Settings → Pages**
+2. Change **Source** to **GitHub Actions**
+3. Re-run the failed workflow from the Actions tab.
+
+The `batch-enrichment.yml` workflow is recommended for large overnight runs (has a 6-hour timeout).
 
 ## Contributing
 

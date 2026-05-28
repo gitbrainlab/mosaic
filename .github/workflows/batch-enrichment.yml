@@ -1,0 +1,75 @@
+name: Batch Enrichment (Long-running Research)
+
+on:
+  workflow_dispatch:
+    inputs:
+      wave:
+        description: 'Path to batch wave config (e.g. batches/ice-cream-northeast-wave-2.json)'
+        required: true
+        default: 'batches/ice-cream-northeast-wave-2.json'
+      max_parallel:
+        description: 'Max parallel research calls'
+        required: true
+        default: '3'
+      commit_message:
+        description: 'Commit message prefix'
+        required: false
+        default: 'chore(research): batch enrichment'
+
+# Allow long-running jobs (GitHub default is 6h, we can request more if needed)
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360   # 6 hours - suitable for large waves
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Batch Research
+        env:
+          XAI_API_KEY: ${{ secrets.XAI_KEY }}
+          XAI_KEY: ${{ secrets.XAI_KEY }}
+        run: |
+          WAVE="${{ github.event.inputs.wave }}"
+          MAX_PAR="${{ github.event.inputs.max_parallel }}"
+          echo "Starting batch enrichment with config: $WAVE (max parallel: $MAX_PAR)"
+          npx tsx scripts/run-batch-research.ts "$WAVE" --max-parallel="$MAX_PAR"
+
+      - name: Commit results
+        run: |
+          git config user.name "Mosaic Research Agent"
+          git config user.email "research@mosaic.local"
+
+          git add data/research-runs/ || true
+          git add public/data/maps/ || true
+          git add public/data/index.json || true
+          git add public/data/research-batches/ || true
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "${{ github.event.inputs.commit_message }}"
+            git push
+          fi
+
+      - name: Summary
+        run: |
+          echo "Batch enrichment run completed."
+          echo "Check the commits and the updated maps on the site after the next deploy."
+          echo "Wave: ${{ github.event.inputs.wave }}"

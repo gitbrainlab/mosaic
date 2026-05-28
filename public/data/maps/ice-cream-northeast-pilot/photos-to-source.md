@@ -1,89 +1,90 @@
 # Photos to Source — Ice Cream in the Northeast
 
-Generated: 2026-05-28T09:58:09.434Z
+Generated: 2026-05-28T11:02:55.857Z
 
 **Rules (strict):**
 - Photos must be tightly cropped on the actual food/product.
 - Reject parking lots, building exteriors, or generic storefront shots.
 - Prioritize interesting variants and unique presentations.
 
-## 1. Peaceful Meadows Ice Cream
+## 1. Gelato Fiasco
 
-**Location**: 170 Water Street, Plymouth
+**Location**: 425 Fore St, Portland
 
 **Photo Briefs from Agent:**
 
-**1.** Peaceful Meadows Plymouth MA soft serve cone photo
-- Expected visual: Close-up of vanilla or chocolate soft-serve cone with toppings
+**1.** Gelato Fiasco Portland ME gelato scoop cone photo
+- Expected visual: Close-up of gelato scoops in a waffle cone with visible flavor swirls and toppings
 - Priority: high
-- Suggested source: Customer photos on Google/TripAdvisor 2023-2024
+- Suggested source: Customer Instagram posts 2023-2024
+
+**2.** Gelato Fiasco Portland specific flavor closeup
+- Expected visual: Single flavor gelato in cup showing texture and color
+- Priority: medium
 
 **Action**: Find 1-3 real product photos and place them in `images/` folder.
-Recommended filename pattern: `peaceful-meadows-ice-cream-plymouth-01.jpg`, `peaceful-meadows-ice-cream-plymouth-02.jpg`
+Recommended filename pattern: `gelato-fiasco-portland-01.jpg`, `gelato-fiasco-portland-02.jpg`
 
 ---
 
-## 2. Farfar's Danish Ice Cream Shoppe
+## 2. The Lobster Shack at Two Lights
 
-**Location**: 2 Main Street, Duxbury
+**Location**: 222 Two Lights Rd, Cape Elizabeth
 
 **Photo Briefs from Agent:**
 
-**1.** Farfar's Duxbury ice cream scoop dish photo
-- Expected visual: Plated scoops of house-made flavors like cardamom or licorice
+**1.** Lobster Shack Two Lights ice cream cone photo
+- Expected visual: Ice cream cone held with ocean or rocky coast visible in background
 - Priority: high
-- Suggested source: Instagram customer posts 2023-2024
+- Suggested source: Visitor photos on X/Instagram 2023-2024
 
 **Action**: Find 1-3 real product photos and place them in `images/` folder.
-Recommended filename pattern: `farfars-danish-ice-cream-duxbury-01.jpg`, `farfars-danish-ice-cream-duxbury-02.jpg`
+Recommended filename pattern: `lobster-shack-two-lights-01.jpg`, `lobster-shack-two-lights-02.jpg`
 
 ---
 
-## 3. Village Ice Cream Shoppe
+## 3. Smiling Hill Farm
 
-**Location**: 1896 Ocean Street, Marshfield
+**Location**: 781 County Rd, Westbrook
 
 **Photo Briefs from Agent:**
 
-**1.** Village Ice Cream Shoppe Marshfield cone or sundae
-- Expected visual: Ice cream cone or sundae with standard toppings
+**1.** Smiling Hill Farm Westbrook ice cream cone
+- Expected visual: Ice cream scoop in dish or cone from farm stand
 - Priority: high
-- Suggested source: Local review photos 2024
 
 **Action**: Find 1-3 real product photos and place them in `images/` folder.
-Recommended filename pattern: `village-ice-cream-shoppe-marshfield-01.jpg`, `village-ice-cream-shoppe-marshfield-02.jpg`
+Recommended filename pattern: `smiling-hill-farm-01.jpg`, `smiling-hill-farm-02.jpg`
 
 ---
 
-## 4. Sundaes Ice Cream
+## 4. Higgins Beach Market
 
-**Location**: 44 First Parish Road, Scituate
+**Location**: 92 Ocean Ave, Scarborough
 
 **Photo Briefs from Agent:**
 
-**1.** Sundaes Ice Cream Scituate sundae close up
-- Expected visual: Detailed view of a built sundae with toppings and sauce
-- Priority: high
-- Suggested source: Customer Instagram 2023
+**1.** Higgins Beach Market Scarborough ice cream
+- Expected visual: Packaged or scooped ice cream near beach setting
+- Priority: medium
 
 **Action**: Find 1-3 real product photos and place them in `images/` folder.
-Recommended filename pattern: `sundaes-ice-cream-scituate-01.jpg`, `sundaes-ice-cream-scituate-02.jpg`
+Recommended filename pattern: `higgins-beach-market-01.jpg`, `higgins-beach-market-02.jpg`
 
 ---
 
-## 5. Dairy Joy
+## 5. Ben & Jerry's
 
-**Location**: 119 Summer Street, Duxbury
+**Location**: 1 Monument Square, Portland
 
 **Photo Briefs from Agent:**
 
-**1.** Dairy Joy Duxbury soft serve cone
-- Expected visual: Vanilla or twist soft-serve cone in paper holder
+**1.** Ben and Jerrys Portland ME scoop shop cone
+- Expected visual: Ben & Jerry's branded ice cream cone or cup with recognizable flavor
 - Priority: high
-- Suggested source: Recent customer photos 2024
 
 **Action**: Find 1-3 real product photos and place them in `images/` folder.
-Recommended filename pattern: `dairy-joy-duxbury-01.jpg`, `dairy-joy-duxbury-02.jpg`
+Recommended filename pattern: `ben-jerrys-portland-01.jpg`, `ben-jerrys-portland-02.jpg`
 
 ---
 

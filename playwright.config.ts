@@ -79,6 +79,26 @@ export default defineConfig({
         colorScheme: 'dark',
       },
     },
+
+    // Production verification projects (run against live site)
+    {
+      name: 'production-desktop',
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: 'https://gitbrainlab.github.io/mosaic/',
+        viewport: { width: 1280, height: 900 },
+      },
+      testMatch: '**/production-verification.spec.ts',
+    },
+    {
+      name: 'production-mobile',
+      use: {
+        ...devices['iPhone 14'],
+        baseURL: 'https://gitbrainlab.github.io/mosaic/',
+        viewport: { width: 375, height: 812 },
+      },
+      testMatch: '**/production-verification.spec.ts',
+    },
   ],
 
   // For the lightweight @smoke tests we automatically start the production preview

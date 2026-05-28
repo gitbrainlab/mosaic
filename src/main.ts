@@ -27,7 +27,7 @@ function renderShell() {
         <div class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
           <button id="logo" class="font-semibold tracking-tight text-xl text-[#111] dark:text-white flex items-center gap-2">
             <span class="text-xl">◈</span>
-            <span>Mosaic</span>
+            <span>mosaic</span>
           </button>
         </div>
       </header>

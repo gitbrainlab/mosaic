@@ -1,197 +1,185 @@
 [
   {
-    "id": "peaceful-meadows-ice-cream-plymouth",
-    "name": "Peaceful Meadows Ice Cream",
+    "id": "gelato-fiasco-portland",
+    "name": "Gelato Fiasco",
     "location": {
-      "address": "170 Water Street",
-      "city": "Plymouth",
-      "region": "MA",
+      "address": "425 Fore St",
+      "city": "Portland",
+      "region": "ME",
       "country": "USA",
-      "lat": 41.9589,
-      "lng": -70.6675
+      "lat": 43.6574,
+      "lng": -70.2503
     },
-    "description": "Long-running ice cream stand in Plymouth serving soft-serve and hard ice cream since the 1970s.",
+    "description": "Gelato shop in Portland's Old Port offering rotating flavors of gelato made on-site with local ingredients.",
     "confidence": "high",
     "evidence": [
-      {
-        "type": "review",
-        "source": "TripAdvisor",
-        "detail": "Hundreds of reviews confirming location and menu",
-        "date": "2023"
-      },
-      {
-        "type": "article",
-        "source": "South Shore food guides",
-        "detail": "Listed as local favorite"
-      }
-    ],
-    "tags": [
-      "ice cream",
-      "soft serve",
-      "plymouth ma"
-    ],
-    "photoBriefs": [
-      {
-        "searchQuery": "Peaceful Meadows Plymouth MA soft serve cone photo",
-        "expectedVisual": "Close-up of vanilla or chocolate soft-serve cone with toppings",
-        "priority": "high",
-        "suggestedSource": "Customer photos on Google/TripAdvisor 2023-2024"
-      }
-    ]
-  },
-  {
-    "id": "farfars-danish-ice-cream-duxbury",
-    "name": "Farfar's Danish Ice Cream Shoppe",
-    "location": {
-      "address": "2 Main Street",
-      "city": "Duxbury",
-      "region": "MA",
-      "country": "USA",
-      "lat": 42.0256,
-      "lng": -70.6828
-    },
-    "description": "Duxbury shop known for homemade Danish-style ice cream flavors.",
-    "confidence": "high",
-    "evidence": [
-      {
-        "type": "article",
-        "source": "Boston Globe",
-        "detail": "Featured as South Shore standout",
-        "date": "2022"
-      },
-      {
-        "type": "review",
-        "source": "Google Reviews",
-        "detail": "Consistent high ratings for homemade ice cream"
-      }
-    ],
-    "tags": [
-      "ice cream",
-      "homemade",
-      "duxbury ma"
-    ],
-    "photoBriefs": [
-      {
-        "searchQuery": "Farfar's Duxbury ice cream scoop dish photo",
-        "expectedVisual": "Plated scoops of house-made flavors like cardamom or licorice",
-        "priority": "high",
-        "suggestedSource": "Instagram customer posts 2023-2024"
-      }
-    ]
-  },
-  {
-    "id": "village-ice-cream-shoppe-marshfield",
-    "name": "Village Ice Cream Shoppe",
-    "location": {
-      "address": "1896 Ocean Street",
-      "city": "Marshfield",
-      "region": "MA",
-      "country": "USA",
-      "lat": 42.0923,
-      "lng": -70.7056
-    },
-    "description": "Marshfield ice cream shop offering classic flavors with strong local following.",
-    "confidence": "high",
-    "evidence": [
-      {
-        "type": "review",
-        "source": "Google Reviews",
-        "detail": "High volume of positive reviews from Marshfield residents"
-      },
-      {
-        "type": "article",
-        "source": "Marshfield community publications",
-        "detail": "Regular mentions in local roundups"
-      }
-    ],
-    "tags": [
-      "ice cream",
-      "marshfield ma"
-    ],
-    "photoBriefs": [
-      {
-        "searchQuery": "Village Ice Cream Shoppe Marshfield cone or sundae",
-        "expectedVisual": "Ice cream cone or sundae with standard toppings",
-        "priority": "high",
-        "suggestedSource": "Local review photos 2024"
-      }
-    ]
-  },
-  {
-    "id": "sundaes-ice-cream-scituate",
-    "name": "Sundaes Ice Cream",
-    "location": {
-      "address": "44 First Parish Road",
-      "city": "Scituate",
-      "region": "MA",
-      "country": "USA",
-      "lat": 42.1958,
-      "lng": -70.7264
-    },
-    "description": "Scituate spot specializing in sundaes and ice cream near the coast.",
-    "confidence": "high",
-    "evidence": [
-      {
-        "type": "article",
-        "source": "Scituate coastal dining roundups",
-        "detail": "Repeated recommendations in South Shore lists"
-      },
       {
         "type": "review",
         "source": "Yelp",
-        "detail": "Verified customer reviews for sundaes"
+        "detail": "Consistently top-rated gelato destination in Portland reviews",
+        "date": "2023-2024"
+      },
+      {
+        "type": "article",
+        "source": "Maine food blogs",
+        "detail": "Featured as premier gelato spot in local roundups"
       }
     ],
     "tags": [
+      "gelato",
       "ice cream",
-      "sundaes",
-      "scituate ma"
+      "Old Port"
     ],
     "photoBriefs": [
       {
-        "searchQuery": "Sundaes Ice Cream Scituate sundae close up",
-        "expectedVisual": "Detailed view of a built sundae with toppings and sauce",
+        "searchQuery": "Gelato Fiasco Portland ME gelato scoop cone photo",
+        "expectedVisual": "Close-up of gelato scoops in a waffle cone with visible flavor swirls and toppings",
         "priority": "high",
-        "suggestedSource": "Customer Instagram 2023"
+        "suggestedSource": "Customer Instagram posts 2023-2024"
+      },
+      {
+        "searchQuery": "Gelato Fiasco Portland specific flavor closeup",
+        "expectedVisual": "Single flavor gelato in cup showing texture and color",
+        "priority": "medium"
       }
     ]
   },
   {
-    "id": "dairy-joy-duxbury",
-    "name": "Dairy Joy",
+    "id": "lobster-shack-two-lights",
+    "name": "The Lobster Shack at Two Lights",
     "location": {
-      "address": "119 Summer Street",
-      "city": "Duxbury",
-      "region": "MA",
+      "address": "222 Two Lights Rd",
+      "city": "Cape Elizabeth",
+      "region": "ME",
       "country": "USA",
-      "lat": 42.0417,
-      "lng": -70.7003
+      "lat": 43.5598,
+      "lng": -70.2075
     },
-    "description": "Seasonal Duxbury dairy bar serving soft serve and hard ice cream.",
+    "description": "Coastal seafood stand serving ice cream alongside lobster rolls with ocean views at Two Lights State Park area.",
     "confidence": "high",
     "evidence": [
       {
         "type": "article",
-        "source": "Duxbury seasonal guides",
-        "detail": "Listed in South Shore summer guides"
+        "source": "Maine travel sites",
+        "detail": "Landmark status in Cape Elizabeth tourism coverage",
+        "date": "2022-2025"
       },
       {
         "type": "review",
-        "source": "Google Reviews",
-        "detail": "Consistent positive seasonal feedback"
+        "source": "TripAdvisor",
+        "detail": "Frequent mentions of ice cream with seafood orders"
       }
     ],
     "tags": [
       "ice cream",
-      "soft serve",
-      "duxbury ma"
+      "seafood",
+      "coastal"
     ],
     "photoBriefs": [
       {
-        "searchQuery": "Dairy Joy Duxbury soft serve cone",
-        "expectedVisual": "Vanilla or twist soft-serve cone in paper holder",
+        "searchQuery": "Lobster Shack Two Lights ice cream cone photo",
+        "expectedVisual": "Ice cream cone held with ocean or rocky coast visible in background",
         "priority": "high",
-        "suggestedSource": "Recent customer photos 2024"
+        "suggestedSource": "Visitor photos on X/Instagram 2023-2024"
+      }
+    ]
+  },
+  {
+    "id": "smiling-hill-farm",
+    "name": "Smiling Hill Farm",
+    "location": {
+      "address": "781 County Rd",
+      "city": "Westbrook",
+      "region": "ME",
+      "country": "USA",
+      "lat": 43.682,
+      "lng": -70.378
+    },
+    "description": "Working dairy farm with on-site ice cream stand using milk from their own cows.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Maine agricultural tourism sources",
+        "detail": "Documented farm ice cream stand operations",
+        "date": "2022-2025"
+      }
+    ],
+    "tags": [
+      "ice cream",
+      "farm",
+      "dairy"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Smiling Hill Farm Westbrook ice cream cone",
+        "expectedVisual": "Ice cream scoop in dish or cone from farm stand",
+        "priority": "high"
+      }
+    ]
+  },
+  {
+    "id": "higgins-beach-market",
+    "name": "Higgins Beach Market",
+    "location": {
+      "address": "92 Ocean Ave",
+      "city": "Scarborough",
+      "region": "ME",
+      "country": "USA",
+      "lat": 43.561,
+      "lng": -70.278
+    },
+    "description": "Neighborhood market near Higgins Beach offering ice cream to beachgoers.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "review",
+        "source": "Local Scarborough reviews",
+        "detail": "Mentioned for ice cream service near beach"
+      }
+    ],
+    "tags": [
+      "ice cream",
+      "beach",
+      "market"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Higgins Beach Market Scarborough ice cream",
+        "expectedVisual": "Packaged or scooped ice cream near beach setting",
+        "priority": "medium"
+      }
+    ]
+  },
+  {
+    "id": "ben-jerrys-portland",
+    "name": "Ben & Jerry's",
+    "location": {
+      "address": "1 Monument Square",
+      "city": "Portland",
+      "region": "ME",
+      "country": "USA",
+      "lat": 43.657,
+      "lng": -70.255
+    },
+    "description": "Downtown scoop shop serving Ben & Jerry's ice cream flavors in Portland's Monument Square.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "review",
+        "source": "Local guides and aggregators",
+        "detail": "Listed in Portland ice cream guides"
+      }
+    ],
+    "tags": [
+      "ice cream",
+      "downtown"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Ben and Jerrys Portland ME scoop shop cone",
+        "expectedVisual": "Ben & Jerry's branded ice cream cone or cup with recognizable flavor",
+        "priority": "high"
       }
     ]
   }
