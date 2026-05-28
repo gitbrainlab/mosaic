@@ -9,7 +9,7 @@ export default class StudioView {
           <div class="uppercase text-[10px] tracking-[1.5px] font-bold text-[#3f3b33] dark:text-[#d4cebf]">CURATION STUDIO</div>
           <h1 class="text-2xl font-semibold tracking-tight text-[#111] dark:text-white">Research Batches</h1>
         </div>
-        <div class="animate-pulse text-sm text-[#6b6761]">Loading research batches...</div>
+        <div class="animate-pulse text-sm text-[#6b6761]">Loading batches...</div>
       </div>
     `
 

@@ -90,3 +90,11 @@ body {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
+
+#app.mosaic-route-map #app-header {
+  display: none;
+}
+
+#app.mosaic-route-map #main-content {
+  max-width: none;
+}

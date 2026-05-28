@@ -23,7 +23,7 @@ function renderShell() {
   app.innerHTML = `
     <div class="min-h-screen flex flex-col bg-[#f8f7f4] dark:bg-[#1a1916]">
       <!-- Top bar (contextual) -->
-      <header class="sticky top-0 z-50 border-b border-[#e5e2d9] bg-[#f8f7f4]/95 dark:bg-[#1a1916]/95 backdrop-blur">
+      <header id="app-header" class="sticky top-0 z-50 border-b border-[#e5e2d9] bg-[#f8f7f4]/95 dark:bg-[#1a1916]/95 backdrop-blur">
         <div class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
           <button id="logo" class="font-semibold tracking-tight text-xl text-[#111] dark:text-white flex items-center gap-2">
             <span class="text-xl">◈</span>
@@ -36,7 +36,7 @@ function renderShell() {
       <main id="main-content" class="flex-1 max-w-7xl mx-auto w-full"></main>
 
       <!-- Bottom Navigation (mobile-first foundation per PWA research) -->
-      <nav class="sticky bottom-0 z-50 border-t border-[#e5e2d9] bg-[#f8f7f4] dark:bg-[#1a1916] safe-bottom">
+      <nav id="bottom-nav" class="sticky bottom-0 z-50 border-t border-[#e5e2d9] bg-[#f8f7f4] dark:bg-[#1a1916] safe-bottom">
         <div class="max-w-7xl mx-auto grid grid-cols-3 text-sm">
           <button data-nav="gallery" class="nav-btn flex flex-col items-center py-3 active">
             <span class="text-lg text-[#111] dark:text-white">◈</span>
@@ -415,7 +415,13 @@ function updateBottomNavActive(routeName: string) {
   })
 }
 
+function updateShellMode(routeName: string) {
+  app.classList.toggle('mosaic-route-map', routeName === 'map')
+}
+
 initRouter((route) => {
+  updateShellMode(route.name)
+
   if (route.name === 'gallery') {
     showGallery()
     updateBottomNavActive('gallery')

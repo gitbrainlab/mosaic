@@ -11,6 +11,7 @@ interface BottomSheetOptions {
   snap?: SheetSnap;
   snapPoints?: number[]; // e.g. [0.22, 0.56, 0.94] as fractions of viewport height
   dismissible?: boolean;
+  modal?: boolean;
   showHandle?: boolean;
   onClose?: () => void;
 }
@@ -22,12 +23,14 @@ export class BottomSheet {
   private isOpen = false;
   private currentSnap: SheetSnap = 'half';
   private options: BottomSheetOptions;
+  private dragDeltaY = 0;
 
   constructor(options: BottomSheetOptions = {}) {
     this.options = {
       snap: 'half',
       snapPoints: [0.22, 0.56, 0.94],
       dismissible: true,
+      modal: true,
       showHandle: true,
       ...options
     };
@@ -92,34 +95,32 @@ export class BottomSheet {
 
   private setupDragToClose(handle: HTMLElement) {
     let startY = 0;
-    let startTransform = 0;
 
     const onPointerDown = (e: PointerEvent) => {
       startY = e.clientY;
-      startTransform = this.el.getBoundingClientRect().y;
+      this.dragDeltaY = 0;
       this.el.style.transition = 'none';
       document.addEventListener('pointermove', onPointerMove);
       document.addEventListener('pointerup', onPointerUp, { once: true });
     };
 
     const onPointerMove = (e: PointerEvent) => {
-      const delta = e.clientY - startY;
-      const newY = Math.max(0, startTransform + delta);
-      this.el.style.transform = `translateY(${newY}px)`;
+      this.dragDeltaY = Math.max(0, e.clientY - startY);
+      this.el.style.transform = `translateY(${this.dragDeltaY}px)`;
     };
 
     const onPointerUp = () => {
       document.removeEventListener('pointermove', onPointerMove);
       this.el.style.transition = 'transform 200ms ease-out';
 
-      const currentY = this.el.getBoundingClientRect().y;
-      const threshold = window.innerHeight * 0.3;
-
-      if (currentY > threshold && this.options.dismissible) {
+      const threshold = window.innerHeight * 0.18;
+      if (this.dragDeltaY > threshold && this.options.dismissible) {
         this.close();
       } else {
         this.snapTo(this.currentSnap);
       }
+
+      this.dragDeltaY = 0;
     };
 
     handle.addEventListener('pointerdown', onPointerDown);
@@ -144,23 +145,27 @@ export class BottomSheet {
     else if (snap === 'half') fraction = this.options.snapPoints?.[1] || 0.56;
     else fraction = this.options.snapPoints?.[2] || 0.94;
 
-    // Pull the sheet upward from the bottom
-    const targetTranslate = - (vh * fraction);
-    this.el.style.transform = `translateY(${targetTranslate}px)`;
+    // Snap points define how much viewport height the sheet occupies.
+    this.el.style.height = `${Math.round(vh * fraction)}px`;
+    this.el.style.transform = 'translateY(0px)';
   }
 
   open(initialSnap: SheetSnap = 'half') {
     if (this.isOpen) return;
     this.isOpen = true;
 
-    document.body.appendChild(this.backdrop);
+    if (this.options.modal) {
+      document.body.appendChild(this.backdrop);
+    }
     document.body.appendChild(this.el);
 
     // Force reflow then animate in
     requestAnimationFrame(() => {
-      this.backdrop.style.transition = 'opacity 150ms ease';
-      this.backdrop.style.opacity = '1';
-      this.backdrop.style.pointerEvents = 'auto';
+      if (this.options.modal) {
+        this.backdrop.style.transition = 'opacity 150ms ease';
+        this.backdrop.style.opacity = '1';
+        this.backdrop.style.pointerEvents = 'auto';
+      }
       this.snapTo(initialSnap);
     });
   }
@@ -172,9 +177,11 @@ export class BottomSheet {
     this.el.style.transition = 'transform 200ms ease-in';
     this.el.style.transform = 'translateY(100%)';
 
-    this.backdrop.style.transition = 'opacity 150ms ease';
-    this.backdrop.style.opacity = '0';
-    this.backdrop.style.pointerEvents = 'none';
+    if (this.options.modal) {
+      this.backdrop.style.transition = 'opacity 150ms ease';
+      this.backdrop.style.opacity = '0';
+      this.backdrop.style.pointerEvents = 'none';
+    }
 
     setTimeout(() => {
       this.backdrop.remove();
