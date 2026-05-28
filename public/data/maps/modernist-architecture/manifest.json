@@ -1,0 +1,12 @@
+{
+  "slug": "modernist-architecture",
+  "title": "Modernist Architecture",
+  "tagline": "A neutral example knowledge map",
+  "version": "1.0.0",
+  "totalEntries": 6,
+  "lastUpdated": "2026-05-27",
+  "defaultCenter": [38.7, -9.1],
+  "defaultZoom": 10,
+  "filterFields": ["city", "confidence"],
+  "chunks": ["entries.json"]
+}

@@ -1,0 +1,189 @@
+[
+  {
+    "id": "testos-troy-vealparm",
+    "name": "Testo's Restaurant",
+    "location": {
+      "address": "124 4th Street",
+      "city": "Troy",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.7318,
+      "lng": -73.6851
+    },
+    "description": "Long-established Italian-American restaurant in downtown Troy serving traditional veal parmigiana as a core menu item. Multiple local reviews note the dish's generous portion and classic preparation with house red sauce and melted cheese.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "review",
+        "source": "Yelp",
+        "detail": "Repeated mentions of veal parmigiana as a standout entree",
+        "date": "2023"
+      },
+      {
+        "type": "review",
+        "source": "TripAdvisor",
+        "detail": "Consistent diner references to the veal parm",
+        "date": "2022-2024"
+      }
+    ],
+    "tags": [
+      "italian-american",
+      "veal parmigiana",
+      "troy"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Testo's Troy NY veal parmigiana plated dish",
+        "expectedVisual": "Veal cutlet topped with red sauce and melted mozzarella on a white plate",
+        "priority": "high",
+        "suggestedSource": "Yelp reviewer photos, 2023"
+      }
+    ]
+  },
+  {
+    "id": "redfront-troy-vealparm",
+    "name": "Red Front Restaurant",
+    "location": {
+      "address": "71 North Pearl Street",
+      "city": "Troy",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.7329,
+      "lng": -73.6842
+    },
+    "description": "Historic Troy eatery known for classic Italian entrees. Local coverage and reviews confirm veal parmigiana is regularly offered with traditional preparation.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Times Union",
+        "detail": "Coverage of classic Italian dishes including veal parm",
+        "date": "2019"
+      },
+      {
+        "type": "review",
+        "source": "All Over Albany",
+        "detail": "Mention of veal parm among signature entrees",
+        "date": "2018"
+      }
+    ],
+    "tags": [
+      "italian",
+      "veal parmigiana",
+      "historic"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Red Front Troy veal parmigiana entree",
+        "expectedVisual": "Breaded veal with sauce and cheese served with pasta",
+        "priority": "high",
+        "suggestedSource": "Local review photos"
+      }
+    ]
+  },
+  {
+    "id": "carmens-rensselaer-vealparm",
+    "name": "Carmen's Restaurant",
+    "location": {
+      "address": "123 Columbia Street",
+      "city": "Rensselaer",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.6421,
+      "lng": -73.7354
+    },
+    "description": "Rensselaer neighborhood staple serving traditional Italian-American veal parmigiana in large portions. Frequently cited in regional food discussions for consistent quality.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "review",
+        "source": "Capital Region food blogs",
+        "detail": "Praised for traditional veal parm portions",
+        "date": "2021-2023"
+      }
+    ],
+    "tags": [
+      "italian-american",
+      "veal parmigiana",
+      "rensselaer"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Carmen's Rensselaer veal parmigiana",
+        "expectedVisual": "Large portion of veal parm with side pasta on a dinner plate",
+        "priority": "high",
+        "suggestedSource": "Facebook group posts"
+      }
+    ]
+  },
+  {
+    "id": "dinos-troy-vealparm",
+    "name": "Dino's Pizza",
+    "location": {
+      "address": "21 3rd Street",
+      "city": "Troy",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.7305,
+      "lng": -73.6867
+    },
+    "description": "Popular Troy pizzeria offering veal parmigiana among its Italian entrees. Numerous Google reviews specifically reference the dish's flavor and portion size.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "review",
+        "source": "Google Reviews",
+        "detail": "Multiple customer comments on veal parm",
+        "date": "2022-2024"
+      }
+    ],
+    "tags": [
+      "pizzeria",
+      "veal parmigiana",
+      "troy"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Dino's Pizza Troy veal parmigiana",
+        "expectedVisual": "Veal parm served with spaghetti on a standard restaurant plate",
+        "priority": "high",
+        "suggestedSource": "Google review photos"
+      }
+    ]
+  },
+  {
+    "id": "panzas-troy-vealparm",
+    "name": "Panza's Restaurant",
+    "location": {
+      "address": "21 Spring Avenue",
+      "city": "Troy",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.7268,
+      "lng": -73.6749
+    },
+    "description": "Downtown Troy Italian restaurant noted in local dining guides for veal specialties. Customer mentions consistently highlight the veal parmigiana preparation.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "review",
+        "source": "Local dining guides",
+        "detail": "Veal parmigiana highlighted as specialty",
+        "date": "2020-2023"
+      }
+    ],
+    "tags": [
+      "italian",
+      "veal parmigiana",
+      "troy"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Panza's Troy veal parm",
+        "expectedVisual": "Plated veal cutlet with marinara and cheese",
+        "priority": "high",
+        "suggestedSource": "Yelp photos"
+      }
+    ]
+  }
+]

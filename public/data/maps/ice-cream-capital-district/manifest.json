@@ -1,0 +1,20 @@
+{
+  "slug": "ice-cream-capital-district",
+  "title": "Ice Cream in the Capital District",
+  "tagline": "Community-researched map of ice cream in the capital district",
+  "version": "1.0.0",
+  "totalEntries": 41,
+  "lastUpdated": "2026-05-28",
+  "defaultCenter": [
+    42.75,
+    -73.8
+  ],
+  "defaultZoom": 10,
+  "filterFields": [
+    "city",
+    "confidence"
+  ],
+  "chunks": [
+    "entries.json"
+  ]
+}

@@ -1,0 +1,177 @@
+[
+  {
+    "id": "ma-001",
+    "name": "Villa Savoye",
+    "location": {
+      "address": "82 Chemin de Villiers",
+      "city": "Poissy",
+      "region": "Île-de-France",
+      "country": "France",
+      "lat": 48.9244,
+      "lng": 2.0283
+    },
+    "description": "Iconic example of Le Corbusier’s Five Points of Architecture, completed in 1931.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Le Corbusier, Œuvre complète",
+        "detail": "Original documentation and photographs from the architect’s studio",
+        "date": "1931"
+      }
+    ],
+    "tags": ["le-corbusier", "international-style", "france"],
+    "attributes": {
+      "style": "international-style",
+      "yearCompleted": 1931,
+      "architect": "Le Corbusier & Pierre Jeanneret"
+    },
+    "added": "2026-04-12",
+    "lastVerified": "2026-05-20"
+  },
+  {
+    "id": "ma-002",
+    "name": "Barcelona Pavilion",
+    "location": {
+      "address": "Av. Francesc Ferrer i Guàrdia 7",
+      "city": "Barcelona",
+      "region": "Catalonia",
+      "country": "Spain",
+      "lat": 41.3707,
+      "lng": 2.1503
+    },
+    "description": "Mies van der Rohe’s 1929 temporary pavilion, rebuilt in 1986. A masterclass in spatial flow and material honesty.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Fundació Mies van der Rohe archive",
+        "date": "1986"
+      }
+    ],
+    "tags": ["mies-van-der-rohe", "minimalism", "spain"],
+    "attributes": {
+      "style": "modernist",
+      "yearCompleted": 1929,
+      "architect": "Ludwig Mies van der Rohe"
+    },
+    "added": "2026-04-15",
+    "lastVerified": "2026-05-18"
+  },
+  {
+    "id": "ma-003",
+    "name": "Fallingwater",
+    "location": {
+      "address": "1491 Mill Run Rd",
+      "city": "Mill Run",
+      "region": "Pennsylvania",
+      "country": "United States",
+      "lat": 39.9064,
+      "lng": -79.4683
+    },
+    "description": "Frank Lloyd Wright’s cantilevered masterpiece over Bear Run, 1935–1939.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Western Pennsylvania Conservancy records",
+        "date": "1939"
+      }
+    ],
+    "tags": ["frank-lloyd-wright", "organic-architecture", "usa"],
+    "attributes": {
+      "style": "organic-architecture",
+      "yearCompleted": 1939,
+      "architect": "Frank Lloyd Wright"
+    },
+    "added": "2026-04-20",
+    "lastVerified": "2026-05-22"
+  },
+  {
+    "id": "ma-004",
+    "name": "Glass House",
+    "location": {
+      "address": "798-856 Ponus Ridge Rd",
+      "city": "New Canaan",
+      "region": "Connecticut",
+      "country": "United States",
+      "lat": 41.1283,
+      "lng": -73.5331
+    },
+    "description": "Philip Johnson’s 1949 glass-and-steel residence — the ultimate statement of transparency and proportion.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "photo",
+        "source": "National Trust for Historic Preservation",
+        "detail": "Extensive photographic archive and measured drawings"
+      }
+    ],
+    "tags": ["philip-johnson", "international-style", "usa"],
+    "attributes": {
+      "style": "international-style",
+      "yearCompleted": 1949,
+      "architect": "Philip Johnson"
+    },
+    "added": "2026-04-28",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "ma-005",
+    "name": "Maison de Verre",
+    "location": {
+      "address": "31 Rue Saint-Guillaume",
+      "city": "Paris",
+      "region": "Île-de-France",
+      "country": "France",
+      "lat": 48.8541,
+      "lng": 2.3294
+    },
+    "description": "Pierre Chareau’s 1932 private residence and medical clinic. Extraordinary use of glass block and industrial materials.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Diller Scofidio + Renfro restoration documentation",
+        "date": "2006"
+      }
+    ],
+    "tags": ["pierre-chareau", "france", "glass-block"],
+    "attributes": {
+      "style": "modernist",
+      "yearCompleted": 1932,
+      "architect": "Pierre Chareau with Bernard Bijvoet"
+    },
+    "added": "2026-05-03",
+    "lastVerified": "2026-05-21"
+  },
+  {
+    "id": "ma-006",
+    "name": "Eames House (Case Study House #8)",
+    "location": {
+      "address": "203 Chautauqua Blvd",
+      "city": "Pacific Palisades",
+      "region": "California",
+      "country": "United States",
+      "lat": 34.0469,
+      "lng": -118.5153
+    },
+    "description": "Charles and Ray Eames’ 1949 home and studio — a joyful, experimental marriage of industrial components and domestic life.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Eames Foundation archives",
+        "date": "1949"
+      }
+    ],
+    "tags": ["charles-and-ray-eames", "case-study-houses", "usa"],
+    "attributes": {
+      "style": "modernist",
+      "yearCompleted": 1949,
+      "architect": "Charles and Ray Eames"
+    },
+    "added": "2026-05-10",
+    "lastVerified": "2026-05-25"
+  }
+]

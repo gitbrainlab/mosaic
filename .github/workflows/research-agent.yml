@@ -1,0 +1,95 @@
+name: Research Agent
+
+on:
+  issues:
+    types: [labeled]
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Run mode'
+        required: true
+        default: 'single'
+        type: choice
+        options:
+          - single
+          - batch
+      topic:
+        description: 'Topic (for single mode)'
+        required: false
+        default: 'Ice Cream in the Berkshires'
+      wave:
+        description: 'Batch wave config file (for batch mode, e.g. batches/ice-cream-northeast-wave-2.json)'
+        required: false
+        default: 'batches/ice-cream-northeast-wave-2.json'
+      max_parallel:
+        description: 'Max parallel research calls (for batch mode)'
+        required: false
+        default: '3'
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    if: github.event.label.name == 'research' || github.event_name == 'workflow_dispatch'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Single Research (legacy)
+        if: github.event.inputs.mode == 'single' || github.event_name == 'issues'
+        env:
+          XAI_API_KEY: ${{ secrets.XAI_KEY }}
+          XAI_KEY: ${{ secrets.XAI_KEY }}
+        run: |
+          TOPIC="${{ github.event.inputs.topic || github.event.issue.title }}"
+          LIMIT="6"
+          echo "Running single research for: $TOPIC"
+          npx tsx scripts/research-agent.ts "$TOPIC" --limit="$LIMIT"
+
+      - name: Run Batch Enrichment (recommended for large waves)
+        if: github.event.inputs.mode == 'batch'
+        env:
+          XAI_API_KEY: ${{ secrets.XAI_KEY }}
+          XAI_KEY: ${{ secrets.XAI_KEY }}
+        run: |
+          WAVE="${{ github.event.inputs.wave || 'batches/ice-cream-northeast-wave-2.json' }}"
+          MAX_PAR="${{ github.event.inputs.max_parallel || '3' }}"
+          echo "Running batch research using config: $WAVE (max parallel: $MAX_PAR)"
+          npx tsx scripts/run-batch-research.ts "$WAVE" --max-parallel="$MAX_PAR"
+
+      - name: Commit new research data
+        run: |
+          git config user.name "Mosaic Research Agent"
+          git config user.email "research@mosaic.local"
+          
+          git add data/research-runs/ || true
+          git add public/data/maps/ || true
+          git add public/data/index.json || true
+          
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore(research): batch enrichment run - ${{ github.event.inputs.wave || github.event.inputs.topic || 'manual' }}"
+            git push
+          fi
+
+      - name: Comment on Issue (if triggered by issue)
+        if: github.event_name == 'issues'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `✅ Research agent completed.\n\nNew data committed. Check Actions for the full batch output.`
+            });

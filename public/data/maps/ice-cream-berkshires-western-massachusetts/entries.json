@@ -1,0 +1,221 @@
+[
+  {
+    "id": "soco-creamery-great-barrington",
+    "name": "SoCo Creamery",
+    "location": {
+      "address": "5 Railroad St",
+      "city": "Great Barrington",
+      "region": "MA",
+      "country": "USA",
+      "lat": 42.1958,
+      "lng": -73.3621
+    },
+    "description": "House-made ice cream shop in downtown Great Barrington offering rotating flavors from local ingredients.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "review",
+        "source": "Berkshires tourism guides",
+        "detail": "Repeatedly listed among top ice cream destinations in the region",
+        "date": "2023"
+      }
+    ],
+    "tags": [
+      "ice cream",
+      "house-made",
+      "Great Barrington"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "SoCo Creamery Great Barrington ice cream cone scoop photo",
+        "expectedVisual": "Close-up of two scoops of ice cream in a cone with visible flavor texture and toppings",
+        "priority": "high",
+        "suggestedSource": "X post by local visitors showing plated scoops 2023-2024"
+      },
+      {
+        "searchQuery": "SoCo Creamery Great Barrington flavor of the day sundae",
+        "expectedVisual": "Plated sundae with specific house-made flavor and sauce drizzle",
+        "priority": "high",
+        "suggestedSource": "Instagram customer photo from summer 2024"
+      }
+    ]
+  },
+  {
+    "id": "high-lawn-farm-lee",
+    "name": "High Lawn Farm",
+    "location": {
+      "address": "535 Summer St",
+      "city": "Lee",
+      "region": "MA",
+      "country": "USA",
+      "lat": 42.2894,
+      "lng": -73.2289
+    },
+    "description": "Historic working dairy farm producing and selling its own ice cream on-site from farm milk.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Massachusetts agricultural features",
+        "detail": "Covered in multiple state agritourism and travel articles",
+        "date": "2022"
+      }
+    ],
+    "tags": [
+      "ice cream",
+      "farm",
+      "dairy",
+      "Lee"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "High Lawn Farm Lee MA ice cream cone farm milk",
+        "expectedVisual": "Scoops of vanilla or chocolate ice cream in cone with farm backdrop visible but focused on product",
+        "priority": "high",
+        "suggestedSource": "X post by @berkshiresvisitor showing dish summer 2023"
+      }
+    ]
+  },
+  {
+    "id": "chocolate-springs-cafe-lenox",
+    "name": "Chocolate Springs Cafe",
+    "location": {
+      "address": "55 Pittsfield Rd",
+      "city": "Lenox",
+      "region": "MA",
+      "country": "USA",
+      "lat": 42.3647,
+      "lng": -73.2712
+    },
+    "description": "Specialty chocolate shop producing house-made gelato and ice cream in Lenox.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Berkshires dining roundups",
+        "detail": "Regularly featured in Lenox food coverage",
+        "date": "2024"
+      }
+    ],
+    "tags": [
+      "gelato",
+      "ice cream",
+      "chocolate",
+      "Lenox"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Chocolate Springs Cafe Lenox gelato scoop close up",
+        "expectedVisual": "Tight crop on single scoop of gelato showing texture and color",
+        "priority": "high",
+        "suggestedSource": "Customer X photo 2023"
+      }
+    ]
+  },
+  {
+    "id": "taft-farms-ice-cream-great-barrington",
+    "name": "Taft Farms Ice Cream Stand",
+    "location": {
+      "address": "1596 N Main St",
+      "city": "Great Barrington",
+      "region": "MA",
+      "country": "USA",
+      "lat": 42.2256,
+      "lng": -73.3401
+    },
+    "description": "Longstanding farm stand serving fresh ice cream made with local ingredients.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "review",
+        "source": "Regional food guides",
+        "detail": "Mentioned in multiple visitor reports and farm stand listings",
+        "date": "2022-2024"
+      }
+    ],
+    "tags": [
+      "ice cream",
+      "farm stand",
+      "Great Barrington"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Taft Farms ice cream stand Great Barrington cone",
+        "expectedVisual": "Ice cream cone with farm-fresh scoop detail",
+        "priority": "high",
+        "suggestedSource": "X customer photo 2024"
+      }
+    ]
+  },
+  {
+    "id": "bartletts-orchard-richmond",
+    "name": "Bartlett's Orchard Ice Cream",
+    "location": {
+      "address": "95 N Main Rd",
+      "city": "Richmond",
+      "region": "MA",
+      "country": "USA",
+      "lat": 42.3789,
+      "lng": -73.3684
+    },
+    "description": "Family orchard with dedicated ice cream shop using orchard produce in flavors.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Berkshire County farm trail listings",
+        "detail": "Listed in regional agritourism guides",
+        "date": "2023"
+      }
+    ],
+    "tags": [
+      "ice cream",
+      "orchard",
+      "Richmond"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Bartletts Orchard Richmond MA ice cream",
+        "expectedVisual": "Plated ice cream with visible fruit pieces from orchard",
+        "priority": "high",
+        "suggestedSource": "Instagram visitor post 2023"
+      }
+    ]
+  },
+  {
+    "id": "windy-hill-farm-great-barrington",
+    "name": "Windy Hill Farm",
+    "location": {
+      "address": "20 Harb Hill Rd",
+      "city": "Great Barrington",
+      "region": "MA",
+      "country": "USA",
+      "lat": 42.2103,
+      "lng": -73.3892
+    },
+    "description": "Orchard and farm stand serving soft-serve ice cream.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "review",
+        "source": "Hill-town farm market guides",
+        "detail": "Noted in multiple local farm stand references",
+        "date": "2022"
+      }
+    ],
+    "tags": [
+      "soft serve",
+      "ice cream",
+      "farm stand",
+      "Great Barrington"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Windy Hill Farm Great Barrington soft serve cone",
+        "expectedVisual": "Swirl of soft-serve ice cream in cone with orchard fruit accents",
+        "priority": "high",
+        "suggestedSource": "X post summer 2024"
+      }
+    ]
+  }
+]

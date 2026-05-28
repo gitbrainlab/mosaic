@@ -1,0 +1,37 @@
+{
+  "name": "mosaic",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "typecheck": "tsc --noEmit",
+    "preview": "vite preview",
+    "validate-data": "tsx scripts/validate-map-coordinates.ts public/data/maps/ice-cream-capital-district/entries.json public/data/maps/veal-parm-capital-district/entries.json public/data/maps/modernist-architecture/entries.json public/data/maps/regional-folk-traditions/entries.json",
+    "test": "npm run typecheck && npm run validate-data && npm run test:smoke",
+    "test:smoke": "playwright test --project=mobile-light --grep @smoke",
+    "test:regression": "tsx tests/verify-design-regression.ts && tsx tests/regression-full.ts",
+    "test:ui": "playwright test --ui",
+    "research": "tsx scripts/research-agent.ts",
+    "rich-research": "tsx scripts/rich-research.ts",
+    "ingest-research": "tsx scripts/ingest-research.ts",
+    "prepare-photos": "tsx scripts/prepare-photos.ts",
+    "scrape": "tsx scripts/scrapers/run-scraper.ts",
+    "aggregate-runs": "tsx scripts/aggregate-research-runs.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@types/sortablejs": "^1.15.9",
+    "playwright": "^1.60.0",
+    "tsx": "^4.22.3",
+    "typescript": "~6.0.2",
+    "vite": "^8.0.12"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.0",
+    "maplibre-gl": "^5.24.0",
+    "sortablejs": "^1.15.7",
+    "tailwindcss": "^4.3.0"
+  }
+}

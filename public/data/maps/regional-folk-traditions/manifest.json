@@ -1,0 +1,12 @@
+{
+  "slug": "regional-folk-traditions",
+  "title": "Regional Folk Traditions",
+  "tagline": "A neutral example knowledge map",
+  "version": "1.0.0",
+  "totalEntries": 5,
+  "lastUpdated": "2026-05-27",
+  "defaultCenter": [37.0, -82.0],
+  "defaultZoom": 6,
+  "filterFields": ["region", "confidence"],
+  "chunks": ["entries.json"]
+}

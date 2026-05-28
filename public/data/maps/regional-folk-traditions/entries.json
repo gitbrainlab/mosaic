@@ -1,0 +1,142 @@
+[
+  {
+    "id": "ft-001",
+    "name": "Appalachian Dulcimer Making",
+    "location": {
+      "address": "Various workshops",
+      "city": "Hindman",
+      "region": "Kentucky",
+      "country": "United States",
+      "lat": 37.3456,
+      "lng": -82.9813
+    },
+    "description": "Traditional construction of the Appalachian dulcimer using local hardwoods and hand tools passed through generations.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "interview",
+        "source": "Hindman Settlement School oral history project",
+        "date": "2018"
+      }
+    ],
+    "tags": ["appalachia", "instrument-making", "usa"],
+    "attributes": {
+      "practice": "craft",
+      "region": "central-appalachia"
+    },
+    "added": "2026-04-10",
+    "lastVerified": "2026-05-15"
+  },
+  {
+    "id": "ft-002",
+    "name": "Sardinian Tenore Singing",
+    "location": {
+      "address": "Various villages",
+      "city": "Orgosolo",
+      "region": "Sardinia",
+      "country": "Italy",
+      "lat": 40.2056,
+      "lng": 9.3542
+    },
+    "description": "Ancient four-voice polyphonic singing tradition performed a cappella by male groups in the Barbagia region.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "UNESCO Intangible Cultural Heritage listing",
+        "date": "2005"
+      }
+    ],
+    "tags": ["sardinia", "polyphony", "italy"],
+    "attributes": {
+      "practice": "music",
+      "region": "barbagia"
+    },
+    "added": "2026-04-22",
+    "lastVerified": "2026-05-18"
+  },
+  {
+    "id": "ft-003",
+    "name": "Japanese Indigo Dyeing (Aizome)",
+    "location": {
+      "address": "Traditional workshops",
+      "city": "Tokushima",
+      "region": "Shikoku",
+      "country": "Japan",
+      "lat": 34.0658,
+      "lng": 134.5594
+    },
+    "description": "Natural fermentation dyeing using Persicaria tinctoria, preserved through family workshops since the Edo period.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "photo",
+        "source": "Japan Folk Crafts Museum documentation",
+        "date": "1974"
+      }
+    ],
+    "tags": ["japan", "natural-dye", "textiles"],
+    "attributes": {
+      "practice": "craft",
+      "region": "shikoku"
+    },
+    "added": "2026-05-02",
+    "lastVerified": "2026-05-20"
+  },
+  {
+    "id": "ft-004",
+    "name": "Andean Quipu Record-Keeping",
+    "location": {
+      "address": "Community centers",
+      "city": "Cusco",
+      "region": "Cusco Region",
+      "country": "Peru",
+      "lat": -13.5226,
+      "lng": -71.9722
+    },
+    "description": "Knot-based recording system using colored cords, still used in some communities for accounting and ritual memory.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Harvard Peabody Museum research notes",
+        "date": "2019"
+      }
+    ],
+    "tags": ["andes", "quipu", "peru"],
+    "attributes": {
+      "practice": "record-keeping",
+      "region": "southern-andes"
+    },
+    "added": "2026-05-08",
+    "lastVerified": "2026-05-23"
+  },
+  {
+    "id": "ft-005",
+    "name": "Georgian Polyphonic Singing",
+    "location": {
+      "address": "Village ensembles",
+      "city": "Tbilisi",
+      "region": "Tbilisi",
+      "country": "Georgia",
+      "lat": 41.7151,
+      "lng": 44.8271
+    },
+    "description": "Three-part vocal polyphony with distinctive drone and ornamentation, recognized by UNESCO in 2001.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "UNESCO Intangible Cultural Heritage",
+        "date": "2001"
+      }
+    ],
+    "tags": ["georgia", "polyphony", "caucasus"],
+    "attributes": {
+      "practice": "music",
+      "region": "caucasus"
+    },
+    "added": "2026-05-12",
+    "lastVerified": "2026-05-24"
+  }
+]

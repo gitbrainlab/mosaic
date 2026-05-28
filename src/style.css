@@ -1,0 +1,92 @@
+@import "tailwindcss";
+@import "maplibre-gl/dist/maplibre-gl.css";
+
+/* ============================================================
+   Mosaic — Neutral Scaffold (Phase 1a)
+   Final brand tokens (Deep Charcoal, Warm Bronze, etc.) will
+   be applied in Phase 1b after the brand report + PWA research.
+   ============================================================ */
+
+:root {
+  /* Neutral professional scaffold palette */
+  --color-bg: #f8f7f4;
+  --color-surface: #ffffff;
+  --color-surface-raised: #f1efea;
+  --color-text: #2c2a27;
+  --color-text-muted: #6b6761;
+  --color-border: #e5e2d9;
+  --color-accent: #8a8178; /* Muted warm taupe for Phase 1a */
+
+  /* Typography (system first — refined sans + serif will come in 1b) */
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+
+  /* Shape */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #1a1916;
+    --color-surface: #23221e;
+    --color-surface-raised: #2a2924;
+    --color-text: #f1efea;
+    --color-text-muted: #a19d95;
+    --color-border: #383530;
+    --color-accent: #a89f96;
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Basic utility classes for neutral scaffold (will be replaced by brand system in 1b) */
+.mosaic-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.mosaic-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  transition: all 0.15s ease;
+}
+
+.mosaic-btn:hover {
+  background: var(--color-accent);
+  color: white;
+  border-color: var(--color-accent);
+}
+
+.mosaic-focus-ring:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}

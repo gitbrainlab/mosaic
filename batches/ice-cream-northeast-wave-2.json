@@ -1,0 +1,82 @@
+{
+  "wave": "ice-cream-northeast-wave-2",
+  "baseTopic": "Ice Cream in the Northeast",
+  "description": "Targeted micro-location research for high-quality ice cream spots across multiple Northeast states. Heavy focus on recent X posts for authentic photos and product details.",
+  "perLocationLimit": 5,
+  "models": ["grok-4.3", "grok-4.20-0309-non-reasoning"],
+  "targets": [
+    {
+      "name": "Portland-ME",
+      "location": "Portland, South Portland, and immediate coastal areas, Maine"
+    },
+    {
+      "name": "Kennebunk-York",
+      "location": "Kennebunkport, York, and southern Maine coast, Maine"
+    },
+    {
+      "name": "Portsmouth-NH",
+      "location": "Portsmouth, Rye, and Seacoast New Hampshire"
+    },
+    {
+      "name": "Manchester-NH",
+      "location": "Manchester, Concord area, and southern New Hampshire"
+    },
+    {
+      "name": "Burlington-VT-2",
+      "location": "Burlington, Shelburne, Stowe corridor, Vermont (deeper than wave 1)"
+    },
+    {
+      "name": "Stowe-Smugglers",
+      "location": "Stowe, Waterbury, and Smugglers Notch area, Vermont"
+    },
+    {
+      "name": "Boston-Cambridge-2",
+      "location": "Boston, Cambridge, Somerville, and inner suburbs, Massachusetts (deeper dive)"
+    },
+    {
+      "name": "North-Shore-MA",
+      "location": "Salem, Gloucester, Rockport, and Cape Ann, Massachusetts"
+    },
+    {
+      "name": "South-Shore-MA",
+      "location": "Plymouth, Duxbury, and South Shore, Massachusetts"
+    },
+    {
+      "name": "Worcester-Central-MA",
+      "location": "Worcester, Sturbridge, and central Massachusetts"
+    },
+    {
+      "name": "Pioneer-Valley-MA",
+      "location": "Northampton, Amherst, Easthampton, Pioneer Valley, Massachusetts"
+    },
+    {
+      "name": "Providence-RI",
+      "location": "Providence, Pawtucket, and immediate Rhode Island"
+    },
+    {
+      "name": "Newport-RI",
+      "location": "Newport and Aquidneck Island, Rhode Island"
+    },
+    {
+      "name": "Hartford-CT",
+      "location": "Hartford, West Hartford, and central Connecticut"
+    },
+    {
+      "name": "New-Haven-CT",
+      "location": "New Haven, Guilford, and shoreline Connecticut"
+    },
+    {
+      "name": "Hudson-Valley-NY",
+      "location": "Hudson, Rhinebeck, Beacon, and mid-Hudson Valley, New York"
+    },
+    {
+      "name": "Catskills-NY",
+      "location": "Woodstock, Phoenicia, and northern Catskills, New York"
+    },
+    {
+      "name": "Long-Island-NY",
+      "location": "North Fork and South Fork of Long Island, New York"
+    }
+  ],
+  "notes": "Run in waves of 6-8 parallel calls. Prioritize X post photos and product close-ups. Gate all output through coordinate validator."
+}

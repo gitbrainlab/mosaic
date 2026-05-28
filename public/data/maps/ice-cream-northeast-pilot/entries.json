@@ -1,0 +1,198 @@
+[
+  {
+    "id": "peaceful-meadows-ice-cream-plymouth",
+    "name": "Peaceful Meadows Ice Cream",
+    "location": {
+      "address": "170 Water Street",
+      "city": "Plymouth",
+      "region": "MA",
+      "country": "USA",
+      "lat": 41.9589,
+      "lng": -70.6675
+    },
+    "description": "Long-running ice cream stand in Plymouth serving soft-serve and hard ice cream since the 1970s.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "review",
+        "source": "TripAdvisor",
+        "detail": "Hundreds of reviews confirming location and menu",
+        "date": "2023"
+      },
+      {
+        "type": "article",
+        "source": "South Shore food guides",
+        "detail": "Listed as local favorite"
+      }
+    ],
+    "tags": [
+      "ice cream",
+      "soft serve",
+      "plymouth ma"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Peaceful Meadows Plymouth MA soft serve cone photo",
+        "expectedVisual": "Close-up of vanilla or chocolate soft-serve cone with toppings",
+        "priority": "high",
+        "suggestedSource": "Customer photos on Google/TripAdvisor 2023-2024"
+      }
+    ]
+  },
+  {
+    "id": "farfars-danish-ice-cream-duxbury",
+    "name": "Farfar's Danish Ice Cream Shoppe",
+    "location": {
+      "address": "2 Main Street",
+      "city": "Duxbury",
+      "region": "MA",
+      "country": "USA",
+      "lat": 42.0256,
+      "lng": -70.6828
+    },
+    "description": "Duxbury shop known for homemade Danish-style ice cream flavors.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Boston Globe",
+        "detail": "Featured as South Shore standout",
+        "date": "2022"
+      },
+      {
+        "type": "review",
+        "source": "Google Reviews",
+        "detail": "Consistent high ratings for homemade ice cream"
+      }
+    ],
+    "tags": [
+      "ice cream",
+      "homemade",
+      "duxbury ma"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Farfar's Duxbury ice cream scoop dish photo",
+        "expectedVisual": "Plated scoops of house-made flavors like cardamom or licorice",
+        "priority": "high",
+        "suggestedSource": "Instagram customer posts 2023-2024"
+      }
+    ]
+  },
+  {
+    "id": "village-ice-cream-shoppe-marshfield",
+    "name": "Village Ice Cream Shoppe",
+    "location": {
+      "address": "1896 Ocean Street",
+      "city": "Marshfield",
+      "region": "MA",
+      "country": "USA",
+      "lat": 42.0923,
+      "lng": -70.7056
+    },
+    "description": "Marshfield ice cream shop offering classic flavors with strong local following.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "review",
+        "source": "Google Reviews",
+        "detail": "High volume of positive reviews from Marshfield residents"
+      },
+      {
+        "type": "article",
+        "source": "Marshfield community publications",
+        "detail": "Regular mentions in local roundups"
+      }
+    ],
+    "tags": [
+      "ice cream",
+      "marshfield ma"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Village Ice Cream Shoppe Marshfield cone or sundae",
+        "expectedVisual": "Ice cream cone or sundae with standard toppings",
+        "priority": "high",
+        "suggestedSource": "Local review photos 2024"
+      }
+    ]
+  },
+  {
+    "id": "sundaes-ice-cream-scituate",
+    "name": "Sundaes Ice Cream",
+    "location": {
+      "address": "44 First Parish Road",
+      "city": "Scituate",
+      "region": "MA",
+      "country": "USA",
+      "lat": 42.1958,
+      "lng": -70.7264
+    },
+    "description": "Scituate spot specializing in sundaes and ice cream near the coast.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Scituate coastal dining roundups",
+        "detail": "Repeated recommendations in South Shore lists"
+      },
+      {
+        "type": "review",
+        "source": "Yelp",
+        "detail": "Verified customer reviews for sundaes"
+      }
+    ],
+    "tags": [
+      "ice cream",
+      "sundaes",
+      "scituate ma"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Sundaes Ice Cream Scituate sundae close up",
+        "expectedVisual": "Detailed view of a built sundae with toppings and sauce",
+        "priority": "high",
+        "suggestedSource": "Customer Instagram 2023"
+      }
+    ]
+  },
+  {
+    "id": "dairy-joy-duxbury",
+    "name": "Dairy Joy",
+    "location": {
+      "address": "119 Summer Street",
+      "city": "Duxbury",
+      "region": "MA",
+      "country": "USA",
+      "lat": 42.0417,
+      "lng": -70.7003
+    },
+    "description": "Seasonal Duxbury dairy bar serving soft serve and hard ice cream.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Duxbury seasonal guides",
+        "detail": "Listed in South Shore summer guides"
+      },
+      {
+        "type": "review",
+        "source": "Google Reviews",
+        "detail": "Consistent positive seasonal feedback"
+      }
+    ],
+    "tags": [
+      "ice cream",
+      "soft serve",
+      "duxbury ma"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Dairy Joy Duxbury soft serve cone",
+        "expectedVisual": "Vanilla or twist soft-serve cone in paper holder",
+        "priority": "high",
+        "suggestedSource": "Recent customer photos 2024"
+      }
+    ]
+  }
+]

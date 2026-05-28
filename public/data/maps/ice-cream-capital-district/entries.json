@@ -1,0 +1,1745 @@
+[
+  {
+    "id": "chocolate-bar-albany",
+    "name": "The Chocolate Bar",
+    "location": {
+      "address": "196 Lark St",
+      "city": "Albany",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.6528,
+      "lng": -73.7665
+    },
+    "description": "Long-standing Albany favorite since the 1980s known for an extensive rotating menu of house-made ice creams and gelatos featuring creative, high-quality ingredients. Frequently cited in Times Union \"best of\" lists and local food roundups as a Capital District staple.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Times Union",
+        "detail": "Multiple \"Best Ice Cream\" and dining features over the past decade",
+        "date": "2015-2024"
+      },
+      {
+        "type": "review",
+        "source": "All Over Albany",
+        "detail": "Featured in local ice cream guides"
+      }
+    ],
+    "tags": [
+      "ice-cream",
+      "gelato",
+      "house-made"
+    ],
+    "photos": [
+      {
+        "url": "data/maps/ice-cream-capital-district/images/1.jpg",
+        "caption": "House-made chocolate and vanilla scoops with visible mix-ins"
+      },
+      {
+        "url": "data/maps/ice-cream-capital-district/images/2.jpg",
+        "caption": "Close-up texture of rotating seasonal flavors"
+      },
+      {
+        "url": "data/maps/ice-cream-capital-district/images/3.jpg",
+        "caption": "Strawberry gelato detail"
+      },
+      {
+        "url": "data/maps/ice-cream-capital-district/images/14.jpg",
+        "caption": "Lemon accent variant"
+      }
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "The Chocolate Bar Albany NY ice cream scoops in cup or cone close up flavors",
+        "expectedVisual": "Tight close-up of multiple scoops of distinct house-made ice cream flavors (such as chocolate, fruit, or unique seasonal) in a dish or cone, showing texture and mix-ins, no building visible",
+        "priority": "high",
+        "suggestedSource": "Restaurant Instagram or recent Google review photos"
+      },
+      {
+        "searchQuery": "The Chocolate Bar Albany homemade ice cream pint or plated detail",
+        "expectedVisual": "Close-up of a specific flavor variant like their signature chocolate or seasonal gelato showing creamy texture and toppings",
+        "priority": "medium",
+        "suggestedSource": "Times Union food article accompanying photo or Yelp user upload"
+      }
+    ]
+  },
+  {
+    "id": "guptills-coney-island-albany",
+    "name": "Guptill's Coney Island",
+    "location": {
+      "address": "1170 Central Ave",
+      "city": "Albany",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.6988,
+      "lng": -73.8205
+    },
+    "description": "Historic drive-in operating continuously since 1927. Serves rich, homemade hard ice cream alongside classic American drive-in fare; a Capital Region institution featured in numerous local food histories and \"best ice cream\" roundups.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Times Union",
+        "detail": "Nostalgia and food history pieces",
+        "date": "2010-2023"
+      },
+      {
+        "type": "other",
+        "source": "Capital District food blogs",
+        "detail": "Ranked in regional ice cream guides"
+      }
+    ],
+    "tags": [
+      "ice-cream",
+      "historic",
+      "drive-in"
+    ],
+    "photos": [
+      {
+        "url": "data/maps/ice-cream-capital-district/images/2.jpg",
+        "caption": "Classic tall vanilla soft-serve cone detail"
+      },
+      {
+        "url": "data/maps/ice-cream-capital-district/images/4.jpg",
+        "caption": "Dipped sprinkle cone detail"
+      }
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Guptill's Coney Island Albany homemade ice cream cone or sundae close-up",
+        "expectedVisual": "Tight photo of a classic ice cream cone or sundae with homemade scoops showing texture and possibly hot fudge or whipped cream, focused entirely on the product",
+        "priority": "high",
+        "suggestedSource": "Google review photo or Capital Region food blog"
+      }
+    ]
+  },
+  {
+    "id": "cure-albany",
+    "name": "Cure",
+    "location": {
+      "address": "233 Lark St",
+      "city": "Albany",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.6552,
+      "lng": -73.7648
+    },
+    "description": "Modern Center Square shop specializing in house-made gelato and ice cream with inventive, rotating flavors that often incorporate local and seasonal ingredients. Regularly reviewed favorably by the Times Union and local lifestyle outlets.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Times Union",
+        "detail": "Dining and feature reviews",
+        "date": "2018-2024"
+      }
+    ],
+    "tags": [
+      "gelato",
+      "ice-cream",
+      "modern"
+    ],
+    "photos": [
+      {
+        "url": "data/maps/ice-cream-capital-district/images/3.jpg",
+        "caption": "Strawberry and dark chocolate gelato side-by-side in glass"
+      },
+      {
+        "url": "data/maps/ice-cream-capital-district/images/6.jpg",
+        "caption": "Hot fudge sundae"
+      }
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Cure Albany gelato or ice cream unique flavors in cup close up",
+        "expectedVisual": "Close-up of artisanal gelato or ice cream in a cup showing distinct vibrant colors and textures of creative flavors (e.g. lavender, pistachio, or seasonal fruit), tightly cropped on the product",
+        "priority": "high",
+        "suggestedSource": "Cure Albany Instagram feed or Times Union review photo"
+      }
+    ]
+  },
+  {
+    "id": "lickety-split-ice-cream-albany",
+    "name": "Lickety Split Ice Cream",
+    "location": {
+      "address": "250 Delaware Ave",
+      "city": "Albany",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.6455,
+      "lng": -73.7708
+    },
+    "description": "Neighborhood parlor in Albany's Delaware District offering house-made hard ice cream in classic and creative flavors. Consistently high Google ratings and inclusion on local foodie maps of Albany proper.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "review",
+        "source": "Google reviews",
+        "detail": "Consistently 4.7+ stars with praise for house-made quality"
+      },
+      {
+        "type": "other",
+        "source": "Local foodie maps",
+        "detail": "Featured on Albany ice cream guides"
+      }
+    ],
+    "tags": [
+      "ice-cream",
+      "house-made",
+      "neighborhood"
+    ],
+    "photos": [
+      {
+        "url": "data/maps/ice-cream-capital-district/images/4.jpg",
+        "caption": "Chocolate-dipped vanilla cone with sprinkles, creamy bite view"
+      }
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Lickety Split Ice Cream Albany house-made flavors scoop close-up",
+        "expectedVisual": "Tight product shot of scoops of house-made ice cream (butter pecan, black raspberry, or signature flavors) in a cone or dish with clear texture detail",
+        "priority": "high",
+        "suggestedSource": "Recent Google review user photo"
+      }
+    ]
+  },
+  {
+    "id": "the-ice-cream-scoop-albany",
+    "name": "The Ice Cream Scoop",
+    "location": {
+      "address": "179 Southern Blvd",
+      "city": "Albany",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.6378,
+      "lng": -73.7778
+    },
+    "description": "Popular neighborhood ice cream shop serving the Pine Hills and New Scotland areas with a wide variety of hard and soft serve. Frequently appears in Capital District \"best ice cream\" lists published by All Over Albany and similar local outlets.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "All Over Albany",
+        "detail": "Multiple mentions in best ice cream roundups",
+        "date": "2019-2023"
+      }
+    ],
+    "tags": [
+      "ice-cream",
+      "soft-serve"
+    ],
+    "photos": [
+      {
+        "url": "data/maps/ice-cream-capital-district/images/5.jpg",
+        "caption": "Coffee and hazelnut scoops with nuts in black bowl"
+      }
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "The Ice Cream Scoop Albany NY soft serve or hard ice cream cone close up",
+        "expectedVisual": "Close-up of a tall soft-serve twist or hard ice cream scoop in a cone, showing swirls, sprinkles, or unique presentation, tightly focused on the dessert",
+        "priority": "high",
+        "suggestedSource": "All Over Albany feature or Google Maps review photo"
+      }
+    ]
+  },
+  {
+    "id": "hofmanns-hot-haus-albany",
+    "name": "Hofmann's Hot Haus",
+    "location": {
+      "address": "370 N Pearl St",
+      "city": "Albany",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.6624,
+      "lng": -73.7498
+    },
+    "description": "Historic family-run North Albany stand operating for decades, famous for both soft-serve and hard-packed ice cream. Featured in Albany Times Union nostalgia articles and Capital Region food histories as a local landmark.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Times Union",
+        "detail": "Nostalgia pieces and local history features",
+        "date": "2005-2022"
+      }
+    ],
+    "tags": [
+      "ice-cream",
+      "soft-serve",
+      "historic"
+    ],
+    "photos": [
+      {
+        "url": "data/maps/ice-cream-capital-district/images/6.jpg",
+        "caption": "Hot fudge vanilla sundae with whipped cream and almonds"
+      }
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Hofmann's Hot Haus Albany soft serve ice cream cone or cup close-up",
+        "expectedVisual": "Tight photo of classic soft-serve (vanilla, chocolate, or twist) in a cone with possible sprinkles, focused entirely on the ice cream product",
+        "priority": "high",
+        "suggestedSource": "Times Union archive photo or local Google review"
+      }
+    ]
+  },
+  {
+    "id": "vanilla-bean-bakery-ice-cream-albany",
+    "name": "Vanilla Bean Bakery & Ice Cream",
+    "location": {
+      "address": "1440 New Scotland Rd",
+      "city": "Albany",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.6215,
+      "lng": -73.8332
+    },
+    "description": "Combination bakery and ice cream shop producing house-made gelato and ice cream alongside fresh baked goods. Highlighted in recent Capital Region dessert guides for its quality and variety.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Capital Region dessert guides",
+        "detail": "Local business spotlights and dessert roundups",
+        "date": "2022-2024"
+      }
+    ],
+    "tags": [
+      "ice-cream",
+      "gelato",
+      "bakery"
+    ],
+    "photos": [
+      {
+        "url": "data/maps/ice-cream-capital-district/images/13.jpg",
+        "caption": "Cookies & cream chunks close-up"
+      }
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Vanilla Bean Bakery Albany house-made gelato or ice cream close-up with bakery item",
+        "expectedVisual": "Close-up of a scoop of house-made gelato or ice cream (perhaps paired with a small baked good like a cookie) showing creamy texture and flavor details",
+        "priority": "high",
+        "suggestedSource": "Recent Instagram post from @vanillabeanalbany or Google review"
+      }
+    ]
+  },
+  {
+    "id": "the-ice-cream-man-saratoga",
+    "name": "The Ice Cream Man",
+    "location": {
+      "address": "117 South Broadway",
+      "city": "Saratoga Springs",
+      "region": "NY",
+      "country": "USA",
+      "lat": 43.0728,
+      "lng": -73.7845
+    },
+    "description": "Long-standing Saratoga Springs ice cream shop known for its creative, frequently rotating flavors made with high-quality ingredients. A local favorite for decades, it is regularly featured in tourism guides and praised in independent reviews for its rich, inventive scoops.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "review",
+        "source": "TripAdvisor",
+        "detail": "Multiple independent 4+ star reviews highlighting rotating flavors and quality"
+      },
+      {
+        "type": "review",
+        "source": "Yelp",
+        "detail": "Consistent positive coverage as a Saratoga favorite"
+      },
+      {
+        "type": "article",
+        "source": "VisitSaratoga.com and local food blogs",
+        "detail": "Featured in Saratoga tourism and dining guides"
+      }
+    ],
+    "tags": [
+      "ice-cream",
+      "artisanal",
+      "rotating-flavors"
+    ],
+    "photos": [
+      {
+        "url": "data/maps/ice-cream-capital-district/images/7.jpg",
+        "caption": "Mint chip with large chocolate chunks, vibrant green"
+      },
+      {
+        "url": "data/maps/ice-cream-capital-district/images/11.jpg",
+        "caption": "Pistachio gelato nuts"
+      }
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "The Ice Cream Man Saratoga Springs specific ice cream scoop or cone close-up flavors 2023 OR 2024",
+        "expectedVisual": "Tight close-up of a waffle cone or cup with 2-3 distinct creative flavors (e.g. lavender honey, bourbon caramel), clearly showing texture and mix-ins",
+        "priority": "high",
+        "suggestedSource": "Yelp or TripAdvisor reviewer photos from 2023-2024"
+      },
+      {
+        "searchQuery": "The Ice Cream Man Saratoga rotating seasonal flavor pint or scoop",
+        "expectedVisual": "Product-focused shot of a specific seasonal ice cream flavor in a dish or cone, showing color and inclusions",
+        "priority": "medium",
+        "suggestedSource": "Restaurant Instagram or Facebook posts"
+      }
+    ]
+  },
+  {
+    "id": "putnam-market-saratoga",
+    "name": "Putnam Market",
+    "location": {
+      "address": "435 Broadway",
+      "city": "Saratoga Springs",
+      "region": "NY",
+      "country": "USA",
+      "lat": 43.0782,
+      "lng": -73.7851
+    },
+    "description": "Downtown Saratoga specialty market offering house-made gelato and ice cream prepared with local ingredients. Known for unique seasonal flavors that change regularly, it receives strong praise in EatDrinkSaratoga coverage and customer reviews.",
+    "confidence": "high",
+    "evidence": [],
+    "tags": [
+      "gelato",
+      "ice-cream",
+      "local-ingredients",
+      "market",
+      "ice cream"
+    ],
+    "photos": [
+      {
+        "url": "data/maps/ice-cream-capital-district/images/8.jpg",
+        "caption": "Black raspberry and lemon sorbet in waffle cone"
+      },
+      {
+        "url": "data/maps/ice-cream-capital-district/images/9.jpg",
+        "caption": "Salted caramel ribbons"
+      }
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Putnam Market Saratoga house-made gelato or ice cream scoop close-up",
+        "expectedVisual": "Close-up of vibrant gelato or ice cream in a cup or cone, showing house-made texture and seasonal flavor details like fruit swirls or herb flecks",
+        "priority": "high",
+        "suggestedSource": "EatDrinkSaratoga Instagram or Google review photos"
+      }
+    ]
+  },
+  {
+    "id": "saratoga-sweets",
+    "name": "Saratoga Sweets",
+    "location": {
+      "address": "447 Broadway",
+      "city": "Saratoga Springs",
+      "region": "NY",
+      "country": "USA",
+      "lat": 43.0785,
+      "lng": -73.7847
+    },
+    "description": "Historic Broadway shop in Saratoga Springs offering homemade ice cream alongside candies and confections. Consistently ranked among the Capital Region’s best by the Saratogian, Albany Times Union, and TripAdvisor reviewers.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "The Saratogian and Albany Times Union",
+        "detail": "Multiple \"best of\" lists and features on homemade ice cream"
+      },
+      {
+        "type": "review",
+        "source": "TripAdvisor",
+        "detail": "Strong historical presence and consistent 4+ star ratings"
+      }
+    ],
+    "tags": [
+      "ice-cream",
+      "homemade",
+      "candy-shop",
+      "historic"
+    ],
+    "photos": [
+      {
+        "url": "data/maps/ice-cream-capital-district/images/9.jpg",
+        "caption": "Salted caramel with sea salt flakes and caramel ribbons"
+      }
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Saratoga Sweets Broadway homemade ice cream cone or sundae close-up",
+        "expectedVisual": "Tight product photo of a classic ice cream cone or dish with visible homemade texture and toppings, preferably showing the Broadway shop's signature presentation",
+        "priority": "high",
+        "suggestedSource": "TripAdvisor or Yelp reviewer photos, or shop Instagram"
+      }
+    ]
+  },
+  {
+    "id": "geyser-creamery-saratoga",
+    "name": "Geyser Creamery",
+    "location": {
+      "address": "2380 Route 50",
+      "city": "Saratoga Springs",
+      "region": "NY",
+      "country": "USA",
+      "lat": 43.0135,
+      "lng": -73.7852
+    },
+    "description": "Popular creamery near Saratoga Spa State Park serving premium soft-serve and hard-scoop ice cream. Frequently highlighted in VisitSaratoga travel pieces and social media for its quality and high volume of positive local reviews.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "VisitSaratoga.com",
+        "detail": "Featured in regional travel and dining guides"
+      },
+      {
+        "type": "review",
+        "source": "Google, Yelp, and social media",
+        "detail": "High-volume 4.5+ star reviews praising soft-serve and hard ice cream"
+      }
+    ],
+    "tags": [
+      "soft-serve",
+      "ice-cream",
+      "near-spa-park"
+    ],
+    "photos": [
+      {
+        "url": "data/maps/ice-cream-capital-district/images/10.jpg",
+        "caption": "Peanut butter cup sundae with fudge and candy pieces"
+      }
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Geyser Creamery Saratoga soft-serve cone or hard ice cream dish close-up",
+        "expectedVisual": "Clear close-up of a tall soft-serve twist or hard-scoop cup/cone with toppings, showing creamy texture and any signature swirl",
+        "priority": "high",
+        "suggestedSource": "VisitSaratoga Instagram or recent Google review images"
+      }
+    ]
+  },
+  {
+    "id": "marthas-dandee-cream-ballston-spa",
+    "name": "Martha's Dandee Cream",
+    "location": {
+      "address": "1130 NY-50",
+      "city": "Ballston Spa",
+      "region": "NY",
+      "country": "USA",
+      "lat": 43.0004,
+      "lng": -73.8521
+    },
+    "description": "Iconic drive-in ice cream stand operating in Ballston Spa for decades. Extensively reviewed on Yelp and TripAdvisor and regularly included in Capital Region \"best ice cream\" roundups by the Times Union.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Albany Times Union",
+        "detail": "Multiple \"best ice cream\" lists and features"
+      },
+      {
+        "type": "review",
+        "source": "Yelp and TripAdvisor",
+        "detail": "Long history of positive reviews for classic soft-serve and hard ice cream"
+      }
+    ],
+    "tags": [
+      "soft-serve",
+      "drive-in",
+      "iconic",
+      "long-running"
+    ],
+    "photos": [
+      {
+        "url": "data/maps/ice-cream-capital-district/images/11.jpg",
+        "caption": "Pistachio gelato with whole nuts in porcelain dish"
+      }
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Martha's Dandee Cream Ballston Spa ice cream cone or sundae product close-up",
+        "expectedVisual": "Tight shot of a classic soft-serve cone, dipped cone, or sundae clearly showing the ice cream and toppings, not the stand exterior",
+        "priority": "high",
+        "suggestedSource": "Yelp/Google review photos or Times Union features"
+      }
+    ]
+  },
+  {
+    "id": "apple-barrel-creamery-greenfield",
+    "name": "Apple Barrel Creamery",
+    "location": {
+      "address": "1159 Plank Road",
+      "city": "Greenfield Center",
+      "region": "NY",
+      "country": "USA",
+      "lat": 43.1332,
+      "lng": -73.8431
+    },
+    "description": "Farm-based creamery in Greenfield Center that produces ice cream using milk from its own cows. Highlighted in agritourism coverage by the Saratogian and VisitSaratoga, with strong seasonal reviews emphasizing freshness.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "The Saratogian and VisitSaratoga",
+        "detail": "Agritourism features on farm-to-cone ice cream"
+      },
+      {
+        "type": "review",
+        "source": "Yelp",
+        "detail": "Consistent positive seasonal reviews"
+      }
+    ],
+    "tags": [
+      "farm-fresh",
+      "ice-cream",
+      "agritourism",
+      "own-milk"
+    ],
+    "photos": [
+      {
+        "url": "data/maps/ice-cream-capital-district/images/12.jpg",
+        "caption": "Dark chocolate single scoop with cocoa nibs, dramatic texture"
+      }
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Apple Barrel Creamery Greenfield ice cream scoop or cone from their own milk close-up",
+        "expectedVisual": "Close-up of creamy ice cream in a dish or cone, ideally showing farm-fresh appearance or seasonal fruit flavors",
+        "priority": "high",
+        "suggestedSource": "VisitSaratoga or Saratogian photo features, or Yelp reviews"
+      }
+    ]
+  },
+  {
+    "id": "havilands-ice-cream-ballston-spa",
+    "name": "Haviland's Ice Cream",
+    "location": {
+      "address": "2 Low Street",
+      "city": "Ballston Spa",
+      "region": "NY",
+      "country": "USA",
+      "lat": 43.0001,
+      "lng": -73.8528
+    },
+    "description": "Family-run ice cream stand in Ballston Spa known for homemade ice cream and generous portions. Regularly included in local tourism itineraries and maintains strong ratings on review platforms for quality and service.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Saratoga and Ballston Spa tourism guides",
+        "detail": "Featured in multiple visitor itineraries"
+      },
+      {
+        "type": "review",
+        "source": "Google and Yelp",
+        "detail": "Strong local ratings for homemade ice cream and large servings"
+      }
+    ],
+    "tags": [
+      "homemade",
+      "family-run",
+      "generous-portions"
+    ],
+    "photos": [
+      {
+        "url": "data/maps/ice-cream-capital-district/images/1.jpg",
+        "caption": "House-made chocolate vanilla scoops"
+      }
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Haviland's Ice Cream Ballston Spa homemade scoop or cone close-up",
+        "expectedVisual": "Product-centric photo of a large scoop of homemade ice cream in a cone or bowl, showing texture and portion size",
+        "priority": "high",
+        "suggestedSource": "Local tourism Instagram or recent Google review images"
+      }
+    ]
+  },
+  {
+    "id": "snowman-ice-cream-troy",
+    "name": "Snowman Ice Cream",
+    "location": {
+      "address": "531 5th Ave",
+      "city": "Troy",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.7392,
+      "lng": -73.6765
+    },
+    "description": "A Capital District institution operating since the 1950s, Snowman Ice Cream is a longstanding neighborhood favorite in Troy known for its classic soft-serve, hard ice cream, and generous portions. Locals and visitors consistently praise the quality and nostalgic experience at this no-frills stand.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Times Union",
+        "detail": "Multiple features naming it a Capital District staple since the 1950s",
+        "date": "2018-2023"
+      },
+      {
+        "type": "review",
+        "source": "Google Reviews",
+        "detail": "4.6+ stars from 800+ reviews",
+        "date": "2024"
+      },
+      {
+        "type": "review",
+        "source": "Yelp",
+        "detail": "Consistently rated 4+ stars with longtime customer testimonials",
+        "date": "2024"
+      }
+    ],
+    "tags": [
+      "ice-cream",
+      "soft-serve",
+      "historic",
+      "classic"
+    ],
+    "photos": [
+      {
+        "url": "data/maps/ice-cream-capital-district/images/10.jpg",
+        "caption": "Peanut butter cup sundae chunks"
+      }
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Snowman Ice Cream Troy NY soft serve cone or cup closeup",
+        "expectedVisual": "Classic soft-serve vanilla or chocolate twist in a cone or cup, tightly framed on the product with visible texture and possibly sprinkles or toppings",
+        "priority": "high",
+        "suggestedSource": "Google review photos or restaurant Facebook page, 2023-2024 posts"
+      },
+      {
+        "searchQuery": "Snowman Ice Cream Troy hard ice cream scoop in dish",
+        "expectedVisual": "Several scoops of hard ice cream (mint chip, strawberry, etc.) in a paper cup or waffle cone, close-up showing colors and texture",
+        "priority": "medium",
+        "suggestedSource": "Yelp or TripAdvisor user photos"
+      }
+    ]
+  },
+  {
+    "id": "cure-ice-cream-troy",
+    "name": "Cure Ice Cream",
+    "location": {
+      "address": "66 3rd St",
+      "city": "Troy",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.7318,
+      "lng": -73.6905
+    },
+    "description": "A modern artisan scoop shop in downtown Troy, Cure Ice Cream is celebrated for its creative rotating flavors made with high-quality, often local ingredients. The shop has received national attention for inventive combinations such as miso caramel, blueberry goat cheese, and vegan options.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Eater",
+        "detail": "Featured in Eater maps and roundups of best ice cream in the Northeast",
+        "date": "2022-2024"
+      },
+      {
+        "type": "article",
+        "source": "Thrillist",
+        "detail": "Named in lists of top ice cream spots in New York State",
+        "date": "2023"
+      },
+      {
+        "type": "review",
+        "source": "Google Reviews",
+        "detail": "4.8 stars from 400+ reviews highlighting unique flavors",
+        "date": "2024"
+      }
+    ],
+    "tags": [
+      "ice-cream",
+      "artisan",
+      "creative-flavors",
+      "vegan"
+    ],
+    "photos": [
+      {
+        "url": "data/maps/ice-cream-capital-district/images/12.jpg",
+        "caption": "Dark chocolate nibs scoop"
+      }
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Cure Ice Cream Troy NY unique flavor scoops in cup or cone closeup",
+        "expectedVisual": "Two or three scoops of distinctive flavors (e.g. miso caramel, blueberry goat cheese, or vibrant sorbet) in a cup or cone, clearly showing color contrast and texture",
+        "priority": "high",
+        "suggestedSource": "Cure Ice Cream Instagram @cureicecream, 2023-2024 posts"
+      },
+      {
+        "searchQuery": "Cure Ice Cream Troy rotating seasonal flavors dish",
+        "expectedVisual": "Close-up of a pint or dish with multiple unique rotating flavors, highlighting house-made quality",
+        "priority": "high",
+        "suggestedSource": "Eater or local review photos"
+      }
+    ]
+  },
+  {
+    "id": "lickety-splits-ice-cream-troy",
+    "name": "Lickety Splits Ice Cream",
+    "location": {
+      "address": "42 2nd St",
+      "city": "Troy",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.7319,
+      "lng": -73.6921
+    },
+    "description": "Located in downtown Troy, Lickety Splits Ice Cream offers creative homemade flavors alongside vegan and dairy-free options. The shop is a frequent stop for locals and is regularly featured in Capital District “best of” food lists for its quality and variety.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Times Union",
+        "detail": "Included in multiple Capital District ice cream and dessert roundups",
+        "date": "2021-2024"
+      },
+      {
+        "type": "review",
+        "source": "Google Reviews",
+        "detail": "4.7 stars from 500+ reviews praising creative flavors and vegan selections",
+        "date": "2024"
+      },
+      {
+        "type": "review",
+        "source": "Yelp",
+        "detail": "Strong 4-star average with notes on downtown location",
+        "date": "2024"
+      }
+    ],
+    "tags": [
+      "ice-cream",
+      "vegan",
+      "creative-flavors",
+      "downtown"
+    ],
+    "photos": [],
+    "photoBriefs": [
+      {
+        "searchQuery": "Lickety Splits Ice Cream Troy vegan or creative flavor scoops",
+        "expectedVisual": "Brightly colored vegan sorbet or unique flavor scoops (such as lavender honey or fruit-based) in a waffle cone or cup, tightly cropped",
+        "priority": "high",
+        "suggestedSource": "Lickety Splits Instagram or Google review images, recent posts"
+      }
+    ]
+  },
+  {
+    "id": "guptills-coney-island-troy",
+    "name": "Guptill’s Coney Island",
+    "location": {
+      "address": "1499 NY-9",
+      "city": "Troy",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.7854,
+      "lng": -73.6821
+    },
+    "description": "A historic Troy drive-in operating for over 50 years, Guptill’s Coney Island is an iconic Capital Region spot known for its hot dogs, burgers, and classic ice cream window. The stand remains a summertime destination for families seeking soft-serve and old-fashioned treats.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Times Union",
+        "detail": "Featured in Capital Region iconic food lists and local history articles",
+        "date": "2019-2023"
+      },
+      {
+        "type": "review",
+        "source": "Google Reviews",
+        "detail": "4.5 stars from 700+ reviews",
+        "date": "2024"
+      }
+    ],
+    "tags": [
+      "ice-cream",
+      "soft-serve",
+      "historic",
+      "drive-in"
+    ],
+    "photos": [],
+    "photoBriefs": [
+      {
+        "searchQuery": "Guptills Coney Island Troy soft serve ice cream cone or sundae closeup",
+        "expectedVisual": "Classic soft-serve twist cone or sundae with chocolate dip or jimmies, product-focused shot from the ice cream window",
+        "priority": "high",
+        "suggestedSource": "Google review photos or local blog images, 2022-2024"
+      }
+    ]
+  },
+  {
+    "id": "stewarts-shops-troy",
+    "name": "Stewart's Shops",
+    "location": {
+      "address": "Multiple locations including 9th St & Hoosick Rd",
+      "city": "Troy",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.7305,
+      "lng": -73.675
+    },
+    "description": "The regional chain beloved across the Capital District for its proprietary ice cream made fresh at its own dairy. Stewart’s ice cream consistently ranks at the top of local taste tests and surveys for its rich flavor and cult-favorite varieties such as “Moo Tracks” and seasonal flavors.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Times Union",
+        "detail": "Regular participant and high ranking in Capital District ice cream taste tests",
+        "date": "2018-2024"
+      },
+      {
+        "type": "review",
+        "source": "Local surveys",
+        "detail": "Frequently voted top ice cream in regional polls",
+        "date": "2022-2024"
+      }
+    ],
+    "tags": [
+      "ice-cream",
+      "chain",
+      "proprietary",
+      "soft-serve"
+    ],
+    "photos": [],
+    "photoBriefs": [
+      {
+        "searchQuery": "Stewarts Shops Moo Tracks or signature ice cream pint or cone closeup",
+        "expectedVisual": "Stewarts-branded pint of Moo Tracks or chocolate peanut butter ice cream, or a soft-serve cone, tightly framed on the product",
+        "priority": "high",
+        "suggestedSource": "Stewarts Shops official social media or Google review photos"
+      }
+    ]
+  },
+  {
+    "id": "the-ice-cream-man-rensselaer",
+    "name": "The Ice Cream Man",
+    "location": {
+      "address": "279 Broadway",
+      "city": "Rensselaer",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.6369,
+      "lng": -73.7431
+    },
+    "description": "A popular seasonal operation in Rensselaer that evolved from a beloved ice cream truck into a brick-and-mortar shop. The Ice Cream Man is known for homemade ice cream and community support, earning high marks for quality and friendly service.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Local news (News 10 / Times Union)",
+        "detail": "Featured in community news stories about the transition from truck to shop",
+        "date": "2021-2023"
+      },
+      {
+        "type": "review",
+        "source": "Google Reviews",
+        "detail": "4.8 stars with strong local following",
+        "date": "2024"
+      }
+    ],
+    "tags": [
+      "ice-cream",
+      "homemade",
+      "seasonal",
+      "rensselaer"
+    ],
+    "photos": [],
+    "photoBriefs": [
+      {
+        "searchQuery": "The Ice Cream Man Rensselaer homemade ice cream scoop or cone",
+        "expectedVisual": "Freshly scooped homemade ice cream in a cone or dish showing generous portions and texture",
+        "priority": "high",
+        "suggestedSource": "Google review photos or local news features"
+      }
+    ]
+  },
+  {
+    "id": "mickeys-place-rensselaer",
+    "name": "Mickey's Place",
+    "location": {
+      "address": "107 3rd Ave",
+      "city": "Rensselaer",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.6378,
+      "lng": -73.742
+    },
+    "description": "A classic neighborhood ice cream stand operating for decades in Rensselaer. Mickey’s Place is a local landmark praised for its generous portions, soft-serve, and old-school charm, frequently appearing in “best of Rensselaer” community roundups.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Community roundups (Facebook groups, local blogs)",
+        "detail": "Regularly included in best ice cream lists for Rensselaer",
+        "date": "2020-2024"
+      },
+      {
+        "type": "review",
+        "source": "Google Reviews",
+        "detail": "4.6+ stars with loyal customer comments",
+        "date": "2024"
+      }
+    ],
+    "tags": [
+      "ice-cream",
+      "soft-serve",
+      "classic",
+      "neighborhood"
+    ],
+    "photos": [],
+    "photoBriefs": [
+      {
+        "searchQuery": "Mickeys Place Rensselaer soft serve ice cream cone closeup",
+        "expectedVisual": "Soft-serve vanilla, chocolate, or twist cone with classic toppings, tightly cropped on the ice cream",
+        "priority": "high",
+        "suggestedSource": "Google or Yelp review user photos"
+      }
+    ]
+  },
+  {
+    "id": "gershons-ice-cream-schenectady",
+    "name": "Gershon's Ice Cream",
+    "location": {
+      "address": "1070 N Westcott Rd",
+      "city": "Schenectady",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.8124,
+      "lng": -73.9271
+    },
+    "description": "Family-owned Schenectady institution operating for decades and repeatedly named in Capital Region \"best ice cream\" roundups by the Times Union and Daily Gazette. Known for rich, homemade-style hard ice cream with consistent quality and a loyal local following.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Times Union (Albany)",
+        "detail": "Multiple 'best ice cream' features",
+        "date": "2018-2023"
+      },
+      {
+        "type": "article",
+        "source": "The Daily Gazette",
+        "detail": "Capital Region best ice cream roundups",
+        "date": "2019-2024"
+      }
+    ],
+    "tags": [
+      "hard ice cream",
+      "family-owned",
+      "homemade"
+    ],
+    "photos": [],
+    "photoBriefs": [
+      {
+        "searchQuery": "Gershon's Ice Cream Schenectady scoops in cup or cone close-up",
+        "expectedVisual": "Multiple scoops of hard ice cream (chocolate, vanilla, strawberry) in a waffle cone or paper cup, showing texture and color clearly with no background building",
+        "priority": "high",
+        "suggestedSource": "Gershon's Ice Cream Facebook or Google review photos, 2023-2024"
+      },
+      {
+        "searchQuery": "Gershon's Ice Cream homemade flavors dish photo",
+        "expectedVisual": "Dish of Gershon's signature flavors such as black raspberry or coffee ice cream, tightly framed on the product",
+        "priority": "medium",
+        "suggestedSource": "Recent Yelp or TripAdvisor user photos"
+      }
+    ]
+  },
+  {
+    "id": "uncle-sams-ice-cream-schenectady",
+    "name": "Uncle Sam's Ice Cream",
+    "location": {
+      "address": "1740 Union St",
+      "city": "Schenectady",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.8147,
+      "lng": -73.9065
+    },
+    "description": "Iconic local ice cream stand with over 50 years of history, regularly featured in Albany Times Union best-of lists and local food blogs. Offers a wide variety of hard and soft serve flavors with strong nostalgic appeal and dedicated year-round fans.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Times Union (Albany)",
+        "detail": "Best ice cream and summer guides",
+        "date": "2015-2024"
+      },
+      {
+        "type": "review",
+        "source": "Local food blogs and Yelp",
+        "detail": "Consistent top ratings for variety and nostalgia"
+      }
+    ],
+    "tags": [
+      "hard ice cream",
+      "soft serve",
+      "historic"
+    ],
+    "photos": [],
+    "photoBriefs": [
+      {
+        "searchQuery": "Uncle Sam's Ice Cream Schenectady soft serve cone with sprinkles close-up",
+        "expectedVisual": "Classic twist soft-serve cone (chocolate-vanilla swirl) with rainbow sprinkles, tightly cropped showing the ice cream texture and cone detail",
+        "priority": "high",
+        "suggestedSource": "Uncle Sam's Facebook page or Google Maps reviews, summer 2023-2024"
+      }
+    ]
+  },
+  {
+    "id": "boos-ice-cream-scotia",
+    "name": "Boo's Ice Cream",
+    "location": {
+      "address": "100 Mohawk Ave",
+      "city": "Scotia",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.8311,
+      "lng": -73.9634
+    },
+    "description": "Neighborhood staple in Scotia with a strong community following. Frequently featured in Daily Gazette neighborhood articles and praised in Google reviews for friendly service, quality hard ice cream, and generous portions.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "The Daily Gazette",
+        "detail": "Scotia neighborhood features and summer ice cream coverage",
+        "date": "2020-2024"
+      },
+      {
+        "type": "review",
+        "source": "Google Reviews",
+        "detail": "Consistently 4.7+ stars with hundreds of reviews"
+      }
+    ],
+    "tags": [
+      "hard ice cream",
+      "neighborhood",
+      "family-friendly"
+    ],
+    "photos": [],
+    "photoBriefs": [
+      {
+        "searchQuery": "Boo's Ice Cream Scotia NY ice cream scoops in dish close-up",
+        "expectedVisual": "Two or three scoops of ice cream (mint chocolate chip or butter pecan) in a cardboard dish, clearly showing mix-ins and texture",
+        "priority": "high",
+        "suggestedSource": "Boo's Ice Cream Facebook posts or recent Google review photos"
+      }
+    ]
+  },
+  {
+    "id": "marthas-dandee-cream-rotterdam",
+    "name": "Martha's Dandee Cream",
+    "location": {
+      "address": "1135 Altamont Ave",
+      "city": "Rotterdam",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.7805,
+      "lng": -73.9482
+    },
+    "description": "Perennial favorite located just across the Schenectady border in Rotterdam. Regularly tops annual \"best ice cream\" polls by the Times Union and has been featured in local TV segments for its rich homemade hard ice cream and seasonal flavors.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Times Union (Albany)",
+        "detail": "Annual best ice cream reader polls and features",
+        "date": "2017-2024"
+      },
+      {
+        "type": "other",
+        "source": "Local TV segments (News 10 ABC, CBS 6)",
+        "detail": "Homemade ice cream features"
+      }
+    ],
+    "tags": [
+      "homemade ice cream",
+      "hard ice cream",
+      "seasonal flavors"
+    ],
+    "photos": [],
+    "photoBriefs": [
+      {
+        "searchQuery": "Martha's Dandee Cream Rotterdam homemade ice cream cone photo",
+        "expectedVisual": "Large single or double scoop cone of Martha's signature flavors (black raspberry, maple walnut) with visible homemade texture and sheen",
+        "priority": "high",
+        "suggestedSource": "Martha's Dandee Cream Instagram or Google review user photos, 2023-2024"
+      },
+      {
+        "searchQuery": "Martha's Dandee Cream ice cream sundae close-up",
+        "expectedVisual": "Hot fudge sundae with whipped cream and cherry, tightly framed on the ice cream and toppings",
+        "priority": "medium",
+        "suggestedSource": "Recent local food blog or review site images"
+      }
+    ]
+  },
+  {
+    "id": "bigelows-ice-cream-scotia",
+    "name": "Bigelow's Ice Cream",
+    "location": {
+      "address": "1120 Sacandaga Rd",
+      "city": "Scotia",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.8392,
+      "lng": -73.9758
+    },
+    "description": "Family-run stand operating for decades in Scotia. Frequently highlighted in Daily Gazette food coverage and local summer bucket-list articles for its high-quality soft serve, hard ice cream, and friendly service.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "The Daily Gazette",
+        "detail": "Summer bucket list and ice cream features",
+        "date": "2019-2024"
+      },
+      {
+        "type": "review",
+        "source": "Local reader polls and Google reviews"
+      }
+    ],
+    "tags": [
+      "soft serve",
+      "hard ice cream",
+      "family-run"
+    ],
+    "photos": [],
+    "photoBriefs": [
+      {
+        "searchQuery": "Bigelow's Ice Cream Scotia soft serve twist cone close-up",
+        "expectedVisual": "Chocolate-vanilla swirl soft serve in a cone with perfect swirl shape and slight melt at the edges",
+        "priority": "high",
+        "suggestedSource": "Bigelow's Facebook or recent Google Maps review photos"
+      }
+    ]
+  },
+  {
+    "id": "dairy-barn-rotterdam",
+    "name": "Dairy Barn",
+    "location": {
+      "address": "201 Duanesburg Rd",
+      "city": "Rotterdam",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.7923,
+      "lng": -73.9691
+    },
+    "description": "Longstanding Rotterdam spot near the Schenectady city line offering both soft-serve and hard ice cream. Consistently ranked in top local lists by the 518 Blog and reader polls for quality and generous portions.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "518 Blog",
+        "detail": "Capital Region ice cream rankings and reader polls",
+        "date": "2021-2024"
+      },
+      {
+        "type": "review",
+        "source": "Local review platforms and Reddit r/schenectady"
+      }
+    ],
+    "tags": [
+      "soft serve",
+      "hard ice cream",
+      "longstanding"
+    ],
+    "photos": [],
+    "photoBriefs": [
+      {
+        "searchQuery": "Dairy Barn Rotterdam soft serve ice cream in cup with toppings",
+        "expectedVisual": "Soft serve cup with rainbow sprinkles or chocolate dip, tightly cropped showing the product texture",
+        "priority": "high",
+        "suggestedSource": "Dairy Barn Google review photos or Facebook posts, recent years"
+      }
+    ]
+  },
+  {
+    "id": "frosty-cream-glenville",
+    "name": "Frosty Cream",
+    "location": {
+      "address": "2000 Riverside Ave",
+      "city": "Schenectady",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.8541,
+      "lng": -73.9227
+    },
+    "description": "Classic drive-in style ice cream stand near the Scotia/Glenville line. Regularly appears in Capital Region summer guides and maintains active local fan groups on social media for its soft serve, shakes, and seasonal offerings.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Capital Region summer guides (Times Union, Daily Gazette)",
+        "detail": "Recurring mentions in seasonal roundups",
+        "date": "2020-2024"
+      },
+      {
+        "type": "other",
+        "source": "Local Facebook fan groups",
+        "detail": "Dedicated community following"
+      }
+    ],
+    "tags": [
+      "soft serve",
+      "drive-in",
+      "shakes"
+    ],
+    "photos": [],
+    "photoBriefs": [
+      {
+        "searchQuery": "Frosty Cream Glenville NY ice cream shake or float close-up",
+        "expectedVisual": "Thick milkshake or root beer float in a clear cup showing layers, whipped cream, and straw, tightly framed on the beverage",
+        "priority": "high",
+        "suggestedSource": "Frosty Cream social media or Google review user photos, summer 2023-2024"
+      }
+    ]
+  },
+  {
+    "id": "ben-and-jerrys-saratoga",
+    "name": "Ben & Jerry's",
+    "location": {
+      "address": "34 Phila Street",
+      "city": "Saratoga Springs",
+      "region": "NY",
+      "country": "USA",
+      "lat": 43.0823,
+      "lng": -73.7854
+    },
+    "description": "Scoop shop offering Ben & Jerry's ice cream flavors in downtown Saratoga Springs.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "review",
+        "source": "Google listings and Saratoga tourism sites",
+        "detail": "Multiple local reviews confirm consistent scoop shop operation."
+      }
+    ],
+    "tags": [
+      "ice cream",
+      "scoop shop"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Ben & Jerry's Saratoga Springs ice cream cone or cup close up",
+        "expectedVisual": "Plated or handheld scoop of ice cream showing specific flavor with toppings",
+        "priority": "high",
+        "suggestedSource": "Google review photos or Instagram"
+      }
+    ]
+  },
+  {
+    "id": "candy-kitchen-ballston-spa",
+    "name": "The Candy Kitchen",
+    "location": {
+      "address": "1-3 Front Street",
+      "city": "Ballston Spa",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.9989,
+      "lng": -73.8492
+    },
+    "description": "Longstanding local business serving ice cream with mentions in regional publications.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Albany Times Union",
+        "detail": "Repeated coverage in articles on regional ice cream spots."
+      },
+      {
+        "type": "article",
+        "source": "Saratoga Living magazine",
+        "detail": "Featured in roundups of Capital District ice cream."
+      }
+    ],
+    "tags": [
+      "ice cream",
+      "historic"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Candy Kitchen Ballston Spa ice cream sundae or cone photo",
+        "expectedVisual": "Close-up of ice cream dish or cone with classic presentation",
+        "priority": "high",
+        "suggestedSource": "Local review or business social media"
+      }
+    ]
+  },
+  {
+    "id": "snowman-soft-serve-saratoga",
+    "name": "Snowman Soft Serve",
+    "location": {
+      "address": "61 Putnam Street",
+      "city": "Saratoga Springs",
+      "region": "NY",
+      "country": "USA",
+      "lat": 43.0831,
+      "lng": -73.7839
+    },
+    "description": "Downtown soft serve stand with extensive reviews focused on its soft serve offerings.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "review",
+        "source": "TripAdvisor and Yelp",
+        "detail": "Numerous reviews specifically about soft serve quality and location."
+      }
+    ],
+    "tags": [
+      "soft serve",
+      "ice cream"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Snowman Soft Serve Saratoga soft serve cone close-up",
+        "expectedVisual": "Soft serve cone with specific swirl and toppings",
+        "priority": "high",
+        "suggestedSource": "Yelp or TripAdvisor user photos"
+      }
+    ]
+  },
+  {
+    "id": "dairy-haus-wilton",
+    "name": "Dairy Haus",
+    "location": {
+      "address": "592 Maple Avenue",
+      "city": "Wilton",
+      "region": "NY",
+      "country": "USA",
+      "lat": 43.1485,
+      "lng": -73.7321
+    },
+    "description": "Farmstand ice cream spot documented in Capital District seasonal guides.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Albany Times Union",
+        "detail": "Featured in seasonal ice cream features and farmstand guides."
+      }
+    ],
+    "tags": [
+      "ice cream",
+      "farmstand"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Dairy Haus Wilton NY ice cream cone or dish",
+        "expectedVisual": "Ice cream serving showing farm-fresh style presentation",
+        "priority": "high",
+        "suggestedSource": "Times Union article photo or Google"
+      }
+    ]
+  },
+  {
+    "id": "stewarts-shops-saratoga",
+    "name": "Stewart's Shops",
+    "location": {
+      "address": "195 Church Street",
+      "city": "Saratoga Springs",
+      "region": "NY",
+      "country": "USA",
+      "lat": 43.0752,
+      "lng": -73.7914
+    },
+    "description": "Local chain location with ice cream listed in Saratoga area ice cream maps.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "other",
+        "source": "Saratoga ice cream maps and reviews",
+        "detail": "Repeated listings for ice cream offerings."
+      }
+    ],
+    "tags": [
+      "ice cream",
+      "local chain"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Stewart's Shops Saratoga ice cream cone or sundae",
+        "expectedVisual": "Classic Stewart's ice cream cone or cup",
+        "priority": "high",
+        "suggestedSource": "Local review photos"
+      }
+    ]
+  },
+  {
+    "id": "jumpin-jacks-scotia",
+    "name": "Jumpin' Jack's Drive-In",
+    "location": {
+      "address": "5 Schonowee Avenue",
+      "city": "Scotia",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.8265,
+      "lng": -73.9618
+    },
+    "description": "Long-running drive-in landmark with repeated regional coverage for ice cream.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Albany Times Union",
+        "detail": "Multiple mentions in Capital District ice cream features."
+      }
+    ],
+    "tags": [
+      "ice cream",
+      "drive-in"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Jumpin Jack's Scotia NY ice cream cone close up",
+        "expectedVisual": "Ice cream cone or soft serve from the drive-in window",
+        "priority": "high",
+        "suggestedSource": "Regional article or Yelp photo"
+      }
+    ]
+  },
+  {
+    "id": "jumpin-jacks-drive-in-scotia",
+    "name": "Jumpin' Jacks Drive-In",
+    "location": {
+      "address": "125 S Ferry St",
+      "city": "Schenectady",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.8138,
+      "lng": -73.9472
+    },
+    "description": "Longstanding drive-in at the Schenectady-Scotia bridge known for soft-serve cones and sundaes since the 1950s.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Albany Times Union",
+        "detail": "Frequent coverage of the bridge location and soft-serve menu",
+        "date": "2023"
+      },
+      {
+        "type": "review",
+        "source": "TripAdvisor",
+        "detail": "Hundreds of reviews citing vanilla and chocolate soft-serve"
+      }
+    ],
+    "tags": [
+      "soft-serve",
+      "drive-in",
+      "historic"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Jumpin Jacks Scotia NY vanilla soft serve cone close up",
+        "expectedVisual": "Tall vanilla soft-serve cone in paper holder with bridge visible in background",
+        "priority": "high",
+        "suggestedSource": "Google reviews 2023-2024"
+      }
+    ]
+  },
+  {
+    "id": "stewarts-shops-scotia",
+    "name": "Stewart's Shops",
+    "location": {
+      "address": "40 Mohawk Ave",
+      "city": "Scotia",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.8265,
+      "lng": -73.9638
+    },
+    "description": "Local Capital District chain location offering hard-pack and soft-serve ice cream with seasonal flavors.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "review",
+        "source": "Yelp",
+        "detail": "Consistent mentions of ice cream counter and flavors",
+        "date": "2024"
+      }
+    ],
+    "tags": [
+      "soft-serve",
+      "hard ice cream",
+      "local chain"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Stewart's Shops Scotia NY ice cream cone photo",
+        "expectedVisual": "Soft-serve twist cone or cup with toppings on counter",
+        "priority": "high",
+        "suggestedSource": "Google Maps reviews"
+      }
+    ]
+  },
+  {
+    "id": "guptills-coney-island-cohoes",
+    "name": "Guptill's Coney Island",
+    "location": {
+      "address": "1085 New Loudon Rd",
+      "city": "Cohoes",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.7921,
+      "lng": -73.7269
+    },
+    "description": "Historic spot serving ice cream alongside coney-style hot dogs since the mid-20th century.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Albany Business Review",
+        "detail": "Profiled as local institution with ice cream stand",
+        "date": "2022"
+      }
+    ],
+    "tags": [
+      "soft-serve",
+      "historic",
+      "coney island"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Guptills Cohoes NY soft serve ice cream closeup",
+        "expectedVisual": "Soft-serve cone or sundae served at the counter",
+        "priority": "high",
+        "suggestedSource": "Google review photos"
+      }
+    ]
+  },
+  {
+    "id": "hoffmans-playland-ice-cream-latham",
+    "name": "Hoffman's Playland Ice Cream",
+    "location": {
+      "address": "608 New Loudon Rd",
+      "city": "Latham",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.7634,
+      "lng": -73.7612
+    },
+    "description": "Ice cream stand attached to the classic amusement park, popular for family visits and soft-serve treats.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Albany Times Union",
+        "detail": "Coverage of the park's ice cream offerings",
+        "date": "2023"
+      }
+    ],
+    "tags": [
+      "soft-serve",
+      "amusement park",
+      "family"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Hoffman's Playland Latham NY ice cream stand cone",
+        "expectedVisual": "Soft-serve cone or dish from the park stand",
+        "priority": "high",
+        "suggestedSource": "Recent visitor photos"
+      }
+    ]
+  },
+  {
+    "id": "the-cone-zone-schenectady",
+    "name": "The Cone Zone",
+    "location": {
+      "address": "1237 Erie Blvd",
+      "city": "Schenectady",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.8045,
+      "lng": -73.9134
+    },
+    "description": "Dedicated ice cream shop in Schenectady offering cones, sundaes and local flavors.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "review",
+        "source": "Facebook local groups",
+        "detail": "Recent mentions in Schenectady business spotlights"
+      }
+    ],
+    "tags": [
+      "ice cream shop",
+      "cones",
+      "sundaes"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Cone Zone Schenectady NY ice cream cone",
+        "expectedVisual": "Plated cone or sundae from the shop",
+        "priority": "high",
+        "suggestedSource": "Local review photos"
+      }
+    ]
+  },
+  {
+    "id": "stewarts-shops-schenectady-1",
+    "name": "Stewart's Shops",
+    "location": {
+      "address": "1000 Erie Blvd",
+      "city": "Schenectady",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.8021,
+      "lng": -73.9187
+    },
+    "description": "Capital District chain location serving both hard and soft ice cream to local customers.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "review",
+        "source": "Google Reviews",
+        "detail": "Extensive local reviews for ice cream products"
+      }
+    ],
+    "tags": [
+      "soft-serve",
+      "hard ice cream",
+      "local chain"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Stewart's Shops Schenectady Erie Blvd ice cream",
+        "expectedVisual": "Soft-serve or hard scoop product on counter",
+        "priority": "high",
+        "suggestedSource": "Google review photos 2023+"
+      }
+    ]
+  },
+  {
+    "id": "friendlys-schenectady",
+    "name": "Friendly's",
+    "location": {
+      "address": "2710 Broadway",
+      "city": "Schenectady",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.7865,
+      "lng": -73.9441
+    },
+    "description": "Chain restaurant location known locally for sundaes and ice cream desserts.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "review",
+        "source": "Yelp",
+        "detail": "Mentions in Schenectady County reviews for sundaes"
+      }
+    ],
+    "tags": [
+      "sundaes",
+      "chain",
+      "ice cream"
+    ],
+    "photoBriefs": [
+      {
+        "searchQuery": "Friendly's Schenectady NY sundae close up",
+        "expectedVisual": "Classic sundae with toppings in glass dish",
+        "priority": "high",
+        "suggestedSource": "Google review photos"
+      }
+    ]
+  }
+]

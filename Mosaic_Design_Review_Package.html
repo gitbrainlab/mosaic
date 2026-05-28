@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Mosaic — UI/UX Design Review Package (May 2026)</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 1100px; margin: 40px auto; padding: 0 20px; color: #222; }
+        h1, h2, h3 { color: #1C1C1E; }
+        h1 { border-bottom: 3px solid #C9A86C; padding-bottom: 10px; }
+        .meta { color: #666; font-size: 0.95em; }
+        .section { margin: 40px 0; }
+        .pain { background: #fff3cd; padding: 12px 16px; border-left: 4px solid #C9A86C; }
+        .question { background: #e8f4f8; padding: 12px 16px; border-left: 4px solid #0d6efd; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+    </style>
+</head>
+<body>
+
+<h1>Mosaic — UI/UX Design Review Package</h1>
+<p class="meta"><strong>Date:</strong> May 2026 &nbsp;&nbsp;|&nbsp;&nbsp; <strong>Status:</strong> Current State + Open Design Questions</p>
+
+<h2>1. Project Overview</h2>
+<p><strong>Mosaic</strong> is a <strong>100% static</strong> (GitHub Pages only), <strong>mobile-first</strong> platform for high-quality, community-curated knowledge maps on any topic.</p>
+<p>The platform is designed to feel premium, curatorial, and timeless (“quietly confident”).</p>
+
+<h3>Core Loop</h3>
+<ol>
+  <li><strong>Hunt</strong> — User (or automated system) requests research on a topic, with optional rich guidance.</li>
+  <li><strong>Enrich</strong> — Research agents (Grok + planned scraping) discover real places/items, gather evidence, and especially source <strong>product-centered photos</strong>.</li>
+  <li><strong>Present</strong> — Enriched profiles appear in beautiful, trustworthy public maps.</li>
+  <li><strong>Feedback &amp; Update</strong> — Curators provide feedback via GitHub Issues. Agents incorporate it and re-run enrichment. Results land as commits to the static site.</li>
+</ol>
+
+<p><strong>Hard Constraint:</strong> The delivered experience must remain purely static. All intelligence lives in GitHub Actions agents.</p>
+
+<h2>2. Current Public Experience (What Users See Today)</h2>
+
+<h3>Gallery + Hunt Launch</h3>
+<ul>
+  <li>Clean list of maps.</li>
+  <li>Primary action is “Start a Hunt” — simple topic input + optional “advanced guidance” textarea (very specific constraints are supported).</li>
+  <li>Advanced guidance is hidden by default (progressive disclosure).</li>
+</ul>
+
+<h3>Map View</h3>
+<ul>
+  <li>MapLibre map + list of entries.</li>
+  <li>Search + confidence filters.</li>
+  <li>Clicking an entry opens a detail view.</li>
+</ul>
+
+<p><strong>Current Mobile:</strong> BottomSheet<br>
+<strong>Current Desktop:</strong> Bottom panel (recent change after right-side panels felt too blocking).</p>
+
+<h2>3. Major Current Pain Points</h2>
+<div class="pain">
+  <ul>
+    <li><strong>Wasted space &amp; branding repetition</strong> — “Mosaic” appears too many times; taglines eat prime real estate.</li>
+    <li><strong>Map initial load</strong> — Users can land on unhelpful or empty views (“all beige”, wrong centering).</li>
+    <li><strong>Detail views blocking the map</strong> — Especially painful on mobile and in early desktop experiments.</li>
+    <li><strong>Discovery friction</strong> — Too many clicks/repositions to find the “next interesting thing”.</li>
+    <li><strong>Photos are almost non-existent</strong> — This is currently the biggest gap and design challenge.</li>
+  </ul>
+</div>
+
+<h2>4. The Research / Curation Backend</h2>
+<p>Most current development energy is here:</p>
+<ul>
+  <li><code>research-agent.ts</code> + <code>rich-research.ts</code> — Multi-pass, multi-location, multi-model research.</li>
+  <li>Strong progress on <strong>photo research</strong> with strict “product-centered only” rules.</li>
+  <li>Early Playwright scraper foundation for accuracy.</li>
+  <li>Batch concept emerging (groups of related research runs that can be reviewed together).</li>
+</ul>
+
+<p><strong>Current Reality:</strong> The agent produces excellent <em>photo briefs</em>, but actually obtaining and committing high-quality, real images is still largely manual.</p>
+
+<h2>5. Key Open Design Questions (Especially Photos)</h2>
+
+<div class="question">
+  <p><strong>Photo Presentation</strong></p>
+  <ul>
+    <li>How do photos appear in mobile BottomSheet vs desktop without destroying map context?</li>
+    <li>What does a profile look like when it has great briefs but zero real photos yet?</li>
+    <li>How should photos be reviewed in batch refinement flows?</li>
+  </ul>
+</div>
+
+<h2>6. Primary User Journeys</h2>
+
+<ol>
+  <li><strong>Casual Explorer</strong> — Discover maps → Browse entries → Open details (ideally with beautiful photos).</li>
+  <li><strong>Topic Requester</strong> — Launch a nuanced hunt → Later discover a rich map was created.</li>
+  <li><strong>Curator / Power User (emerging)</strong> — Review batches → Give targeted feedback on profiles/photos → Trigger refinement.</li>
+</ol>
+
+<h2>7. Specific Asks for the Design Panel</h2>
+
+<ol>
+  <li><strong>Photo-first presentation patterns</strong> for mobile and desktop that keep the map as a first-class citizen.</li>
+  <li><strong>Graceful “no photos yet” states</strong> that still feel high-quality.</li>
+  <li><strong>Batch review / refinement surface</strong> concepts that support visual feedback.</li>
+  <li><strong>Overall density, hierarchy, and polish</strong> — the current experience still feels somewhat raw.</li>
+  <li>Quick wins for reducing clicks/repositions while exploring a map.</li>
+</ol>
+
+<p><strong>Please be direct.</strong> We are early enough that honest feedback is extremely valuable.</p>
+
+<hr>
+<p><em>End of Design Review Package</em></p>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "slug": "ice-cream-berkshires-western-massachusetts",
+  "title": "Ice Cream in the Berkshires and Western Massachusetts",
+  "tagline": "Community-researched map of ice cream in the berkshires and western massachusetts",
+  "version": "1.0.0",
+  "totalEntries": 6,
+  "lastUpdated": "2026-05-28",
+  "defaultCenter": [
+    42.75,
+    -73.8
+  ],
+  "defaultZoom": 10,
+  "filterFields": [
+    "city",
+    "confidence"
+  ],
+  "chunks": [
+    "entries.json"
+  ]
+}

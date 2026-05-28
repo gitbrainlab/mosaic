@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "lastUpdated": "2026-05-28",
+  "maps": [
+    {
+      "slug": "ice-cream-capital-district",
+      "title": "Ice Cream – Capital District",
+      "tagline": "The best scoops, soft serve, and frozen treats across Albany, Saratoga, Troy & beyond",
+      "entryCount": 41,
+      "lastUpdated": "2026-05-28"
+    },
+    {
+      "slug": "veal-parm-capital-district",
+      "title": "Veal Parm – Capital District",
+      "tagline": "The best veal parmesan in the Albany–Saratoga–Troy region",
+      "entryCount": 6,
+      "lastUpdated": "2026-05-28"
+    },
+    {
+      "slug": "modernist-architecture",
+      "title": "Modernist Architecture",
+      "tagline": "Significant 20th-century buildings and their designers",
+      "entryCount": 6,
+      "lastUpdated": "2026-05-27"
+    },
+    {
+      "slug": "regional-folk-traditions",
+      "title": "Regional Folk Traditions",
+      "tagline": "Living craft, music, and ritual practices",
+      "entryCount": 5,
+      "lastUpdated": "2026-05-27"
+    },
+    {
+      "slug": "ice-cream-berkshires-western-massachusetts",
+      "title": "Ice Cream in the Berkshires & Western Massachusetts",
+      "tagline": "Community-researched map of ice cream in the Berkshires and Western MA hill towns",
+      "entryCount": 6
+    },
+    {
+      "slug": "ice-cream-northeast-pilot",
+      "title": "Ice Cream in the Northeast (Pilot Wave 2)",
+      "tagline": "Multi-state targeted research — work in progress",
+      "entryCount": 5
+    }
+  ]
+}

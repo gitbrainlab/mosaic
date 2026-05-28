@@ -1,0 +1,39 @@
+{
+  "id": "batch-2026-05-28-ice-cream-capital",
+  "name": "Ice Cream – Capital District (May 2026 Refresh)",
+  "topic": "Ice Cream in the Capital District",
+  "createdAt": "2026-05-28T02:00:00Z",
+  "status": "ready-for-review",
+  "source": {
+    "type": "scheduled-scout",
+    "reference": "nightly-scout-2026-05-28"
+  },
+  "runs": [
+    {
+      "id": "run-2026-05-28-ice-01",
+      "batchId": "batch-2026-05-28-ice-cream-capital",
+      "startedAt": "2026-05-28T02:05:00Z",
+      "completedAt": "2026-05-28T02:06:30Z",
+      "modelConfig": {
+        "models": ["grok-4.20-0309-non-reasoning", "grok-4.3"],
+        "locationTargets": ["Albany", "Saratoga", "Troy", "Schenectady"],
+        "perLocationLimit": 7
+      },
+      "summary": {
+        "totalCandidates": 52,
+        "entriesProduced": 28,
+        "photosWithBriefs": 24,
+        "averageConfidence": "high"
+      },
+      "outputFile": "data/research-runs/ice-cream-in-the-capital-district-1779937360594.json"
+    }
+  ],
+  "summary": {
+    "totalProfiles": 28,
+    "profilesWithPhotos": 24,
+    "locationsCovered": ["Albany", "Saratoga Springs", "Troy", "Schenectady", "Latham"],
+    "lastEnrichedAt": "2026-05-28T02:06:30Z"
+  },
+  "githubIssueUrl": "https://github.com/gitbrainlab/mosaic/issues/42",
+  "notes": "Strong run. Several excellent soft-serve and scoop shop profiles with good photo briefs. Needs curator review for duplicates and photo sourcing."
+}
