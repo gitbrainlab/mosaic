@@ -20,7 +20,7 @@ export default class MapView {
     this.slug = params.slug
 
     container.innerHTML = `
-      <div class="flex flex-col h-[calc(100vh-3.5rem)]">
+      <div class="flex flex-col h-[calc(100dvh-4.25rem)] lg:h-[calc(100dvh-4.5rem)]">
         <!-- Header -->
         <div class="flex items-center justify-between px-4 py-3 border-b border-[#e5e2d9]">
           <button id="back-btn" class="text-sm flex items-center gap-1 text-[#6b6761]">
@@ -100,8 +100,9 @@ export default class MapView {
       // Immediately fit the map to the actual data so user doesn't land on empty/beige view
       this.fitToData()
 
-      // On first load with no prior selection, auto-open the first item so user has something interesting to look at immediately
-      if (!this.hasRestoredSelection) {
+      // On larger screens, open the first item as a lightweight orientation aid.
+      // On mobile, preserve the map-first first impression.
+      if (!this.hasRestoredSelection && window.innerWidth >= 768) {
         const first = this.entries[0]
         if (first) {
           // Small delay so the fit animation finishes
@@ -349,9 +350,10 @@ export default class MapView {
 
     const sheet = new BottomSheet({
       title: entry.name,
-      snap: 'half',
-      snapPoints: [0.22, 0.56, 0.94],
+      snap: 'peek',
+      snapPoints: [0.34, 0.62, 0.94],
       dismissible: true,
+      modal: false,
       showHandle: true,
       onClose: () => {
         this.currentSheet = null
@@ -369,28 +371,27 @@ export default class MapView {
 
     // Mobile / tablet: BottomSheet — photo-first layout
     const content = document.createElement('div')
-    content.className = 'space-y-4 text-[#0a0a0a] dark:text-white'
+    content.className = 'space-y-3 text-[#0a0a0a] dark:text-white'
 
     const heroPhoto = entry.photos && entry.photos.length > 0 ? entry.photos[0] : null
 
     content.innerHTML = `
-      <!-- Photo-first (hero or graceful sourcing state) -->
-      ${heroPhoto ? `
-      <div class="-mx-4 -mt-4 mb-2">
-        <img src="${this.normalizePhotoUrl(heroPhoto.url, this.slug)}" alt="${heroPhoto.caption}" class="w-full h-44 object-cover" />
-        <div class="px-4 py-1.5 text-xs text-[#3f3b33] dark:text-[#d4cebf] bg-[#f8f7f4] dark:bg-[#1a1916]">${heroPhoto.caption}</div>
-      </div>` : `
-      <div class="border border-dashed border-[#d4cebf] dark:border-[#3f3b33] rounded-lg p-4 bg-[#f8f7f4] dark:bg-[#1a1916] mb-2">
-        <div class="text-xs uppercase tracking-[1px] font-bold text-[#1f1d1a] dark:text-[#d4cebf] mb-1">Photos sourcing in progress</div>
-        <div class="text-sm text-[#6b6761] dark:text-[#a39a8c]">High-quality product photos are being sourced for this profile.</div>
-      </div>`}
-
-      <div class="text-[15px] font-semibold text-[#0a0a0a] dark:text-white leading-snug">
-        ${entry.location.address}<br>
-        ${entry.location.city}${entry.location.region ? ', ' + entry.location.region : ''}, ${entry.location.country}
+      <div class="flex gap-3 items-start">
+        ${heroPhoto ? `
+        <img src="${this.normalizePhotoUrl(heroPhoto.url, this.slug)}" alt="${heroPhoto.caption}" class="w-28 h-24 object-cover rounded-md border border-[#e5e2d9] dark:border-[#3f3b33] flex-shrink-0" />` : `
+        <div class="w-28 h-24 flex-shrink-0 rounded-md border border-dashed border-[#d4cebf] dark:border-[#3f3b33] bg-[#f8f7f4] dark:bg-[#1a1916]"></div>`}
+        <div class="min-w-0">
+          <div class="text-[15px] font-semibold text-[#0a0a0a] dark:text-white leading-snug">
+            ${entry.location.address}<br>
+            ${entry.location.city}${entry.location.region ? ', ' + entry.location.region : ''}, ${entry.location.country}
+          </div>
+          <div class="mt-2 inline-flex items-center text-xs px-2.5 py-1 rounded-full bg-[#f1efea] dark:bg-[#2a2924] text-[#1f1d1a] dark:text-[#d4cebf] font-medium">
+            Confidence: <span class="font-bold ml-1">${entry.confidence}</span>
+          </div>
+        </div>
       </div>
 
-      <div class="text-[15px] leading-relaxed text-[#111] dark:text-[#f4f1e9]">
+      <div class="text-[15px] leading-snug text-[#111] dark:text-[#f4f1e9]">
         ${entry.description}
       </div>
 
@@ -412,7 +413,7 @@ export default class MapView {
         <div class="space-y-3">
           ${entry.evidence.map(ev => `
             <div class="border-l-[3px] border-[#1f1d1a] dark:border-[#a39a8c] pl-3">
-              <div class="font-semibold text-[#0a0a0a] dark:text-white">${ev.source}</div>
+              <div class="font-semibold text-[#0a0a0a] dark:text-white break-words">${ev.source}</div>
               ${ev.detail ? `<div class="text-sm text-[#1a1a1a] dark:text-[#e8e4d9] mt-0.5">${ev.detail}</div>` : ''}
               ${ev.date ? `<div class="text-xs text-[#3a3a3a] dark:text-[#a39a8c] mt-0.5">${ev.date}</div>` : ''}
             </div>
@@ -420,13 +421,10 @@ export default class MapView {
         </div>
       </div>
 
-      <div class="inline-flex items-center text-sm px-3 py-1 rounded-full bg-[#f1efea] dark:bg-[#2a2924] text-[#1f1d1a] dark:text-[#d4cebf] font-medium">
-        Confidence: <span class="font-bold ml-1">${entry.confidence}</span>
-      </div>
     `
 
     sheet.setContent(content)
-    sheet.open('half')
+    sheet.open('peek')
 
     this.currentSheet = sheet
 
@@ -574,6 +572,7 @@ export default class MapView {
       snap: 'half',
       snapPoints: [0.22, 0.56, 0.94],
       dismissible: true,
+      modal: false,
       showHandle: true,
       onClose: () => {
         this.currentSheet = null
