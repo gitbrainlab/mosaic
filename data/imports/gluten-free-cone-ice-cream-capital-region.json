@@ -1,0 +1,463 @@
+[
+  {
+    "id": "saratoga-gelato-saratoga-springs-ny",
+    "name": "Saratoga Gelato",
+    "location": {
+      "address": "458 Broadway",
+      "city": "Saratoga Springs",
+      "state": "NY",
+      "country": "USA",
+      "lat": 43.0827729,
+      "lng": -73.7847423
+    },
+    "discovered_date": "2026",
+    "style_description": "Downtown Saratoga Springs gelato shop with house-made Italian gelato, a broad gluten-free selection, and repeatedly documented gluten-free cone availability.",
+    "characteristics": [
+      "capital_region",
+      "saratoga_springs",
+      "gluten_free_cones",
+      "gelato",
+      "official_product_photos",
+      "celiac_community_signal"
+    ],
+    "reviews": [
+      {
+        "source": "Atly gluten-free community listing",
+        "url": "https://www.atly.com/gluten-free/location/SaratogaGelato",
+        "quote": "They offer many gluten-free flavors and a gluten-free cone.",
+        "date": "2026"
+      },
+      {
+        "source": "Restaurantji",
+        "url": "https://www.restaurantji.com/ny/saratoga-springs/saratoga-gelato-/",
+        "quote": "The restaurant offers a variety of dietary-friendly options, including gluten-free cones.",
+        "date": "2026"
+      }
+    ],
+    "sources": [
+      "https://www.saratogagelato.com/",
+      "https://www.atly.com/gluten-free/location/SaratogaGelato",
+      "https://www.restaurantji.com/ny/saratoga-springs/saratoga-gelato-/"
+    ],
+    "llm_summary": "High-confidence gluten-free cone stop: official site confirms a gluten-free gelato selection and third-party gluten-free guides specifically call out gluten-free cones at the Broadway Saratoga location.",
+    "photo_evidence": [
+      {
+        "url": "https://www.saratogagelato.com/images/stracciatella.jpg",
+        "caption": "Official Saratoga Gelato stracciatella product photo showing a gelato scoop in a cone-style waffle cup, matching the shop's real product presentation.",
+        "credit": "Official Saratoga Gelato website",
+        "verified": true
+      },
+      {
+        "url": "https://www.saratogagelato.com/images/pistachio.jpg",
+        "caption": "Official Saratoga Gelato pistachio gelato product photo from the shop's flavor gallery.",
+        "credit": "Official Saratoga Gelato website",
+        "verified": true
+      },
+      {
+        "url": "https://www.saratogagelato.com/images/raspberry.jpg",
+        "caption": "Official Saratoga Gelato raspberry gelato product photo documenting real flavor imagery from the Saratoga Springs shop.",
+        "credit": "Official Saratoga Gelato website",
+        "verified": true
+      }
+    ],
+    "review_highlights": [
+      {
+        "source": "Atly",
+        "quote": "Everything in the case is gluten free ... gluten free sugar cones.",
+        "date": "2026"
+      }
+    ],
+    "novelty_score": 0.9,
+    "historical_context": "A strong Saratoga anchor for this map because the shop combines current gluten-free cone reports with official product imagery and a walkable downtown location.",
+    "classification": {
+      "primary_family": "gluten_free_cone_available",
+      "product_category": "gelato",
+      "evidence_level": "strong",
+      "capital_region": true,
+      "photo_policy": "official_real_product_photos_only"
+    }
+  },
+  {
+    "id": "country-drive-in-clifton-park-ny",
+    "name": "The Country Drive-In",
+    "location": {
+      "address": "1455 Crescent Vischer Ferry Rd",
+      "city": "Clifton Park",
+      "state": "NY",
+      "country": "USA",
+      "lat": 42.8160067,
+      "lng": -73.7858981
+    },
+    "discovered_date": "2026",
+    "style_description": "Classic Clifton Park seasonal drive-in whose official ice cream menu explicitly says it has gluten-free cones alongside soft serve, yogurt cones, sundaes, floats, and other stand staples.",
+    "characteristics": [
+      "capital_region",
+      "clifton_park",
+      "gluten_free_cones",
+      "soft_serve",
+      "drive_in",
+      "official_menu_evidence",
+      "official_product_photos"
+    ],
+    "reviews": [],
+    "sources": [
+      "https://www.countrydrive-in.com/ice-cream-menu/",
+      "https://www.allmenus.com/ny/clifton-park/638901-country-drive-in/menu/"
+    ],
+    "llm_summary": "Highest-confidence cone evidence in the set: Country Drive-In's own menu states 'We have Gluten Free Cones!' directly under Ice Cream Cones & Dishes.",
+    "photo_evidence": [
+      {
+        "url": "https://i0.wp.com/www.countrydrive-in.com/wp-content/uploads/2016/05/menu-item-strawberry-sundae.jpg?fit=300%2C228&ssl=1",
+        "caption": "Official Country Drive-In strawberry sundae menu image showing a real ice cream specialty from the Clifton Park stand.",
+        "credit": "Official Country Drive-In ice cream menu",
+        "verified": true
+      },
+      {
+        "url": "https://i0.wp.com/www.countrydrive-in.com/wp-content/uploads/2016/05/menu-item-hot-fudge-parfait.jpg?fit=300%2C228&ssl=1",
+        "caption": "Official Country Drive-In hot fudge parfait menu image, product-focused and tied to the named Clifton Park location.",
+        "credit": "Official Country Drive-In ice cream menu",
+        "verified": true
+      },
+      {
+        "url": "https://i0.wp.com/www.countrydrive-in.com/wp-content/uploads/2016/05/menu-item-bananna-split.jpg?fit=300%2C228&ssl=1",
+        "caption": "Official Country Drive-In banana split menu image from the same ice cream menu that documents gluten-free cone availability.",
+        "credit": "Official Country Drive-In ice cream menu",
+        "verified": true
+      }
+    ],
+    "review_highlights": [],
+    "novelty_score": 0.86,
+    "historical_context": "Important because the gluten-free cone claim is not inferred from reviews: it is published by the business on the current ice cream menu.",
+    "classification": {
+      "primary_family": "gluten_free_cone_available",
+      "product_category": "soft_serve_drive_in",
+      "evidence_level": "official_menu",
+      "capital_region": true,
+      "photo_policy": "official_real_product_photos_only"
+    }
+  },
+  {
+    "id": "kurver-kreme-albany-ny",
+    "name": "Kurver Kreme",
+    "location": {
+      "address": "1349 Central Ave",
+      "city": "Albany",
+      "state": "NY",
+      "country": "USA",
+      "lat": 42.7033436,
+      "lng": -73.8158133
+    },
+    "discovered_date": "2026",
+    "style_description": "Albany soft-serve institution on Central Avenue, serving the Capital Region since 1952, with current review aggregation specifically noting gluten-free cones and cross-contamination-aware service.",
+    "characteristics": [
+      "capital_region",
+      "albany",
+      "gluten_free_cones",
+      "soft_serve",
+      "historic_stand",
+      "official_product_photos"
+    ],
+    "reviews": [
+      {
+        "source": "Wanderlog / Google review aggregation",
+        "url": "https://wanderlog.com/place/details/2642017/kurver-kreme",
+        "quote": "They do have gluten free cones too!",
+        "date": "2025"
+      }
+    ],
+    "sources": [
+      "https://www.kurverkreme.com/",
+      "https://wanderlog.com/place/details/2642017/kurver-kreme",
+      "https://kurver-kreme.menufyy.com/"
+    ],
+    "llm_summary": "A classic Albany inclusion: official site verifies the business and real product imagery; current review aggregation specifically reports gluten-free cones and attentive handling for a gluten-free order.",
+    "photo_evidence": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/67abcae4c8d4f018d358abd5/1779372782324-VLO3VDKTJ68HB76F6G99/image-asset.jpeg",
+        "caption": "Official Kurver Kreme product image showing a soft-serve cup beside classic stand food, with branded tray context from the Albany shop.",
+        "credit": "Official Kurver Kreme website",
+        "verified": true
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/67abcae4c8d4f018d358abd5/caaafdc5-7b5b-483a-8225-ba8969351b74/kurver-kreme-banner.jpg?format=1500w",
+        "caption": "Official Kurver Kreme banner image showing a soft-serve cone/treat presentation from the Albany stand.",
+        "credit": "Official Kurver Kreme website",
+        "verified": true
+      }
+    ],
+    "review_highlights": [
+      {
+        "source": "Wanderlog / Google review aggregation",
+        "quote": "When my daughter told the server that her order was gluten free they cleaned the ice cream machine.",
+        "date": "2025"
+      }
+    ],
+    "novelty_score": 0.72,
+    "historical_context": "Kurver Kreme adds a central Albany soft-serve lineage to the gluten-free cone map, but its cone evidence is review-backed rather than directly published on the official menu.",
+    "classification": {
+      "primary_family": "gluten_free_cone_available",
+      "product_category": "soft_serve",
+      "evidence_level": "review_confirmed",
+      "capital_region": true,
+      "photo_policy": "official_real_product_photos_only"
+    }
+  },
+  {
+    "id": "dairy-haus-saratoga-springs-ny",
+    "name": "Dairy Haus",
+    "location": {
+      "address": "476 Maple Avenue",
+      "city": "Saratoga Springs",
+      "state": "NY",
+      "country": "USA",
+      "lat": 43.1029585,
+      "lng": -73.771804
+    },
+    "discovered_date": "2026",
+    "style_description": "Handmade hard and soft ice cream stand north of downtown Saratoga Springs, operating since 1985, with Times Union coverage noting gluten-free cones among its dietary options.",
+    "characteristics": [
+      "capital_region",
+      "saratoga_springs",
+      "gluten_free_cones",
+      "handmade_ice_cream",
+      "soft_serve",
+      "official_product_photos"
+    ],
+    "reviews": [
+      {
+        "source": "Times Union National Ice Cream Day guide",
+        "url": "https://www.timesunion.com/living/article/Shopportunist-National-Ice-Cream-Day-deals-15407940.php",
+        "quote": "Here you'll find a heap of hard and soft ice cream flavors, including dairy-free options and gluten-free cones.",
+        "date": "2020"
+      }
+    ],
+    "sources": [
+      "https://dairyhaus.com/",
+      "https://www.timesunion.com/living/article/Shopportunist-National-Ice-Cream-Day-deals-15407940.php",
+      "https://www.allmenus.com/ny/saratoga-springs/772892-dairy-haus/menu/"
+    ],
+    "llm_summary": "Dairy Haus is a strong Saratoga County stop because the official site documents handmade ice cream and exact address, while regional press explicitly records gluten-free cone availability.",
+    "photo_evidence": [
+      {
+        "url": "https://dairyhaus.com/wp-content/uploads/2026/01/carousel-1-26-3.jpg",
+        "caption": "Official Dairy Haus photo of scoops in a cup and cone held in front of the Saratoga Springs stand.",
+        "credit": "Official Dairy Haus website",
+        "verified": true
+      },
+      {
+        "url": "https://dairyhaus.com/wp-content/uploads/2025/04/ice-cream-4-1.jpg",
+        "caption": "Official Dairy Haus ice cream image used as the site's primary product image.",
+        "credit": "Official Dairy Haus website",
+        "verified": true
+      },
+      {
+        "url": "https://dairyhaus.com/wp-content/uploads/2025/08/home-img-1.jpg",
+        "caption": "Official Dairy Haus product/stand image from the shop's homepage gallery.",
+        "credit": "Official Dairy Haus website",
+        "verified": true
+      }
+    ],
+    "review_highlights": [],
+    "novelty_score": 0.8,
+    "historical_context": "Dairy Haus broadens the map northward while staying inside the Capital Region, with both hard and soft ice cream represented.",
+    "classification": {
+      "primary_family": "gluten_free_cone_available",
+      "product_category": "handmade_ice_cream",
+      "evidence_level": "regional_press_confirmed",
+      "capital_region": true,
+      "photo_policy": "official_real_product_photos_only"
+    }
+  },
+  {
+    "id": "snowman-ice-cream-troy-ny",
+    "name": "Snowman Ice Cream",
+    "location": {
+      "address": "531 5th Ave",
+      "city": "Troy",
+      "state": "NY",
+      "country": "USA",
+      "lat": 42.7725284,
+      "lng": -73.6745578
+    },
+    "discovered_date": "2026",
+    "style_description": "Long-running Troy ice cream stand with hard ice cream, soft serve, sundaes, pies, and regional coverage documenting gluten-free cone availability.",
+    "characteristics": [
+      "capital_region",
+      "troy",
+      "gluten_free_cones",
+      "soft_serve",
+      "hard_ice_cream",
+      "ice_cream_pies",
+      "official_product_photos"
+    ],
+    "reviews": [
+      {
+        "source": "Times Union National Ice Cream Day guide",
+        "url": "https://www.timesunion.com/living/article/Shopportunist-National-Ice-Cream-Day-deals-15407940.php",
+        "quote": "Here you'll find a heap of hard and soft ice cream flavors, including dairy-free options and gluten-free cones.",
+        "date": "2020"
+      }
+    ],
+    "sources": [
+      "https://www.thesnowmanicecream.com/gallery/food-drink/",
+      "https://www.timesunion.com/living/article/Shopportunist-National-Ice-Cream-Day-deals-15407940.php",
+      "https://hvmag.com/food/ice-cream-hudson-valley/"
+    ],
+    "llm_summary": "Snowman is a core Troy inclusion: exact place verified through official site/gallery and regional food coverage, with product imagery from the shop's own GetBento gallery.",
+    "photo_evidence": [
+      {
+        "url": "https://images.getbento.com/accounts/eb08a261b419a552812dfb453739522e/media/P8vLIeHjRaugirj1rKj0_345903113_686074289949341_6195551448955496245_n.jpg?w=1200&fit=max&auto=compress,format&cs=origin",
+        "caption": "Official Snowman Ice Cream product photo showing an ice cream sandwich/treat with the Troy shop's sign behind it.",
+        "credit": "Official Snowman Ice Cream gallery",
+        "verified": true
+      },
+      {
+        "url": "https://images.getbento.com/accounts/eb08a261b419a552812dfb453739522e/media/HIC2HY1Qcq2j0E08qySv_snowman%20half%20gal.jpg?w=1200&fit=max&auto=compress,format&cs=origin",
+        "caption": "Official Snowman Ice Cream half-gallon product photo from the Troy shop's food and drink gallery.",
+        "credit": "Official Snowman Ice Cream gallery",
+        "verified": true
+      },
+      {
+        "url": "https://images.getbento.com/accounts/eb08a261b419a552812dfb453739522e/media/images/25893Peppermint_Pie.jpg?w=1200&fit=crop&auto=compress,format&cs=origin&crop=focalpoint&fp-x=0.5&fp-y=0.5",
+        "caption": "Official Snowman peppermint ice cream pie photo, documenting the shop's actual frozen dessert program.",
+        "credit": "Official Snowman Ice Cream gallery",
+        "verified": true
+      }
+    ],
+    "review_highlights": [],
+    "novelty_score": 0.78,
+    "historical_context": "Snowman gives the dataset an east-side/Troy anchor and a deeper dessert program beyond cones alone.",
+    "classification": {
+      "primary_family": "gluten_free_cone_available",
+      "product_category": "soft_serve_and_hard_ice_cream",
+      "evidence_level": "regional_press_confirmed",
+      "capital_region": true,
+      "photo_policy": "official_real_product_photos_only"
+    }
+  },
+  {
+    "id": "jjs-snack-bar-ballston-spa-ny",
+    "name": "JJ's Snack Bar",
+    "location": {
+      "address": "2 Saratoga Ave",
+      "city": "Ballston Spa",
+      "state": "NY",
+      "country": "USA",
+      "lat": 43.0087244,
+      "lng": -73.8489732
+    },
+    "discovered_date": "2026",
+    "style_description": "Ballston Spa snack bar with a classic ice cream menu, local customer evidence for gluten-free cones, and Google-sourced product photos tied to the exact address.",
+    "characteristics": [
+      "capital_region",
+      "ballston_spa",
+      "gluten_free_cones",
+      "snack_bar",
+      "sundaes",
+      "google_photo_evidence"
+    ],
+    "reviews": [
+      {
+        "source": "usarestaurants.info / Google review",
+        "url": "https://usarestaurants.info/explore/united-states/new-york/saratoga-county/milton/ballston-spa/jjs-snack-bar-518-885-7900.htm",
+        "quote": "Extensive ice cream menu for sure. Fast and friendly service. Offer gluten free cones too.",
+        "date": "2019"
+      }
+    ],
+    "sources": [
+      "https://usarestaurants.info/explore/united-states/new-york/saratoga-county/milton/ballston-spa/jjs-snack-bar-518-885-7900.htm",
+      "https://www.facebook.com/pages/jj-snack-bar/10150124067160284"
+    ],
+    "llm_summary": "JJ's is a useful Ballston Spa edge case: the gluten-free cone claim is customer/review based, but the page provides exact address, phone, and product photos from the named location.",
+    "photo_evidence": [
+      {
+        "url": "https://cdn2.usarestaurants.info/assets/uploads/99a0bc6281e5c15b80c91004d136416e_-united-states-new-york-saratoga-county-milton-ballston-spa-jjs-snack-bar-518-885-7900htm.jpg",
+        "caption": "Google-sourced JJ's Snack Bar banana split/product photo tied to the 2 Saratoga Ave listing.",
+        "credit": "JJ's Snack Bar photo on Google via usarestaurants.info",
+        "verified": true
+      },
+      {
+        "url": "https://cdn2.usarestaurants.info/assets/uploads/1562499a685d310b14ad77cf5c24dc16_-united-states-new-york-saratoga-county-milton-ballston-spa-jjs-snack-bar-518-885-7900htm.jpg",
+        "caption": "Google-sourced JJ's Snack Bar tray photo at the Ballston Spa stand; included as location-tied context.",
+        "credit": "Google photo via usarestaurants.info",
+        "verified": true
+      }
+    ],
+    "review_highlights": [],
+    "novelty_score": 0.68,
+    "historical_context": "JJ's expands the map into Ballston Spa but remains review-confirmed rather than official-menu confirmed.",
+    "classification": {
+      "primary_family": "gluten_free_cone_available",
+      "product_category": "snack_bar_ice_cream",
+      "evidence_level": "review_confirmed",
+      "capital_region": true,
+      "photo_policy": "location_tied_google_photos"
+    }
+  },
+  {
+    "id": "emack-bolios-albany-ny",
+    "name": "Emack & Bolio's",
+    "location": {
+      "address": "366 Delaware Avenue",
+      "city": "Albany",
+      "state": "NY",
+      "country": "USA",
+      "lat": 42.641499,
+      "lng": -73.7801161
+    },
+    "discovered_date": "2026",
+    "style_description": "Albany location of the creative ice cream chain, known locally for premium flavors and specialty cones; local list/review aggregation reports gluten-free cone availability.",
+    "characteristics": [
+      "capital_region",
+      "albany",
+      "gluten_free_cones",
+      "premium_ice_cream",
+      "specialty_cones",
+      "official_product_photos"
+    ],
+    "reviews": [
+      {
+        "source": "Wanderlog Albany dessert guide",
+        "url": "https://wanderlog.com/list/geoCategory/358261/best-desserts-and-snacks-in-albany",
+        "quote": "They do have gluten free cones too!",
+        "date": "2026"
+      }
+    ],
+    "sources": [
+      "https://www.ebalbany.com/",
+      "https://www.albany.com/business/emack-and-bolios-ice-cream-3245/",
+      "https://wanderlog.com/list/geoCategory/358261/best-desserts-and-snacks-in-albany"
+    ],
+    "llm_summary": "Emack & Bolio's gives the map a year-round Albany parlor with official Albany product photos and review-aggregated gluten-free cone evidence.",
+    "photo_evidence": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/640f57a82fd3f95301c85b3c/2bb778f4-3780-4ae0-88c1-f7cc2b695aa7/E%26B_Website-REV-2863-2.jpg?format=1000w",
+        "caption": "Official EBalbany product photo showing Emack & Bolio's scoops in a cereal-coated specialty cone.",
+        "credit": "Official Emack & Bolio's Albany website",
+        "verified": true
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/640f57a82fd3f95301c85b3c/1480e914-8a72-42c9-a053-172a59ec6dd9/E%26B_Website-2782-Purple.jpg?format=1000w",
+        "caption": "Official EBalbany ice cream product image from the Albany shop website.",
+        "credit": "Official Emack & Bolio's Albany website",
+        "verified": true
+      },
+      {
+        "url": "https://cdn.securem2.com/commonimages/business/3245/2025/7/IMG_7465-display.JPG",
+        "caption": "Albany.com listing image for Emack & Bolio's Albany, tied to the 366 Delaware Ave business profile.",
+        "credit": "Albany.com business profile",
+        "verified": true
+      }
+    ],
+    "review_highlights": [],
+    "novelty_score": 0.7,
+    "historical_context": "This entry represents the city-parlor side of the Capital Region gluten-free cone landscape, contrasting with seasonal roadside stands.",
+    "classification": {
+      "primary_family": "gluten_free_cone_available",
+      "product_category": "premium_ice_cream_parlor",
+      "evidence_level": "review_confirmed",
+      "capital_region": true,
+      "photo_policy": "official_or_listing_real_product_photos"
+    }
+  }
+]

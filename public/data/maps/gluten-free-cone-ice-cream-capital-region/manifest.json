@@ -1,0 +1,45 @@
+{
+  "slug": "gluten-free-cone-ice-cream-capital-region",
+  "title": "Gluten-Free Cone Ice Cream - Capital Region",
+  "tagline": "Verified Capital Region ice cream shops with gluten-free cones and real product photos",
+  "version": "1.0.0",
+  "totalEntries": 7,
+  "lastUpdated": "2026-05-28",
+  "defaultCenter": [
+    42.872228750000005,
+    -73.7617655
+  ],
+  "defaultZoom": 9,
+  "filterFields": [
+    "city",
+    "confidence"
+  ],
+  "chunks": [
+    "entries.json"
+  ],
+  "intent": {
+    "statement": "Document Capital Region ice cream and gelato shops where gluten-free cones are specifically evidenced, not merely general gluten-free flavors.",
+    "scope": "Albany, Troy, Clifton Park, Saratoga Springs, Ballston Spa, and nearby Capital Region communities. Include only real, validated places with coordinates tied to the actual shop address.",
+    "photoPolicy": "Use only source-attributed photos showing real ice cream, gelato, cones, sundaes, or frozen desserts from the named place. Exclude stock photos, generic ice cream imagery, storefront-only photos as primary evidence, and candidates without product-level visual proof."
+  },
+  "intentHistory": [
+    {
+      "changedAt": "2026-05-28T23:46:26.454Z",
+      "author": "import-enriched-index",
+      "summary": "Imported 7 enriched records from external niche index."
+    },
+    {
+      "changedAt": "2026-05-28T23:50:00.000Z",
+      "author": "codex",
+      "summary": "Refined map intent around the user's requirement: Capital Region only, gluten-free cones required, real product photos required, and source-backed place validation."
+    }
+  ],
+  "validation": {
+    "coordinateBounds": {
+      "minLat": 42.441499,
+      "maxLat": 43.302959,
+      "minLng": -74.048973,
+      "maxLng": -73.474558
+    }
+  }
+}
