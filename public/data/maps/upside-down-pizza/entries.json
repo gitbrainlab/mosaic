@@ -1,0 +1,1746 @@
+[
+  {
+    "id": "big-jays-pizzeria-rome-marcy-ny",
+    "name": "Big Jay's Pizzeria",
+    "location": {
+      "address": "9250 River Rd / 421 N James St",
+      "city": "Marcy / Rome",
+      "region": "NY",
+      "country": "USA",
+      "lat": 43.1275,
+      "lng": -75.455
+    },
+    "description": "Fresh mozzarella cheese on the bottom and pizza sauce on top, offered as an explicit 'Upside Down Pizza' in the classic Utica/Mohawk Valley style.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "https://www.bigjayspizzeria.com/",
+        "url": "https://www.bigjayspizzeria.com/"
+      }
+    ],
+    "tags": [
+      "utica_style",
+      "cheese_fully_under",
+      "caramelized_edges"
+    ],
+    "attributes": {
+      "noveltyScore": 0.6,
+      "discoveredDate": "2025",
+      "historicalContext": "Reinforces the regional concentration of authentic cheese-under-sauce pizza in the immediate vicinity of the 1914 origin point. Photo evidence enriched May 2026 with official Slice menu image + explicit menu text confirming cheese-on-bottom construction."
+    },
+    "sources": [
+      "https://www.bigjayspizzeria.com/"
+    ],
+    "photos": [
+      {
+        "url": "https://scontent-dfw5-1.xx.fbcdn.net/v/t39.30808-6/705293809_1610715734391832_4204378762385729823_n.jpg?stp=cp6_dst-jpegr_tt6&_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=z90Ggxe5eFcQ7kNvwFT438N&_nc_oc=AdoY4_YF386nBkSrt9FNj53IKx8Qc62DgWJ6IZSxDJ5D6jk70YqEwDiC_b8eNbh74sE&_nc_zt=23&se=-1&_nc_ht=scontent-dfw5-1.xx&_nc_gid=YPE8L499Wyf3WmXMvlbH0A&_nc_ss=7b289&oh=00_Af74G1E5s7VCbaLvB5rGr-yIFtUPRSMUzDnb2caUXDYGmA&oe=6A1966DE",
+        "caption": "Big Jay's Pizzeria display case showing multiple pies, including a half-and-half with prominent red-top tomato pie (sauce on top, cheese underneath) next to cheese pizza, highlighting the cheese-on-bottom / upside-down regional style.",
+        "credit": "Big Jay's Pizzeria Facebook page post via Grok web search",
+        "type": "product"
+      },
+      {
+        "url": "https://scontent-gru1-1.xx.fbcdn.net/v/t15.5256-10/437357518_1434177467461573_6593897278288110880_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=104&ccb=1-7&_nc_sid=cb5bf7&_nc_ohc=xl5nKSdcO6UQ7kNvwEWizwT&_nc_oc=Adq8epSlivhj8C_fIrwrbNYfKdk26hUPuYEYs4LVsTRwrF8eILnvLcZI-L3TvzQRBXk&_nc_zt=23&_nc_ht=scontent-gru1-1.xx&_nc_gid=xpGzH_aWfzmCCdjNBQ9rmQ&_nc_ss=7b289&oh=00_Af5vpCHzDDxJLSmb6M528CW7ns3fZEpaFA4TtSkKjuwnGw&oe=6A19832D",
+        "caption": "Fresh rectangular Big Jay's Tomato Pie straight from the oven – thick red sauce on top with caramelized edges and bakery-style presentation, matching their explicit 'Upside Down Pizza' (cheese on bottom, sauce on top) menu item.",
+        "credit": "Big Jay's Pizzeria Facebook video/post 'BIG JAYS TOMATO PIE' via Grok web search",
+        "type": "product"
+      },
+      {
+        "url": "https://slice-menu-assets-prod.imgix.net/48944/1672942263_ba450a8112?fit=crop&h=160&w=160",
+        "caption": "Big Jay's Upside Down Pizza menu image, showing sauce spread over the top; the menu item is described as fresh mozzarella cheese on the bottom with pizza sauce on top.",
+        "credit": "Big Jay's Pizzeria Slice menu image for Upside Down Pizza",
+        "type": "product"
+      }
+    ],
+    "photoEvidence": [
+      {
+        "url": "https://scontent-dfw5-1.xx.fbcdn.net/v/t39.30808-6/705293809_1610715734391832_4204378762385729823_n.jpg?stp=cp6_dst-jpegr_tt6&_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=z90Ggxe5eFcQ7kNvwFT438N&_nc_oc=AdoY4_YF386nBkSrt9FNj53IKx8Qc62DgWJ6IZSxDJ5D6jk70YqEwDiC_b8eNbh74sE&_nc_zt=23&se=-1&_nc_ht=scontent-dfw5-1.xx&_nc_gid=YPE8L499Wyf3WmXMvlbH0A&_nc_ss=7b289&oh=00_Af74G1E5s7VCbaLvB5rGr-yIFtUPRSMUzDnb2caUXDYGmA&oe=6A1966DE",
+        "caption": "Big Jay's Pizzeria display case showing multiple pies, including a half-and-half with prominent red-top tomato pie (sauce on top, cheese underneath) next to cheese pizza, highlighting the cheese-on-bottom / upside-down regional style.",
+        "credit": "Big Jay's Pizzeria Facebook page post via Grok web search",
+        "verified": true
+      },
+      {
+        "url": "https://scontent-gru1-1.xx.fbcdn.net/v/t15.5256-10/437357518_1434177467461573_6593897278288110880_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=104&ccb=1-7&_nc_sid=cb5bf7&_nc_ohc=xl5nKSdcO6UQ7kNvwEWizwT&_nc_oc=Adq8epSlivhj8C_fIrwrbNYfKdk26hUPuYEYs4LVsTRwrF8eILnvLcZI-L3TvzQRBXk&_nc_zt=23&_nc_ht=scontent-gru1-1.xx&_nc_gid=xpGzH_aWfzmCCdjNBQ9rmQ&_nc_ss=7b289&oh=00_Af5vpCHzDDxJLSmb6M528CW7ns3fZEpaFA4TtSkKjuwnGw&oe=6A19832D",
+        "caption": "Fresh rectangular Big Jay's Tomato Pie straight from the oven – thick red sauce on top with caramelized edges and bakery-style presentation, matching their explicit 'Upside Down Pizza' (cheese on bottom, sauce on top) menu item.",
+        "credit": "Big Jay's Pizzeria Facebook video/post 'BIG JAYS TOMATO PIE' via Grok web search",
+        "verified": true
+      },
+      {
+        "url": "https://slice-menu-assets-prod.imgix.net/48944/1672942263_ba450a8112?fit=crop&h=160&w=160",
+        "caption": "Big Jay's Upside Down Pizza menu image, showing sauce spread over the top; the menu item is described as fresh mozzarella cheese on the bottom with pizza sauce on top.",
+        "credit": "Big Jay's Pizzeria Slice menu image for Upside Down Pizza",
+        "verified": true
+      }
+    ],
+    "classification": {
+      "primary_family": "canonical_cheese_under_sauce",
+      "cheese_placement": "fully_under",
+      "is_strict_cob": true,
+      "regional_family": "utica_mohawk_valley"
+    }
+  },
+  {
+    "id": "brooklyn-square-pizza-manalapan-nj",
+    "name": "Brooklyn Square Pizza",
+    "location": {
+      "address": "Manalapan / Eatontown area",
+      "city": "Manalapan",
+      "region": "NJ",
+      "country": "USA",
+      "lat": 40.257,
+      "lng": -74.35
+    },
+    "description": "New Jersey interpretation of the classic Brooklyn upside-down Sicilian. Thick square pies with cheese baked under a generous layer of sauce — locals specifically seek out their 'upside downs'.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "NJ pizza community discussions",
+        "url": "NJ pizza community discussions"
+      },
+      {
+        "type": "review",
+        "source": "Local reviews / Facebook groups",
+        "detail": "Best upside downs around — cheese on the bottom, sauce on top, just like the old Brooklyn spots.",
+        "date": "2024"
+      }
+    ],
+    "tags": [
+      "brooklyn_style",
+      "cheese_fully_under",
+      "sweet_sauce",
+      "thick_sicilian"
+    ],
+    "attributes": {
+      "noveltyScore": 0.55,
+      "discoveredDate": "2025",
+      "historicalContext": "Demonstrates the style's successful migration from Brooklyn into central New Jersey via Sicilian-American communities. Photo evidence enriched May 2026 with direct Slice menu asset labeled as Upside Down Square; consistent with owner's documented cheese-first build."
+    },
+    "sources": [
+      "NJ pizza community discussions"
+    ],
+    "photos": [
+      {
+        "url": "https://slice-menu-assets-prod.imgix.net/22261/1776978183_eb3ca638ca?fit=crop&h=160&w=160",
+        "caption": "Brooklyn Square Vodka Upside Down Square shown in the ordering menu, with sauce spread over the square pie and the image itself labeled 'Vodka Upside Down Square.'",
+        "credit": "Brooklyn Square Pizza Manalapan Slice menu image for Vodka Upside Down Square Pizza",
+        "type": "product"
+      }
+    ],
+    "photoEvidence": [
+      {
+        "url": "https://slice-menu-assets-prod.imgix.net/22261/1776978183_eb3ca638ca?fit=crop&h=160&w=160",
+        "caption": "Brooklyn Square Vodka Upside Down Square shown in the ordering menu, with sauce spread over the square pie and the image itself labeled 'Vodka Upside Down Square.'",
+        "credit": "Brooklyn Square Pizza Manalapan Slice menu image for Vodka Upside Down Square Pizza",
+        "verified": true
+      }
+    ],
+    "classification": {}
+  },
+  {
+    "id": "collegeville-italian-bakery-collegeville-pa",
+    "name": "Collegeville Italian Bakery",
+    "location": {
+      "address": "496 E Main St",
+      "city": "Collegeville",
+      "region": "PA",
+      "country": "USA",
+      "lat": 40.185,
+      "lng": -75.455
+    },
+    "description": "Classic Norristown/Collegeville PA red top square pies: mozzarella cheese on the bottom, tomato sauce on top with caramelized edges. Iconic 'red bread' / red top regional style from the greater Philadelphia suburbs.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "https://x.com/collegevilleitbakery",
+        "url": "https://x.com/collegevilleitbakery"
+      }
+    ],
+    "tags": [
+      "pa_red_top",
+      "norristown_style",
+      "cheese_fully_under",
+      "square",
+      "caramelized_edges",
+      "bakery_tomato_pie"
+    ],
+    "attributes": {
+      "noveltyScore": 0.92,
+      "discoveredDate": "2025 (all-out wave 1)",
+      "historicalContext": "One of the strongest current examples of the expanded PA red top tradition outside the old NY/NJ cluster. Added during all-out national expansion with direct photo evidence from the source."
+    },
+    "sources": [
+      "https://x.com/collegevilleitbakery"
+    ],
+    "photos": [
+      {
+        "url": "https://pbs.twimg.com/media/GTkyzWKWYAAQ1od.jpg",
+        "caption": "Square red top pizza from Collegeville Italian Bakery — cheese layer fully on the bottom with prominent tomato sauce on top and caramelized cheese at the edges. Authentic Norristown/Collegeville PA regional style.",
+        "credit": "Collegeville Italian Bakery (@collegevilleitbakery) on X, November 2024",
+        "type": "product"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/GTkyzWKXEAAI0IM.jpg",
+        "caption": "Additional view of Collegeville Italian Bakery red top pie highlighting the sauce-on-top over cheese layering and traditional square bakery presentation.",
+        "credit": "Collegeville Italian Bakery (@collegevilleitbakery) on X, November 2024",
+        "type": "product"
+      }
+    ],
+    "photoEvidence": [
+      {
+        "url": "https://pbs.twimg.com/media/GTkyzWKWYAAQ1od.jpg",
+        "caption": "Square red top pizza from Collegeville Italian Bakery — cheese layer fully on the bottom with prominent tomato sauce on top and caramelized cheese at the edges. Authentic Norristown/Collegeville PA regional style.",
+        "credit": "Collegeville Italian Bakery (@collegevilleitbakery) on X, November 2024",
+        "verified": true
+      },
+      {
+        "url": "https://pbs.twimg.com/media/GTkyzWKXEAAI0IM.jpg",
+        "caption": "Additional view of Collegeville Italian Bakery red top pie highlighting the sauce-on-top over cheese layering and traditional square bakery presentation.",
+        "credit": "Collegeville Italian Bakery (@collegevilleitbakery) on X, November 2024",
+        "verified": true
+      }
+    ],
+    "classification": {
+      "primary_family": "red_top_variant",
+      "cheese_placement": "edge_cheese_dominant",
+      "is_strict_cob": false,
+      "regional_family": "norristown_pa_red_top",
+      "notes": "Classic PA bakery red top with cheese to the edge and sauce in rows."
+    }
+  },
+  {
+    "id": "dcs-pizza-albany-ny",
+    "name": "DC's Pizza & Catering",
+    "location": {
+      "address": "Albany area",
+      "city": "Albany",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.6526,
+      "lng": -73.7562
+    },
+    "description": "Capital District COB specialist. Cheese on the bottom, sauce on top — the menu explicitly says it 'completely alters the flavor'. Long-time local favorite for the traditional inverted Sicilian.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "http://places.singleplatform.com/dcs-pizza-and-wings/menu",
+        "url": "http://places.singleplatform.com/dcs-pizza-and-wings/menu"
+      },
+      {
+        "type": "review",
+        "source": "Tripadvisor / local reviews",
+        "detail": "Best COB (Cheese on the bottom) in Alb. They do an amazing job for this little hole-in-the-wall pizzeria.",
+        "date": "2014"
+      }
+    ],
+    "tags": [
+      "capital_district",
+      "cheese_fully_under",
+      "cob",
+      "old_school_sicilian"
+    ],
+    "attributes": {
+      "noveltyScore": 0.4,
+      "discoveredDate": "2014",
+      "historicalContext": "One of the reliable Capital District spots keeping the cheese-under-sauce tradition alive alongside Paesan's and Red Front. Photo evidence enriched May 2026 — first real visual proof. Official menu explicitly defines Cob Pizza as mozzarella on bottom + signature tomato sauce on top."
+    },
+    "sources": [
+      "http://places.singleplatform.com/dcs-pizza-and-wings/menu"
+    ],
+    "photos": [
+      {
+        "url": "https://slice-menu-assets-prod.imgix.net/10165/1595287756_d0b561f0ae?fit=crop&h=320&w=320",
+        "caption": "Official menu image for DC's Cob Pizza, showing a sauce-forward pie; the menu identifies the style as mozzarella on the bottom with tomato sauce on top.",
+        "credit": "Official DC's Pizza & Catering online menu image, powered by Slice",
+        "type": "product"
+      }
+    ],
+    "photoEvidence": [
+      {
+        "url": "https://slice-menu-assets-prod.imgix.net/10165/1595287756_d0b561f0ae?fit=crop&h=320&w=320",
+        "caption": "Official menu image for DC's Cob Pizza, showing a sauce-forward pie; the menu identifies the style as mozzarella on the bottom with tomato sauce on top.",
+        "credit": "Official DC's Pizza & Catering online menu image, powered by Slice",
+        "verified": true
+      }
+    ],
+    "classification": {}
+  },
+  {
+    "id": "delorenzos-tomato-pies-robbinsville-nj",
+    "name": "DeLorenzo's Tomato Pies",
+    "location": {
+      "address": "Robbinsville / Trenton area",
+      "city": "Robbinsville",
+      "region": "NJ",
+      "country": "USA",
+      "lat": 40.225,
+      "lng": -74.628
+    },
+    "description": "The definitive Trenton tomato pie — fresh mozzarella on the dough first, tangy tomato sauce on top, minimal toppings. One of the most famous and imitated examples of the cheese-under-sauce tradition in America.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "https://www.delorenzos.com/",
+        "url": "https://www.delorenzos.com/"
+      },
+      {
+        "type": "article",
+        "source": "X posts 2015-2020 (Dave Portnoy Trenton crawl, Barstool review)",
+        "url": "X posts 2015-2020 (Dave Portnoy Trenton crawl, Barstool review)"
+      }
+    ],
+    "tags": [
+      "trenton_tomato_pie",
+      "cheese_fully_under",
+      "sweet_tangy_sauce",
+      "thin_crust",
+      "historic"
+    ],
+    "attributes": {
+      "noveltyScore": 0.93,
+      "discoveredDate": "1947",
+      "historicalContext": "One of the original and most celebrated Trenton tomato pie institutions. Strong 2015-2020 X documentation plus ongoing visual confirmation of the authentic cheese-first method."
+    },
+    "sources": [
+      "https://www.delorenzos.com/",
+      "X posts 2015-2020 (Dave Portnoy Trenton crawl, Barstool review)"
+    ],
+    "photos": [
+      {
+        "url": "https://pbs.twimg.com/media/HH1dTy9XcAMOzxg.jpg",
+        "caption": "DeLorenzo’s Tomato Pies, Robbinsville NJ — classic Trenton tomato pie (local favorite)",
+        "credit": "X post May 2026 @bentomfohrdeWX",
+        "type": "product"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/GypldGeXUAAWU9h.jpg",
+        "caption": "De Lorenzo’s Tomato Pies at One Bite Pizza Fest — 9.2 rating, world-famous Trenton style",
+        "credit": "X post via Grok X search",
+        "type": "product"
+      }
+    ],
+    "photoEvidence": [
+      {
+        "url": "https://pbs.twimg.com/media/HH1dTy9XcAMOzxg.jpg",
+        "caption": "DeLorenzo’s Tomato Pies, Robbinsville NJ — classic Trenton tomato pie (local favorite)",
+        "credit": "X post May 2026 @bentomfohrdeWX",
+        "verified": true
+      },
+      {
+        "url": "https://pbs.twimg.com/media/GypldGeXUAAWU9h.jpg",
+        "caption": "De Lorenzo’s Tomato Pies at One Bite Pizza Fest — 9.2 rating, world-famous Trenton style",
+        "credit": "X post via Grok X search",
+        "verified": true
+      }
+    ],
+    "classification": {
+      "primary_family": "tomato_pie",
+      "cheese_placement": "minimal_or_none",
+      "is_strict_cob": false,
+      "regional_family": "trenton_nj",
+      "notes": "Trenton tomato pie tradition — sauce forward with cheese playing a supporting role."
+    }
+  },
+  {
+    "id": "eddie-and-marios-clifton-park-ny",
+    "name": "Eddie & Mario's",
+    "location": {
+      "address": "1742 US-9",
+      "city": "Clifton Park",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.865,
+      "lng": -73.77
+    },
+    "description": "Classic Sicilian upside-down square pizza with mozzarella cheese on the bottom and tomato sauce on top. Offered as a dedicated 'Upside Down Gourmet Pizza'.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "https://www.eddieandmarios.com/menu",
+        "url": "https://www.eddieandmarios.com/menu"
+      }
+    ],
+    "tags": [
+      "capital_district",
+      "cheese_fully_under",
+      "thick_sicilian",
+      "caramelized_edges"
+    ],
+    "attributes": {
+      "noveltyScore": 0.5,
+      "discoveredDate": "2025",
+      "historicalContext": "Another Capital District shop openly advertising the traditional cheese-first method. Photo evidence enriched May 2026 with official site image; menu explicitly defines Upside Down as mozzarella on bottom with sauce on top."
+    },
+    "sources": [
+      "https://www.eddieandmarios.com/menu"
+    ],
+    "photos": [
+      {
+        "url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.30808-6/611281683_897449679902582_2121321327392045163_n.jpg?stp=dst-jpg_s1080x2048_tt6&_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=vNZvzD1ryP8Q7kNvwHiMQm7&_nc_oc=AdqwBECsWRcd8KobpisaRAi6jOzhh-jhZwCsT4rprwLVy8qvAXKfgRcSxEeWXMS15es&_nc_zt=23&_nc_ht=scontent-lga3-2.xx&_nc_gid=gGcfA3RE5ybRpZSMDYnwsg&_nc_ss=7b289&oh=00_Af5u-1fvOJaGQwFkzi8LP6ABO8xMpNgMD1QU2IRh0j6dmQ&oe=6A142DE3",
+        "caption": "Square Sicilian-style upside-down pizza boxed to-go from Eddie & Mario's (Clifton Park, NY) – clear red sauce on top over melted cheese layer with caramelized edges and classic regional presentation.",
+        "credit": "Facebook post by Eddie & Mario's New England Seafood and Pizzeria (January 2026)",
+        "type": "product"
+      },
+      {
+        "url": "https://lirp.cdn-website.com/a3bf436f/dms3rep/multi/opt/Untitled-1-1293824e-1920w.png",
+        "caption": "Square Sicilian-style pizza from Eddie & Mario's with red sauce visible on top and caramelized edges, matching the menu's mozzarella-bottom/tomato-sauce-top upside-down pizza.",
+        "credit": "Official Eddie & Mario's website gallery, via eddieandmarios.com",
+        "type": "product"
+      }
+    ],
+    "photoEvidence": [
+      {
+        "url": "https://scontent-lga3-2.xx.fbcdn.net/v/t39.30808-6/611281683_897449679902582_2121321327392045163_n.jpg?stp=dst-jpg_s1080x2048_tt6&_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=vNZvzD1ryP8Q7kNvwHiMQm7&_nc_oc=AdqwBECsWRcd8KobpisaRAi6jOzhh-jhZwCsT4rprwLVy8qvAXKfgRcSxEeWXMS15es&_nc_zt=23&_nc_ht=scontent-lga3-2.xx&_nc_gid=gGcfA3RE5ybRpZSMDYnwsg&_nc_ss=7b289&oh=00_Af5u-1fvOJaGQwFkzi8LP6ABO8xMpNgMD1QU2IRh0j6dmQ&oe=6A142DE3",
+        "caption": "Square Sicilian-style upside-down pizza boxed to-go from Eddie & Mario's (Clifton Park, NY) – clear red sauce on top over melted cheese layer with caramelized edges and classic regional presentation.",
+        "credit": "Facebook post by Eddie & Mario's New England Seafood and Pizzeria (January 2026)",
+        "verified": true
+      },
+      {
+        "url": "https://lirp.cdn-website.com/a3bf436f/dms3rep/multi/opt/Untitled-1-1293824e-1920w.png",
+        "caption": "Square Sicilian-style pizza from Eddie & Mario's with red sauce visible on top and caramelized edges, matching the menu's mozzarella-bottom/tomato-sauce-top upside-down pizza.",
+        "credit": "Official Eddie & Mario's website gallery, via eddieandmarios.com",
+        "verified": true
+      }
+    ],
+    "classification": {}
+  },
+  {
+    "id": "francos-pizza-westmoreland-ny",
+    "name": "Franco's Pizza",
+    "location": {
+      "address": "Westmoreland area",
+      "city": "Westmoreland",
+      "region": "NY",
+      "country": "USA",
+      "lat": 43.116,
+      "lng": -75.4
+    },
+    "description": "Authentic Utica-style upside-down Sicilian with cheese placed on the dough first, sauce on top. Frequently cited by locals as one of the best examples in the greater Utica/Syracuse corridor.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Local Mohawk Valley food community",
+        "url": "Local Mohawk Valley food community"
+      },
+      {
+        "type": "review",
+        "source": "Local Facebook / reviews",
+        "detail": "Their upside down Utica style pie is the best — sauce on top, cheese on the bottom, exactly how it should be.",
+        "date": "2025"
+      }
+    ],
+    "tags": [
+      "utica_style",
+      "cheese_fully_under",
+      "caramelized_edges",
+      "thick_sicilian"
+    ],
+    "attributes": {
+      "noveltyScore": 0.45,
+      "discoveredDate": "2025",
+      "historicalContext": "Continues the dense cluster of verified practitioners within a short drive of O’Scugnizzo’s 1914 birthplace."
+    },
+    "sources": [
+      "Local Mohawk Valley food community"
+    ],
+    "photos": [
+      {
+        "url": "https://pbs.twimg.com/media/FRZIO84WUAELN0S.jpg",
+        "caption": "Franco's Pizza (Utica-style) — medium thick crust, cheese on the bottom, sweet sauce on top. Authentic Mohawk Valley red top / upside-down execution.",
+        "credit": "X post April 2022 @flyosity (via Grok X thread fetch)",
+        "type": "product"
+      }
+    ],
+    "photoEvidence": [
+      {
+        "url": "https://pbs.twimg.com/media/FRZIO84WUAELN0S.jpg",
+        "caption": "Franco's Pizza (Utica-style) — medium thick crust, cheese on the bottom, sweet sauce on top. Authentic Mohawk Valley red top / upside-down execution.",
+        "credit": "X post April 2022 @flyosity (via Grok X thread fetch)",
+        "verified": true
+      }
+    ],
+    "classification": {}
+  },
+  {
+    "id": "franks-pizzeria-ambridge-pa",
+    "name": "Frank's Pizzeria",
+    "location": {
+      "address": "Ambridge area",
+      "city": "Ambridge",
+      "region": "PA",
+      "country": "USA",
+      "lat": 40.59,
+      "lng": -80.23
+    },
+    "description": "Old-school 'cheese under the sauce' Sicilian brought back from New York by the founder in the 1950s. Still made the traditional way decades later.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Local Pittsburgh-area food history",
+        "url": "Local Pittsburgh-area food history"
+      },
+      {
+        "type": "review",
+        "source": "Local history",
+        "detail": "They still do the cheese on the bottom like the old Sicilians did.",
+        "date": "2023"
+      }
+    ],
+    "tags": [
+      "old_school_sicilian",
+      "cheese_fully_under",
+      "caramelized_edges",
+      "thick_sicilian"
+    ],
+    "attributes": {
+      "noveltyScore": 0.7,
+      "discoveredDate": "1958",
+      "historicalContext": "The founder learned the cheese-under-the-sauce method in New York and brought it to Western Pennsylvania in 1958 — a classic migration story for the style. Photo evidence enriched May 2026 with official site process + finished photos + founder's NY cheese-under-sauce origin story."
+    },
+    "sources": [
+      "Local Pittsburgh-area food history"
+    ],
+    "photos": [
+      {
+        "url": "https://static.wixstatic.com/media/f1c05e_9389dc107e384864bb24e5fb11b09b31.jpg/v1/fill/w_980%2Ch_653%2Cal_c%2Cq_85%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/f1c05e_9389dc107e384864bb24e5fb11b09b31.jpg",
+        "caption": "Official Frank's Pizzeria image of its round pie with red sauce spread over the cheese layer, matching the shop's self-described cheese-under-the-sauce style.",
+        "credit": "Official Frank's Pizzeria website gallery, via franks-pizzeria.com",
+        "type": "product"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/f1c05e_58108d2932074962a028306dcb3dc5f8.jpg/v1/fill/w_250%2Ch_166%2Cal_c%2Cq_90%2Cenc_auto/f1c05e_58108d2932074962a028306dcb3dc5f8.jpg",
+        "caption": "Frank's Pizzeria prep photo showing cheese and pepperoni being placed directly on the dough before sauce, documenting the cheese-under-the-sauce build.",
+        "credit": "Official Frank's Pizzeria website process/gallery image, via franks-pizzeria.com",
+        "type": "product"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/f1c05e_2f587afc96d34d31b9dbfe213fc28b9c.jpg/v1/fill/w_250%2Ch_166%2Cal_c%2Cq_90%2Cenc_auto/f1c05e_2f587afc96d34d31b9dbfe213fc28b9c.jpg",
+        "caption": "Finished Frank's Pizzeria pie with sauce visible over the cheese and pepperoni, a documentary view of the Ambridge cheese-under-sauce style.",
+        "credit": "Official Frank's Pizzeria website process/gallery image, via franks-pizzeria.com",
+        "type": "product"
+      }
+    ],
+    "photoEvidence": [
+      {
+        "url": "https://static.wixstatic.com/media/f1c05e_9389dc107e384864bb24e5fb11b09b31.jpg/v1/fill/w_980%2Ch_653%2Cal_c%2Cq_85%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/f1c05e_9389dc107e384864bb24e5fb11b09b31.jpg",
+        "caption": "Official Frank's Pizzeria image of its round pie with red sauce spread over the cheese layer, matching the shop's self-described cheese-under-the-sauce style.",
+        "credit": "Official Frank's Pizzeria website gallery, via franks-pizzeria.com",
+        "verified": true
+      },
+      {
+        "url": "https://static.wixstatic.com/media/f1c05e_58108d2932074962a028306dcb3dc5f8.jpg/v1/fill/w_250%2Ch_166%2Cal_c%2Cq_90%2Cenc_auto/f1c05e_58108d2932074962a028306dcb3dc5f8.jpg",
+        "caption": "Frank's Pizzeria prep photo showing cheese and pepperoni being placed directly on the dough before sauce, documenting the cheese-under-the-sauce build.",
+        "credit": "Official Frank's Pizzeria website process/gallery image, via franks-pizzeria.com",
+        "verified": true
+      },
+      {
+        "url": "https://static.wixstatic.com/media/f1c05e_2f587afc96d34d31b9dbfe213fc28b9c.jpg/v1/fill/w_250%2Ch_166%2Cal_c%2Cq_90%2Cenc_auto/f1c05e_2f587afc96d34d31b9dbfe213fc28b9c.jpg",
+        "caption": "Finished Frank's Pizzeria pie with sauce visible over the cheese and pepperoni, a documentary view of the Ambridge cheese-under-sauce style.",
+        "credit": "Official Frank's Pizzeria website process/gallery image, via franks-pizzeria.com",
+        "verified": true
+      }
+    ],
+    "classification": {}
+  },
+  {
+    "id": "lasalle-bakery-pizza-strips-rhode-island",
+    "name": "LaSalle Bakery (Pizza Strips)",
+    "location": {
+      "address": "Cranston / Providence area",
+      "city": "Cranston",
+      "region": "RI",
+      "country": "USA",
+      "lat": 41.78,
+      "lng": -71.45
+    },
+    "description": "Classic Rhode Island pizza strips (also called red bread or party pizza) — rectangular bakery-style with sauce on top, cheese on the bottom or minimal, crispy edges. Staple of RI Italian bakeries.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "X posts 2018-2020 and recent (LaSalle Bakery pizza strips reviews)",
+        "url": "X posts 2018-2020 and recent (LaSalle Bakery pizza strips reviews)"
+      }
+    ],
+    "tags": [
+      "rhode_island",
+      "pizza_strips",
+      "red_bread",
+      "bakery_style",
+      "sauce_on_top",
+      "party_pizza"
+    ],
+    "attributes": {
+      "noveltyScore": 0.88,
+      "discoveredDate": "1930s",
+      "historicalContext": "RI pizza strips (red bread) have been a bakery tradition for generations. 2015-2020 X posts with video and photos provide excellent historical visual documentation of the style."
+    },
+    "sources": [
+      "X posts 2018-2020 and recent (LaSalle Bakery pizza strips reviews)"
+    ],
+    "photos": [
+      {
+        "url": "https://pbs.twimg.com/media/EqC5egBXEAIr_Sb.jpg",
+        "caption": "Rhode Island pizza strips (red bread / party pizza) — classic LaSalle Bakery / Palmieri style example",
+        "credit": "X post 2020 via Grok X Intelligence (historical signal)",
+        "type": "product"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/GsXvK5cXkAAmF2T.jpg",
+        "caption": "LaSalle Bakery pizza strips — authentic RI bakery style with sauce on top",
+        "credit": "X post via Grok X prefetch",
+        "type": "product"
+      }
+    ],
+    "photoEvidence": [
+      {
+        "url": "https://pbs.twimg.com/media/EqC5egBXEAIr_Sb.jpg",
+        "caption": "Rhode Island pizza strips (red bread / party pizza) — classic LaSalle Bakery / Palmieri style example",
+        "credit": "X post 2020 via Grok X Intelligence (historical signal)",
+        "verified": true
+      },
+      {
+        "url": "https://pbs.twimg.com/media/GsXvK5cXkAAmF2T.jpg",
+        "caption": "LaSalle Bakery pizza strips — authentic RI bakery style with sauce on top",
+        "credit": "X post via Grok X prefetch",
+        "verified": true
+      }
+    ],
+    "classification": {}
+  },
+  {
+    "id": "lb-spumoni-gardens-brooklyn-ny",
+    "name": "L&B Spumoni Gardens",
+    "location": {
+      "address": "2725 86th Street",
+      "city": "Brooklyn",
+      "region": "NY",
+      "country": "USA",
+      "lat": 40.5947,
+      "lng": -73.9815
+    },
+    "description": "The Platonic ideal of the Brooklyn upside-down Sicilian. Thick square slices with cheese baked directly on the bottom, generous layer of sweet tomato sauce on top, finished with grated cheese and oregano.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "https://www.spumonigardens.com/",
+        "url": "https://www.spumonigardens.com/"
+      },
+      {
+        "type": "review",
+        "source": "New York Times",
+        "detail": "The sauce is on top of the cheese. That's how it's supposed to be.",
+        "url": "https://www.nytimes.com/2023/07/12/dining/l-and-b-spumoni-gardens.html",
+        "date": "2023"
+      }
+    ],
+    "tags": [
+      "brooklyn_style",
+      "cheese_fully_under",
+      "sweet_sauce",
+      "thick_sicilian",
+      "caramelized_edges"
+    ],
+    "attributes": {
+      "noveltyScore": 0.1,
+      "discoveredDate": "1939",
+      "historicalContext": "The most famous and influential example after O’Scugnizzo."
+    },
+    "sources": [
+      "https://www.spumonigardens.com/"
+    ],
+    "photos": [
+      {
+        "url": "https://pbs.twimg.com/media/HIsbr_HWQAEpCFh.jpg",
+        "caption": "L&B Spumoni Gardens square Sicilian pizza in Gravesend, Brooklyn — iconic cheese-under-sauce style",
+        "credit": "X post May 2026 @lsmagin",
+        "type": "product"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HG3iPA8bsAEeF6e.jpg",
+        "caption": "L&B Spumoni Gardens — classic Brooklyn square pie",
+        "credit": "X post via Grok X search",
+        "type": "product"
+      }
+    ],
+    "photoEvidence": [
+      {
+        "url": "https://pbs.twimg.com/media/HIsbr_HWQAEpCFh.jpg",
+        "caption": "L&B Spumoni Gardens square Sicilian pizza in Gravesend, Brooklyn — iconic cheese-under-sauce style",
+        "credit": "X post May 2026 @lsmagin",
+        "verified": true
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HG3iPA8bsAEeF6e.jpg",
+        "caption": "L&B Spumoni Gardens — classic Brooklyn square pie",
+        "credit": "X post via Grok X search",
+        "verified": true
+      }
+    ],
+    "classification": {}
+  },
+  {
+    "id": "loco-moez-harrisburg-pa",
+    "name": "Loco Moez",
+    "location": {
+      "address": "Harrisburg area",
+      "city": "Harrisburg",
+      "region": "PA",
+      "country": "USA",
+      "lat": 40.2737,
+      "lng": -76.8844
+    },
+    "description": "Central Pennsylvania spot offering garlic, cheese on the bottom, sauce on top — a clear cheese-under-sauce Sicilian in the old style.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Local Harrisburg pizza discussions",
+        "url": "Local Harrisburg pizza discussions"
+      }
+    ],
+    "tags": [
+      "cheese_fully_under",
+      "old_school_sicilian",
+      "pittsburgh_style"
+    ],
+    "attributes": {
+      "noveltyScore": 0.65,
+      "discoveredDate": "2025",
+      "historicalContext": "Extends the Western/Central PA thread that includes Frank's (1958 Ambridge) and Pizza Lupo. Photo evidence enriched May 2026 — first visual. Slice menu explicitly states 'cheese on the bottom and sauce on top' for Old World Pizza."
+    },
+    "sources": [
+      "Local Harrisburg pizza discussions"
+    ],
+    "photos": [
+      {
+        "url": "https://slice-menu-assets-prod.imgix.net/103376/1709956221_c418eee9a6?fit=crop&h=160&w=160",
+        "caption": "Loco Moez Old World Pizza menu image; the menu identifies this pie as garlic, cheese on the bottom, and sauce on top.",
+        "credit": "Loco Moez Slice menu image for Old World Pizza",
+        "type": "product"
+      }
+    ],
+    "photoEvidence": [
+      {
+        "url": "https://slice-menu-assets-prod.imgix.net/103376/1709956221_c418eee9a6?fit=crop&h=160&w=160",
+        "caption": "Loco Moez Old World Pizza menu image; the menu identifies this pie as garlic, cheese on the bottom, and sauce on top.",
+        "credit": "Loco Moez Slice menu image for Old World Pizza",
+        "verified": true
+      }
+    ],
+    "classification": {}
+  },
+  {
+    "id": "louis-pizza-hazel-park-mi",
+    "name": "Loui’s Pizza",
+    "location": {
+      "address": "20031 Dequindre Rd",
+      "city": "Hazel Park",
+      "region": "MI",
+      "country": "USA",
+      "lat": 42.46,
+      "lng": -83.1
+    },
+    "description": "Detroit red top / racing stripes style: cheese on the bottom with sauce on top, caramelized cheese edges creating the signature 'racing stripes' on square or rectangular pies. Iconic Hazel Park / Detroit area variant.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "X posts and local Detroit pizza documentation (Loui’s Pizza Hazel Park)",
+        "url": "X posts and local Detroit pizza documentation (Loui’s Pizza Hazel Park)"
+      }
+    ],
+    "tags": [
+      "detroit_red_top",
+      "racing_stripes",
+      "cheese_fully_under",
+      "caramelized_edges",
+      "square"
+    ],
+    "attributes": {
+      "noveltyScore": 0.9,
+      "discoveredDate": "2025 (all-out wave 1)",
+      "historicalContext": "Loui’s in Hazel Park is a benchmark for the Detroit red top variant. Added in the all-out national expansion phase with X media evidence of the exact cheese-on-bottom sauce-on-top style."
+    },
+    "sources": [
+      "X posts and local Detroit pizza documentation (Loui’s Pizza Hazel Park)"
+    ],
+    "photos": [
+      {
+        "url": "https://pbs.twimg.com/media/Gv7i3f0W8AAWvQ1.jpg",
+        "caption": "Loui’s Pizza (Hazel Park) red top — cheese on the bottom, sauce on top with prominent caramelized edges (racing stripes). Classic Detroit-style red top shown in multiple angles.",
+        "credit": "X post via Grok X Intelligence prefetch (Detroit red top wave)",
+        "type": "product"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/Gv7i3f0W0AAWvQ2.jpg",
+        "caption": "Close-up of Loui’s Pizza red top pie clearly showing the cheese-under-sauce layering and signature caramelized cheese racing stripes along the crust.",
+        "credit": "X post via Grok X Intelligence prefetch (Detroit red top wave)",
+        "type": "product"
+      }
+    ],
+    "photoEvidence": [
+      {
+        "url": "https://pbs.twimg.com/media/Gv7i3f0W8AAWvQ1.jpg",
+        "caption": "Loui’s Pizza (Hazel Park) red top — cheese on the bottom, sauce on top with prominent caramelized edges (racing stripes). Classic Detroit-style red top shown in multiple angles.",
+        "credit": "X post via Grok X Intelligence prefetch (Detroit red top wave)",
+        "verified": true
+      },
+      {
+        "url": "https://pbs.twimg.com/media/Gv7i3f0W0AAWvQ2.jpg",
+        "caption": "Close-up of Loui’s Pizza red top pie clearly showing the cheese-under-sauce layering and signature caramelized cheese racing stripes along the crust.",
+        "credit": "X post via Grok X Intelligence prefetch (Detroit red top wave)",
+        "verified": true
+      }
+    ],
+    "classification": {}
+  },
+  {
+    "id": "medford-pizza-nj",
+    "name": "Medford Pizza & Pasta",
+    "location": {
+      "address": "176 NJ-70",
+      "city": "Medford",
+      "region": "NJ",
+      "country": "USA",
+      "lat": 39.9,
+      "lng": -74.82
+    },
+    "description": "New Jersey upside-down pizza with cheese on the bottom and marinara sauce on top. Standard menu item alongside regular pies.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "https://www.medfordpizzanj.com/menu",
+        "url": "https://www.medfordpizzanj.com/menu"
+      }
+    ],
+    "tags": [
+      "cheese_fully_under",
+      "brooklyn_style",
+      "thick_sicilian"
+    ],
+    "attributes": {
+      "noveltyScore": 0.6,
+      "discoveredDate": "2025",
+      "historicalContext": "Shows the style's reach into South Jersey via Sicilian-American communities. Photo evidence enriched May 2026. Direct image on the Upside Down Pizza menu item whose description explicitly states cheese on bottom + marinara on top."
+    },
+    "sources": [
+      "https://www.medfordpizzanj.com/menu"
+    ],
+    "photos": [
+      {
+        "url": "https://slice-menu-assets-prod.imgix.net/105100/1690149774_8185af1039?fit=crop&h=160&w=160",
+        "caption": "Medford Pizza & Pasta's Upside Down Pizza, a round red-top pie; the menu describes it as cheese on the bottom with marinara sauce on top, basil, and Parmesan.",
+        "credit": "Medford Pizza & Pasta Slice menu image for Upside Down Pizza",
+        "type": "product"
+      }
+    ],
+    "photoEvidence": [
+      {
+        "url": "https://slice-menu-assets-prod.imgix.net/105100/1690149774_8185af1039?fit=crop&h=160&w=160",
+        "caption": "Medford Pizza & Pasta's Upside Down Pizza, a round red-top pie; the menu describes it as cheese on the bottom with marinara sauce on top, basil, and Parmesan.",
+        "credit": "Medford Pizza & Pasta Slice menu image for Upside Down Pizza",
+        "verified": true
+      }
+    ],
+    "classification": {}
+  },
+  {
+    "id": "oscugnizzo-utica-ny",
+    "name": "O’Scugnizzo Pizzeria",
+    "location": {
+      "address": "614 Bleecker Street",
+      "city": "Utica",
+      "region": "NY",
+      "country": "USA",
+      "lat": 43.0992,
+      "lng": -75.2321
+    },
+    "description": "Classic Utica-style upside-down: cheese placed directly on the dough, sauce spooned on top, baked in a square pan. Thin but substantial crust with caramelized cheese edges.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "https://www.oscugnizzopizzeria.com/",
+        "url": "https://www.oscugnizzopizzeria.com/"
+      },
+      {
+        "type": "review",
+        "source": "Atlas Obscura",
+        "detail": "The cheese is under the sauce — that's the whole point of Utica pizza.",
+        "url": "https://www.atlasobscura.com/places/oscugnizzo-pizzeria",
+        "date": "2023"
+      }
+    ],
+    "tags": [
+      "utica_style",
+      "cheese_fully_under",
+      "caramelized_edges",
+      "thick_sicilian"
+    ],
+    "attributes": {
+      "noveltyScore": 0.15,
+      "discoveredDate": "1914",
+      "historicalContext": "Widely regarded as the birthplace of the style in the United States."
+    },
+    "sources": [
+      "https://www.oscugnizzopizzeria.com/"
+    ],
+    "photos": [
+      {
+        "url": "https://pbs.twimg.com/media/HEmnJs4bgAAvwEk.jpg",
+        "caption": "O’Scugnizzo Pizzeria upside down pie — cheese on the bottom, sauce on top. Classic Utica style.",
+        "credit": "X post May 2026 @jacobneaton (via Grok X search)",
+        "type": "product"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/G3YsgH8W0AAz-aA.jpg",
+        "caption": "O’Scugnizzo Pizzeria — sponsor of Utica Football, real local upside down pies",
+        "credit": "X post via Grok X Intelligence prefetch",
+        "type": "product"
+      }
+    ],
+    "photoEvidence": [
+      {
+        "url": "https://pbs.twimg.com/media/HEmnJs4bgAAvwEk.jpg",
+        "caption": "O’Scugnizzo Pizzeria upside down pie — cheese on the bottom, sauce on top. Classic Utica style.",
+        "credit": "X post May 2026 @jacobneaton (via Grok X search)",
+        "verified": true
+      },
+      {
+        "url": "https://pbs.twimg.com/media/G3YsgH8W0AAz-aA.jpg",
+        "caption": "O’Scugnizzo Pizzeria — sponsor of Utica Football, real local upside down pies",
+        "credit": "X post via Grok X Intelligence prefetch",
+        "verified": true
+      }
+    ],
+    "classification": {}
+  },
+  {
+    "id": "paesanos-pizza-herkimer-ny",
+    "name": "Paesano's Pizza",
+    "location": {
+      "address": "Herkimer area",
+      "city": "Herkimer",
+      "region": "NY",
+      "country": "USA",
+      "lat": 43.025,
+      "lng": -74.98
+    },
+    "description": "Traditional Utica-style upside-down Sicilian with cheese placed directly on the dough first, followed by sauce on top. Local Mohawk Valley favorite.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Local Mohawk Valley food history",
+        "url": "Local Mohawk Valley food history"
+      }
+    ],
+    "tags": [
+      "utica_style",
+      "cheese_fully_under",
+      "caramelized_edges",
+      "thick_sicilian"
+    ],
+    "attributes": {
+      "noveltyScore": 0.6,
+      "discoveredDate": "2025",
+      "historicalContext": "Part of the dense cluster of authentic upside-down practitioners in the Mohawk Valley. Research May 2026: No reliable direct cheese-on-bottom image or explicit menu statement found in this pass. Strongest records point to a standard menu at a different location (Mohawk)."
+    },
+    "sources": [
+      "Local Mohawk Valley food history"
+    ],
+    "photos": [],
+    "photoEvidence": [],
+    "classification": {}
+  },
+  {
+    "id": "paesans-pizza-albany-ny",
+    "name": "Paesan's Pizza",
+    "location": {
+      "address": "289 Ontario St and multiple Capital District locations",
+      "city": "Albany",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.66,
+      "lng": -73.75
+    },
+    "description": "Brooklyn-style COB (Cheese On Bottom) pizza brought to the Capital District by Brooklyn-born brothers. Sliced provolone cheese placed directly on the hand-tossed dough first, covered with marinara sauce, finished with Parmesan and oregano. Crispy-chewy crust. Explicitly called 'Brooklyn Cob' on the menu and in marketing.",
+    "confidence": "high",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "https://paesanspizza.com/",
+        "url": "https://paesanspizza.com/"
+      },
+      {
+        "type": "article",
+        "source": "https://www.goldbelly.com/restaurants/paesan-s-pizza",
+        "url": "https://www.goldbelly.com/restaurants/paesan-s-pizza"
+      },
+      {
+        "type": "review",
+        "source": "Paesan's Pizza / Goldbelly",
+        "detail": "The fan-favorite Brooklyn Cob features a layer of sliced provolone cheese on the bottom, marinara sauce, a sprinkle of Parmesan cheese... Cheese on the bottom is where it's at.",
+        "date": "2024"
+      }
+    ],
+    "tags": [
+      "brooklyn_style",
+      "cheese_fully_under",
+      "cob",
+      "capital_district",
+      "provolone_bottom"
+    ],
+    "attributes": {
+      "noveltyScore": 0.35,
+      "discoveredDate": "1994",
+      "historicalContext": "Direct migration story: Brooklyn natives opened in Albany in 1994 and successfully transplanted and popularized the COB / cheese-on-bottom Sicilian throughout the Capital District with multiple locations. Photo evidence enriched May 2026 with clear One Bite documentation of Paesan's Brooklyn COB (cheese on bottom)."
+    },
+    "sources": [
+      "https://paesanspizza.com/",
+      "https://www.goldbelly.com/restaurants/paesan-s-pizza"
+    ],
+    "photos": [
+      {
+        "url": "https://pbs.twimg.com/media/Gd-uXp0XUAA8QSm.jpg",
+        "caption": "Brooklyn COB (Cheese on Bottom) pizza from Paesan's Pizza (Albany, NY) – red sauce prominently on top with cheese underneath, signature inverted style in square or round form.",
+        "credit": "Official X post by @PaesansPizzaNY promoting COB options via Grok X search",
+        "type": "product"
+      },
+      {
+        "url": "https://media.onebite.app/42/1e/e1/da/421ee1da-ab8d-4939-8c19-0847c72c141a.jpg",
+        "caption": "Two Paesan's Brooklyn COB slices on a paper plate, with red sauce covering the top and cheese visibly underneath at the edges.",
+        "credit": "One Bite review by notorioustimmyb, 2022-12-12",
+        "type": "product"
+      },
+      {
+        "url": "https://media.onebite.app/15/04/36/20/15043620-f694-4ee6-b3a8-dc376abf5fd7.jpg",
+        "caption": "Paesan's Brooklyn COB slices beside a regular cheese slice, clearly contrasting sauce-on-top COB with standard cheese-on-top pizza.",
+        "credit": "One Bite review by z.worthington, 2021-05-23",
+        "type": "product"
+      }
+    ],
+    "photoEvidence": [
+      {
+        "url": "https://pbs.twimg.com/media/Gd-uXp0XUAA8QSm.jpg",
+        "caption": "Brooklyn COB (Cheese on Bottom) pizza from Paesan's Pizza (Albany, NY) – red sauce prominently on top with cheese underneath, signature inverted style in square or round form.",
+        "credit": "Official X post by @PaesansPizzaNY promoting COB options via Grok X search",
+        "verified": true
+      },
+      {
+        "url": "https://media.onebite.app/42/1e/e1/da/421ee1da-ab8d-4939-8c19-0847c72c141a.jpg",
+        "caption": "Two Paesan's Brooklyn COB slices on a paper plate, with red sauce covering the top and cheese visibly underneath at the edges.",
+        "credit": "One Bite review by notorioustimmyb, 2022-12-12",
+        "verified": true
+      },
+      {
+        "url": "https://media.onebite.app/15/04/36/20/15043620-f694-4ee6-b3a8-dc376abf5fd7.jpg",
+        "caption": "Paesan's Brooklyn COB slices beside a regular cheese slice, clearly contrasting sauce-on-top COB with standard cheese-on-top pizza.",
+        "credit": "One Bite review by z.worthington, 2021-05-23",
+        "verified": true
+      }
+    ],
+    "classification": {}
+  },
+  {
+    "id": "panko-pizza-nj",
+    "name": "Panko Pizza",
+    "location": {
+      "address": "1104 NJ-35",
+      "city": "Middletown",
+      "region": "NJ",
+      "country": "USA",
+      "lat": 40.4,
+      "lng": -74.1
+    },
+    "description": "Sauce on Top Sicilian Pie — fresh mozzarella and toppings on the bottom with sauce layered above, offered as a distinct style.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "https://www.toasttab.com/local/order/pankopizza",
+        "url": "https://www.toasttab.com/local/order/pankopizza"
+      }
+    ],
+    "tags": [
+      "cheese_fully_under",
+      "sauce_on_top",
+      "thick_sicilian"
+    ],
+    "attributes": {
+      "noveltyScore": 0.55,
+      "discoveredDate": "2025",
+      "historicalContext": "Modern NJ shop keeping the cheese-first tradition visible on the menu. Research May 2026: Toast lists Upside Down Sicilian items with style support, but no clean item-specific photo directly loadable in this pass."
+    },
+    "sources": [
+      "https://www.toasttab.com/local/order/pankopizza"
+    ],
+    "photos": [],
+    "photoEvidence": [],
+    "classification": {}
+  },
+  {
+    "id": "pepps-pizzeria-urbandale-ia",
+    "name": "Pepp's Pizzeria",
+    "location": {
+      "address": "4640 86th Street",
+      "city": "Urbandale",
+      "region": "IA",
+      "country": "USA",
+      "lat": 41.6423,
+      "lng": -93.7168
+    },
+    "description": "Modern Midwest homage that explicitly follows the tradition: over half a pound of freshly sliced cheese placed first on the dough, then covered with scratch-made sauce.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "https://www.peppspizzeria.com/",
+        "url": "https://www.peppspizzeria.com/"
+      },
+      {
+        "type": "review",
+        "source": "Instagram",
+        "detail": "First time having an upside down pizza and it was amazing!",
+        "date": "2025"
+      }
+    ],
+    "tags": [
+      "cheese_fully_under",
+      "thick_sicilian"
+    ],
+    "attributes": {
+      "noveltyScore": 0.85,
+      "discoveredDate": "2024",
+      "historicalContext": "Brings the 1914–1939 tradition to the heartland with modern transparency. Photo evidence enriched May 2026 — first strong visuals for this Iowa outlier. Official site + menu explicitly define the house upside-down style as cheese first, sauce on top."
+    },
+    "sources": [
+      "https://www.peppspizzeria.com/"
+    ],
+    "photos": [
+      {
+        "url": "https://cdn.prod.website-files.com/65ea31227204066fc204a77e/68b8aa8ff9e1d16ec2243222_Combined%20Hero.png",
+        "caption": "Official Pepp's Pizzeria hero image showing its signature upside-down pies, including a red-sauce-topped cheese pie; Pepp's explains that its style puts cheese down first and sauce on top.",
+        "credit": "Official Pepp's Pizzeria website hero image",
+        "type": "product"
+      },
+      {
+        "url": "https://media.onebite.app/69/b7/64/b5/69b764b5-1c90-4421-81a5-1f819d34dc64.jpg",
+        "caption": "Pepp's Pizzeria slices in a takeout box, including a sauce-forward cheese slice consistent with the shop's official upside-down build.",
+        "credit": "One Bite review by tom.miller12, 2025-09-03",
+        "type": "product"
+      }
+    ],
+    "photoEvidence": [
+      {
+        "url": "https://cdn.prod.website-files.com/65ea31227204066fc204a77e/68b8aa8ff9e1d16ec2243222_Combined%20Hero.png",
+        "caption": "Official Pepp's Pizzeria hero image showing its signature upside-down pies, including a red-sauce-topped cheese pie; Pepp's explains that its style puts cheese down first and sauce on top.",
+        "credit": "Official Pepp's Pizzeria website hero image",
+        "verified": true
+      },
+      {
+        "url": "https://media.onebite.app/69/b7/64/b5/69b764b5-1c90-4421-81a5-1f819d34dc64.jpg",
+        "caption": "Pepp's Pizzeria slices in a takeout box, including a sauce-forward cheese slice consistent with the shop's official upside-down build.",
+        "credit": "One Bite review by tom.miller12, 2025-09-03",
+        "verified": true
+      }
+    ],
+    "classification": {}
+  },
+  {
+    "id": "perrecas-bakery-schenectady-ny",
+    "name": "Perreca's Bakery",
+    "location": {
+      "address": "33 N Jay St",
+      "city": "Schenectady",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.8148,
+      "lng": -73.9447
+    },
+    "description": "Legendary Capital Region tomato pie with cheese baked under a thick layer of fresh tomato sauce on their famous hand-rolled dough. Served room-temperature in the classic upstate NY style. Nationally recognized by Food & Wine as one of America's best pizzas.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "https://www.facebook.com/perrecasbakery/",
+        "url": "https://www.facebook.com/perrecasbakery/"
+      },
+      {
+        "type": "article",
+        "source": "https://www.foodandwine.com/perrecas-bakery-tomato-pie-8600994",
+        "url": "https://www.foodandwine.com/perrecas-bakery-tomato-pie-8600994"
+      }
+    ],
+    "tags": [
+      "capital_region",
+      "tomato_pie",
+      "cheese_fully_under",
+      "room_temperature",
+      "historic_bakery"
+    ],
+    "attributes": {
+      "noveltyScore": 0.7,
+      "discoveredDate": "2025",
+      "historicalContext": "A cornerstone of the early 20th-century Italian-American baking tradition in upstate New York that helped spread the tomato-pie / upside-down style beyond the immediate Utica core."
+    },
+    "sources": [
+      "https://www.facebook.com/perrecasbakery/",
+      "https://www.foodandwine.com/perrecas-bakery-tomato-pie-8600994"
+    ],
+    "photos": [
+      {
+        "url": "https://pbs.twimg.com/media/FbXzihDXoAEiA4F.jpg",
+        "caption": "Whole tomato pie from Perreca’s Bakery, Schenectady — Capital District style",
+        "credit": "X post 2023 via Grok X search",
+        "type": "product"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/F3Et2NVXIAAfbxS.jpg",
+        "caption": "Perreca’s Bakery pizza — traditional Capital District / Mohawk Valley pie",
+        "credit": "X post via Grok X prefetch",
+        "type": "product"
+      }
+    ],
+    "photoEvidence": [
+      {
+        "url": "https://pbs.twimg.com/media/FbXzihDXoAEiA4F.jpg",
+        "caption": "Whole tomato pie from Perreca’s Bakery, Schenectady — Capital District style",
+        "credit": "X post 2023 via Grok X search",
+        "verified": true
+      },
+      {
+        "url": "https://pbs.twimg.com/media/F3Et2NVXIAAfbxS.jpg",
+        "caption": "Perreca’s Bakery pizza — traditional Capital District / Mohawk Valley pie",
+        "credit": "X post via Grok X prefetch",
+        "verified": true
+      }
+    ],
+    "classification": {}
+  },
+  {
+    "id": "pizza-lupo-pittsburgh-pa",
+    "name": "Pizza Lupo",
+    "location": {
+      "address": "5123 Butler Street",
+      "city": "Pittsburgh",
+      "region": "PA",
+      "country": "USA",
+      "lat": 40.48,
+      "lng": -79.95
+    },
+    "description": "Pittsburgh 'Upside Down Grandma' — cheese on the bottom, sauce on top, in a square grandma pie format. Modern take with strong local following.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "https://www.toasttab.com/local/order/pizza-lupo-5123-butler-street",
+        "url": "https://www.toasttab.com/local/order/pizza-lupo-5123-butler-street"
+      }
+    ],
+    "tags": [
+      "cheese_fully_under",
+      "grandma_style",
+      "pittsburgh"
+    ],
+    "attributes": {
+      "noveltyScore": 0.45,
+      "discoveredDate": "2025",
+      "historicalContext": "Shows how the core cheese-under-sauce technique has been adapted in Western Pennsylvania. Photo evidence enriched May 2026. One Bite + menu both confirm Upside Down Grandma = cheese on bottom, sauce on top."
+    },
+    "sources": [
+      "https://www.toasttab.com/local/order/pizza-lupo-5123-butler-street"
+    ],
+    "photos": [
+      {
+        "url": "https://media.onebite.app/02/4d/d0/fa/024dd0fa-d8bf-4051-9d48-7f0f133105d4.jpg",
+        "caption": "Pizza Lupo grandma-style square pie with red sauce visible over the cheese layer, pepperoni, basil, and deeply browned pan edges; Pizza Lupo's menu describes the Upside Down Grandma as cheese on bottom and sauce on top.",
+        "credit": "One Bite review by voodooslice, 2023-05-08",
+        "type": "product"
+      }
+    ],
+    "photoEvidence": [
+      {
+        "url": "https://media.onebite.app/02/4d/d0/fa/024dd0fa-d8bf-4051-9d48-7f0f133105d4.jpg",
+        "caption": "Pizza Lupo grandma-style square pie with red sauce visible over the cheese layer, pepperoni, basil, and deeply browned pan edges; Pizza Lupo's menu describes the Upside Down Grandma as cheese on bottom and sauce on top.",
+        "credit": "One Bite review by voodooslice, 2023-05-08",
+        "verified": true
+      }
+    ],
+    "classification": {}
+  },
+  {
+    "id": "red-front-pizza-clifton-park-ny",
+    "name": "Red Front Pizza",
+    "location": {
+      "address": "Clifton Park area",
+      "city": "Clifton Park",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.865,
+      "lng": -73.77
+    },
+    "description": "Classic Capital District 'Cheese On Bottom' (COB) pizza — mozzarella placed directly on the dough first, sauce and toppings layered on top. Long-time local favorite with deep Utica-style roots.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "https://www.redfrontpizza.com/",
+        "url": "https://www.redfrontpizza.com/"
+      },
+      {
+        "type": "review",
+        "source": "Yelp",
+        "detail": "The cheese on the bottom is what makes it special — caramelized and perfect under the sauce.",
+        "url": "https://www.yelp.com/biz/red-front-pizza-clifton-park",
+        "date": "2024"
+      }
+    ],
+    "tags": [
+      "caramelized_edges",
+      "cheese_fully_under",
+      "sweet_sauce",
+      "thick_sicilian",
+      "utica_style"
+    ],
+    "attributes": {
+      "noveltyScore": 0.55,
+      "discoveredDate": "1956",
+      "historicalContext": "Operating since the mid-1950s, Red Front has preserved the cheese-under-sauce style that originated in Utica and spread through the Capital District. Additional high-quality One Bite COB documentation added May 2026 (already had strong prior evidence)."
+    },
+    "sources": [
+      "https://www.redfrontpizza.com/"
+    ],
+    "photos": [
+      {
+        "url": "https://pbs.twimg.com/media/F03zFgkXoAIWPEO.jpg",
+        "caption": "Rectangular red-top COB (Cheese On Bottom) pizza in pan from Red Front Pizza (Clifton Park, NY) – thick bright red sauce layered over cheese with caramelized edges, classic upside-down regional Sicilian style.",
+        "credit": "X post by @Sportingstables (2023) explicitly describing Red Front COB pizza via Grok X search",
+        "type": "product"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/Gs3LeXOWsAA_1T6.jpg",
+        "caption": "Close-up of square COB (cheese on bottom) red pie at Red Front Pizza Clifton Park – prominent sauce on top, visible cheese melt underneath, square cuts and golden crust edges.",
+        "credit": "X post by @Sportingstables recommending Red Front COB style via Grok X search",
+        "type": "product"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/F1Wpi-UXgAAhM_T.jpg",
+        "caption": "Signature COB (Cheese on Bottom) pizza from Red Front Pizza in Clifton Park, NY – thick red sauce on top over melted cheese on square Sicilian-style crust with caramelized edges.",
+        "credit": "X post by @Sportingstables (June 2025) via Grok X search",
+        "type": "product"
+      },
+      {
+        "url": "https://media.onebite.app/19/34/9d/b3/19349db3-c135-43e9-a447-536cd28115a3.jpg",
+        "caption": "Red Front COB pie in the box with red sauce spread across the top and an underside slice lifted, showing the cheese-on-bottom/sauce-on-top construction.",
+        "credit": "One Bite review by thelozanofam, 2025-11-23",
+        "type": "product"
+      },
+      {
+        "url": "https://media.onebite.app/1c/ee/7c/d3/1cee7cd3-5eeb-483d-89ab-661aaea1ac5e.jpg",
+        "caption": "Close-up of Red Front's COB pizza with bright tomato sauce on top and browned cheese/crust along the edge.",
+        "credit": "One Bite review by wadezzeria, 2022-03-28",
+        "type": "product"
+      },
+      {
+        "url": "https://media.onebite.app/16/be/a7/a0/16bea7a0-b3e7-4b98-872b-573be7d9c9e0.jpg",
+        "caption": "Red Front red-top COB pizza with pepperoni, showing sauce over the cheese layer in a delivery box.",
+        "credit": "One Bite review by teejay., 2023-02-07",
+        "type": "product"
+      }
+    ],
+    "photoEvidence": [
+      {
+        "url": "https://pbs.twimg.com/media/F03zFgkXoAIWPEO.jpg",
+        "caption": "Rectangular red-top COB (Cheese On Bottom) pizza in pan from Red Front Pizza (Clifton Park, NY) – thick bright red sauce layered over cheese with caramelized edges, classic upside-down regional Sicilian style.",
+        "credit": "X post by @Sportingstables (2023) explicitly describing Red Front COB pizza via Grok X search",
+        "verified": true
+      },
+      {
+        "url": "https://pbs.twimg.com/media/Gs3LeXOWsAA_1T6.jpg",
+        "caption": "Close-up of square COB (cheese on bottom) red pie at Red Front Pizza Clifton Park – prominent sauce on top, visible cheese melt underneath, square cuts and golden crust edges.",
+        "credit": "X post by @Sportingstables recommending Red Front COB style via Grok X search",
+        "verified": true
+      },
+      {
+        "url": "https://pbs.twimg.com/media/F1Wpi-UXgAAhM_T.jpg",
+        "caption": "Signature COB (Cheese on Bottom) pizza from Red Front Pizza in Clifton Park, NY – thick red sauce on top over melted cheese on square Sicilian-style crust with caramelized edges.",
+        "credit": "X post by @Sportingstables (June 2025) via Grok X search",
+        "verified": true
+      },
+      {
+        "url": "https://media.onebite.app/19/34/9d/b3/19349db3-c135-43e9-a447-536cd28115a3.jpg",
+        "caption": "Red Front COB pie in the box with red sauce spread across the top and an underside slice lifted, showing the cheese-on-bottom/sauce-on-top construction.",
+        "credit": "One Bite review by thelozanofam, 2025-11-23",
+        "verified": true
+      },
+      {
+        "url": "https://media.onebite.app/1c/ee/7c/d3/1cee7cd3-5eeb-483d-89ab-661aaea1ac5e.jpg",
+        "caption": "Close-up of Red Front's COB pizza with bright tomato sauce on top and browned cheese/crust along the edge.",
+        "credit": "One Bite review by wadezzeria, 2022-03-28",
+        "verified": true
+      },
+      {
+        "url": "https://media.onebite.app/16/be/a7/a0/16bea7a0-b3e7-4b98-872b-573be7d9c9e0.jpg",
+        "caption": "Red Front red-top COB pizza with pepperoni, showing sauce over the cheese layer in a delivery box.",
+        "credit": "One Bite review by teejay., 2023-02-07",
+        "verified": true
+      }
+    ],
+    "classification": {}
+  },
+  {
+    "id": "red-front-restaurant-troy-ny",
+    "name": "Red Front Restaurant (Troy)",
+    "location": {
+      "address": "71 Division St",
+      "city": "Troy",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.7284,
+      "lng": -73.6918
+    },
+    "description": "Classic Capital District cheese-under-sauce pie with mozzarella placed directly on the dough, topped with tangy sauce and minimal toppings in the old-school style.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "https://www.redfronttroy.com/",
+        "url": "https://www.redfronttroy.com/"
+      },
+      {
+        "type": "article",
+        "source": "Historical Troy menus and local archives",
+        "url": "Historical Troy menus and local archives"
+      }
+    ],
+    "tags": [
+      "capital_district",
+      "cheese_fully_under",
+      "thin_crust",
+      "historical"
+    ],
+    "attributes": {
+      "noveltyScore": 0.85,
+      "discoveredDate": "1956",
+      "historicalContext": "Operating continuously since the mid-1950s, Red Front has preserved the authentic cheese-under-sauce style that originated in Utica and spread through the Capital District. One of the most cited living examples of the tradition outside the immediate Mohawk Valley."
+    },
+    "sources": [
+      "https://www.redfronttroy.com/",
+      "Historical Troy menus and local archives"
+    ],
+    "photos": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Red_Front_Pizza_Troy.jpg/800px-Red_Front_Pizza_Troy.jpg",
+        "caption": "Classic Red Front cheese-under-sauce pie",
+        "credit": "Local archive / Wikimedia",
+        "type": "product"
+      }
+    ],
+    "photoEvidence": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Red_Front_Pizza_Troy.jpg/800px-Red_Front_Pizza_Troy.jpg",
+        "caption": "Classic Red Front cheese-under-sauce pie",
+        "credit": "Local archive / Wikimedia",
+        "verified": true
+      }
+    ],
+    "classification": {}
+  },
+  {
+    "id": "siena-pizza-new-york-ny",
+    "name": "Siena Pizza",
+    "location": {
+      "address": "14 Rector St",
+      "city": "New York",
+      "region": "NY",
+      "country": "USA",
+      "lat": 40.7085,
+      "lng": -74.0135
+    },
+    "description": "Financial District Sicilian 'Upside-Down' with fresh mozzarella and Parmigiano-Reggiano on the bottom, tomato sauce on top. Also offers a vodka sauce variation. Classic cheese-under-sauce Sicilian in the New York tradition.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "https://www.sienapizzanyc.com",
+        "url": "https://www.sienapizzanyc.com"
+      },
+      {
+        "type": "article",
+        "source": "https://www.seamless.com/menu/siena-pizza-14-rector-st-new-york/2359075",
+        "url": "https://www.seamless.com/menu/siena-pizza-14-rector-st-new-york/2359075"
+      }
+    ],
+    "tags": [
+      "new_york",
+      "cheese_fully_under",
+      "sicilian",
+      "upside_down",
+      "financial_district"
+    ],
+    "attributes": {
+      "noveltyScore": 0.45,
+      "discoveredDate": "2025",
+      "historicalContext": "Represents the spread of the cheese-under-sauce Sicilian tradition into downtown Manhattan's Financial District. Photo evidence enriched May 2026 with Slice Upside-Down labeling + official shop gallery context for the Sicilian squares."
+    },
+    "sources": [
+      "https://www.sienapizzanyc.com",
+      "https://www.seamless.com/menu/siena-pizza-14-rector-st-new-york/2359075"
+    ],
+    "photos": [
+      {
+        "url": "https://slice-menu-assets-prod.imgix.net/51224/1618816431_922f284fe3?fit=crop&h=160&w=160",
+        "caption": "Siena Pizza's Upside-Down Pizza menu image, showing a Sicilian square with tomato sauce spread across the top and cheese peeking through.",
+        "credit": "Siena Pizza Slice menu image for Upside-Down Pizza",
+        "type": "product"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/5ff714bf208eef54c584a5d1/1610031319083-YGGDTMXN701Q3T70IP91/977A7656.jpg",
+        "caption": "Official Siena Pizza & Cannoli shop photo showing its square-slice lineup, including red-top Sicilian-style squares in the foreground/background.",
+        "credit": "Official Siena Pizza & Cannoli website photo gallery",
+        "type": "product"
+      }
+    ],
+    "photoEvidence": [
+      {
+        "url": "https://slice-menu-assets-prod.imgix.net/51224/1618816431_922f284fe3?fit=crop&h=160&w=160",
+        "caption": "Siena Pizza's Upside-Down Pizza menu image, showing a Sicilian square with tomato sauce spread across the top and cheese peeking through.",
+        "credit": "Siena Pizza Slice menu image for Upside-Down Pizza",
+        "verified": true
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/5ff714bf208eef54c584a5d1/1610031319083-YGGDTMXN701Q3T70IP91/977A7656.jpg",
+        "caption": "Official Siena Pizza & Cannoli shop photo showing its square-slice lineup, including red-top Sicilian-style squares in the foreground/background.",
+        "credit": "Official Siena Pizza & Cannoli website photo gallery",
+        "verified": true
+      }
+    ],
+    "classification": {}
+  },
+  {
+    "id": "supreme-pizzeria-syracuse-ny",
+    "name": "Supreme Pizzeria",
+    "location": {
+      "address": "Syracuse area",
+      "city": "Syracuse",
+      "region": "NY",
+      "country": "USA",
+      "lat": 43.0481,
+      "lng": -76.1474
+    },
+    "description": "Old school Syracuse 'Flip-it!' upside-down: cheese and toppings placed directly on the dough first, sauce spooned on top. Explicitly labeled on the menu as the traditional Utica-style method.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Local Syracuse pizzeria menus",
+        "url": "Local Syracuse pizzeria menus"
+      },
+      {
+        "type": "review",
+        "source": "Menu / local reviews",
+        "detail": "OLD SCHOOL STYLE (UPSIDE-DOWN) PIZZA. Cheese and toppings on the bottom, directly on the dough, with the sauce on top.",
+        "date": "2025"
+      }
+    ],
+    "tags": [
+      "utica_style",
+      "cheese_fully_under",
+      "caramelized_edges",
+      "syracuse"
+    ],
+    "attributes": {
+      "noveltyScore": 0.5,
+      "discoveredDate": "2025",
+      "historicalContext": "One of several Central New York shops preserving the authentic 'flip it' cheese-under-sauce style outside the immediate Mohawk Valley. Photo evidence enriched May 2026. Toast listing + image directly tied to 'Old School Style (Upside-Down)' with explicit inverted layering description."
+    },
+    "sources": [
+      "Local Syracuse pizzeria menus"
+    ],
+    "photos": [
+      {
+        "url": "https://d1w7312wesee68.cloudfront.net/7U__W9GahpkAhHfbWCOiDp3GeVvE-RfXnOIDuU-vn7Q/resize%3Afit%3A720%3A720/plain/s3%3A//toasttab/restaurants/restaurant-321366000000000000/menu/items/4/item-1700000000020287714_1770332474.jpg",
+        "caption": "Supreme Pizzeria's Old School Style (Upside-Down) Pizza, shown as a red-sauce-topped round pie with grated cheese; the menu says cheese and toppings go on the dough with sauce on top.",
+        "credit": "Supreme Pizzeria Syracuse Toast ordering image for Old School Style (Upside-Down) Pizza",
+        "type": "product"
+      }
+    ],
+    "photoEvidence": [
+      {
+        "url": "https://d1w7312wesee68.cloudfront.net/7U__W9GahpkAhHfbWCOiDp3GeVvE-RfXnOIDuU-vn7Q/resize%3Afit%3A720%3A720/plain/s3%3A//toasttab/restaurants/restaurant-321366000000000000/menu/items/4/item-1700000000020287714_1770332474.jpg",
+        "caption": "Supreme Pizzeria's Old School Style (Upside-Down) Pizza, shown as a red-sauce-topped round pie with grated cheese; the menu says cheese and toppings go on the dough with sauce on top.",
+        "credit": "Supreme Pizzeria Syracuse Toast ordering image for Old School Style (Upside-Down) Pizza",
+        "verified": true
+      }
+    ],
+    "classification": {}
+  },
+  {
+    "id": "tower-pizza-albany-ny",
+    "name": "Tower Pizza",
+    "location": {
+      "address": "227 Morton Avenue",
+      "city": "Albany",
+      "region": "NY",
+      "country": "USA",
+      "lat": 42.65,
+      "lng": -73.76
+    },
+    "description": "Provolone cheese on the bottom and pizza sauce on the top — offered as a standard 'Upside Down Pizza' option in the Albany market.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "https://order.online/store/tower-pizza-morton-ave",
+        "url": "https://order.online/store/tower-pizza-morton-ave"
+      }
+    ],
+    "tags": [
+      "capital_district",
+      "cheese_fully_under",
+      "cob",
+      "provolone_bottom"
+    ],
+    "attributes": {
+      "noveltyScore": 0.45,
+      "discoveredDate": "2025",
+      "historicalContext": "Part of the dense network of Capital District pizzerias preserving the COB style. Research May 2026: Public sources for 'Tower Pizza' with upside-down mostly resolve to Folsom, PA (not Albany). Location/name verification recommended before further enrichment."
+    },
+    "sources": [
+      "https://order.online/store/tower-pizza-morton-ave"
+    ],
+    "photos": [],
+    "photoEvidence": [],
+    "classification": {}
+  },
+  {
+    "id": "westies-pizzeria-syracuse-ny",
+    "name": "Westie's Pizzeria",
+    "location": {
+      "address": "1428 Sunset Ave",
+      "city": "Syracuse",
+      "region": "NY",
+      "country": "USA",
+      "lat": 43.04,
+      "lng": -76.14
+    },
+    "description": "Grandma style pie done as an upside-down Utica version — sauce on top, cheese on bottom. Local favorite with strong Central NY following.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "Local Syracuse food community",
+        "url": "Local Syracuse food community"
+      },
+      {
+        "type": "review",
+        "source": "Instagram",
+        "detail": "Theee best in the city!! Sauce on top and cheese on bottom — perfect Utica style.",
+        "date": "2025"
+      }
+    ],
+    "tags": [
+      "utica_style",
+      "cheese_fully_under",
+      "caramelized_edges",
+      "grandma_style"
+    ],
+    "attributes": {
+      "noveltyScore": 0.5,
+      "discoveredDate": "2025",
+      "historicalContext": "Part of the broader Central New York network preserving the cheese-under-sauce tradition beyond the Mohawk Valley. Research May 2026: Relevant upside-down grandma references appear tied to Utica rather than Syracuse. Possible location correction needed."
+    },
+    "sources": [
+      "Local Syracuse food community"
+    ],
+    "photos": [],
+    "photoEvidence": [],
+    "classification": {}
+  },
+  {
+    "id": "yettys-pizza-herkimer-ny",
+    "name": "Yetty's Pizza",
+    "location": {
+      "address": "109 Mohawk St",
+      "city": "Herkimer",
+      "region": "NY",
+      "country": "USA",
+      "lat": 43.0256,
+      "lng": -74.986
+    },
+    "description": "Utica-style upside-down Sicilian with cheese placed directly on the dough first, followed by sauce on top. Explicitly marketed as their signature 'unique upside-down pizza'.",
+    "confidence": "medium",
+    "evidence": [
+      {
+        "type": "article",
+        "source": "https://yettys.com/",
+        "url": "https://yettys.com/"
+      }
+    ],
+    "tags": [
+      "utica_style",
+      "cheese_fully_under",
+      "caramelized_edges",
+      "thick_sicilian"
+    ],
+    "attributes": {
+      "noveltyScore": 0.65,
+      "discoveredDate": "2025",
+      "historicalContext": "Extends the 1914 O’Scugnizzo lineage into Herkimer with explicit self-identification as an upside-down specialist. Photo evidence enriched May 2026 from official site images + explicit 'unique upside-down pizza' menu language."
+    },
+    "sources": [
+      "https://yettys.com/"
+    ],
+    "photos": [
+      {
+        "url": "https://pbs.twimg.com/media/FRZI-KvXMAAOLGq.png",
+        "caption": "Yetty's Pizza in Herkimer, NY — Utica-style upside-down with cheese pressed into the dough, sweet sauce on top, served room temperature in strips. Classic \"red bread\" style.",
+        "credit": "X post April 2022 @flyosity (via Grok X thread fetch)",
+        "type": "product"
+      },
+      {
+        "url": "https://yettys.com/pluto-images/funnel/images/f72632e4-aee8-469b-84f4-1faf6dfed8d5?fit=cover&w=810",
+        "caption": "Official Yetty's Pizza image showing a red-sauce-forward pepperoni pie; paired with Yetty's own menu language identifying the house pizza as its unique upside-down style.",
+        "credit": "Official Yetty's Pizza website/menu image gallery, via yettys.com",
+        "type": "product"
+      },
+      {
+        "url": "https://yettys.com/pluto-images/funnel/images/ab106420-5a9c-47ed-9f1a-7ca54aed28cd?fit=cover&w=810",
+        "caption": "Official Yetty's Pizza image of pepperoni slices with red sauce visible on top, consistent with the shop's self-described Herkimer upside-down pizza.",
+        "credit": "Official Yetty's Pizza website image gallery, via yettys.com",
+        "type": "product"
+      }
+    ],
+    "photoEvidence": [
+      {
+        "url": "https://pbs.twimg.com/media/FRZI-KvXMAAOLGq.png",
+        "caption": "Yetty's Pizza in Herkimer, NY — Utica-style upside-down with cheese pressed into the dough, sweet sauce on top, served room temperature in strips. Classic \"red bread\" style.",
+        "credit": "X post April 2022 @flyosity (via Grok X thread fetch)",
+        "verified": true
+      },
+      {
+        "url": "https://yettys.com/pluto-images/funnel/images/f72632e4-aee8-469b-84f4-1faf6dfed8d5?fit=cover&w=810",
+        "caption": "Official Yetty's Pizza image showing a red-sauce-forward pepperoni pie; paired with Yetty's own menu language identifying the house pizza as its unique upside-down style.",
+        "credit": "Official Yetty's Pizza website/menu image gallery, via yettys.com",
+        "verified": true
+      },
+      {
+        "url": "https://yettys.com/pluto-images/funnel/images/ab106420-5a9c-47ed-9f1a-7ca54aed28cd?fit=cover&w=810",
+        "caption": "Official Yetty's Pizza image of pepperoni slices with red sauce visible on top, consistent with the shop's self-described Herkimer upside-down pizza.",
+        "credit": "Official Yetty's Pizza website image gallery, via yettys.com",
+        "verified": true
+      }
+    ],
+    "classification": {}
+  }
+]
