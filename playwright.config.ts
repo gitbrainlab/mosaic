@@ -31,6 +31,7 @@ export default defineConfig({
       name: 'mobile-light',
       use: {
         ...devices['iPhone 14'],
+        browserName: 'chromium',
         viewport: { width: 375, height: 812 },
         colorScheme: 'light',
       },
@@ -39,6 +40,7 @@ export default defineConfig({
       name: 'mobile-dark',
       use: {
         ...devices['iPhone 14'],
+        browserName: 'chromium',
         viewport: { width: 375, height: 812 },
         colorScheme: 'dark',
       },
@@ -94,6 +96,7 @@ export default defineConfig({
       name: 'production-mobile',
       use: {
         ...devices['iPhone 14'],
+        browserName: 'chromium',
         baseURL: 'https://gitbrainlab.github.io/mosaic/',
         viewport: { width: 375, height: 812 },
       },
@@ -104,8 +107,8 @@ export default defineConfig({
   // For the lightweight @smoke tests we automatically start the production preview
   // so `npm run test:smoke` works without the developer having to run `npm run dev` first.
   webServer: {
-    command: 'npm run build && npm run preview -- --port 5173 --host 127.0.0.1',
-    url: 'http://127.0.0.1:5173',
+    command: 'VITE_BASE_PATH=/mosaic/v2/ npm run build && rm -rf pages && mkdir -p pages/v2 && cp -R dist/. pages/v2/ && cp dist/404.html pages/404.html && vite preview --outDir pages --port 5173 --host 127.0.0.1',
+    url: 'http://127.0.0.1:5173/mosaic/v2/',
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,
   },

@@ -1,5 +1,5 @@
 import './style.css'
-import { initRouter, getCurrentRoute, goToGallery, goToMap } from './lib/router'
+import { initRouter, getCurrentRoute, goToGallery, goToMap, goToStudio } from './lib/router'
 import { loadIndex } from './lib/data-loader'
 import type { DataIndex } from './types'
 // MapView is loaded dynamically via import() — do not add static import
@@ -71,9 +71,7 @@ function renderShell() {
         const lastMap = localStorage.getItem('mosaic:lastMap') || 'modernist-architecture'
         goToMap(lastMap)
       } else if (nav === 'studio') {
-        // Placeholder for now
-        const container = document.getElementById('main-content')!
-        container.innerHTML = `<div class="p-8 text-center text-[#6b6761]">Curation Studio coming in the next phase.</div>`
+        goToStudio()
       }
     })
   })
@@ -187,9 +185,7 @@ function renderGallery(index: DataIndex) {
   container.querySelectorAll('[data-slug]').forEach(el => {
     el.addEventListener('click', () => {
       const slug = (el as HTMLElement).dataset.slug!
-      import('./views/MapView').then(({ default: MapViewClass }) => {
-        mountView(new MapViewClass(), { slug })
-      })
+      goToMap(slug)
     })
   })
 
@@ -380,22 +376,20 @@ function completeHunt(panel: HTMLElement, _topic: string, _index: DataIndex, _ro
   btn.onclick = () => {
     // For the demo we always deliver the high-quality Ice Cream map
     // (the "result" of the simulated hunt the user just triggered)
-    import('./views/MapView').then(({ default: MapViewClass }) => {
-      mountView(new MapViewClass(), { slug: 'ice-cream-capital-district' })
+    goToMap('ice-cream-capital-district')
 
-      // Bonus: after mount, give a little progressive "new entries appeared" feel
-      // by briefly highlighting the list area (visual cue that data just landed)
-      setTimeout(() => {
-        const list = document.getElementById('entry-list')
-        if (list) {
-          list.style.transition = 'box-shadow 200ms'
-          list.style.boxShadow = '0 0 0 3px rgba(31, 29, 26, 0.15)'
-          setTimeout(() => {
-            if (list) list.style.boxShadow = 'none'
-          }, 1400)
-        }
-      }, 900)
-    })
+    // Bonus: after mount, give a little progressive "new entries appeared" feel
+    // by briefly highlighting the list area (visual cue that data just landed)
+    setTimeout(() => {
+      const list = document.getElementById('entry-list')
+      if (list) {
+        list.style.transition = 'box-shadow 200ms'
+        list.style.boxShadow = '0 0 0 3px rgba(31, 29, 26, 0.15)'
+        setTimeout(() => {
+          if (list) list.style.boxShadow = 'none'
+        }, 1400)
+      }
+    }, 900)
   }
 
   // Also allow clicking the whole panel to open the map (nice affordance)
@@ -434,8 +428,9 @@ initRouter((route) => {
     })
     updateBottomNavActive('map')
   } else if (route.name === 'studio') {
-    const container = document.getElementById('main-content')!
-    container.innerHTML = `<div class="p-8 text-center">Curation Studio coming soon.</div>`
+    import('./views/StudioView').then(({ default: StudioViewClass }) => {
+      mountView(new StudioViewClass())
+    })
     updateBottomNavActive('studio')
   }
 })

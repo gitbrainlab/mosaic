@@ -389,16 +389,29 @@
     "id": "putnam-market-saratoga",
     "name": "Putnam Market",
     "location": {
-      "address": "435 Broadway",
+      "address": "431 Broadway",
       "city": "Saratoga Springs",
       "region": "NY",
       "country": "USA",
       "lat": 43.0782,
       "lng": -73.7851
     },
-    "description": "Downtown Saratoga specialty market offering house-made gelato and ice cream prepared with local ingredients. Known for unique seasonal flavors that change regularly, it receives strong praise in EatDrinkSaratoga coverage and customer reviews.",
-    "confidence": "high",
-    "evidence": [],
+    "description": "Downtown Saratoga specialty market with a strong bakery, grocery, and prepared-food identity. It remains a candidate for dessert/photo follow-up, but the specific gelato and ice cream claim needs stronger product-level verification before it should be treated as a high-confidence ice cream profile.",
+    "confidence": "low",
+    "evidence": [
+      {
+        "type": "other",
+        "source": "Putnam Market official website",
+        "detail": "Confirms Putnam Market as a specialty food market at 431 Broadway in Saratoga Springs.",
+        "url": "https://putnammarket.com/"
+      },
+      {
+        "type": "other",
+        "source": "Putnam Market grocery page",
+        "detail": "Describes the market's grocery, prepared food, and local specialty-food offerings; dessert-specific claims need follow-up.",
+        "url": "https://putnammarket.com/grocery/"
+      }
+    ],
     "tags": [
       "gelato",
       "ice-cream",

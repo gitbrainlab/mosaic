@@ -75,7 +75,7 @@ export default class MapView {
     this.map = new maplibregl.Map({
       container: mapContainer,
       style: 'https://tiles.openfreemap.org/styles/liberty',
-      center: manifest.defaultCenter,
+      center: [manifest.defaultCenter[1], manifest.defaultCenter[0]],
       zoom: manifest.defaultZoom,
       attributionControl: false,
     })
@@ -377,7 +377,7 @@ export default class MapView {
       <!-- Photo-first (hero or graceful sourcing state) -->
       ${heroPhoto ? `
       <div class="-mx-4 -mt-4 mb-2">
-        <img src="${heroPhoto.url}" alt="${heroPhoto.caption}" class="w-full h-44 object-cover" />
+        <img src="${this.normalizePhotoUrl(heroPhoto.url, this.slug)}" alt="${heroPhoto.caption}" class="w-full h-44 object-cover" />
         <div class="px-4 py-1.5 text-xs text-[#3f3b33] dark:text-[#d4cebf] bg-[#f8f7f4] dark:bg-[#1a1916]">${heroPhoto.caption}</div>
       </div>` : `
       <div class="border border-dashed border-[#d4cebf] dark:border-[#3f3b33] rounded-lg p-4 bg-[#f8f7f4] dark:bg-[#1a1916] mb-2">
@@ -400,7 +400,7 @@ export default class MapView {
         <div class="flex gap-2 overflow-x-auto pb-1">
           ${entry.photos.slice(1).map((p: any) => `
             <div class="flex-shrink-0 w-32 border border-[#e5e2d9] dark:border-[#3f3b33] rounded overflow-hidden">
-              <img src="${p.url}" alt="${p.caption}" class="w-32 h-20 object-cover" />
+              <img src="${this.normalizePhotoUrl(p.url, this.slug)}" alt="${p.caption}" class="w-32 h-20 object-cover" />
             </div>
           `).join('')}
         </div>
@@ -657,10 +657,13 @@ export default class MapView {
     if (url.startsWith('http')) return url
     if (url.startsWith('./images/')) {
       const filename = url.replace('./images/', '')
-      return `data/maps/${slug}/images/${filename}`
+      return `${import.meta.env.BASE_URL}data/maps/${slug}/images/${filename}`.replace(/\/+/g, '/')
     }
     if (url.startsWith('images/')) {
-      return `data/maps/${slug}/images/${url.replace('images/', '')}`
+      return `${import.meta.env.BASE_URL}data/maps/${slug}/images/${url.replace('images/', '')}`.replace(/\/+/g, '/')
+    }
+    if (url.startsWith('data/')) {
+      return `${import.meta.env.BASE_URL}${url}`.replace(/\/+/g, '/')
     }
     return url
   }

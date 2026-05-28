@@ -31,7 +31,14 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build
+        run: VITE_BASE_PATH=/mosaic/v2/ npm run build
+
+      - name: Prepare v2 Pages artifact
+        run: |
+          rm -rf pages
+          mkdir -p pages/v2
+          cp -R dist/. pages/v2/
+          cp dist/404.html pages/404.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -41,7 +48,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          path: './pages'
 
   deploy:
     environment:

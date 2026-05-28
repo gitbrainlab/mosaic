@@ -19,6 +19,8 @@ This repository follows a strict set of principles to keep the platform clean, m
 - Never introduce a new runtime dependency without a one-paragraph justification and explicit maintainer approval.
 - Prefer the simplest DOM solution that works. Avoid complex abstractions when a focused module will do.
 - Update this file whenever a new enduring convention is discovered during implementation.
+- Localized maps should declare `manifest.validation.coordinateBounds` so `npm run validate-data` can catch bad coordinates without applying Albany-specific assumptions to every topic.
+- The public v2 deployment is built with `VITE_BASE_PATH=/mosaic/v2/` and published as a nested Pages artifact under `v2/`, targeting `http://gitbrain.com/mosaic/v2/`.
 
 ## Research / Curation Workflow (Important)
 

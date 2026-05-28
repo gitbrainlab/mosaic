@@ -1,10 +1,31 @@
 #!/usr/bin/env tsx
 /**
- * Coordinate Sanity Validator
- * Usage: npx tsx scripts/validate-map-coordinates.ts public/data/maps/ice-cream-capital-district/entries.json
+ * Mosaic data + coordinate validator.
+ *
+ * Validates every entries.json passed on the CLI. If a sibling manifest declares
+ * validation.coordinateBounds, coordinates are checked against that map-specific
+ * area. Global/domain-agnostic maps still get schema, range, count, and image
+ * existence checks without being judged against an Albany-only radius.
  */
 import fs from 'fs';
 import path from 'path';
+
+interface CoordinateBounds {
+  minLat: number;
+  maxLat: number;
+  minLng: number;
+  maxLng: number;
+}
+
+interface Manifest {
+  slug: string;
+  title: string;
+  totalEntries: number;
+  chunks: string[];
+  validation?: {
+    coordinateBounds?: CoordinateBounds;
+  };
+}
 
 const files = process.argv.slice(2).filter(f => fs.existsSync(f));
 
@@ -13,33 +34,139 @@ if (files.length === 0) {
   process.exit(1);
 }
 
-const CITY_CENTERS: Record<string, {lat:number, lng:number}> = {
-  albany: {lat:42.6526, lng:-73.7562},
-  rensselaer: {lat:42.6365, lng:-73.7425},
-};
+function readJson<T>(file: string): T {
+  return JSON.parse(fs.readFileSync(file, 'utf8')) as T;
+}
 
-function km(a:{lat:number,lng:number}, b:{lat:number,lng:number}) {
-  const R=6371, dLat=(b.lat-a.lat)*Math.PI/180, dLng=(b.lng-a.lng)*Math.PI/180;
-  const lat1=a.lat*Math.PI/180, lat2=b.lat*Math.PI/180;
-  const x=Math.sin(dLat/2)**2 + Math.cos(lat1)*Math.cos(lat2)*Math.sin(dLng/2)**2;
-  return 2*R*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));
+function isFiniteNumber(value: unknown): value is number {
+  return typeof value === 'number' && Number.isFinite(value);
+}
+
+function inBounds(lat: number, lng: number, bounds: CoordinateBounds) {
+  return lat >= bounds.minLat &&
+    lat <= bounds.maxLat &&
+    lng >= bounds.minLng &&
+    lng <= bounds.maxLng;
+}
+
+function validatePhotoUrl(url: string, entriesFile: string, slug: string): string | null {
+  if (!url || url.startsWith('http://') || url.startsWith('https://')) return null;
+
+  let relative = url;
+  if (relative.startsWith('/')) relative = relative.slice(1);
+  if (relative.startsWith('./images/')) {
+    relative = `public/data/maps/${slug}/images/${relative.replace('./images/', '')}`;
+  } else if (relative.startsWith('images/')) {
+    relative = `public/data/maps/${slug}/images/${relative.replace('images/', '')}`;
+  } else if (relative.startsWith('data/')) {
+    relative = `public/${relative}`;
+  }
+
+  const absolute = path.resolve(path.dirname(entriesFile), relative);
+  const repoRelative = path.resolve(relative);
+  if (fs.existsSync(absolute) || fs.existsSync(repoRelative)) return null;
+  return `photo file missing: ${url}`;
 }
 
 let totalErrors = 0;
 
 for (const file of files) {
-  const entries = JSON.parse(fs.readFileSync(file,'utf8'));
-  let errors=0;
-  console.log(`\nValidating ${path.basename(file)} (${entries.length} entries)`);
-  entries.forEach((e:any) => {
-    const c = e.location;
-    const center = CITY_CENTERS[(c.city||'').toLowerCase()] || CITY_CENTERS.albany;
-    const d = km({lat:c.lat,lng:c.lng}, center);
-    if (d > 8) {
-      console.error(`  BAD: ${e.name} (${c.city}) ${d.toFixed(1)}km off`);
+  const entries = readJson<any[]>(file);
+  const mapDir = path.dirname(file);
+  const manifestPath = path.join(mapDir, 'manifest.json');
+  const manifest = fs.existsSync(manifestPath) ? readJson<Manifest>(manifestPath) : null;
+  const slug = manifest?.slug || path.basename(mapDir);
+  const bounds = manifest?.validation?.coordinateBounds;
+  let errors = 0;
+
+  console.log(`\nValidating ${slug} (${entries.length} entries)`);
+
+  if (!Array.isArray(entries)) {
+    console.error('  BAD: entries.json must contain an array');
+    totalErrors++;
+    continue;
+  }
+
+  if (!manifest) {
+    console.error('  BAD: sibling manifest.json missing');
+    errors++;
+  } else {
+    if (manifest.totalEntries !== entries.length) {
+      console.error(`  BAD: manifest totalEntries=${manifest.totalEntries}, entries length=${entries.length}`);
       errors++;
     }
+
+    for (const chunk of manifest.chunks || []) {
+      if (!fs.existsSync(path.join(mapDir, chunk))) {
+        console.error(`  BAD: manifest chunk missing: ${chunk}`);
+        errors++;
+      }
+    }
+  }
+
+  const seenIds = new Set<string>();
+
+  entries.forEach((entry: any, index: number) => {
+    const label = entry?.name || `entry #${index + 1}`;
+    const location = entry?.location || {};
+    const lat = location.lat;
+    const lng = location.lng;
+
+    if (!entry?.id || typeof entry.id !== 'string') {
+      console.error(`  BAD: ${label} missing string id`);
+      errors++;
+    } else if (seenIds.has(entry.id)) {
+      console.error(`  BAD: duplicate id ${entry.id}`);
+      errors++;
+    } else {
+      seenIds.add(entry.id);
+    }
+
+    if (!entry?.name || typeof entry.name !== 'string') {
+      console.error(`  BAD: ${label} missing name`);
+      errors++;
+    }
+
+    if (!['high', 'medium', 'low'].includes(entry?.confidence)) {
+      console.error(`  BAD: ${label} has invalid confidence ${entry?.confidence}`);
+      errors++;
+    }
+
+    if (!Array.isArray(entry?.evidence) || entry.evidence.length === 0) {
+      console.error(`  BAD: ${label} needs at least one evidence item`);
+      errors++;
+    }
+
+    if (!isFiniteNumber(lat) || !isFiniteNumber(lng)) {
+      console.error(`  BAD: ${label} has non-numeric coordinates`);
+      errors++;
+      return;
+    }
+
+    if (lat < -90 || lat > 90 || lng < -180 || lng > 180) {
+      console.error(`  BAD: ${label} coordinates outside valid lat/lng range`);
+      errors++;
+    }
+
+    if (Math.abs(lat) < 0.0001 && Math.abs(lng) < 0.0001) {
+      console.error(`  BAD: ${label} appears to be at Null Island`);
+      errors++;
+    }
+
+    if (bounds && !inBounds(lat, lng, bounds)) {
+      console.error(`  BAD: ${label} (${location.city || 'unknown city'}) outside ${slug} coordinate bounds`);
+      errors++;
+    }
+
+    for (const photo of entry.photos || []) {
+      const photoError = validatePhotoUrl(photo.url, file, slug);
+      if (photoError) {
+        console.error(`  BAD: ${label} ${photoError}`);
+        errors++;
+      }
+    }
   });
+
   console.log(`  Errors in this file: ${errors}`);
   totalErrors += errors;
 }
@@ -48,4 +175,5 @@ if (totalErrors > 0) {
   console.error(`\nFAILED with ${totalErrors} errors`);
   process.exit(1);
 }
+
 console.log('\nOK');

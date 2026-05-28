@@ -12,8 +12,24 @@ import type {
   DataIndex,
   MapManifest,
   KnowledgeEntry,
+  ResearchBatch,
   LoaderResult,
 } from '../types';
+
+interface ResearchBatchIndex {
+  version: number;
+  lastUpdated: string;
+  batches: Array<{
+    id: string;
+    name: string;
+    topic: string;
+    status: string;
+    totalProfiles: number;
+    profilesWithPhotos: number;
+    createdAt: string;
+    file: string;
+  }>;
+}
 
 // ============================================
 // Internal Cache (in-memory for the session)
@@ -122,6 +138,47 @@ export async function loadAllEntries(slug: string, manifest: MapManifest): Promi
   // For now we just warn and fall back
   console.warn('[data-loader] Multiple chunks declared but not yet implemented. Loading first chunk only.');
   return loadEntries(slug);
+}
+
+export async function loadResearchBatchIndex(): Promise<LoaderResult<ResearchBatchIndex>> {
+  const key = getCacheKey('data/research-batches/index.json');
+
+  if (cache.has(key)) {
+    return {
+      data: cache.get(key) as ResearchBatchIndex,
+      state: 'loaded',
+    };
+  }
+
+  try {
+    const data = await fetchJson<ResearchBatchIndex>('data/research-batches/index.json');
+    cache.set(key, data);
+    return { data, state: 'loaded' };
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Unknown error loading research batches';
+    return { data: null, state: 'error', error: message };
+  }
+}
+
+export async function loadResearchBatch(file: string): Promise<LoaderResult<ResearchBatch>> {
+  const path = `data/research-batches/${file}`;
+  const key = getCacheKey(path);
+
+  if (cache.has(key)) {
+    return {
+      data: cache.get(key) as ResearchBatch,
+      state: 'loaded',
+    };
+  }
+
+  try {
+    const data = await fetchJson<ResearchBatch>(path);
+    cache.set(key, data);
+    return { data, state: 'loaded' };
+  } catch (err) {
+    const message = err instanceof Error ? err.message : `Failed to load research batch ${file}`;
+    return { data: null, state: 'error', error: message };
+  }
 }
 
 // ============================================

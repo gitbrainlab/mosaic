@@ -18,6 +18,8 @@ data/research-runs/
 # Logs
 dist
 dist-ssr
+pages
+test-results
 lerna-debug.log*
 logs
 node_modules

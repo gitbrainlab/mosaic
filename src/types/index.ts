@@ -86,6 +86,16 @@ export interface MapManifest {
 
   // Progressive loading contract (Phase 1 = single file)
   chunks: string[]; // e.g. ["entries.json"]
+
+  // Optional data-quality guardrails for localized maps.
+  validation?: {
+    coordinateBounds?: {
+      minLat: number;
+      maxLat: number;
+      minLng: number;
+      maxLng: number;
+    };
+  };
 }
 
 // ============================================

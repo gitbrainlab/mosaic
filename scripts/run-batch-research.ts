@@ -112,18 +112,17 @@ function runOne(run: any): Promise<void> {
 }
 
 async function main() {
-  // Simple concurrency control
-  for (let i = 0; i < runs.length; i++) {
-    while (active >= MAX_PARALLEL) {
-      await new Promise(r => setTimeout(r, 800));
+  let nextIndex = 0;
+  const workerCount = Math.min(MAX_PARALLEL, runs.length);
+
+  async function worker() {
+    while (nextIndex < runs.length) {
+      const run = runs[nextIndex++];
+      await runOne(run);
     }
-    await runOne(runs[i]);
   }
 
-  // Wait for last ones to finish
-  while (active > 0) {
-    await new Promise(r => setTimeout(r, 500));
-  }
+  await Promise.all(Array.from({ length: workerCount }, () => worker()));
 
   console.log(`\n=== BATCH WAVE COMPLETE ===`);
   console.log(`Successful: ${results.filter(r => r.success).length}`);
@@ -133,6 +132,10 @@ async function main() {
   console.log(`  2. Run ingest on good ones`);
   console.log(`  3. Run validate-map-coordinates.ts (hard gate)`);
   console.log(`  4. Use prepare-photos.ts for sourcing tasks`);
+
+  if (failed > 0) {
+    process.exitCode = 1;
+  }
 }
 
 main().catch(console.error);

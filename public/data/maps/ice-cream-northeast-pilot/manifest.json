@@ -16,5 +16,13 @@
   ],
   "chunks": [
     "entries.json"
-  ]
+  ],
+  "validation": {
+    "coordinateBounds": {
+      "minLat": 40.8,
+      "maxLat": 45.5,
+      "minLng": -74.1,
+      "maxLng": -69.0
+    }
+  }
 }

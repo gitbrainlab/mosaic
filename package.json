@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "typecheck": "tsc --noEmit",
     "preview": "vite preview",
-    "validate-data": "tsx scripts/validate-map-coordinates.ts public/data/maps/ice-cream-capital-district/entries.json public/data/maps/veal-parm-capital-district/entries.json public/data/maps/modernist-architecture/entries.json public/data/maps/regional-folk-traditions/entries.json",
+    "validate-data": "tsx scripts/validate-map-coordinates.ts public/data/maps/*/entries.json",
     "test": "npm run typecheck && npm run validate-data && npm run test:smoke",
     "test:smoke": "playwright test --project=mobile-light --grep @smoke",
     "test:regression": "tsx tests/verify-design-regression.ts && tsx tests/regression-full.ts",

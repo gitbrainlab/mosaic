@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mosaic</title>
+    <script>
+      (function(location) {
+        var base = '/mosaic/v2/';
+        var path = location.pathname;
+        var baseIndex = path.indexOf(base);
+        var route = baseIndex >= 0 ? path.slice(baseIndex + base.length - 1) : '/';
+        var target = base + '?' + route.replace(/&/g, '~and~') + location.search.replace(/^\?/, '&') + location.hash;
+        location.replace(target);
+      }(window.location));
+    </script>
+  </head>
+  <body></body>
+</html>

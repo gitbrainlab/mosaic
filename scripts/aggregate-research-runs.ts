@@ -82,7 +82,7 @@ function mergeEntries(a: KnowledgeEntry, b: KnowledgeEntry): KnowledgeEntry {
 
   // Merge photoBriefs
   const photoBriefs = [...(winner.photoBriefs || []), ...(loser.photoBriefs || [])];
-  const seenQueries = new Set(photoBriefs.map(p => p.searchQuery));
+  const seenQueries = new Set<string>();
   const uniquePhotoBriefs = photoBriefs.filter(p => {
     if (seenQueries.has(p.searchQuery)) return false;
     seenQueries.add(p.searchQuery);
@@ -91,7 +91,7 @@ function mergeEntries(a: KnowledgeEntry, b: KnowledgeEntry): KnowledgeEntry {
 
   // Merge evidence (simple concat + dedup by source)
   const evidence = [...winner.evidence, ...loser.evidence];
-  const seenSources = new Set(evidence.map(e => e.source?.toLowerCase()));
+  const seenSources = new Set<string>();
   const uniqueEvidence = evidence.filter(e => {
     const key = e.source?.toLowerCase();
     if (seenSources.has(key)) return false;

@@ -26,6 +26,11 @@ on:
         required: false
         default: '3'
 
+permissions:
+  contents: write
+  issues: write
+  actions: read
+
 jobs:
   research:
     runs-on: ubuntu-latest
@@ -66,14 +71,25 @@ jobs:
           echo "Running batch research using config: $WAVE (max parallel: $MAX_PAR)"
           npx tsx scripts/run-batch-research.ts "$WAVE" --max-parallel="$MAX_PAR"
 
+      - name: Validate committed map data
+        run: npm run validate-data
+
+      - name: Upload raw research artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: research-runs-${{ github.run_id }}
+          path: data/research-runs/
+          if-no-files-found: ignore
+
       - name: Commit new research data
         run: |
           git config user.name "Mosaic Research Agent"
           git config user.email "research@mosaic.local"
           
-          git add data/research-runs/ || true
           git add public/data/maps/ || true
           git add public/data/index.json || true
+          git add public/data/research-batches/ || true
           
           if git diff --staged --quiet; then
             echo "No changes to commit"
