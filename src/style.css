@@ -55,8 +55,17 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text);
   margin: 0;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@media (max-width: 640px) {
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
 }
 
 /* Basic utility classes for neutral scaffold (will be replaced by brand system in 1b) */
