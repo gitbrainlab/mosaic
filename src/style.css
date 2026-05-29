@@ -104,8 +104,19 @@ body {
   display: none;
 }
 
+#app.mosaic-route-map #bottom-nav {
+  display: none;
+}
+
 #app.mosaic-route-map #main-content {
   max-width: none;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+#app.mosaic-route-map .maplibregl-map,
+#app.mosaic-route-map .maplibregl-canvas {
+  touch-action: pan-x pan-y;
 }
 
 #app.mosaic-route-map .maplibregl-ctrl button {

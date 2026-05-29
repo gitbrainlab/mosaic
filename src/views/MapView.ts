@@ -5,7 +5,7 @@
 
 import maplibregl from 'maplibre-gl/dist/maplibre-gl.js'
 import { loadMapManifest, loadEntries } from '../lib/data-loader'
-import { BottomSheet } from '../components/BottomSheet'
+import { BottomSheet, type SheetSnap } from '../components/BottomSheet'
 import { goToGallery } from '../lib/router'
 import type { KnowledgeEntry, MapManifest } from '../types'
 
@@ -21,14 +21,17 @@ export default class MapView {
   private initialRenderComplete = false
   private resizeObserver: ResizeObserver | null = null
   private markerRenderFrame: number | null = null
+  private resizeFrame: number | null = null
   private markerCursor = 0
   private disposed = false
 
   private markers: maplibregl.Marker[] = []
   private activeConfidenceFilter: 'all' | 'high' | 'medium' | 'low' = 'all'
   private currentSheet: BottomSheet | null = null
+  private mobileListSheet: BottomSheet | null = null
   private desktopDetailPanel: HTMLDivElement | null = null
   private replacingSheet = false
+  private selectedEntryId: string | null = null
 
   mount(container: HTMLElement, params: { slug: string }) {
     this.disposed = false
@@ -38,8 +41,8 @@ export default class MapView {
     this.initialRenderComplete = false
 
     container.innerHTML = `
-      <div class="flex flex-col h-[calc(100dvh-4.25rem)] lg:h-[calc(100dvh-4.5rem)] min-h-0">
-        <div class="flex items-center justify-between px-3 py-2 border-b border-[#e5e2d9] dark:border-[#3f3b33] bg-[#f8f7f4] dark:bg-[#141310]">
+      <div class="flex flex-col h-[100dvh] min-h-0 overflow-hidden">
+        <div class="flex shrink-0 items-center justify-between px-3 py-2 border-b border-[#e5e2d9] dark:border-[#3f3b33] bg-[#f8f7f4] dark:bg-[#141310]">
           <button id="back-btn" class="min-h-11 px-3 text-sm flex items-center gap-1 text-[#4f4a42] dark:text-[#e8e4d9] rounded-md hover:bg-[#f1efea] dark:hover:bg-[#2a2924] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8a8178]">
             ← Maps
           </button>
@@ -151,11 +154,31 @@ export default class MapView {
 
     this.resizeObserver.observe(mapContainer)
     window.addEventListener('resize', this.onWindowResize)
+    window.addEventListener('orientationchange', this.onWindowResize)
+    window.visualViewport?.addEventListener('resize', this.onWindowResize)
   }
 
   private onWindowResize = () => {
     if (!this.map || this.disposed) return
-    this.map.resize()
+
+    if (this.resizeFrame !== null) {
+      window.cancelAnimationFrame(this.resizeFrame)
+    }
+
+    this.resizeFrame = window.requestAnimationFrame(() => {
+      this.resizeFrame = null
+      if (!this.map || this.disposed) return
+
+      this.map.setPixelRatio(window.devicePixelRatio || 1)
+      this.map.resize()
+
+      if (this.selectedEntryId) {
+        const selected = this.entries.find(entry => entry.id === this.selectedEntryId)
+        if (selected) {
+          this.focusMapOnEntry(selected, Boolean(this.desktopDetailPanel))
+        }
+      }
+    })
   }
 
   private completeInitialRender() {
@@ -525,6 +548,13 @@ export default class MapView {
   }
 
   private showDetail(entry: KnowledgeEntry) {
+    this.selectedEntryId = entry.id
+
+    if (this.mobileListSheet) {
+      this.mobileListSheet.close()
+      this.mobileListSheet = null
+    }
+
     if (this.currentSheet) {
       this.replacingSheet = true
       this.currentSheet.close()
@@ -559,13 +589,26 @@ export default class MapView {
         padding: { bottom: 320 },
       })
     } else {
-      this.map.flyTo({
+      const sheetHeight = this.estimateMobileSheetHeight('peek')
+      const verticalOffset = -Math.min(180, Math.max(76, Math.round(sheetHeight * 0.55)))
+
+      this.map.easeTo({
         center: [entry.location.lng, entry.location.lat],
         zoom: Math.max(this.map.getZoom() || 8, 13),
-        duration: 550,
+        duration: 450,
         essential: true,
+        offset: [0, verticalOffset],
       })
     }
+  }
+
+  private estimateMobileSheetHeight(snap: SheetSnap = 'peek') {
+    const viewportHeight = Math.max(320, Math.round(window.visualViewport?.height || window.innerHeight))
+    const fractions: Record<SheetSnap, number> = { peek: 0.22, half: 0.56, full: 0.94 }
+    const requested = Math.round(viewportHeight * fractions[snap])
+    const minHeight = snap === 'peek' ? Math.min(220, Math.round(viewportHeight * 0.34)) : Math.min(320, Math.round(viewportHeight * 0.7))
+    const maxHeight = Math.max(220, viewportHeight - (window.innerWidth < 768 ? 88 : 72))
+    return Math.max(120, Math.min(maxHeight, Math.max(minHeight, requested)))
   }
 
   private getVisualLanguage() {
@@ -656,6 +699,7 @@ export default class MapView {
     if (!this.map) return
 
     const panel = document.createElement('div')
+    panel.dataset.component = 'desktop-detail-panel'
     panel.className = `
       fixed bottom-0 left-0 right-0 z-[250]
       bg-white dark:bg-[#1a1916] border-t border-[#e5e2d9] dark:border-[#3f3b33]
@@ -715,6 +759,7 @@ export default class MapView {
     const close = () => {
       panel.remove()
       this.desktopDetailPanel = null
+      this.selectedEntryId = null
       this.setSelectedEntryInURL(null)
       if (this.map) {
         this.map.easeTo({ padding: { bottom: 0 }, duration: 250 })
@@ -751,6 +796,7 @@ export default class MapView {
           return
         }
         this.currentSheet = null
+        this.selectedEntryId = null
         this.setSelectedEntryInURL(null)
       },
     })
@@ -812,10 +858,26 @@ export default class MapView {
   }
 
   private showMobileList() {
+    if (this.mobileListSheet) {
+      this.mobileListSheet.close()
+      this.mobileListSheet = null
+    }
+
+    if (this.currentSheet) {
+      this.replacingSheet = true
+      this.currentSheet.close()
+      this.currentSheet = null
+    }
+
     const sheet = new BottomSheet({
       title: 'Entries',
       snap: 'full',
       dismissible: true,
+      modal: false,
+      showHandle: true,
+      onClose: () => {
+        this.mobileListSheet = null
+      },
     })
 
     const content = document.createElement('div')
@@ -854,6 +916,7 @@ export default class MapView {
           const entry = this.entries.find(item => item.id === id)
           if (entry) {
             sheet.close()
+            this.mobileListSheet = null
             this.showDetail(entry)
           }
         })
@@ -874,6 +937,7 @@ export default class MapView {
 
     sheet.setContent(content)
     sheet.open('full')
+    this.mobileListSheet = sheet
   }
 
   private setSelectedEntryInURL(id: string | null) {
@@ -915,10 +979,20 @@ export default class MapView {
       this.markerRenderFrame = null
     }
 
+    if (this.resizeFrame !== null) {
+      window.cancelAnimationFrame(this.resizeFrame)
+      this.resizeFrame = null
+    }
+
     window.removeEventListener('resize', this.onWindowResize)
+    window.removeEventListener('orientationchange', this.onWindowResize)
+    window.visualViewport?.removeEventListener('resize', this.onWindowResize)
 
     this.currentSheet?.close()
     this.currentSheet = null
+
+    this.mobileListSheet?.close()
+    this.mobileListSheet = null
 
     this.desktopDetailPanel?.remove()
     this.desktopDetailPanel = null

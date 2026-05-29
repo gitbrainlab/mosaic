@@ -11,6 +11,7 @@
     "validate-data": "tsx scripts/validate-map-coordinates.ts public/data/maps/*/entries.json",
     "test": "npm run typecheck && npm run validate-data && npm run test:smoke",
     "test:smoke": "playwright test --project=mobile-light --project=mobile-dark --project=desktop-light --grep @smoke",
+    "test:responsive": "playwright test tests/responsive-map.spec.ts --project=mobile-light --project=mobile-dark --project=desktop-light",
     "test:regression": "tsx tests/verify-design-regression.ts && tsx tests/regression-full.ts",
     "test:agentic": "playwright test --grep @agentic --project=agentic-review-mobile-light --project=agentic-review-mobile-dark --project=agentic-review-tablet-light --project=agentic-review-desktop-light --project=agentic-review-desktop-dark && tsx tests/agentic-review/build-report.ts",
     "test:agentic:live": "MOSAIC_REVIEW_BASE_URL=http://gitbrain.com/mosaic/v3/ MOSAIC_SKIP_WEBSERVER=1 playwright test --grep @agentic --project=agentic-review-mobile-light --project=agentic-review-mobile-dark --project=agentic-review-tablet-light --project=agentic-review-desktop-light --project=agentic-review-desktop-dark && tsx tests/agentic-review/build-report.ts",
