@@ -1,0 +1,1095 @@
+{
+  "generatedAt": "2026-05-28T23:01:08.447Z",
+  "totalMaps": 7,
+  "totalFlaggedEntries": 81,
+  "issueTypes": [
+    "coordinate_out_of_scope",
+    "missing_evidence",
+    "thin_evidence",
+    "missing_product_photos",
+    "photos_unverified",
+    "missing_source_urls"
+  ],
+  "backlog": [
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "the-cone-zone-schenectady",
+      "entryName": "The Cone Zone",
+      "city": "Schenectady",
+      "confidence": "medium",
+      "priorityScore": 64,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "friendlys-schenectady",
+      "entryName": "Friendly's",
+      "city": "Schenectady",
+      "confidence": "medium",
+      "priorityScore": 64,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-northeast-pilot",
+      "mapTitle": "Ice Cream in the Northeast",
+      "entryId": "higgins-beach-market",
+      "entryName": "Higgins Beach Market",
+      "city": "Scarborough",
+      "confidence": "medium",
+      "priorityScore": 64,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "modernist-architecture",
+      "mapTitle": "Modernist Architecture",
+      "entryId": "ma-005",
+      "entryName": "Maison de Verre",
+      "city": "Paris",
+      "confidence": "medium",
+      "priorityScore": 64,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "regional-folk-traditions",
+      "mapTitle": "Regional Folk Traditions",
+      "entryId": "ft-003",
+      "entryName": "Japanese Indigo Dyeing (Aizome)",
+      "city": "Tokushima",
+      "confidence": "medium",
+      "priorityScore": 64,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "regional-folk-traditions",
+      "mapTitle": "Regional Folk Traditions",
+      "entryId": "ft-004",
+      "entryName": "Andean Quipu Record-Keeping",
+      "city": "Cusco",
+      "confidence": "medium",
+      "priorityScore": 64,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "veal-parm-capital-district",
+      "mapTitle": "Veal Parm in the Capital District",
+      "entryId": "carmens-rensselaer-vealparm",
+      "entryName": "Carmen's Restaurant",
+      "city": "Rensselaer",
+      "confidence": "medium",
+      "priorityScore": 64,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "veal-parm-capital-district",
+      "mapTitle": "Veal Parm in the Capital District",
+      "entryId": "dinos-troy-vealparm",
+      "entryName": "Dino's Pizza",
+      "city": "Troy",
+      "confidence": "medium",
+      "priorityScore": 64,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "veal-parm-capital-district",
+      "mapTitle": "Veal Parm in the Capital District",
+      "entryId": "panzas-troy-vealparm",
+      "entryName": "Panza's Restaurant",
+      "city": "Troy",
+      "confidence": "medium",
+      "priorityScore": 64,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-berkshires-western-massachusetts",
+      "mapTitle": "Ice Cream in the Berkshires and Western Massachusetts",
+      "entryId": "soco-creamery-great-barrington",
+      "entryName": "SoCo Creamery",
+      "city": "Great Barrington",
+      "confidence": "high",
+      "priorityScore": 58,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-berkshires-western-massachusetts",
+      "mapTitle": "Ice Cream in the Berkshires and Western Massachusetts",
+      "entryId": "high-lawn-farm-lee",
+      "entryName": "High Lawn Farm",
+      "city": "Lee",
+      "confidence": "high",
+      "priorityScore": 58,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-berkshires-western-massachusetts",
+      "mapTitle": "Ice Cream in the Berkshires and Western Massachusetts",
+      "entryId": "chocolate-springs-cafe-lenox",
+      "entryName": "Chocolate Springs Cafe",
+      "city": "Lenox",
+      "confidence": "high",
+      "priorityScore": 58,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-berkshires-western-massachusetts",
+      "mapTitle": "Ice Cream in the Berkshires and Western Massachusetts",
+      "entryId": "taft-farms-ice-cream-great-barrington",
+      "entryName": "Taft Farms Ice Cream Stand",
+      "city": "Great Barrington",
+      "confidence": "high",
+      "priorityScore": 58,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-berkshires-western-massachusetts",
+      "mapTitle": "Ice Cream in the Berkshires and Western Massachusetts",
+      "entryId": "bartletts-orchard-richmond",
+      "entryName": "Bartlett's Orchard Ice Cream",
+      "city": "Richmond",
+      "confidence": "high",
+      "priorityScore": 58,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-berkshires-western-massachusetts",
+      "mapTitle": "Ice Cream in the Berkshires and Western Massachusetts",
+      "entryId": "windy-hill-farm-great-barrington",
+      "entryName": "Windy Hill Farm",
+      "city": "Great Barrington",
+      "confidence": "high",
+      "priorityScore": 58,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "ben-and-jerrys-saratoga",
+      "entryName": "Ben & Jerry's",
+      "city": "Saratoga Springs",
+      "confidence": "high",
+      "priorityScore": 58,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "snowman-soft-serve-saratoga",
+      "entryName": "Snowman Soft Serve",
+      "city": "Saratoga Springs",
+      "confidence": "high",
+      "priorityScore": 58,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "dairy-haus-wilton",
+      "entryName": "Dairy Haus",
+      "city": "Wilton",
+      "confidence": "high",
+      "priorityScore": 58,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "stewarts-shops-saratoga",
+      "entryName": "Stewart's Shops",
+      "city": "Saratoga Springs",
+      "confidence": "high",
+      "priorityScore": 58,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "jumpin-jacks-scotia",
+      "entryName": "Jumpin' Jack's Drive-In",
+      "city": "Scotia",
+      "confidence": "high",
+      "priorityScore": 58,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "stewarts-shops-scotia",
+      "entryName": "Stewart's Shops",
+      "city": "Scotia",
+      "confidence": "high",
+      "priorityScore": 58,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "guptills-coney-island-cohoes",
+      "entryName": "Guptill's Coney Island",
+      "city": "Cohoes",
+      "confidence": "high",
+      "priorityScore": 58,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "hoffmans-playland-ice-cream-latham",
+      "entryName": "Hoffman's Playland Ice Cream",
+      "city": "Latham",
+      "confidence": "high",
+      "priorityScore": 58,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "stewarts-shops-schenectady-1",
+      "entryName": "Stewart's Shops",
+      "city": "Schenectady",
+      "confidence": "high",
+      "priorityScore": 58,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-northeast-pilot",
+      "mapTitle": "Ice Cream in the Northeast",
+      "entryId": "smiling-hill-farm",
+      "entryName": "Smiling Hill Farm",
+      "city": "Westbrook",
+      "confidence": "high",
+      "priorityScore": 58,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-northeast-pilot",
+      "mapTitle": "Ice Cream in the Northeast",
+      "entryId": "ben-jerrys-portland",
+      "entryName": "Ben & Jerry's",
+      "city": "Portland",
+      "confidence": "high",
+      "priorityScore": 58,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "modernist-architecture",
+      "mapTitle": "Modernist Architecture",
+      "entryId": "ma-001",
+      "entryName": "Villa Savoye",
+      "city": "Poissy",
+      "confidence": "high",
+      "priorityScore": 58,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "modernist-architecture",
+      "mapTitle": "Modernist Architecture",
+      "entryId": "ma-002",
+      "entryName": "Barcelona Pavilion",
+      "city": "Barcelona",
+      "confidence": "high",
+      "priorityScore": 58,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "modernist-architecture",
+      "mapTitle": "Modernist Architecture",
+      "entryId": "ma-003",
+      "entryName": "Fallingwater",
+      "city": "Mill Run",
+      "confidence": "high",
+      "priorityScore": 58,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "modernist-architecture",
+      "mapTitle": "Modernist Architecture",
+      "entryId": "ma-004",
+      "entryName": "Glass House",
+      "city": "New Canaan",
+      "confidence": "high",
+      "priorityScore": 58,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "modernist-architecture",
+      "mapTitle": "Modernist Architecture",
+      "entryId": "ma-006",
+      "entryName": "Eames House (Case Study House #8)",
+      "city": "Pacific Palisades",
+      "confidence": "high",
+      "priorityScore": 58,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "regional-folk-traditions",
+      "mapTitle": "Regional Folk Traditions",
+      "entryId": "ft-001",
+      "entryName": "Appalachian Dulcimer Making",
+      "city": "Hindman",
+      "confidence": "high",
+      "priorityScore": 58,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "regional-folk-traditions",
+      "mapTitle": "Regional Folk Traditions",
+      "entryId": "ft-002",
+      "entryName": "Sardinian Tenore Singing",
+      "city": "Orgosolo",
+      "confidence": "high",
+      "priorityScore": 58,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "regional-folk-traditions",
+      "mapTitle": "Regional Folk Traditions",
+      "entryId": "ft-005",
+      "entryName": "Georgian Polyphonic Singing",
+      "city": "Tbilisi",
+      "confidence": "high",
+      "priorityScore": 58,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "the-ice-cream-man-rensselaer",
+      "entryName": "The Ice Cream Man",
+      "city": "Rensselaer",
+      "confidence": "medium",
+      "priorityScore": 52,
+      "issues": [
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "mickeys-place-rensselaer",
+      "entryName": "Mickey's Place",
+      "city": "Rensselaer",
+      "confidence": "medium",
+      "priorityScore": 52,
+      "issues": [
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "vanilla-bean-bakery-ice-cream-albany",
+      "entryName": "Vanilla Bean Bakery & Ice Cream",
+      "city": "Albany",
+      "confidence": "medium",
+      "priorityScore": 48,
+      "issues": [
+        "thin_evidence",
+        "photos_unverified",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "lickety-splits-ice-cream-troy",
+      "entryName": "Lickety Splits Ice Cream",
+      "city": "Troy",
+      "confidence": "high",
+      "priorityScore": 46,
+      "issues": [
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "guptills-coney-island-troy",
+      "entryName": "Guptill’s Coney Island",
+      "city": "Troy",
+      "confidence": "high",
+      "priorityScore": 46,
+      "issues": [
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "stewarts-shops-troy",
+      "entryName": "Stewart's Shops",
+      "city": "Troy",
+      "confidence": "high",
+      "priorityScore": 46,
+      "issues": [
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "gershons-ice-cream-schenectady",
+      "entryName": "Gershon's Ice Cream",
+      "city": "Schenectady",
+      "confidence": "high",
+      "priorityScore": 46,
+      "issues": [
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "uncle-sams-ice-cream-schenectady",
+      "entryName": "Uncle Sam's Ice Cream",
+      "city": "Schenectady",
+      "confidence": "high",
+      "priorityScore": 46,
+      "issues": [
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "boos-ice-cream-scotia",
+      "entryName": "Boo's Ice Cream",
+      "city": "Scotia",
+      "confidence": "high",
+      "priorityScore": 46,
+      "issues": [
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "marthas-dandee-cream-rotterdam",
+      "entryName": "Martha's Dandee Cream",
+      "city": "Rotterdam",
+      "confidence": "high",
+      "priorityScore": 46,
+      "issues": [
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "bigelows-ice-cream-scotia",
+      "entryName": "Bigelow's Ice Cream",
+      "city": "Scotia",
+      "confidence": "high",
+      "priorityScore": 46,
+      "issues": [
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "dairy-barn-rotterdam",
+      "entryName": "Dairy Barn",
+      "city": "Rotterdam",
+      "confidence": "high",
+      "priorityScore": 46,
+      "issues": [
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "frosty-cream-glenville",
+      "entryName": "Frosty Cream",
+      "city": "Schenectady",
+      "confidence": "high",
+      "priorityScore": 46,
+      "issues": [
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "candy-kitchen-ballston-spa",
+      "entryName": "The Candy Kitchen",
+      "city": "Ballston Spa",
+      "confidence": "high",
+      "priorityScore": 46,
+      "issues": [
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "jumpin-jacks-drive-in-scotia",
+      "entryName": "Jumpin' Jacks Drive-In",
+      "city": "Schenectady",
+      "confidence": "high",
+      "priorityScore": 46,
+      "issues": [
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-northeast-pilot",
+      "mapTitle": "Ice Cream in the Northeast",
+      "entryId": "gelato-fiasco-portland",
+      "entryName": "Gelato Fiasco",
+      "city": "Portland",
+      "confidence": "high",
+      "priorityScore": 46,
+      "issues": [
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-northeast-pilot",
+      "mapTitle": "Ice Cream in the Northeast",
+      "entryId": "lobster-shack-two-lights",
+      "entryName": "The Lobster Shack at Two Lights",
+      "city": "Cape Elizabeth",
+      "confidence": "high",
+      "priorityScore": 46,
+      "issues": [
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "upside-down-pizza",
+      "mapTitle": "Upside Down Pizza",
+      "entryId": "paesanos-pizza-herkimer-ny",
+      "entryName": "Paesano's Pizza",
+      "city": "Herkimer",
+      "confidence": "medium",
+      "priorityScore": 46,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos"
+      ]
+    },
+    {
+      "mapSlug": "upside-down-pizza",
+      "mapTitle": "Upside Down Pizza",
+      "entryId": "panko-pizza-nj",
+      "entryName": "Panko Pizza",
+      "city": "Middletown",
+      "confidence": "medium",
+      "priorityScore": 46,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos"
+      ]
+    },
+    {
+      "mapSlug": "upside-down-pizza",
+      "mapTitle": "Upside Down Pizza",
+      "entryId": "tower-pizza-albany-ny",
+      "entryName": "Tower Pizza",
+      "city": "Albany",
+      "confidence": "medium",
+      "priorityScore": 46,
+      "issues": [
+        "thin_evidence",
+        "missing_product_photos"
+      ]
+    },
+    {
+      "mapSlug": "veal-parm-capital-district",
+      "mapTitle": "Veal Parm in the Capital District",
+      "entryId": "testos-troy-vealparm",
+      "entryName": "Testo's Restaurant",
+      "city": "Troy",
+      "confidence": "high",
+      "priorityScore": 46,
+      "issues": [
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "veal-parm-capital-district",
+      "mapTitle": "Veal Parm in the Capital District",
+      "entryId": "redfront-troy-vealparm",
+      "entryName": "Red Front Restaurant",
+      "city": "Troy",
+      "confidence": "high",
+      "priorityScore": 46,
+      "issues": [
+        "missing_product_photos",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "cure-albany",
+      "entryName": "Cure",
+      "city": "Albany",
+      "confidence": "high",
+      "priorityScore": 42,
+      "issues": [
+        "thin_evidence",
+        "photos_unverified",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "the-ice-cream-scoop-albany",
+      "entryName": "The Ice Cream Scoop",
+      "city": "Albany",
+      "confidence": "high",
+      "priorityScore": 42,
+      "issues": [
+        "thin_evidence",
+        "photos_unverified",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "hofmanns-hot-haus-albany",
+      "entryName": "Hofmann's Hot Haus",
+      "city": "Albany",
+      "confidence": "high",
+      "priorityScore": 42,
+      "issues": [
+        "thin_evidence",
+        "photos_unverified",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "upside-down-pizza",
+      "mapTitle": "Upside Down Pizza",
+      "entryId": "westies-pizzeria-syracuse-ny",
+      "entryName": "Westie's Pizzeria",
+      "city": "Syracuse",
+      "confidence": "medium",
+      "priorityScore": 34,
+      "issues": [
+        "missing_product_photos"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "chocolate-bar-albany",
+      "entryName": "The Chocolate Bar",
+      "city": "Albany",
+      "confidence": "high",
+      "priorityScore": 30,
+      "issues": [
+        "photos_unverified",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "guptills-coney-island-albany",
+      "entryName": "Guptill's Coney Island",
+      "city": "Albany",
+      "confidence": "high",
+      "priorityScore": 30,
+      "issues": [
+        "photos_unverified",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "lickety-split-ice-cream-albany",
+      "entryName": "Lickety Split Ice Cream",
+      "city": "Albany",
+      "confidence": "high",
+      "priorityScore": 30,
+      "issues": [
+        "photos_unverified",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "the-ice-cream-man-saratoga",
+      "entryName": "The Ice Cream Man",
+      "city": "Saratoga Springs",
+      "confidence": "high",
+      "priorityScore": 30,
+      "issues": [
+        "photos_unverified",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "saratoga-sweets",
+      "entryName": "Saratoga Sweets",
+      "city": "Saratoga Springs",
+      "confidence": "high",
+      "priorityScore": 30,
+      "issues": [
+        "photos_unverified",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "geyser-creamery-saratoga",
+      "entryName": "Geyser Creamery",
+      "city": "Saratoga Springs",
+      "confidence": "high",
+      "priorityScore": 30,
+      "issues": [
+        "photos_unverified",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "marthas-dandee-cream-ballston-spa",
+      "entryName": "Martha's Dandee Cream",
+      "city": "Ballston Spa",
+      "confidence": "high",
+      "priorityScore": 30,
+      "issues": [
+        "photos_unverified",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "apple-barrel-creamery-greenfield",
+      "entryName": "Apple Barrel Creamery",
+      "city": "Greenfield Center",
+      "confidence": "high",
+      "priorityScore": 30,
+      "issues": [
+        "photos_unverified",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "havilands-ice-cream-ballston-spa",
+      "entryName": "Haviland's Ice Cream",
+      "city": "Ballston Spa",
+      "confidence": "high",
+      "priorityScore": 30,
+      "issues": [
+        "photos_unverified",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "snowman-ice-cream-troy",
+      "entryName": "Snowman Ice Cream",
+      "city": "Troy",
+      "confidence": "high",
+      "priorityScore": 30,
+      "issues": [
+        "photos_unverified",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "cure-ice-cream-troy",
+      "entryName": "Cure Ice Cream",
+      "city": "Troy",
+      "confidence": "high",
+      "priorityScore": 30,
+      "issues": [
+        "photos_unverified",
+        "missing_source_urls"
+      ]
+    },
+    {
+      "mapSlug": "ice-cream-capital-district",
+      "mapTitle": "Ice Cream in the Capital District",
+      "entryId": "putnam-market-saratoga",
+      "entryName": "Putnam Market",
+      "city": "Saratoga Springs",
+      "confidence": "low",
+      "priorityScore": 26,
+      "issues": [
+        "photos_unverified"
+      ]
+    },
+    {
+      "mapSlug": "upside-down-pizza",
+      "mapTitle": "Upside Down Pizza",
+      "entryId": "big-jays-pizzeria-rome-marcy-ny",
+      "entryName": "Big Jay's Pizzeria",
+      "city": "Marcy / Rome",
+      "confidence": "medium",
+      "priorityScore": 18,
+      "issues": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "mapSlug": "upside-down-pizza",
+      "mapTitle": "Upside Down Pizza",
+      "entryId": "collegeville-italian-bakery-collegeville-pa",
+      "entryName": "Collegeville Italian Bakery",
+      "city": "Collegeville",
+      "confidence": "medium",
+      "priorityScore": 18,
+      "issues": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "mapSlug": "upside-down-pizza",
+      "mapTitle": "Upside Down Pizza",
+      "entryId": "eddie-and-marios-clifton-park-ny",
+      "entryName": "Eddie & Mario's",
+      "city": "Clifton Park",
+      "confidence": "medium",
+      "priorityScore": 18,
+      "issues": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "mapSlug": "upside-down-pizza",
+      "mapTitle": "Upside Down Pizza",
+      "entryId": "lasalle-bakery-pizza-strips-rhode-island",
+      "entryName": "LaSalle Bakery (Pizza Strips)",
+      "city": "Cranston",
+      "confidence": "medium",
+      "priorityScore": 18,
+      "issues": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "mapSlug": "upside-down-pizza",
+      "mapTitle": "Upside Down Pizza",
+      "entryId": "loco-moez-harrisburg-pa",
+      "entryName": "Loco Moez",
+      "city": "Harrisburg",
+      "confidence": "medium",
+      "priorityScore": 18,
+      "issues": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "mapSlug": "upside-down-pizza",
+      "mapTitle": "Upside Down Pizza",
+      "entryId": "louis-pizza-hazel-park-mi",
+      "entryName": "Loui’s Pizza",
+      "city": "Hazel Park",
+      "confidence": "medium",
+      "priorityScore": 18,
+      "issues": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "mapSlug": "upside-down-pizza",
+      "mapTitle": "Upside Down Pizza",
+      "entryId": "medford-pizza-nj",
+      "entryName": "Medford Pizza & Pasta",
+      "city": "Medford",
+      "confidence": "medium",
+      "priorityScore": 18,
+      "issues": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "mapSlug": "upside-down-pizza",
+      "mapTitle": "Upside Down Pizza",
+      "entryId": "pizza-lupo-pittsburgh-pa",
+      "entryName": "Pizza Lupo",
+      "city": "Pittsburgh",
+      "confidence": "medium",
+      "priorityScore": 18,
+      "issues": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "mapSlug": "upside-down-pizza",
+      "mapTitle": "Upside Down Pizza",
+      "entryId": "yettys-pizza-herkimer-ny",
+      "entryName": "Yetty's Pizza",
+      "city": "Herkimer",
+      "confidence": "medium",
+      "priorityScore": 18,
+      "issues": [
+        "thin_evidence"
+      ]
+    }
+  ]
+}

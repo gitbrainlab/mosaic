@@ -7,13 +7,15 @@ import maplibregl from 'maplibre-gl/dist/maplibre-gl.js'
 import { loadMapManifest, loadEntries } from '../lib/data-loader'
 import { BottomSheet } from '../components/BottomSheet'
 import { goToGallery } from '../lib/router'
-import type { KnowledgeEntry } from '../types'
+import type { KnowledgeEntry, MapManifest } from '../types'
 
 export default class MapView {
   private map: maplibregl.Map | null = null
+  private manifest: MapManifest | null = null
   private entries: KnowledgeEntry[] = []
   private filteredEntries: KnowledgeEntry[] = []
   private slug = ''
+  private searchQuery = ''
   private mapReady = false
   private entriesReady = false
   private initialRenderComplete = false
@@ -26,6 +28,7 @@ export default class MapView {
   private activeConfidenceFilter: 'all' | 'high' | 'medium' | 'low' = 'all'
   private currentSheet: BottomSheet | null = null
   private desktopDetailPanel: HTMLDivElement | null = null
+  private replacingSheet = false
 
   mount(container: HTMLElement, params: { slug: string }) {
     this.disposed = false
@@ -36,25 +39,25 @@ export default class MapView {
 
     container.innerHTML = `
       <div class="flex flex-col h-[calc(100dvh-4.25rem)] lg:h-[calc(100dvh-4.5rem)] min-h-0">
-        <div class="flex items-center justify-between px-4 py-3 border-b border-[#e5e2d9]">
-          <button id="back-btn" class="text-sm flex items-center gap-1 text-[#6b6761]">
+        <div class="flex items-center justify-between px-3 py-2 border-b border-[#e5e2d9] dark:border-[#3f3b33] bg-[#f8f7f4] dark:bg-[#141310]">
+          <button id="back-btn" class="min-h-11 px-3 text-sm flex items-center gap-1 text-[#4f4a42] dark:text-[#e8e4d9] rounded-md hover:bg-[#f1efea] dark:hover:bg-[#2a2924] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8a8178]">
             ← Maps
           </button>
           <div class="font-medium text-center px-2 truncate" id="map-title">Loading...</div>
-          <button id="show-list-header" class="text-sm px-3 py-1.5 rounded-md border border-[#a39a8c] text-[#3f3b33] dark:text-[#d4cebf] hover:bg-[#f1efea] dark:hover:bg-[#2a2924] active:bg-[#e8e4d9] transition-colors">List</button>
+          <button id="show-list-header" class="min-h-11 min-w-11 text-sm px-4 rounded-md border border-[#a39a8c] text-[#2c2a27] dark:text-[#f1efea] hover:bg-[#f1efea] dark:hover:bg-[#2a2924] active:bg-[#e8e4d9] dark:active:bg-[#34312b] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8a8178]">List</button>
         </div>
 
         <div class="flex-1 min-h-0 flex flex-col md:flex-row relative">
           <div id="map" class="flex-1 min-h-0 h-full"></div>
 
-          <div class="hidden lg:block w-80 border-l border-[#e5e2d9] overflow-auto bg-white h-full">
+          <div class="hidden lg:block w-80 border-l border-[#e5e2d9] dark:border-[#3f3b33] overflow-auto bg-white dark:bg-[#1a1916] h-full">
             <div class="p-3 border-b space-y-2">
-              <input id="search" placeholder="Search..." class="w-full px-3 py-2 text-sm border border-[#a39a8c] bg-white rounded-md focus:outline-none focus:border-[#5c5549]">
+              <input id="search" placeholder="Search..." class="w-full min-h-11 px-3 text-sm border border-[#a39a8c] bg-white dark:bg-[#141310] text-[#111] dark:text-[#f4f1e9] rounded-md focus:outline-none focus:border-[#5c5549]">
               <div class="flex gap-1 text-xs">
-                <button class="filter-btn px-3 py-1.5 rounded-md border-2 border-[#1f1d1a] bg-white text-[#1f1d1a] font-bold hover:bg-[#f1efea] active" data-filter="all">All</button>
-                <button class="filter-btn px-3 py-1.5 rounded-md border-2 border-[#1f1d1a] bg-white text-[#1f1d1a] font-bold hover:bg-[#f1efea]" data-filter="high">High</button>
-                <button class="filter-btn px-3 py-1.5 rounded-md border-2 border-[#1f1d1a] bg-white text-[#1f1d1a] font-bold hover:bg-[#f1efea]" data-filter="medium">Medium</button>
-                <button class="filter-btn px-3 py-1.5 rounded-md border-2 border-[#1f1d1a] bg-white text-[#1f1d1a] font-bold hover:bg-[#f1efea]" data-filter="low">Low</button>
+                <button class="filter-btn min-h-10 px-3 rounded-md border-2 border-[#1f1d1a] dark:border-[#d4cebf] bg-white dark:bg-[#141310] text-[#1f1d1a] dark:text-[#f4f1e9] font-bold hover:bg-[#f1efea] dark:hover:bg-[#2a2924] active" data-filter="all">All</button>
+                <button class="filter-btn min-h-10 px-3 rounded-md border-2 border-[#1f1d1a] dark:border-[#d4cebf] bg-white dark:bg-[#141310] text-[#1f1d1a] dark:text-[#f4f1e9] font-bold hover:bg-[#f1efea] dark:hover:bg-[#2a2924]" data-filter="high">High</button>
+                <button class="filter-btn min-h-10 px-3 rounded-md border-2 border-[#1f1d1a] dark:border-[#d4cebf] bg-white dark:bg-[#141310] text-[#1f1d1a] dark:text-[#f4f1e9] font-bold hover:bg-[#f1efea] dark:hover:bg-[#2a2924]" data-filter="medium">Medium</button>
+                <button class="filter-btn min-h-10 px-3 rounded-md border-2 border-[#1f1d1a] dark:border-[#d4cebf] bg-white dark:bg-[#141310] text-[#1f1d1a] dark:text-[#f4f1e9] font-bold hover:bg-[#f1efea] dark:hover:bg-[#2a2924]" data-filter="low">Low</button>
               </div>
             </div>
             <div id="entry-list" class="divide-y"></div>
@@ -80,6 +83,7 @@ export default class MapView {
     }
 
     const manifest = manifestResult.data
+    this.manifest = manifest
     document.getElementById('map-title')!.textContent = manifest.title
 
     const loadingOverlay = document.createElement('div')
@@ -158,14 +162,12 @@ export default class MapView {
     if (this.initialRenderComplete || !this.map || this.disposed) return
     this.initialRenderComplete = true
 
-    this.renderList()
+    this.renderList(this.getFilteredEntries())
     this.addMarkersIncrementally()
     const urlState = this.restoreStateFromURL()
 
-    // Large national maps feel better when we keep the default camera stable.
-    // Smaller regional maps can still be snugged to the data if it is not sprawling.
-    if (!urlState.hasCameraState && !urlState.hasSelectedEntry && this.shouldFitToData()) {
-      this.fitToData()
+    if (!urlState.hasCameraState && !urlState.hasSelectedEntry) {
+      this.orientInitialCamera()
     }
 
     requestAnimationFrame(() => this.map?.resize())
@@ -192,11 +194,32 @@ export default class MapView {
     return latSpan < 8 && lngSpan < 8
   }
 
-  private fitToData() {
+  private orientInitialCamera() {
     if (!this.map || this.entries.length === 0) return
 
+    if (this.shouldFitToData()) {
+      this.fitToEntries(this.entries, 60, 13)
+      return
+    }
+
+    const cluster = this.findInitialCluster()
+    if (cluster.length > 1) {
+      this.fitToEntries(cluster, 80, 11)
+      return
+    }
+
+    const first = this.entries[0]
+    this.map.jumpTo({
+      center: [first.location.lng, first.location.lat],
+      zoom: Math.max(this.manifest?.defaultZoom || 8, 10),
+    })
+  }
+
+  private fitToEntries(entries: KnowledgeEntry[], padding = 60, maxZoom = 13) {
+    if (!this.map || entries.length === 0) return
+
     const bounds = new maplibregl.LngLatBounds()
-    this.entries.forEach(entry => {
+    entries.forEach(entry => {
       if (typeof entry.location.lat === 'number' && typeof entry.location.lng === 'number') {
         bounds.extend([entry.location.lng, entry.location.lat])
       }
@@ -204,11 +227,31 @@ export default class MapView {
 
     if (!bounds.isEmpty()) {
       this.map.fitBounds(bounds, {
-        padding: 60,
-        maxZoom: 13,
+        padding,
+        maxZoom,
         duration: 700,
       })
     }
+  }
+
+  private findInitialCluster() {
+    if (this.entries.length <= 1) return this.entries
+
+    let bestEntry = this.entries[0]
+    let bestScore = -1
+
+    for (const candidate of this.entries) {
+      const score = this.entries.reduce((count, entry) => {
+        return count + (this.distanceKm(candidate, entry) <= 250 ? 1 : 0)
+      }, 0)
+      if (score > bestScore) {
+        bestScore = score
+        bestEntry = candidate
+      }
+    }
+
+    const cluster = this.entries.filter(entry => this.distanceKm(bestEntry, entry) <= 250)
+    return cluster.length > 0 ? cluster : [bestEntry]
   }
 
   private addMarkersIncrementally() {
@@ -252,16 +295,23 @@ export default class MapView {
     addBatch()
   }
 
-  private renderList(filteredEntries = this.entries) {
+  private renderList(filteredEntries = this.getFilteredEntries()) {
     this.filteredEntries = filteredEntries
     const listEl = document.getElementById('entry-list')
     if (!listEl) return
 
+    if (filteredEntries.length === 0) {
+      listEl.innerHTML = this.renderEmptyState()
+      this.bindEmptyStateActions(listEl)
+      this.updateMarkerVisibility()
+      return
+    }
+
     listEl.innerHTML = filteredEntries.map(entry => `
-      <div class="p-3.5 hover:bg-[#f1efea] active:bg-[#e8e4d9] cursor-pointer entry-row border-l-[3px] border-transparent hover:border-[#1f1d1a] active:border-[#0a0a0a] transition-colors" data-id="${entry.id}">
-        <div class="font-semibold text-[15px] text-[#0f0e0c]">${entry.name}</div>
-        <div class="text-xs text-[#3f3b33] mt-0.5">${entry.location.city}, ${entry.location.country}</div>
-        <div class="text-[10px] mt-1.5 inline-block px-1.5 py-px rounded bg-[#f1efea] text-[#3f3b33] font-medium">${entry.confidence}</div>
+      <div class="p-3.5 hover:bg-[#f1efea] dark:hover:bg-[#2a2924] active:bg-[#e8e4d9] dark:active:bg-[#34312b] cursor-pointer entry-row border-l-[3px] border-transparent hover:border-[#1f1d1a] dark:hover:border-[#d4cebf] active:border-[#0a0a0a] transition-colors" data-id="${entry.id}">
+        <div class="font-semibold text-[15px] text-[#0f0e0c] dark:text-[#f7f3ea]">${entry.name}</div>
+        <div class="text-xs text-[#3f3b33] dark:text-[#d4cebf] mt-0.5">${entry.location.city}, ${entry.location.country}</div>
+        <div class="text-[10px] mt-1.5 inline-block px-1.5 py-px rounded bg-[#f1efea] dark:bg-[#34312b] text-[#3f3b33] dark:text-[#f1efea] font-medium">${entry.confidence}</div>
       </div>
     `).join('')
 
@@ -290,24 +340,81 @@ export default class MapView {
 
   private applyFilters() {
     const searchInput = document.getElementById('search') as HTMLInputElement | null
-    const q = (searchInput?.value || '').toLowerCase().trim()
+    if (searchInput) {
+      this.searchQuery = searchInput.value.trim()
+    }
 
-    const filtered = this.entries.filter(entry => {
+    this.renderList(this.getFilteredEntries())
+    this.updateURLState()
+  }
+
+  private getFilteredEntries() {
+    const q = this.searchQuery.toLowerCase().trim()
+
+    return this.entries.filter(entry => {
       if (this.activeConfidenceFilter !== 'all' && entry.confidence !== this.activeConfidenceFilter) {
         return false
       }
 
       if (!q) return true
 
-      return (
-        entry.name.toLowerCase().includes(q) ||
-        entry.location.city.toLowerCase().includes(q) ||
-        entry.description.toLowerCase().includes(q)
-      )
+      return this.entrySearchText(entry).includes(q)
     })
+  }
 
-    this.renderList(filtered)
+  private entrySearchText(entry: KnowledgeEntry) {
+    return JSON.stringify({
+      name: entry.name,
+      city: entry.location.city,
+      region: entry.location.region,
+      country: entry.location.country,
+      address: entry.location.address,
+      description: entry.description,
+      tags: entry.tags,
+      attributes: entry.attributes,
+      evidence: entry.evidence,
+      sources: entry.sources,
+      notes: entry.notes,
+      historicalContext: entry.historicalContext,
+      classification: entry.classification,
+    }).toLowerCase()
+  }
+
+  private renderEmptyState() {
+    const queryCopy = this.searchQuery ? ` for “${this.searchQuery}”` : ''
+    const filterCopy = this.activeConfidenceFilter !== 'all' ? ` with ${this.activeConfidenceFilter} confidence` : ''
+    return `
+      <div class="p-5 text-sm text-[#2c2a27] dark:text-[#f1efea]" data-empty-state="search">
+        <div class="font-semibold text-[#111] dark:text-white">No results${queryCopy}${filterCopy}</div>
+        <div class="mt-1 text-[#5f5a52] dark:text-[#d4cebf]">Try a broader term, search another place attribute, or reset the filters.</div>
+        <button data-action="reset-filters" class="mt-3 min-h-11 px-3 rounded-md border border-[#2c2a27] dark:border-[#d4cebf] text-[#111] dark:text-white hover:bg-[#f1efea] dark:hover:bg-[#2a2924]">Reset search</button>
+      </div>
+    `
+  }
+
+  private bindEmptyStateActions(root: ParentNode) {
+    root.querySelector('[data-action="reset-filters"]')?.addEventListener('click', () => {
+      this.resetFilters()
+    })
+  }
+
+  private resetFilters() {
+    this.searchQuery = ''
+    this.activeConfidenceFilter = 'all'
+    const searchInput = document.getElementById('search') as HTMLInputElement | null
+    if (searchInput) searchInput.value = ''
+    this.syncFilterButtons()
+    this.renderList(this.getFilteredEntries())
     this.updateURLState()
+  }
+
+  private syncFilterButtons() {
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.classList.remove('active', '!bg-[#1f1d1a]', '!bg-[#0f0e0c]', '!text-white', '!border-[#0a0a0a]')
+      if ((btn as HTMLElement).dataset.filter === this.activeConfidenceFilter) {
+        btn.classList.add('active', '!bg-[#0f0e0c]', '!text-white', '!border-[#0a0a0a]')
+      }
+    })
   }
 
   private bindEvents() {
@@ -326,12 +433,9 @@ export default class MapView {
 
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        document.querySelectorAll('.filter-btn').forEach(candidate => {
-          candidate.classList.remove('active', '!bg-[#1f1d1a]', '!text-white', '!border-[#0a0a0a]')
-        })
-        btn.classList.add('active', '!bg-[#0f0e0c]', '!text-white', '!border-[#0a0a0a]')
         const filter = (btn as HTMLElement).dataset.filter as 'all' | 'high' | 'medium' | 'low'
         this.activeConfidenceFilter = filter
+        this.syncFilterButtons()
         this.applyFilters()
       })
     })
@@ -356,20 +460,14 @@ export default class MapView {
 
     const searchInput = document.getElementById('search') as HTMLInputElement | null
     const q = params.get('q')
-    if (q && searchInput) {
-      searchInput.value = q
-    }
+    this.searchQuery = q || ''
+    if (searchInput) searchInput.value = this.searchQuery
 
     const conf = params.get('confidence') as 'all' | 'high' | 'medium' | 'low' | null
-    if (conf) {
+    if (conf && ['all', 'high', 'medium', 'low'].includes(conf)) {
       this.activeConfidenceFilter = conf
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.classList.remove('active', '!bg-[#1f1d1a]', '!text-white', '!border-[#0a0a0a]')
-        if ((btn as HTMLElement).dataset.filter === conf) {
-          btn.classList.add('active', '!bg-[#0f0e0c]', '!text-white', '!border-[#0a0a0a]')
-        }
-      })
     }
+    this.syncFilterButtons()
 
     this.applyFilters()
 
@@ -397,9 +495,8 @@ export default class MapView {
     url.searchParams.set('lng', center.lng.toFixed(5))
     url.searchParams.set('zoom', zoom.toFixed(2))
 
-    const searchInput = document.getElementById('search') as HTMLInputElement | null
-    if (searchInput?.value) {
-      url.searchParams.set('q', searchInput.value)
+    if (this.searchQuery) {
+      url.searchParams.set('q', this.searchQuery)
     } else {
       url.searchParams.delete('q')
     }
@@ -408,8 +505,28 @@ export default class MapView {
     window.history.replaceState({}, '', url.toString())
   }
 
+  private distanceKm(a: KnowledgeEntry, b: KnowledgeEntry) {
+    const radiusKm = 6371
+    const dLat = this.degToRad(b.location.lat - a.location.lat)
+    const dLng = this.degToRad(b.location.lng - a.location.lng)
+    const lat1 = this.degToRad(a.location.lat)
+    const lat2 = this.degToRad(b.location.lat)
+
+    const h =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat1) * Math.cos(lat2) *
+      Math.sin(dLng / 2) * Math.sin(dLng / 2)
+
+    return radiusKm * 2 * Math.atan2(Math.sqrt(h), Math.sqrt(1 - h))
+  }
+
+  private degToRad(value: number) {
+    return value * Math.PI / 180
+  }
+
   private showDetail(entry: KnowledgeEntry) {
     if (this.currentSheet) {
+      this.replacingSheet = true
       this.currentSheet.close()
       this.currentSheet = null
     }
@@ -451,6 +568,90 @@ export default class MapView {
     }
   }
 
+  private getVisualLanguage() {
+    const haystack = `${this.slug} ${this.manifest?.title || ''} ${this.manifest?.tagline || ''} ${this.manifest?.intent?.statement || ''}`.toLowerCase()
+
+    if (/(architecture|building|modernist|folk|tradition|craft|music|dance|festival|field)/.test(haystack)) {
+      if (/(architecture|building|modernist)/.test(haystack)) {
+        return {
+          title: 'Visual documentation in progress',
+          body: 'High-quality building imagery and source context are being curated for this profile.',
+          action: 'Request visual refinement',
+        }
+      }
+
+      return {
+        title: 'Field documentation in progress',
+        body: 'High-quality field images and source context are being curated for this tradition.',
+        action: 'Request field-image refinement',
+      }
+    }
+
+    return {
+      title: 'Photos sourcing in progress',
+      body: 'High-quality product photos are being sourced for this profile.',
+      action: 'Request photo refinement',
+    }
+  }
+
+  private renderNoPhotoState() {
+    const language = this.getVisualLanguage()
+    return `
+      <div class="border border-dashed border-[#d4cebf] dark:border-[#3f3b33] rounded-lg p-4 bg-[#f8f7f4] dark:bg-[#1a1916]">
+        <div class="text-xs uppercase tracking-[1px] font-bold text-[#1f1d1a] dark:text-[#f4f1e9] mb-1">${language.title}</div>
+        <div class="text-sm text-[#5f5a52] dark:text-[#d4cebf]">${language.body}</div>
+        <button data-detail-action="request-refinement" class="mt-3 min-h-10 px-3 rounded-md border border-[#a39a8c] text-xs font-semibold text-[#2c2a27] dark:text-[#f1efea] hover:bg-[#f1efea] dark:hover:bg-[#2a2924]">${language.action}</button>
+      </div>
+    `
+  }
+
+  private renderDetailActionRail(entry: KnowledgeEntry) {
+    const next = this.getNextNearbyEntry(entry)
+    return `
+      <div class="flex gap-2 overflow-x-auto pb-1" data-detail-actions>
+        ${next ? `<button data-detail-action="next-nearby" class="flex-shrink-0 min-h-11 px-3 rounded-full bg-[#1f1d1a] text-white dark:bg-[#f1efea] dark:text-[#111] text-sm font-semibold">Next nearby</button>` : ''}
+        <button data-detail-action="nearby-list" class="flex-shrink-0 min-h-11 px-3 rounded-full border border-[#a39a8c] text-[#2c2a27] dark:text-[#f1efea] text-sm font-semibold">Nearby entries</button>
+        <button data-detail-action="request-refinement" class="flex-shrink-0 min-h-11 px-3 rounded-full border border-[#a39a8c] text-[#2c2a27] dark:text-[#f1efea] text-sm font-semibold">${this.getVisualLanguage().action}</button>
+      </div>
+    `
+  }
+
+  private bindDetailActions(root: ParentNode, entry: KnowledgeEntry) {
+    root.querySelectorAll('[data-detail-action="next-nearby"]').forEach(button => {
+      button.addEventListener('click', () => {
+        const next = this.getNextNearbyEntry(entry)
+        if (next) this.showDetail(next)
+      })
+    })
+
+    root.querySelectorAll('[data-detail-action="nearby-list"]').forEach(button => {
+      button.addEventListener('click', () => {
+        if (window.innerWidth >= 1024) {
+          document.getElementById('entry-list')?.scrollIntoView({ block: 'nearest' })
+        } else {
+          this.showMobileList()
+        }
+      })
+    })
+
+    root.querySelectorAll('[data-detail-action="request-refinement"]').forEach(button => {
+      button.addEventListener('click', () => {
+        const target = button as HTMLButtonElement
+        target.textContent = 'Refinement noted'
+        target.setAttribute('aria-live', 'polite')
+      })
+    })
+  }
+
+  private getNextNearbyEntry(entry: KnowledgeEntry) {
+    const candidates = (this.filteredEntries.length > 1 ? this.filteredEntries : this.entries)
+      .filter(candidate => candidate.id !== entry.id)
+
+    return candidates
+      .map(candidate => ({ candidate, distance: this.distanceKm(entry, candidate) }))
+      .sort((a, b) => a.distance - b.distance)[0]?.candidate || null
+  }
+
   private showDesktopDetailModal(entry: KnowledgeEntry) {
     if (!this.map) return
 
@@ -472,7 +673,7 @@ export default class MapView {
         <button aria-label="Close" class="text-2xl leading-none text-[#6b6761] hover:text-black dark:hover:text-white px-2">×</button>
       </div>
 
-      <div class="overflow-auto max-h-[55vh] p-4 text-[#0a0a0a] dark:text-white space-y-5 text-[15px]">
+      <div class="overflow-auto max-h-[45vh] p-4 text-[#0a0a0a] dark:text-white space-y-5 text-[15px]">
         ${entry.photos && entry.photos.length > 0 ? `
         <div>
           <div class="text-xs uppercase tracking-[1px] font-bold text-[#1f1d1a] dark:text-[#d4cebf] mb-2">Photos</div>
@@ -485,10 +686,9 @@ export default class MapView {
             `).join('')}
           </div>
         </div>` : `
-        <div class="border border-dashed border-[#d4cebf] dark:border-[#3f3b33] rounded-lg p-4 bg-[#f8f7f4] dark:bg-[#1a1916]">
-          <div class="text-xs uppercase tracking-[1px] font-bold text-[#1f1d1a] dark:text-[#d4cebf] mb-1">Photos sourcing in progress</div>
-          <div class="text-sm text-[#6b6761] dark:text-[#a39a8c]">High-quality product photos are being sourced for this profile.</div>
-        </div>`}
+        ${this.renderNoPhotoState()}`}
+
+        ${this.renderDetailActionRail(entry)}
 
         <div class="leading-relaxed">${entry.description}</div>
 
@@ -522,6 +722,7 @@ export default class MapView {
     }
 
     closeBtn.addEventListener('click', close)
+    this.bindDetailActions(panel, entry)
 
     const escHandler = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -545,6 +746,10 @@ export default class MapView {
       modal: false,
       showHandle: true,
       onClose: () => {
+        if (this.replacingSheet) {
+          this.replacingSheet = false
+          return
+        }
         this.currentSheet = null
         this.setSelectedEntryInURL(null)
       },
@@ -560,15 +765,14 @@ export default class MapView {
         <img src="${this.normalizePhotoUrl(heroPhoto.url, this.slug)}" alt="${heroPhoto.caption}" class="w-full h-44 object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML = '<div class=\\'border border-dashed border-[#d4cebf] rounded p-3 text-xs text-[#6b6761]\\'>Photo unavailable (sourcing in progress)</div>'" />
         <div class="px-4 py-2 text-xs text-[#3f3b33] dark:text-[#d4cebf] bg-[#f8f7f4] dark:bg-[#1a1916]">${heroPhoto.caption}</div>
       </div>` : `
-      <div class="border border-dashed border-[#d4cebf] dark:border-[#3f3b33] rounded-lg p-4 bg-[#f8f7f4] dark:bg-[#1a1916] mb-4">
-        <div class="text-xs uppercase tracking-[1px] font-bold text-[#1f1d1a] dark:text-[#d4cebf] mb-1">Photos sourcing in progress</div>
-        <div class="text-sm text-[#6b6761] dark:text-[#a39a8c]">High-quality product photos are being sourced.</div>
-      </div>`}
+      <div class="mb-4">${this.renderNoPhotoState()}</div>`}
 
       <div class="text-[15px] font-semibold leading-tight">
         ${entry.location.address}<br>
         ${entry.location.city}${entry.location.region ? ', ' + entry.location.region : ''}, ${entry.location.country}
       </div>
+
+      ${this.renderDetailActionRail(entry)}
 
       <div class="text-[15px] leading-snug">${entry.description}</div>
 
@@ -601,6 +805,7 @@ export default class MapView {
     `
 
     sheet.setContent(content)
+    this.bindDetailActions(content, entry)
     sheet.open('peek')
     this.currentSheet = sheet
     this.setSelectedEntryInURL(entry.id)
@@ -616,17 +821,29 @@ export default class MapView {
     const content = document.createElement('div')
     content.innerHTML = `
       <div class="mb-3">
-        <input id="mobile-search" placeholder="Search entries..." class="w-full px-3 py-2 text-sm border rounded-md">
+        <input id="mobile-search" placeholder="Search entries..." value="${this.searchQuery}" class="w-full min-h-11 px-3 text-base border border-[#a39a8c] bg-white dark:bg-[#141310] text-[#111] dark:text-[#f4f1e9] rounded-md">
       </div>
       <div id="mobile-list" class="divide-y"></div>
     `
 
+    const mobileSearch = content.querySelector('#mobile-search') as HTMLInputElement
+
     const renderMobileList = (filtered: KnowledgeEntry[]) => {
       const listContainer = content.querySelector('#mobile-list')!
+      if (filtered.length === 0) {
+        listContainer.innerHTML = this.renderEmptyState()
+        listContainer.querySelector('[data-action="reset-filters"]')?.addEventListener('click', () => {
+          this.resetFilters()
+          mobileSearch.value = ''
+          renderMobileList(this.filteredEntries)
+        })
+        return
+      }
+
       listContainer.innerHTML = filtered.map(entry => `
-        <div class="py-3.5 entry cursor-pointer active:bg-[#f1efea] dark:active:bg-[#2a2924] border-b border-[#e5e2d9] last:border-b-0" data-id="${entry.id}">
-          <div class="font-semibold text-[#0f0e0c]">${entry.name}</div>
-          <div class="text-xs text-[#3f3b33] mt-0.5">${entry.location.city}, ${entry.location.country}</div>
+        <div class="py-3.5 entry cursor-pointer active:bg-[#f1efea] dark:active:bg-[#2a2924] border-b border-[#e5e2d9] dark:border-[#3f3b33] last:border-b-0" data-id="${entry.id}">
+          <div class="font-semibold text-[#0f0e0c] dark:text-[#f7f3ea]">${entry.name}</div>
+          <div class="text-xs text-[#3f3b33] dark:text-[#d4cebf] mt-0.5">${entry.location.city}, ${entry.location.country}</div>
         </div>
       `).join('')
 
@@ -643,16 +860,16 @@ export default class MapView {
       })
     }
 
-    renderMobileList(this.entries)
+    renderMobileList(this.getFilteredEntries())
 
-    const mobileSearch = content.querySelector('#mobile-search') as HTMLInputElement
     mobileSearch.addEventListener('input', () => {
-      const q = mobileSearch.value.toLowerCase().trim()
-      const filtered = this.entries.filter(entry =>
-        entry.name.toLowerCase().includes(q) ||
-        entry.location.city.toLowerCase().includes(q)
-      )
+      this.searchQuery = mobileSearch.value.trim()
+      const desktopSearch = document.getElementById('search') as HTMLInputElement | null
+      if (desktopSearch) desktopSearch.value = this.searchQuery
+      const filtered = this.getFilteredEntries()
+      this.renderList(filtered)
       renderMobileList(filtered)
+      this.updateURLState()
     })
 
     sheet.setContent(content)

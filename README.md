@@ -38,7 +38,7 @@ Open http://localhost:5173
 This site is deployed automatically via GitHub Actions.
 
 - Push or merge to `main` → `deploy.yml` builds the site and deploys it.
-- Live v2 site: http://gitbrain.com/mosaic/v2/
+- Live v3 site: http://gitbrain.com/mosaic/v3/
 
 ### First-Time / Repo Setup (One Time)
 
@@ -47,7 +47,7 @@ This site is deployed automatically via GitHub Actions.
    - Under "Build and deployment", set **Source** to **GitHub Actions**
 2. Ensure the `XAI_KEY` repository secret exists (used for research agents).
 
-The deployment workflow builds v2 with `VITE_BASE_PATH=/mosaic/v2/` and publishes the artifact under `v2/` for GitHub Pages.
+The deployment workflow builds v3 with `VITE_BASE_PATH=/mosaic/v3/` and publishes the artifact under `v3/` for GitHub Pages.
 
 ## Running Research Batches (The Real Power)
 
@@ -125,4 +125,4 @@ TBD
 
 ---
 
-**Current status**: The v2 site is targeted at http://gitbrain.com/mosaic/v2/ with multiple maps and a first static Curation Studio batch-review surface.
+**Current status**: The v3 site is targeted at http://gitbrain.com/mosaic/v3/ with multiple maps and a first static Curation Studio batch-review surface.
