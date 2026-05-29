@@ -17,6 +17,18 @@
   "chunks": [
     "entries.json"
   ],
+  "intent": {
+    "statement": "Pilot multi-state enrichment of ice cream destinations with strong location fidelity and photo-backed product evidence.",
+    "scope": "Northeast U.S. pilot locations within the declared regional bounds.",
+    "photoPolicy": "Require product-centered photos with verifiable source context where possible."
+  },
+  "intentHistory": [
+    {
+      "changedAt": "2026-05-28T22:55:00Z",
+      "author": "codex",
+      "summary": "Established pilot-map intent and evidence policy for future expansion waves."
+    }
+  ],
   "validation": {
     "coordinateBounds": {
       "minLat": 40.8,

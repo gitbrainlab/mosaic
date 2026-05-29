@@ -8,5 +8,17 @@
   "defaultCenter": [38.7, -9.1],
   "defaultZoom": 10,
   "filterFields": ["city", "confidence"],
-  "chunks": ["entries.json"]
+  "chunks": ["entries.json"],
+  "intent": {
+    "statement": "Present a geographically-diverse set of modernist architecture exemplars with credible location and authorship context.",
+    "scope": "Global examples selected for educational comparison rather than local proximity.",
+    "photoPolicy": "Prefer canonical building images that represent defining architectural features."
+  },
+  "intentHistory": [
+    {
+      "changedAt": "2026-05-28T22:55:00Z",
+      "author": "codex",
+      "summary": "Added global-map intent and evidence direction."
+    }
+  ]
 }
