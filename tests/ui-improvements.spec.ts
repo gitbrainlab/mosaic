@@ -143,12 +143,11 @@ test.describe('@smoke UI hardening checks', () => {
     test.skip(testInfo.project.name !== 'mobile-light', 'Studio queue check runs once.');
 
     await page.goto('/mosaic/v3/?/studio');
-    await expect(page.getByRole('heading', { name: 'Verification Queue' })).toBeVisible({ timeout: 15000 });
-    await expect(page.getByRole('heading', { name: 'Needs Photo Review' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Refinement Requested' })).toBeVisible();
+    await expect(page.getByRole('button', { name: /Verification Queue/i })).toBeVisible({ timeout: 15000 });
+    await expect(page.getByRole('button', { name: /Needs Photo Review/i })).toBeVisible();
+    await expect(page.getByRole('button', { name: /Refinement Requested/i })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Approved / Committed' })).toBeVisible();
-    await expect(page.getByText('Select a card')).toBeVisible();
-    await expect(page.getByText('Inspect the preview')).toBeVisible();
+    await expect(page.getByText('Review rule: exact place')).toBeVisible();
     const activePreview = page.locator('[data-review-preview]:not([hidden])');
     await expect(activePreview.getByText('Profile Preview')).toBeVisible();
     await expect(activePreview.getByText('What to Assess')).toBeVisible();

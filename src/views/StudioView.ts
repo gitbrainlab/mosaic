@@ -105,56 +105,66 @@ export default class StudioView {
 
     return `
       <section class="mb-5" data-review-workspace>
-        <div class="border-2 border-[#3f3b33] dark:border-[#d4cebf] bg-white dark:bg-[#141310] p-4">
-          <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+        <div class="bg-[#eaf2fb] dark:bg-[#11100e] border border-[#d7e2ef] dark:border-[#3f3b33] p-4 sm:p-5">
+          <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 pb-4 border-b border-[#cfdae8] dark:border-[#3f3b33]">
             <div>
-              <div class="text-xs uppercase tracking-[1px] font-bold text-[#3f3b33] dark:text-[#d4cebf]">Static Review Queue</div>
-              <div class="text-sm text-[#2c2a27] dark:text-[#e8e4d9]">
-                ${backlog ? `${backlog.totalFlaggedEntries} flagged entries across ${backlog.totalMaps} maps` : 'No backlog index loaded yet'}
+              <div class="text-xs uppercase tracking-[1px] font-bold text-[#2563eb] dark:text-[#9db7ff]">Research Review</div>
+              <h2 class="text-2xl font-semibold tracking-tight text-[#172033] dark:text-white">Review queued findings before promotion</h2>
+              <div class="mt-1 text-sm text-[#3f4b5f] dark:text-[#d4cebf]">
+                ${backlog ? `${backlog.totalFlaggedEntries} flagged entries across ${backlog.totalMaps} maps. Select a card, inspect the preview, then choose the next stage.` : 'No backlog index loaded yet.'}
               </div>
             </div>
-            <div class="text-xs text-[#6b6761] dark:text-[#a39a8c]">
+            <div class="text-xs text-[#5f6d82] dark:text-[#a39a8c]">
               ${backlog ? `Generated ${new Date(backlog.generatedAt).toLocaleString()}` : 'Artifact-only actions; no runtime backend'}
             </div>
           </div>
 
-          <div class="mt-4 grid gap-3 md:grid-cols-3">
-            ${this.workflowStep('1', 'Select a card', 'Pick the entry that needs verification, photo review, or refinement.')}
-            ${this.workflowStep('2', 'Inspect the preview', 'Check the profile, evidence, sources, photos, and exact location before deciding.')}
-            ${this.workflowStep('3', 'Choose next stage', 'Generate a static JSON action that can be copied into the GitHub-native curation flow.')}
+          <div class="mt-4 overflow-hidden rounded-lg border border-[#cfdae8] dark:border-[#3f3b33] bg-white dark:bg-[#181713]">
+            <div class="grid sm:grid-cols-4" role="tablist" aria-label="Review queue states">
+              ${this.renderReviewTab('All queued', 'all', items.length, true)}
+              ${QUEUE_STATES.map(state => this.renderReviewTab(state, state, items.filter(item => item.queueState === state).length, false)).join('')}
+            </div>
+          </div>
+
+          <div class="mt-4 rounded-[18px] border-2 border-[#5f7cff] bg-[#101826] dark:bg-[#101826] p-3 shadow-sm">
+            <div class="grid gap-2 sm:grid-cols-[auto_1fr_auto] sm:items-center">
+              <div class="font-mono text-white text-sm">›_</div>
+              <div class="text-sm text-[#c9d5e8]">Review rule: exact place, current evidence, real-location visuals, and map-intent fit.</div>
+              <div class="text-xs text-[#91a3bc]">Static output only</div>
+            </div>
           </div>
 
           <div class="mt-5 grid gap-4 lg:grid-cols-[minmax(280px,0.85fr)_minmax(0,1.35fr)]">
-            <div class="border border-[#d8d2c4] dark:border-[#3f3b33] bg-[#fbfaf7] dark:bg-[#181713]">
-              <div class="p-3 border-b border-[#e5e2d9] dark:border-[#3f3b33]">
-                <div class="text-sm font-bold text-[#111] dark:text-white">Review List</div>
-                <div class="text-xs text-[#5f5a52] dark:text-[#d4cebf]">${items.length} queued items shown by priority</div>
+            <div class="rounded-[18px] border border-[#cfdae8] dark:border-[#3f3b33] bg-white dark:bg-[#181713] shadow-sm overflow-hidden">
+              <div class="p-4 border-b border-[#e5eaf2] dark:border-[#3f3b33]">
+                <div class="text-sm font-bold text-[#172033] dark:text-white">Review List</div>
+                <div class="text-xs text-[#5f6d82] dark:text-[#d4cebf]">${items.length} queued items shown by priority</div>
               </div>
-              <div class="max-h-[540px] overflow-y-auto">
-                ${items.length > 0 ? QUEUE_STATES.map(state => this.renderQueueGroup(state, items, firstKey)).join('') : `
-                  <div class="p-4 text-sm text-[#5f5a52] dark:text-[#d4cebf]">No review items are currently queued.</div>
+              <div class="max-h-[620px] overflow-y-auto divide-y divide-[#edf1f6] dark:divide-[#3f3b33]">
+                ${items.length > 0 ? items.map(item => this.renderQueueItem(item, firstKey)).join('') : `
+                  <div class="p-4 text-sm text-[#5f6d82] dark:text-[#d4cebf]">No review items are currently queued.</div>
                 `}
               </div>
             </div>
 
             <div class="grid gap-3">
-              <div class="border border-[#d8d2c4] dark:border-[#3f3b33] bg-white dark:bg-[#181713] min-h-[420px]">
+              <div class="rounded-[18px] border border-[#cfdae8] dark:border-[#3f3b33] bg-white dark:bg-[#181713] min-h-[420px] shadow-sm overflow-hidden">
                 ${items.length > 0 ? items.map((item, index) => this.renderPreviewPanel(item, index === 0)).join('') : this.renderEmptyPreview()}
               </div>
 
-              <div class="border border-[#d8d2c4] dark:border-[#3f3b33] bg-[#fbfaf7] dark:bg-[#181713] p-3">
+              <div class="rounded-[18px] border border-[#cfdae8] dark:border-[#3f3b33] bg-white dark:bg-[#181713] p-4 shadow-sm">
                 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
                   <div>
-                    <div class="text-xs uppercase tracking-[1px] font-bold text-[#3f3b33] dark:text-[#d4cebf]">Generated Review Action</div>
-                    <div class="text-xs text-[#5f5a52] dark:text-[#d4cebf]">Actions below the preview create a copyable payload. Nothing is submitted from the static site.</div>
+                    <div class="text-xs uppercase tracking-[1px] font-bold text-[#2563eb] dark:text-[#9db7ff]">Generated Review Action</div>
+                    <div class="text-xs text-[#5f6d82] dark:text-[#d4cebf]">Buttons in the preview generate a copyable payload. Nothing is submitted from the static site.</div>
                   </div>
                   <div class="flex gap-2">
-                    <button type="button" class="min-h-11 px-3 rounded border border-[#a39a8c] text-xs font-semibold text-[#2c2a27] dark:text-[#f1efea] disabled:opacity-45" data-copy-payload disabled>Copy payload</button>
-                    <button type="button" class="min-h-11 px-3 rounded border border-[#a39a8c] text-xs font-semibold text-[#2c2a27] dark:text-[#f1efea] disabled:opacity-45" data-clear-payload disabled>Clear</button>
+                    <button type="button" class="min-h-11 px-3 rounded-full border border-[#b7c4d6] dark:border-[#4b465d] text-xs font-semibold text-[#172033] dark:text-[#f1efea] disabled:opacity-45" data-copy-payload disabled>Copy payload</button>
+                    <button type="button" class="min-h-11 px-3 rounded-full border border-[#b7c4d6] dark:border-[#4b465d] text-xs font-semibold text-[#172033] dark:text-[#f1efea] disabled:opacity-45" data-clear-payload disabled>Clear</button>
                   </div>
                 </div>
-                <pre id="studio-action-payload" class="min-h-24 whitespace-pre-wrap rounded border border-[#d8d2c4] dark:border-[#3f3b33] bg-white dark:bg-[#11100e] text-[#2c2a27] dark:text-[#f4f1e9] text-xs p-3 overflow-auto" data-empty="true">Choose a next-stage action from the selected preview.</pre>
-                <div id="studio-action-status" class="mt-2 text-xs text-[#5f5a52] dark:text-[#d4cebf]"></div>
+                <pre id="studio-action-payload" class="min-h-20 whitespace-pre-wrap rounded-xl border border-[#d7e2ef] dark:border-[#3f3b33] bg-[#f8fbff] dark:bg-[#11100e] text-[#243044] dark:text-[#f4f1e9] text-xs p-3 overflow-auto" data-empty="true">Choose a next-stage action from the selected preview.</pre>
+                <div id="studio-action-status" class="mt-2 text-xs text-[#5f6d82] dark:text-[#d4cebf]"></div>
               </div>
             </div>
           </div>
@@ -165,52 +175,35 @@ export default class StudioView {
     `
   }
 
-  private workflowStep(number: string, title: string, copy: string) {
+  private renderReviewTab(label: string, state: string, count: number, selected: boolean) {
     return `
-      <div class="border border-[#e5e2d9] dark:border-[#3f3b33] p-3 bg-[#fbfaf7] dark:bg-[#181713]">
-        <div class="flex items-center gap-2">
-          <span class="grid place-items-center size-7 rounded-full bg-[#1f1d1a] text-white dark:bg-white dark:text-[#111] text-xs font-bold">${number}</span>
-          <div class="text-sm font-bold text-[#111] dark:text-white">${title}</div>
-        </div>
-        <div class="mt-2 text-xs leading-relaxed text-[#5f5a52] dark:text-[#d4cebf]">${copy}</div>
-      </div>
-    `
-  }
-
-  private renderQueueGroup(state: QueueState, items: ReviewItem[], selectedKey: string) {
-    const groupItems = items.filter(item => item.queueState === state)
-
-    return `
-      <section class="border-b border-[#e5e2d9] dark:border-[#3f3b33]" data-queue-section="${state}">
-        <div class="sticky top-0 z-10 bg-[#f1efea] dark:bg-[#1f1d1a] px-3 py-2 flex items-center justify-between gap-2">
-          <h2 class="text-xs uppercase tracking-[1px] font-bold text-[#3f3b33] dark:text-[#d4cebf]">${state}</h2>
-          <span class="text-[11px] px-2 py-0.5 rounded-full bg-white dark:bg-[#2a2924] text-[#3f3b33] dark:text-[#e8e4d9]">${groupItems.length}</span>
-        </div>
-        <div class="grid">
-          ${groupItems.length > 0 ? groupItems.map(item => this.renderQueueItem(item, selectedKey)).join('') : `
-            <div class="p-3 text-sm text-[#5f5a52] dark:text-[#d4cebf]">${this.emptyCopyForState(state)}</div>
-          `}
-        </div>
-      </section>
+      <button type="button"
+        class="min-h-12 px-3 border-b sm:border-b-0 sm:border-r last:border-r-0 border-[#e5eaf2] dark:border-[#3f3b33] text-sm font-semibold ${selected ? 'text-[#2563eb] bg-[#eef5ff] dark:bg-[#1f1d2a] dark:text-[#c3d1ff]' : 'text-[#5f6d82] dark:text-[#d4cebf]'}"
+        data-review-filter="${this.escapeAttr(state)}"
+        aria-selected="${selected ? 'true' : 'false'}">
+        ${this.escape(label)}
+        <span class="ml-1 text-[11px] opacity-70">${count}</span>
+      </button>
     `
   }
 
   private renderQueueItem(item: ReviewItem, selectedKey: string) {
     const key = this.reviewKey(item)
     return `
-      <button type="button" class="studio-review-card text-left p-3 border-l-4 border-b border-[#e5e2d9] dark:border-[#3f3b33] bg-white dark:bg-[#181713] hover:bg-[#f8f7f4] dark:hover:bg-[#1f1d1a]"
+      <button type="button" class="studio-review-card text-left p-4 border-l-4 border-transparent bg-white dark:bg-[#181713] hover:bg-[#f8fbff] dark:hover:bg-[#1f1d1a]"
         data-review-card
         data-review-key="${this.escapeAttr(key)}"
+        data-queue-state="${this.escapeAttr(item.queueState)}"
         aria-pressed="${key === selectedKey ? 'true' : 'false'}">
         <div class="flex items-start justify-between gap-2">
           <div>
-            <div class="font-semibold text-sm text-[#111] dark:text-white">${this.escape(item.entryName)}</div>
-            <div class="text-xs text-[#5f5a52] dark:text-[#d4cebf]">${this.escape(item.mapTitle)} / ${this.escape(item.city)}</div>
+            <div class="font-semibold text-sm text-[#172033] dark:text-white">${this.escape(item.entryName)}</div>
+            <div class="text-xs text-[#5f6d82] dark:text-[#d4cebf]">${this.escape(item.mapTitle)} / ${this.escape(item.city)}</div>
           </div>
-          <div class="text-[11px] px-2 py-0.5 rounded bg-[#1f1d1a] text-white dark:bg-white dark:text-[#111]">${item.priorityScore}</div>
+          <div class="text-[11px] px-2 py-0.5 rounded-full bg-[#2563eb] text-white">${item.priorityScore}</div>
         </div>
         <div class="mt-2 flex flex-wrap gap-1">
-          ${item.issues.slice(0, 3).map(issue => `<span class="text-[11px] px-2 py-0.5 rounded bg-[#f1efea] dark:bg-[#2a2924] text-[#2c2a27] dark:text-[#e8e4d9]">${this.escape(this.formatIssueLabel(item, issue))}</span>`).join('')}
+          ${item.issues.slice(0, 3).map(issue => `<span class="text-[11px] px-2 py-0.5 rounded-full bg-[#edf4ff] dark:bg-[#2a2924] text-[#243044] dark:text-[#e8e4d9]">${this.escape(this.formatIssueLabel(item, issue))}</span>`).join('')}
         </div>
       </button>
     `
@@ -400,6 +393,7 @@ export default class StudioView {
     const clearButton = container.querySelector('[data-clear-payload]') as HTMLButtonElement | null
     const cards = Array.from(container.querySelectorAll('[data-review-card]')) as HTMLElement[]
     const previews = Array.from(container.querySelectorAll('[data-review-preview]')) as HTMLElement[]
+    const filters = Array.from(container.querySelectorAll('[data-review-filter]')) as HTMLElement[]
 
     const setPayload = (text: string, empty = false) => {
       if (payload) {
@@ -419,9 +413,25 @@ export default class StudioView {
       setPayload('Choose a next-stage action from the selected preview.', true)
     }
 
+    const applyFilter = (state: string) => {
+      filters.forEach(filter => filter.setAttribute('aria-selected', filter.dataset.reviewFilter === state ? 'true' : 'false'))
+      cards.forEach(card => {
+        card.hidden = state !== 'all' && card.dataset.queueState !== state
+      })
+
+      const visibleCard = cards.find(card => !card.hidden)
+      if (visibleCard?.dataset.reviewKey) selectReview(visibleCard.dataset.reviewKey)
+    }
+
     cards.forEach(card => {
       card.addEventListener('click', () => {
         if (card.dataset.reviewKey) selectReview(card.dataset.reviewKey)
+      })
+    })
+
+    filters.forEach(filter => {
+      filter.addEventListener('click', () => {
+        applyFilter(filter.dataset.reviewFilter || 'all')
       })
     })
 
@@ -494,12 +504,6 @@ export default class StudioView {
         No queued entry is selected.
       </div>
     `
-  }
-
-  private emptyCopyForState(state: QueueState) {
-    if (state === 'Needs Photo Review') return 'No visual review items in this slice.'
-    if (state === 'Refinement Requested') return 'No refinement items in this slice.'
-    return 'No verification items in this slice.'
   }
 
   private primaryReason(item: ReviewItem) {

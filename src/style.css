@@ -130,13 +130,32 @@ body {
 }
 
 .studio-review-card[aria-pressed="true"] {
-  border-left-color: #1f1d1a;
-  background: #f1efea;
+  border-left-color: #2563eb;
+  background: #eef5ff;
 }
 
 .dark .studio-review-card[aria-pressed="true"] {
-  border-left-color: #f4f1e9;
+  border-left-color: #c3d1ff;
   background: #24221d;
+}
+
+.studio-review-card[hidden] {
+  display: none;
+}
+
+.studio-review-card,
+[data-review-filter] {
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+[data-review-filter][aria-selected="true"] {
+  background: #eef5ff;
+  color: #2563eb;
+}
+
+.dark [data-review-filter][aria-selected="true"] {
+  background: #1f1d2a;
+  color: #c3d1ff;
 }
 
 .studio-review-preview[hidden] {
