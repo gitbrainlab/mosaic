@@ -1,0 +1,337 @@
+{
+  "wave": "ice-cream-quality-recovery-wave-1",
+  "generatedAt": "2026-05-29T02:27:49.370Z",
+  "sourceInput": "public/data/enrichment/ice-cream-nationwide-albany-radial-rejected-candidates.json",
+  "sourceBatch": "batches/ice-cream-quality-recovery-wave-1.json",
+  "status": "prompt_pack_only",
+  "publicPromotionAllowed": false,
+  "selectedCount": 12,
+  "selectedCandidates": [
+    {
+      "id": "chocolate-bar-albany",
+      "name": "The Chocolate Bar",
+      "location": {
+        "address": "196 Lark St",
+        "city": "Albany",
+        "region": "NY",
+        "country": "USA",
+        "lat": 42.6528,
+        "lng": -73.7665
+      },
+      "confidence": "high",
+      "reasons": [
+        "missing_verified_real_product_photos"
+      ],
+      "evidenceCount": 2,
+      "photoCount": 0,
+      "photoBriefCount": 2,
+      "enrichmentRequired": [
+        "verify current operation and exact street address",
+        "remove if it is primarily a convenience store, gas station, or generic chain",
+        "add 2 or more source-attributed real product photos from the actual location",
+        "add recent 2023-2026 evidence with source URLs",
+        "replace broad town coordinates with address-level coordinates"
+      ]
+    },
+    {
+      "id": "cure-albany",
+      "name": "Cure",
+      "location": {
+        "address": "233 Lark St",
+        "city": "Albany",
+        "region": "NY",
+        "country": "USA",
+        "lat": 42.6552,
+        "lng": -73.7648
+      },
+      "confidence": "high",
+      "reasons": [
+        "missing_verified_real_product_photos",
+        "thin_evidence"
+      ],
+      "evidenceCount": 1,
+      "photoCount": 0,
+      "photoBriefCount": 1,
+      "enrichmentRequired": [
+        "verify current operation and exact street address",
+        "remove if it is primarily a convenience store, gas station, or generic chain",
+        "add 2 or more source-attributed real product photos from the actual location",
+        "add recent 2023-2026 evidence with source URLs",
+        "replace broad town coordinates with address-level coordinates"
+      ]
+    },
+    {
+      "id": "hofmanns-hot-haus-albany",
+      "name": "Hofmann's Hot Haus",
+      "location": {
+        "address": "370 N Pearl St",
+        "city": "Albany",
+        "region": "NY",
+        "country": "USA",
+        "lat": 42.6624,
+        "lng": -73.7498
+      },
+      "confidence": "high",
+      "reasons": [
+        "missing_verified_real_product_photos",
+        "no_recent_2023_2026_signal",
+        "thin_evidence"
+      ],
+      "evidenceCount": 1,
+      "photoCount": 0,
+      "photoBriefCount": 1,
+      "enrichmentRequired": [
+        "verify current operation and exact street address",
+        "remove if it is primarily a convenience store, gas station, or generic chain",
+        "add 2 or more source-attributed real product photos from the actual location",
+        "add recent 2023-2026 evidence with source URLs",
+        "replace broad town coordinates with address-level coordinates"
+      ]
+    },
+    {
+      "id": "cure-ice-cream-troy",
+      "name": "Cure Ice Cream",
+      "location": {
+        "address": "66 3rd St",
+        "city": "Troy",
+        "region": "NY",
+        "country": "USA",
+        "lat": 42.7318,
+        "lng": -73.6905
+      },
+      "confidence": "high",
+      "reasons": [
+        "missing_verified_real_product_photos"
+      ],
+      "evidenceCount": 3,
+      "photoCount": 0,
+      "photoBriefCount": 2,
+      "enrichmentRequired": [
+        "verify current operation and exact street address",
+        "remove if it is primarily a convenience store, gas station, or generic chain",
+        "add 2 or more source-attributed real product photos from the actual location",
+        "add recent 2023-2026 evidence with source URLs",
+        "replace broad town coordinates with address-level coordinates"
+      ]
+    },
+    {
+      "id": "lickety-splits-ice-cream-troy",
+      "name": "Lickety Splits Ice Cream",
+      "location": {
+        "address": "42 2nd St",
+        "city": "Troy",
+        "region": "NY",
+        "country": "USA",
+        "lat": 42.7319,
+        "lng": -73.6921
+      },
+      "confidence": "high",
+      "reasons": [
+        "missing_verified_real_product_photos"
+      ],
+      "evidenceCount": 3,
+      "photoCount": 0,
+      "photoBriefCount": 1,
+      "enrichmentRequired": [
+        "verify current operation and exact street address",
+        "remove if it is primarily a convenience store, gas station, or generic chain",
+        "add 2 or more source-attributed real product photos from the actual location",
+        "add recent 2023-2026 evidence with source URLs",
+        "replace broad town coordinates with address-level coordinates"
+      ]
+    },
+    {
+      "id": "snowman-ice-cream-troy",
+      "name": "Snowman Ice Cream",
+      "location": {
+        "address": "531 5th Ave",
+        "city": "Troy",
+        "region": "NY",
+        "country": "USA",
+        "lat": 42.7392,
+        "lng": -73.6765
+      },
+      "confidence": "high",
+      "reasons": [
+        "missing_verified_real_product_photos"
+      ],
+      "evidenceCount": 3,
+      "photoCount": 0,
+      "photoBriefCount": 2,
+      "enrichmentRequired": [
+        "verify current operation and exact street address",
+        "remove if it is primarily a convenience store, gas station, or generic chain",
+        "add 2 or more source-attributed real product photos from the actual location",
+        "add recent 2023-2026 evidence with source URLs",
+        "replace broad town coordinates with address-level coordinates"
+      ]
+    },
+    {
+      "id": "hoffmans-ice-cream-cliftonpark",
+      "name": "Hoffman's Ice Cream",
+      "location": {
+        "address": "1702 US-9",
+        "city": "Clifton Park",
+        "region": "NY",
+        "country": "United States",
+        "lat": 42.8654,
+        "lng": -73.7698
+      },
+      "confidence": "high",
+      "reasons": [
+        "missing_verified_real_product_photos",
+        "thin_evidence"
+      ],
+      "evidenceCount": 1,
+      "photoCount": 0,
+      "photoBriefCount": 1,
+      "enrichmentRequired": [
+        "verify current operation and exact street address",
+        "remove if it is primarily a convenience store, gas station, or generic chain",
+        "add 2 or more source-attributed real product photos from the actual location",
+        "add recent 2023-2026 evidence with source URLs",
+        "replace broad town coordinates with address-level coordinates"
+      ]
+    },
+    {
+      "id": "candy-kitchen-ballston-spa",
+      "name": "The Candy Kitchen",
+      "location": {
+        "address": "1-3 Front Street",
+        "city": "Ballston Spa",
+        "region": "NY",
+        "country": "USA",
+        "lat": 42.9989,
+        "lng": -73.8492
+      },
+      "confidence": "high",
+      "reasons": [
+        "missing_verified_real_product_photos",
+        "no_recent_2023_2026_signal"
+      ],
+      "evidenceCount": 2,
+      "photoCount": 0,
+      "photoBriefCount": 1,
+      "enrichmentRequired": [
+        "verify current operation and exact street address",
+        "remove if it is primarily a convenience store, gas station, or generic chain",
+        "add 2 or more source-attributed real product photos from the actual location",
+        "add recent 2023-2026 evidence with source URLs",
+        "replace broad town coordinates with address-level coordinates"
+      ]
+    },
+    {
+      "id": "marthas-dandee-cream-ballston-spa",
+      "name": "Martha's Dandee Cream",
+      "location": {
+        "address": "1130 NY-50",
+        "city": "Ballston Spa",
+        "region": "NY",
+        "country": "USA",
+        "lat": 43.0004,
+        "lng": -73.8521
+      },
+      "confidence": "high",
+      "reasons": [
+        "missing_verified_real_product_photos",
+        "no_recent_2023_2026_signal"
+      ],
+      "evidenceCount": 2,
+      "photoCount": 0,
+      "photoBriefCount": 1,
+      "enrichmentRequired": [
+        "verify current operation and exact street address",
+        "remove if it is primarily a convenience store, gas station, or generic chain",
+        "add 2 or more source-attributed real product photos from the actual location",
+        "add recent 2023-2026 evidence with source URLs",
+        "replace broad town coordinates with address-level coordinates"
+      ]
+    },
+    {
+      "id": "sweet-sues-phoenicia",
+      "name": "Sweet Sue's Restaurant",
+      "location": {
+        "address": "49 Main St",
+        "city": "Phoenicia",
+        "region": "NY",
+        "country": "United States",
+        "lat": 42.0753,
+        "lng": -74.3147
+      },
+      "confidence": "high",
+      "reasons": [
+        "missing_verified_real_product_photos",
+        "thin_evidence"
+      ],
+      "evidenceCount": 1,
+      "photoCount": 0,
+      "photoBriefCount": 1,
+      "enrichmentRequired": [
+        "verify current operation and exact street address",
+        "remove if it is primarily a convenience store, gas station, or generic chain",
+        "add 2 or more source-attributed real product photos from the actual location",
+        "add recent 2023-2026 evidence with source URLs",
+        "replace broad town coordinates with address-level coordinates"
+      ]
+    },
+    {
+      "id": "janes-homemade-ice-cream-kingston",
+      "name": "Jane's Homemade Ice Cream",
+      "location": {
+        "address": "307 Wall Street",
+        "city": "Kingston",
+        "region": "NY",
+        "country": "United States",
+        "lat": 41.9339,
+        "lng": -74.0193
+      },
+      "confidence": "high",
+      "reasons": [
+        "missing_verified_real_product_photos"
+      ],
+      "evidenceCount": 2,
+      "photoCount": 0,
+      "photoBriefCount": 1,
+      "enrichmentRequired": [
+        "verify current operation and exact street address",
+        "remove if it is primarily a convenience store, gas station, or generic chain",
+        "add 2 or more source-attributed real product photos from the actual location",
+        "add recent 2023-2026 evidence with source URLs",
+        "replace broad town coordinates with address-level coordinates"
+      ]
+    },
+    {
+      "id": "morano-gelato-lenox",
+      "name": "Morano Gelato",
+      "location": {
+        "address": "89 Church St",
+        "city": "Lenox",
+        "region": "MA",
+        "country": "United States",
+        "lat": 42.3583,
+        "lng": -73.2847
+      },
+      "confidence": "high",
+      "reasons": [
+        "missing_verified_real_product_photos",
+        "thin_evidence"
+      ],
+      "evidenceCount": 1,
+      "photoCount": 0,
+      "photoBriefCount": 1,
+      "enrichmentRequired": [
+        "verify current operation and exact street address",
+        "remove if it is primarily a convenience store, gas station, or generic chain",
+        "add 2 or more source-attributed real product photos from the actual location",
+        "add recent 2023-2026 evidence with source URLs",
+        "replace broad town coordinates with address-level coordinates"
+      ]
+    }
+  ],
+  "executionAdvice": {
+    "whereToRun": "Run the deep research inside this repo in a parallel Codex/GPT/Grok window, writing only data/enrichment-runs artifacts until reviewed.",
+    "firstCommand": "npx tsx scripts/enrich-candidates.ts --input=public/data/enrichment/ice-cream-nationwide-albany-radial-rejected-candidates.json --batch=batches/ice-cream-quality-recovery-wave-1.json --limit=12",
+    "promotionGate": "Do not edit public/data/maps/*/entries.json until every passed candidate has exact address, address-level coordinates, current evidence, and at least two source-attributed real product photos."
+  },
+  "deepResearchPrompt": "You are running a Mosaic deep-enrichment recovery wave.\n\nMap intent:\nExceptional independent ice cream, gelato, frozen custard, soft serve, and frozen dessert shops that can pass Mosaic public-quality validation\n\nYour task is to prove which candidates are safe to publish, not to maximize count.\n\nHard pass requirements for every public candidate:\n1. Exact street address, not town-only, area-only, \"multiple locations\", or ambiguous locations.\n2. Address-level latitude/longitude matching that exact address.\n3. Current 2023-2026 signal that the business operates and serves ice cream/frozen dessert.\n4. Product specificity: ice cream, gelato, frozen custard, soft serve, paletas, shave ice, sorbet, cones, sundaes, or a directly relevant frozen dessert.\n5. At least two source-attributed real product photos from the actual business/location.\n6. Reject stock photos, storefronts, logos, parking lots, generic menu icons, and placeholder photo briefs.\n7. Reject convenience-store/gas-station/generic-chain filler unless a later map intent explicitly asks for chains.\n\nResearch method:\n- Check official site/menu first for address and product.\n- Check official Instagram/Facebook for current product photos.\n- Check local food press and recent reviews for current operation and relevance.\n- Use Google/Yelp/Maps-like ecosystems only as verification/discovery where appropriate; prefer official or source-attributed URLs in the final evidence.\n- Record failed candidates as carefully as passed candidates.\n\nCandidates to investigate:\n\n1. The Chocolate Bar\n   candidateId: chocolate-bar-albany\n   currentLocation: 196 Lark St, Albany, NY, USA\n   currentCoords: 42.6528, -73.7665\n   knownIssues: missing_verified_real_product_photos\n   requiredFixes: verify current operation and exact street address; remove if it is primarily a convenience store, gas station, or generic chain; add 2 or more source-attributed real product photos from the actual location; add recent 2023-2026 evidence with source URLs; replace broad town coordinates with address-level coordinates\n   searchQueries:\n     - \"The Chocolate Bar\" Albany NY official ice cream menu address\n     - \"The Chocolate Bar\" Albany NY Instagram ice cream cone sundae scoop\n     - \"The Chocolate Bar\" Albany NY Facebook ice cream photos\n     - \"The Chocolate Bar\" Albany NY Google reviews ice cream photos 2025\n     - \"The Chocolate Bar\" Albany NY gluten free cone OR gluten-free cone\n\n2. Cure\n   candidateId: cure-albany\n   currentLocation: 233 Lark St, Albany, NY, USA\n   currentCoords: 42.6552, -73.7648\n   knownIssues: missing_verified_real_product_photos, thin_evidence\n   requiredFixes: verify current operation and exact street address; remove if it is primarily a convenience store, gas station, or generic chain; add 2 or more source-attributed real product photos from the actual location; add recent 2023-2026 evidence with source URLs; replace broad town coordinates with address-level coordinates\n   searchQueries:\n     - \"Cure\" Albany NY official ice cream menu address\n     - \"Cure\" Albany NY Instagram ice cream cone sundae scoop\n     - \"Cure\" Albany NY Facebook ice cream photos\n     - \"Cure\" Albany NY Google reviews ice cream photos 2025\n     - \"Cure\" Albany NY gluten free cone OR gluten-free cone\n\n3. Hofmann's Hot Haus\n   candidateId: hofmanns-hot-haus-albany\n   currentLocation: 370 N Pearl St, Albany, NY, USA\n   currentCoords: 42.6624, -73.7498\n   knownIssues: missing_verified_real_product_photos, no_recent_2023_2026_signal, thin_evidence\n   requiredFixes: verify current operation and exact street address; remove if it is primarily a convenience store, gas station, or generic chain; add 2 or more source-attributed real product photos from the actual location; add recent 2023-2026 evidence with source URLs; replace broad town coordinates with address-level coordinates\n   searchQueries:\n     - \"Hofmann's Hot Haus\" Albany NY official ice cream menu address\n     - \"Hofmann's Hot Haus\" Albany NY Instagram ice cream cone sundae scoop\n     - \"Hofmann's Hot Haus\" Albany NY Facebook ice cream photos\n     - \"Hofmann's Hot Haus\" Albany NY Google reviews ice cream photos 2025\n     - \"Hofmann's Hot Haus\" Albany NY gluten free cone OR gluten-free cone\n\n4. Cure Ice Cream\n   candidateId: cure-ice-cream-troy\n   currentLocation: 66 3rd St, Troy, NY, USA\n   currentCoords: 42.7318, -73.6905\n   knownIssues: missing_verified_real_product_photos\n   requiredFixes: verify current operation and exact street address; remove if it is primarily a convenience store, gas station, or generic chain; add 2 or more source-attributed real product photos from the actual location; add recent 2023-2026 evidence with source URLs; replace broad town coordinates with address-level coordinates\n   searchQueries:\n     - \"Cure Ice Cream\" Troy NY official ice cream menu address\n     - \"Cure Ice Cream\" Troy NY Instagram ice cream cone sundae scoop\n     - \"Cure Ice Cream\" Troy NY Facebook ice cream photos\n     - \"Cure Ice Cream\" Troy NY Google reviews ice cream photos 2025\n     - \"Cure Ice Cream\" Troy NY gluten free cone OR gluten-free cone\n\n5. Lickety Splits Ice Cream\n   candidateId: lickety-splits-ice-cream-troy\n   currentLocation: 42 2nd St, Troy, NY, USA\n   currentCoords: 42.7319, -73.6921\n   knownIssues: missing_verified_real_product_photos\n   requiredFixes: verify current operation and exact street address; remove if it is primarily a convenience store, gas station, or generic chain; add 2 or more source-attributed real product photos from the actual location; add recent 2023-2026 evidence with source URLs; replace broad town coordinates with address-level coordinates\n   searchQueries:\n     - \"Lickety Splits Ice Cream\" Troy NY official ice cream menu address\n     - \"Lickety Splits Ice Cream\" Troy NY Instagram ice cream cone sundae scoop\n     - \"Lickety Splits Ice Cream\" Troy NY Facebook ice cream photos\n     - \"Lickety Splits Ice Cream\" Troy NY Google reviews ice cream photos 2025\n     - \"Lickety Splits Ice Cream\" Troy NY gluten free cone OR gluten-free cone\n\n6. Snowman Ice Cream\n   candidateId: snowman-ice-cream-troy\n   currentLocation: 531 5th Ave, Troy, NY, USA\n   currentCoords: 42.7392, -73.6765\n   knownIssues: missing_verified_real_product_photos\n   requiredFixes: verify current operation and exact street address; remove if it is primarily a convenience store, gas station, or generic chain; add 2 or more source-attributed real product photos from the actual location; add recent 2023-2026 evidence with source URLs; replace broad town coordinates with address-level coordinates\n   searchQueries:\n     - \"Snowman Ice Cream\" Troy NY official ice cream menu address\n     - \"Snowman Ice Cream\" Troy NY Instagram ice cream cone sundae scoop\n     - \"Snowman Ice Cream\" Troy NY Facebook ice cream photos\n     - \"Snowman Ice Cream\" Troy NY Google reviews ice cream photos 2025\n     - \"Snowman Ice Cream\" Troy NY gluten free cone OR gluten-free cone\n\n7. Hoffman's Ice Cream\n   candidateId: hoffmans-ice-cream-cliftonpark\n   currentLocation: 1702 US-9, Clifton Park, NY, United States\n   currentCoords: 42.8654, -73.7698\n   knownIssues: missing_verified_real_product_photos, thin_evidence\n   requiredFixes: verify current operation and exact street address; remove if it is primarily a convenience store, gas station, or generic chain; add 2 or more source-attributed real product photos from the actual location; add recent 2023-2026 evidence with source URLs; replace broad town coordinates with address-level coordinates\n   searchQueries:\n     - \"Hoffman's Ice Cream\" Clifton Park NY official ice cream menu address\n     - \"Hoffman's Ice Cream\" Clifton Park NY Instagram ice cream cone sundae scoop\n     - \"Hoffman's Ice Cream\" Clifton Park NY Facebook ice cream photos\n     - \"Hoffman's Ice Cream\" Clifton Park NY Google reviews ice cream photos 2025\n     - \"Hoffman's Ice Cream\" Clifton Park NY gluten free cone OR gluten-free cone\n\n8. The Candy Kitchen\n   candidateId: candy-kitchen-ballston-spa\n   currentLocation: 1-3 Front Street, Ballston Spa, NY, USA\n   currentCoords: 42.9989, -73.8492\n   knownIssues: missing_verified_real_product_photos, no_recent_2023_2026_signal\n   requiredFixes: verify current operation and exact street address; remove if it is primarily a convenience store, gas station, or generic chain; add 2 or more source-attributed real product photos from the actual location; add recent 2023-2026 evidence with source URLs; replace broad town coordinates with address-level coordinates\n   searchQueries:\n     - \"The Candy Kitchen\" Ballston Spa NY official ice cream menu address\n     - \"The Candy Kitchen\" Ballston Spa NY Instagram ice cream cone sundae scoop\n     - \"The Candy Kitchen\" Ballston Spa NY Facebook ice cream photos\n     - \"The Candy Kitchen\" Ballston Spa NY Google reviews ice cream photos 2025\n     - \"The Candy Kitchen\" Ballston Spa NY gluten free cone OR gluten-free cone\n\n9. Martha's Dandee Cream\n   candidateId: marthas-dandee-cream-ballston-spa\n   currentLocation: 1130 NY-50, Ballston Spa, NY, USA\n   currentCoords: 43.0004, -73.8521\n   knownIssues: missing_verified_real_product_photos, no_recent_2023_2026_signal\n   requiredFixes: verify current operation and exact street address; remove if it is primarily a convenience store, gas station, or generic chain; add 2 or more source-attributed real product photos from the actual location; add recent 2023-2026 evidence with source URLs; replace broad town coordinates with address-level coordinates\n   searchQueries:\n     - \"Martha's Dandee Cream\" Ballston Spa NY official ice cream menu address\n     - \"Martha's Dandee Cream\" Ballston Spa NY Instagram ice cream cone sundae scoop\n     - \"Martha's Dandee Cream\" Ballston Spa NY Facebook ice cream photos\n     - \"Martha's Dandee Cream\" Ballston Spa NY Google reviews ice cream photos 2025\n     - \"Martha's Dandee Cream\" Ballston Spa NY gluten free cone OR gluten-free cone\n\n10. Sweet Sue's Restaurant\n   candidateId: sweet-sues-phoenicia\n   currentLocation: 49 Main St, Phoenicia, NY, United States\n   currentCoords: 42.0753, -74.3147\n   knownIssues: missing_verified_real_product_photos, thin_evidence\n   requiredFixes: verify current operation and exact street address; remove if it is primarily a convenience store, gas station, or generic chain; add 2 or more source-attributed real product photos from the actual location; add recent 2023-2026 evidence with source URLs; replace broad town coordinates with address-level coordinates\n   searchQueries:\n     - \"Sweet Sue's Restaurant\" Phoenicia NY official ice cream menu address\n     - \"Sweet Sue's Restaurant\" Phoenicia NY Instagram ice cream cone sundae scoop\n     - \"Sweet Sue's Restaurant\" Phoenicia NY Facebook ice cream photos\n     - \"Sweet Sue's Restaurant\" Phoenicia NY Google reviews ice cream photos 2025\n     - \"Sweet Sue's Restaurant\" Phoenicia NY gluten free cone OR gluten-free cone\n\n11. Jane's Homemade Ice Cream\n   candidateId: janes-homemade-ice-cream-kingston\n   currentLocation: 307 Wall Street, Kingston, NY, United States\n   currentCoords: 41.9339, -74.0193\n   knownIssues: missing_verified_real_product_photos\n   requiredFixes: verify current operation and exact street address; remove if it is primarily a convenience store, gas station, or generic chain; add 2 or more source-attributed real product photos from the actual location; add recent 2023-2026 evidence with source URLs; replace broad town coordinates with address-level coordinates\n   searchQueries:\n     - \"Jane's Homemade Ice Cream\" Kingston NY official ice cream menu address\n     - \"Jane's Homemade Ice Cream\" Kingston NY Instagram ice cream cone sundae scoop\n     - \"Jane's Homemade Ice Cream\" Kingston NY Facebook ice cream photos\n     - \"Jane's Homemade Ice Cream\" Kingston NY Google reviews ice cream photos 2025\n     - \"Jane's Homemade Ice Cream\" Kingston NY gluten free cone OR gluten-free cone\n\n12. Morano Gelato\n   candidateId: morano-gelato-lenox\n   currentLocation: 89 Church St, Lenox, MA, United States\n   currentCoords: 42.3583, -73.2847\n   knownIssues: missing_verified_real_product_photos, thin_evidence\n   requiredFixes: verify current operation and exact street address; remove if it is primarily a convenience store, gas station, or generic chain; add 2 or more source-attributed real product photos from the actual location; add recent 2023-2026 evidence with source URLs; replace broad town coordinates with address-level coordinates\n   searchQueries:\n     - \"Morano Gelato\" Lenox MA official ice cream menu address\n     - \"Morano Gelato\" Lenox MA Instagram ice cream cone sundae scoop\n     - \"Morano Gelato\" Lenox MA Facebook ice cream photos\n     - \"Morano Gelato\" Lenox MA Google reviews ice cream photos 2025\n     - \"Morano Gelato\" Lenox MA gluten free cone OR gluten-free cone\n\nReturn only valid JSON in this exact shape:\n{\n  \"wave\": \"ice-cream-quality-recovery-wave-1\",\n  \"generatedAt\": \"ISO timestamp\",\n  \"passed\": [\n    {\n      \"id\": \"stable-slug\",\n      \"name\": \"Exact business name\",\n      \"location\": {\n        \"address\": \"Exact street address\",\n        \"city\": \"City\",\n        \"region\": \"NY\",\n        \"country\": \"USA\",\n        \"lat\": 0,\n        \"lng\": 0\n      },\n      \"description\": \"Factual 1-3 sentence explanation of why this belongs.\",\n      \"confidence\": \"high|medium|low\",\n      \"evidence\": [\n        {\n          \"type\": \"menu|review|photo|article|other\",\n          \"source\": \"Source name\",\n          \"url\": \"https://...\",\n          \"detail\": \"What this source proves\",\n          \"date\": \"YYYY or YYYY-MM-DD\"\n        }\n      ],\n      \"sources\": [\"https://...\"],\n      \"photos\": [\n        {\n          \"url\": \"https://...\",\n          \"caption\": \"What real product is visible and why it is archetypal\",\n          \"credit\": \"Source attribution\",\n          \"type\": \"product\"\n        }\n      ],\n      \"photoEvidence\": [\n        {\n          \"url\": \"https://...\",\n          \"caption\": \"What real product is visible\",\n          \"credit\": \"Source attribution\",\n          \"verified\": true\n        }\n      ],\n      \"tags\": [\"ice_cream\", \"address_level\", \"real_product_photos\"],\n      \"attributes\": {\n        \"lastVerified\": \"YYYY-MM-DD\",\n        \"currentSignal\": \"What proves it is current\",\n        \"photoPolicy\": \"real product photos only\"\n      }\n    }\n  ],\n  \"rejected\": [\n    {\n      \"candidateId\": \"original id if available\",\n      \"name\": \"Candidate name\",\n      \"reasons\": [\n        \"missing_verified_product_photos\",\n        \"not_address_level\",\n        \"stale_or_closed\",\n        \"blocked_chain_or_convenience_store\",\n        \"product_relevance_unproven\"\n      ],\n      \"notes\": \"What was checked and what failed.\",\n      \"nextBestAction\": \"Specific action needed to reconsider.\"\n    }\n  ],\n  \"openQuestions\": []\n}"
+}
