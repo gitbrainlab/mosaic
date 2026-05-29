@@ -207,3 +207,36 @@ Build a `scripts/enrich-candidates.ts` orchestrator that:
 - Promotes only entries that pass manifest validation.
 
 Do not attempt a 300-entry public push in one step. Target 10-20 verified promotions per wave.
+
+## Current Local Runner
+
+The first runner now exists:
+
+```bash
+npx tsx scripts/enrich-candidates.ts \
+  --input=public/data/enrichment/ice-cream-nationwide-albany-radial-rejected-candidates.json \
+  --batch=batches/ice-cream-quality-recovery-wave-1.json \
+  --limit=12
+```
+
+It writes a prompt-pack artifact into `data/enrichment-runs/` and marks it `publicPromotionAllowed: false`.
+
+After a deep research pass returns concrete `passed[]` entries with source URLs, run the browser verifier:
+
+```bash
+npx tsx scripts/verify-enrichment-sources.ts \
+  --input=data/enrichment-runs/{deep-research-result}.json \
+  --limit=10 \
+  --max-urls=4
+```
+
+For smoke-testing the verifier against already curated data:
+
+```bash
+npx tsx scripts/verify-enrichment-sources.ts \
+  --input=public/data/maps/ice-cream-nationwide-albany-radial/entries.json \
+  --limit=2 \
+  --max-urls=3
+```
+
+The verifier writes `*-source-verification.json` artifacts with address snippets, product snippets, current-operation signals, social links, and scored image candidates. These artifacts are supporting evidence only; they do not promote public map entries.
