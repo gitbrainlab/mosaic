@@ -31,13 +31,13 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: VITE_BASE_PATH=/mosaic/v2/ npm run build
+        run: VITE_BASE_PATH=/mosaic/v3/ npm run build
 
-      - name: Prepare v2 Pages artifact
+      - name: Prepare v3 Pages artifact
         run: |
           rm -rf pages
-          mkdir -p pages/v2
-          cp -R dist/. pages/v2/
+          mkdir -p pages/v3
+          cp -R dist/. pages/v3/
           cp dist/404.html pages/404.html
 
       - name: Setup Pages

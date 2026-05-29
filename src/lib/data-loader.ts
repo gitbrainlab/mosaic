@@ -31,6 +31,23 @@ interface ResearchBatchIndex {
   }>;
 }
 
+interface EnrichmentBacklogIndex {
+  generatedAt: string;
+  totalMaps: number;
+  totalFlaggedEntries: number;
+  issueTypes: string[];
+  backlog: Array<{
+    mapSlug: string;
+    mapTitle: string;
+    entryId: string;
+    entryName: string;
+    city: string;
+    confidence: string;
+    priorityScore: number;
+    issues: string[];
+  }>;
+}
+
 // ============================================
 // Internal Cache (in-memory for the session)
 // ============================================
@@ -177,6 +194,26 @@ export async function loadResearchBatch(file: string): Promise<LoaderResult<Rese
     return { data, state: 'loaded' };
   } catch (err) {
     const message = err instanceof Error ? err.message : `Failed to load research batch ${file}`;
+    return { data: null, state: 'error', error: message };
+  }
+}
+
+export async function loadEnrichmentBacklog(): Promise<LoaderResult<EnrichmentBacklogIndex>> {
+  const key = getCacheKey('data/enrichment/verification-index.json');
+
+  if (cache.has(key)) {
+    return {
+      data: cache.get(key) as EnrichmentBacklogIndex,
+      state: 'loaded',
+    };
+  }
+
+  try {
+    const data = await fetchJson<EnrichmentBacklogIndex>('data/enrichment/verification-index.json');
+    cache.set(key, data);
+    return { data, state: 'loaded' };
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Unknown error loading enrichment backlog';
     return { data: null, state: 'error', error: message };
   }
 }

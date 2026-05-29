@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Mosaic Agentic Panel Feedback",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "reviewId",
+    "agentId",
+    "expertId",
+    "baseUrl",
+    "summary",
+    "findings",
+    "implementationGuidance",
+    "playwrightExpectations"
+  ],
+  "properties": {
+    "reviewId": {
+      "type": "string",
+      "description": "The artifact run id or report id being reviewed."
+    },
+    "agentId": {
+      "type": "string",
+      "description": "The reviewing agent or reviewer identifier."
+    },
+    "expertId": {
+      "type": "string",
+      "description": "One of the expert ids from tests/agentic-review/config.ts."
+    },
+    "baseUrl": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string",
+      "description": "Short overall judgment from this expert lens."
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["severity", "journeyId", "viewport", "title", "evidence", "recommendation"],
+        "properties": {
+          "severity": {
+            "type": "string",
+            "enum": ["blocker", "high", "medium", "low", "note"]
+          },
+          "journeyId": {
+            "type": "string"
+          },
+          "viewport": {
+            "type": "string",
+            "description": "Project or viewport where the issue was observed."
+          },
+          "title": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string",
+            "description": "Screenshot, DOM snapshot, route, or observed behavior."
+          },
+          "recommendation": {
+            "type": "string"
+          },
+          "acceptanceCriteria": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "implementationGuidance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["area", "guidance"],
+        "properties": {
+          "area": {
+            "type": "string"
+          },
+          "guidance": {
+            "type": "string"
+          },
+          "staticDataShape": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    "playwrightExpectations": {
+      "type": "array",
+      "description": "Suggested hard or soft expectations to add back into the journey config.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["journeyId", "selectorOrProbe", "expectation"],
+        "properties": {
+          "journeyId": {
+            "type": "string"
+          },
+          "selectorOrProbe": {
+            "type": "string"
+          },
+          "expectation": {
+            "type": "string"
+          },
+          "severityIfFailed": {
+            "type": "string",
+            "enum": ["blocker", "high", "medium", "low", "note"]
+          }
+        }
+      }
+    }
+  }
+}

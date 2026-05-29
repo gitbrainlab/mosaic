@@ -107,3 +107,24 @@ body {
 #app.mosaic-route-map #main-content {
   max-width: none;
 }
+
+#app.mosaic-route-map .maplibregl-ctrl button {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+#app.mosaic-route-map .maplibregl-ctrl-group {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  #app.mosaic-route-map .maplibregl-ctrl-group {
+    background: #1a1916;
+    border: 1px solid #3f3b33;
+  }
+
+  #app.mosaic-route-map .maplibregl-ctrl button {
+    background-color: #1a1916;
+  }
+}
