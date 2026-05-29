@@ -80,6 +80,7 @@ export class BottomSheet {
     if (this.options.showHandle) {
       const handle = document.createElement('div');
       handle.className = 'w-10 h-1.5 bg-[#8a8178]/40 rounded-full mb-2';
+      handle.dataset.component = 'bottom-sheet-handle';
       header.appendChild(handle);
     }
 
@@ -110,16 +111,17 @@ export class BottomSheet {
     this.el.appendChild(header);
     this.el.appendChild(this.content);
 
-    // Drag to dismiss (simple version)
-    this.setupDragToClose(header);
+    this.setupDragSnapping(header);
   }
 
-  private setupDragToClose(handle: HTMLElement) {
+  private setupDragSnapping(handle: HTMLElement) {
     let startY = 0;
+    let startHeight = 0;
 
     const onPointerDown = (e: PointerEvent) => {
       if (e.button !== 0) return;
       startY = e.clientY;
+      startHeight = this.el.getBoundingClientRect().height;
       this.dragDeltaY = 0;
       this.el.style.transition = 'none';
       handle.setPointerCapture?.(e.pointerId);
@@ -128,19 +130,24 @@ export class BottomSheet {
     };
 
     const onPointerMove = (e: PointerEvent) => {
-      this.dragDeltaY = Math.max(0, e.clientY - startY);
-      this.el.style.transform = `translateY(${this.dragDeltaY}px)`;
+      this.dragDeltaY = e.clientY - startY;
+      const minHeight = this.getSnapHeight('peek');
+      const maxHeight = this.getSnapHeight('full');
+      const nextHeight = Math.max(minHeight, Math.min(maxHeight, startHeight - this.dragDeltaY));
+
+      this.el.style.height = `${nextHeight}px`;
+      this.el.style.transform = 'translateY(0px)';
     };
 
     const onPointerUp = () => {
       document.removeEventListener('pointermove', onPointerMove);
-      this.el.style.transition = 'transform 200ms ease-out';
+      this.el.style.transition = 'height 200ms ease-out, transform 200ms ease-out';
 
-      const threshold = this.getViewportHeight() * 0.18;
-      if (this.dragDeltaY > threshold && this.options.dismissible) {
+      const closeThreshold = this.getViewportHeight() * 0.16;
+      if (this.currentSnap === 'peek' && this.dragDeltaY > closeThreshold && this.options.dismissible) {
         this.close();
       } else {
-        this.snapTo(this.currentSnap);
+        this.snapTo(this.getTargetSnap(this.dragDeltaY));
       }
 
       this.dragDeltaY = 0;
@@ -164,19 +171,9 @@ export class BottomSheet {
 
   snapTo(snap: SheetSnap) {
     this.currentSnap = snap;
-    const vh = this.getViewportHeight();
-
-    // snapPoints represent the fraction of viewport the sheet should occupy from the bottom
-    let fraction: number;
-    if (snap === 'peek') fraction = this.options.snapPoints?.[0] || 0.22;
-    else if (snap === 'half') fraction = this.options.snapPoints?.[1] || 0.56;
-    else fraction = this.options.snapPoints?.[2] || 0.94;
-
-    // Snap points define how much viewport height the sheet occupies.
-    const requestedHeight = Math.round(vh * fraction);
-    const minHeight = snap === 'peek' ? Math.min(220, Math.round(vh * 0.34)) : Math.min(320, Math.round(vh * 0.7));
+    this.updateViewportInsets();
     const maxHeight = this.getMaxSheetHeight();
-    const height = Math.max(120, Math.min(maxHeight, Math.max(minHeight, requestedHeight)));
+    const height = this.getSnapHeight(snap);
 
     this.el.style.maxHeight = `${maxHeight}px`;
     this.el.style.height = `${height}px`;
@@ -235,6 +232,51 @@ export class BottomSheet {
     const vh = this.getViewportHeight();
     const topGuard = window.innerWidth < 768 ? 88 : 72;
     return Math.max(220, vh - topGuard);
+  }
+
+  private updateViewportInsets() {
+    const viewport = window.visualViewport;
+    const bottomGuard = viewport
+      ? Math.max(0, Math.round(window.innerHeight - viewport.height - viewport.offsetTop))
+      : 0;
+
+    this.el.style.setProperty('--sheet-bottom-guard', `${bottomGuard}px`);
+    this.el.style.paddingBottom = 'calc(env(safe-area-inset-bottom, 0px) + var(--sheet-bottom-guard))';
+    this.content.style.paddingBottom = 'calc(1.5rem + env(safe-area-inset-bottom, 0px) + var(--sheet-bottom-guard))';
+  }
+
+  private getSnapFraction(snap: SheetSnap) {
+    if (snap === 'peek') return this.options.snapPoints?.[0] || 0.22;
+    if (snap === 'half') return this.options.snapPoints?.[1] || 0.56;
+    return this.options.snapPoints?.[2] || 0.94;
+  }
+
+  private getSnapHeight(snap: SheetSnap) {
+    const vh = this.getViewportHeight();
+    const requestedHeight = Math.round(vh * this.getSnapFraction(snap));
+    const minHeight = snap === 'peek' ? Math.min(220, Math.round(vh * 0.34)) : Math.min(320, Math.round(vh * 0.7));
+    const maxHeight = this.getMaxSheetHeight();
+
+    return Math.max(120, Math.min(maxHeight, Math.max(minHeight, requestedHeight)));
+  }
+
+  private getTargetSnap(deltaY: number): SheetSnap {
+    const snaps: SheetSnap[] = ['peek', 'half', 'full'];
+    const currentIndex = snaps.indexOf(this.currentSnap);
+    const threshold = 42;
+
+    if (deltaY < -threshold) {
+      return snaps[Math.min(snaps.length - 1, currentIndex + 1)];
+    }
+
+    if (deltaY > threshold) {
+      return snaps[Math.max(0, currentIndex - 1)];
+    }
+
+    const currentHeight = this.el.getBoundingClientRect().height;
+    return snaps
+      .map(snap => ({ snap, distance: Math.abs(this.getSnapHeight(snap) - currentHeight) }))
+      .sort((a, b) => a.distance - b.distance)[0].snap;
   }
 
   private bindViewportListeners() {

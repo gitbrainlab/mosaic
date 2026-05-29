@@ -144,6 +144,22 @@ async function assertDesktopGeometry(page: Page) {
   expect(geometry.panelTop).toBeLessThan(geometry.viewportHeight);
 }
 
+async function dragSheetHandle(page: Page, deltaY: number) {
+  const handle = page.locator('[data-component="bottom-sheet-handle"]').first();
+  await expect(handle).toBeVisible();
+  const box = await handle.boundingBox();
+  expect(box).not.toBeNull();
+  if (!box) return;
+
+  const x = box.x + box.width / 2;
+  const y = box.y + box.height / 2;
+  await page.mouse.move(x, y);
+  await page.mouse.down();
+  await page.mouse.move(x, y + deltaY, { steps: 10 });
+  await page.mouse.up();
+  await page.waitForTimeout(300);
+}
+
 test.describe('@responsive map viewport regression', () => {
   for (const viewportCase of mobileViewports) {
     test(`mobile detail stays responsive through rotation on ${viewportCase.name}`, async ({ page }, testInfo) => {
@@ -207,5 +223,31 @@ test.describe('@responsive map viewport regression', () => {
     await page.waitForTimeout(500);
     await expect(page.locator('[data-component="bottom-sheet"]')).toHaveCount(1);
     await expect(page.getByRole('button', { name: /Next nearby/i })).toBeVisible();
+  });
+
+  test('mobile detail sheet expands through half and full snaps by dragging upward', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'mobile-light', 'Sheet drag regression runs once.');
+
+    await page.setViewportSize({ width: 390, height: 844 });
+    await gotoSelectedEntry(page);
+
+    const sheet = page.locator('[data-component="bottom-sheet"]').first();
+    const peek = await sheet.boundingBox();
+    expect(peek).not.toBeNull();
+    if (!peek) return;
+
+    await dragSheetHandle(page, -260);
+    const half = await sheet.boundingBox();
+    expect(half).not.toBeNull();
+    if (!half) return;
+    expect(half.height).toBeGreaterThan(peek.height + 160);
+    expect(half.y).toBeLessThan(peek.y - 120);
+
+    await dragSheetHandle(page, -280);
+    const full = await sheet.boundingBox();
+    expect(full).not.toBeNull();
+    if (!full) return;
+    expect(full.height).toBeGreaterThan(half.height + 160);
+    expect(full.y).toBeLessThan(120);
   });
 });
