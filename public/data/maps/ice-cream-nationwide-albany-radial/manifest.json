@@ -1,15 +1,15 @@
 {
   "slug": "ice-cream-nationwide-albany-radial",
-  "title": "Ice Cream Nationwide - Albany Radial 300",
-  "tagline": "A 300-stop nationwide ice cream research atlas, centered on Albany and fanning outward",
-  "version": "0.9.0",
-  "totalEntries": 300,
+  "title": "Ice Cream Nationwide - Verified Albany Radial Seed",
+  "tagline": "Verified address-level ice cream entries with current evidence and real product photos; 300-candidate expansion backlog retained for enrichment",
+  "version": "1.0.0",
+  "totalEntries": 7,
   "lastUpdated": "2026-05-29",
   "defaultCenter": [
-    42.6526,
-    -73.7562
+    42.85,
+    -73.78
   ],
-  "defaultZoom": 3,
+  "defaultZoom": 9,
   "filterFields": [
     "city",
     "confidence"
@@ -18,76 +18,46 @@
     "entries.json"
   ],
   "intent": {
-    "statement": "Build a nationwide ice cream atlas that starts with Albany and expands outward by radial distance while preserving rich product detail, evidence, coordinates, and photo-sourcing briefs.",
-    "scope": "United States ice cream, gelato, frozen custard, soft serve, paletas, shave ice, and regional frozen dessert shops. Entry ordering and ring metadata prioritize Albany outward expansion.",
-    "photoPolicy": "Do not use stock or generic images. This wave stores photo-sourcing briefs and only displays photos when source-attributed real product imagery is available from the actual place."
+    "statement": "Build a nationwide ice cream atlas outward from Albany, but only publish entries once they have precise location data, recent relevance, and real product-photo evidence.",
+    "scope": "Public entries must be independent or destination-worthy frozen dessert places with exact street addresses, current evidence, and verified real product photos. The 300-entry target remains a research backlog, not a public-quality claim.",
+    "photoPolicy": "No stock images, no generic storefronts, no placeholder photo briefs in the public map. Display only source-attributed real product photos from the actual place."
   },
   "intentHistory": [
     {
-      "changedAt": "2026-05-29T01:23:45.305Z",
+      "changedAt": "2026-05-29T02:10:04.667Z",
       "author": "codex",
-      "summary": "Aggregated 483 raw ice-cream research profiles into 450 deduped candidates, then selected a 300-entry Albany-radial nationwide atlas with photo-sourcing status metadata."
+      "summary": "Applied strict quality gate after review found town-level pins, convenience-store entries, stale evidence, and placeholder-only photos in the 300-candidate wave."
     }
   ],
   "validation": {
     "coordinateBounds": {
-      "minLat": 19.217,
-      "maxLat": 65.335,
-      "minLng": -160.088,
-      "maxLng": -67.7039
-    }
+      "minLat": 42.441499,
+      "maxLat": 43.302959,
+      "minLng": -74.048973,
+      "maxLng": -73.474558
+    },
+    "requireStreetAddress": true,
+    "requireVerifiedProductPhotos": true,
+    "requireRecentSignalSince": 2023,
+    "blockedNamePatterns": [
+      "Stewart's",
+      "Dairy Queen",
+      "Carvel",
+      "Cold Stone",
+      "Baskin",
+      "Friendly's",
+      "Sonic",
+      "McDonald's",
+      "Culver's",
+      "Shake Shack"
+    ]
   },
   "research": {
-    "sourceAggregate": "data/imports/ice-cream-nationwide-albany-radial-aggregate.json",
-    "rawEntriesBeforeDedup": 483,
-    "uniqueEntriesAfterDedup": 450,
-    "selectedEntries": 300,
-    "selection": [
-      {
-        "ring": "Albany core and immediate Capital Region",
-        "distanceMiles": "0-50",
-        "targetQuota": 60
-      },
-      {
-        "ring": "Capital Region outer ring and near Northeast",
-        "distanceMiles": "50-150",
-        "targetQuota": 55
-      },
-      {
-        "ring": "Regional Northeast day-trip ring",
-        "distanceMiles": "150-300",
-        "targetQuota": 50
-      },
-      {
-        "ring": "Northeast and Mid-Atlantic extension",
-        "distanceMiles": "300-600",
-        "targetQuota": 25
-      },
-      {
-        "ring": "Eastern US fan-out",
-        "distanceMiles": "600-1000",
-        "targetQuota": 35
-      },
-      {
-        "ring": "Midwest and South fan-out",
-        "distanceMiles": "1000-1600",
-        "targetQuota": 30
-      },
-      {
-        "ring": "Rockies and Plains fan-out",
-        "distanceMiles": "1600-2400",
-        "targetQuota": 25
-      },
-      {
-        "ring": "West Coast and Pacific fan-out",
-        "distanceMiles": "2400-4000",
-        "targetQuota": 15
-      },
-      {
-        "ring": "Non-contiguous US fan-out",
-        "distanceMiles": "4000-10000",
-        "targetQuota": 5
-      }
-    ]
+    "publicQualityStatus": "verified_seed_only",
+    "targetEntries": 300,
+    "previousCandidateCount": 300,
+    "publishedVerifiedEntries": 7,
+    "rejectedCandidateBacklog": "public/data/enrichment/ice-cream-nationwide-albany-radial-rejected-candidates.json",
+    "restorationRule": "Only promote candidates back into entries.json after passing the validation gates in this manifest."
   }
 }

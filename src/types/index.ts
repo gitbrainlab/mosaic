@@ -63,6 +63,18 @@ export interface KnowledgeEntry {
   added?: string;        // ISO date
   lastVerified?: string; // ISO date
   notes?: string;
+
+  // Optional richer enrichment metadata used by advanced research indexes.
+  sources?: string[];
+  photoEvidence?: Array<{
+    url: string;
+    caption?: string;
+    credit?: string;
+    verified?: boolean;
+  }>;
+  discoveryDate?: string;
+  historicalContext?: string;
+  classification?: Record<string, string | number | boolean>;
 }
 
 // ============================================
@@ -87,6 +99,20 @@ export interface MapManifest {
   // Progressive loading contract (Phase 1 = single file)
   chunks: string[]; // e.g. ["entries.json"]
 
+  // Why this map exists and what curators are trying to preserve.
+  intent?: {
+    statement: string;
+    scope?: string;
+    photoPolicy?: string;
+  };
+
+  // Durable audit trail of intent changes over time.
+  intentHistory?: Array<{
+    changedAt: string; // ISO datetime
+    author: string;
+    summary: string;
+  }>;
+
   // Optional data-quality guardrails for localized maps.
   validation?: {
     coordinateBounds?: {
@@ -95,6 +121,10 @@ export interface MapManifest {
       minLng: number;
       maxLng: number;
     };
+    requireStreetAddress?: boolean;
+    requireVerifiedProductPhotos?: boolean;
+    requireRecentSignalSince?: number;
+    blockedNamePatterns?: string[];
   };
 }
 

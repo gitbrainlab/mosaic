@@ -22,8 +22,22 @@ interface Manifest {
   title: string;
   totalEntries: number;
   chunks: string[];
+  intent?: {
+    statement?: string;
+    scope?: string;
+    photoPolicy?: string;
+  };
+  intentHistory?: Array<{
+    changedAt: string;
+    author: string;
+    summary: string;
+  }>;
   validation?: {
     coordinateBounds?: CoordinateBounds;
+    requireStreetAddress?: boolean;
+    requireVerifiedProductPhotos?: boolean;
+    requireRecentSignalSince?: number;
+    blockedNamePatterns?: string[];
   };
 }
 
@@ -68,6 +82,32 @@ function validatePhotoUrl(url: string, entriesFile: string, slug: string): strin
   return `photo file missing: ${url}`;
 }
 
+function hasPreciseStreetAddress(address: unknown): boolean {
+  if (typeof address !== 'string' || address.length < 5) return false;
+  if (!/\d/.test(address)) return false;
+  return !/(multiple|area|unknown|city center|downtown|various|including|nearby|tbd)/i.test(address);
+}
+
+function hasVerifiedProductPhotos(entry: any): boolean {
+  const photos = Array.isArray(entry?.photos) ? entry.photos : [];
+  const verifiedPhotoEvidence = Array.isArray(entry?.photoEvidence)
+    ? entry.photoEvidence.filter((photo: any) => photo?.verified)
+    : [];
+  return photos.length > 0 && verifiedPhotoEvidence.length > 0;
+}
+
+function hasRecentSignal(entry: any, sinceYear: number): boolean {
+  const haystack = JSON.stringify({
+    evidence: entry?.evidence,
+    added: entry?.added,
+    lastVerified: entry?.lastVerified,
+    attributes: entry?.attributes,
+  });
+
+  const years = haystack.match(/20\d{2}/g) || [];
+  return years.some(year => Number(year) >= sinceYear);
+}
+
 let totalErrors = 0;
 
 for (const file of files) {
@@ -101,6 +141,16 @@ for (const file of files) {
         console.error(`  BAD: manifest chunk missing: ${chunk}`);
         errors++;
       }
+    }
+
+    if (!manifest.intent?.statement || !manifest.intent?.scope || !manifest.intent?.photoPolicy) {
+      console.error('  BAD: manifest intent must include statement, scope, and photoPolicy');
+      errors++;
+    }
+
+    if (!Array.isArray(manifest.intentHistory) || manifest.intentHistory.length === 0) {
+      console.error('  BAD: manifest intentHistory must include at least one change record');
+      errors++;
     }
   }
 
@@ -156,6 +206,29 @@ for (const file of files) {
     if (bounds && !inBounds(lat, lng, bounds)) {
       console.error(`  BAD: ${label} (${location.city || 'unknown city'}) outside ${slug} coordinate bounds`);
       errors++;
+    }
+
+    if (manifest?.validation?.requireStreetAddress && !hasPreciseStreetAddress(location.address)) {
+      console.error(`  BAD: ${label} needs a precise street address`);
+      errors++;
+    }
+
+    if (manifest?.validation?.requireVerifiedProductPhotos && !hasVerifiedProductPhotos(entry)) {
+      console.error(`  BAD: ${label} needs verified real product photos`);
+      errors++;
+    }
+
+    if (manifest?.validation?.requireRecentSignalSince &&
+      !hasRecentSignal(entry, manifest.validation.requireRecentSignalSince)) {
+      console.error(`  BAD: ${label} needs evidence or metadata from ${manifest.validation.requireRecentSignalSince} or later`);
+      errors++;
+    }
+
+    for (const pattern of manifest?.validation?.blockedNamePatterns || []) {
+      if (new RegExp(pattern, 'i').test(entry.name)) {
+        console.error(`  BAD: ${label} matches blocked name pattern ${pattern}`);
+        errors++;
+      }
     }
 
     for (const photo of entry.photos || []) {

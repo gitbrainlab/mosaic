@@ -1,13 +1,13 @@
 {
   "version": 1,
-  "lastUpdated": "2026-05-28",
+  "lastUpdated": "2026-05-29",
   "maps": [
     {
       "slug": "ice-cream-nationwide-albany-radial",
-      "title": "Ice Cream Nationwide - Albany Radial 300",
-      "tagline": "A 300-stop nationwide ice cream research atlas, centered on Albany and fanning outward",
-      "entryCount": 300,
-      "lastUpdated": "2026-05-28"
+      "title": "Ice Cream Nationwide - Verified Albany Radial Seed",
+      "tagline": "Verified address-level ice cream entries with current evidence and real product photos; 300-candidate expansion backlog retained for enrichment",
+      "entryCount": 7,
+      "lastUpdated": "2026-05-29"
     },
     {
       "slug": "gluten-free-cone-ice-cream-capital-region",
