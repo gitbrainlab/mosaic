@@ -1,0 +1,31 @@
+{
+  "wave": "ice-cream-quality-recovery-wave-1",
+  "baseTopic": "Exceptional independent ice cream, gelato, frozen custard, soft serve, and frozen dessert shops that can pass Mosaic public-quality validation",
+  "description": "Small recovery wave after the 300-candidate nationwide map was quality-gated. This wave is intentionally narrow: find entries near Albany and the surrounding Northeast that can be promoted only with exact addresses, current 2023-2026 evidence, and verified real product photos from the actual place.",
+  "perLocationLimit": 4,
+  "models": [
+    "grok-4.3"
+  ],
+  "targets": [
+    {
+      "name": "Albany-Verified-Recovery",
+      "location": "Albany, Delmar, Guilderland, Colonie, Latham, Rensselaer, and Cohoes, New York. Exclude Stewart's Shops, Dairy Queen, Carvel, Cold Stone, Baskin-Robbins, Friendly's, Sonic, McDonald's, Culver's, Shake Shack, and other convenience-store or generic-chain entries. Promote only exact street-address places with current evidence and real product photos."
+    },
+    {
+      "name": "Troy-Schenectady-Verified-Recovery",
+      "location": "Troy, Watervliet, Green Island, Schenectady, Scotia, Rotterdam, Niskayuna, and surrounding Capital Region towns, New York. Exclude convenience stores and generic chains. Promote only candidates with exact street address, current 2023-2026 operation signal, and verified real product photos."
+    },
+    {
+      "name": "Saratoga-Lake-George-Verified-Recovery",
+      "location": "Saratoga Springs, Ballston Spa, Clifton Park, Wilton, Glens Falls, Queensbury, and Lake George, New York. Exclude generic chains. Promote only destination-worthy independent frozen dessert places with exact address, current product evidence, and real product photos."
+    },
+    {
+      "name": "Hudson-Valley-Catskills-Verified-Recovery",
+      "location": "Hudson, Kingston, Rhinebeck, New Paltz, Woodstock, Phoenicia, Catskill, and nearby Hudson Valley or Catskills towns. Exclude generic chains. Promote only exact-address places with recent evidence and verified product photos."
+    },
+    {
+      "name": "Berkshires-Western-Mass-Verified-Recovery",
+      "location": "Pittsfield, Lenox, Great Barrington, North Adams, Williamstown, Stockbridge, Northampton, Amherst, and nearby Western Massachusetts towns. Exclude generic chains. Promote only exact-address places with current evidence and verified product photos."
+    }
+  ]
+}
