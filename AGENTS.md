@@ -50,6 +50,8 @@ All changes must pass the local test suite before being pushed or merged:
 
 New research data **must** pass `validate-map-coordinates.ts` before being committed (the validator is wired into `npm test` and will be enforced in CI).
 
+Public atlas entries must not be promoted from research candidates unless they meet the map's declared validation contract. For quality-gated maps, this means exact street-level addresses, current/recent evidence, no convenience-store or generic-chain filler, and verified real product photos from the actual place. Placeholder photo briefs belong in enrichment backlogs, not public `entries.json`.
+
 See `.github/PUSH_AND_TEST_PLAN.md` for the full model of how testing integrates with GitHub push, Pages deployment, and research agent workflows.
 
 ## Phase Awareness
