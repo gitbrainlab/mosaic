@@ -1,0 +1,962 @@
+{
+  "generatedAt": "2026-05-29T02:36:27.161Z",
+  "sourceInput": "public/data/maps/ice-cream-nationwide-albany-radial/entries.json",
+  "status": "verification_artifact_only",
+  "publicPromotionAllowed": false,
+  "entriesConsidered": 2,
+  "targetCount": 6,
+  "verifications": [
+    {
+      "entryId": "saratoga-gelato-saratoga-springs-ny",
+      "entryName": "Saratoga Gelato",
+      "expectedAddress": "458 Broadway",
+      "expectedCity": "Saratoga Springs",
+      "expectedRegion": "NY",
+      "url": "https://www.saratogagelato.com/",
+      "sourceKind": "source",
+      "startedAt": "2026-05-29T02:36:27.306Z",
+      "loaded": true,
+      "finalUrl": "https://www.saratogagelato.com/",
+      "title": "Saratoga Gelato | Authentic Italian Gelato in Saratoga Springs",
+      "canonicalUrl": null,
+      "metaDescription": "Taste the Tradition of Saratoga. Authentic Italian gelato in the heart of Saratoga Springs.",
+      "addressSignals": [
+        {
+          "term": "458 Broadway",
+          "text": "Chocolate Hazelnut Mint Chip Follow Us on Instagram Visit Us Open in Google Maps Address: 458 Broadway, Saratoga Springs, New York Phone: 518-691-6000 Your Party, Our Passion Fill out the form below to get a quote for your event. Full Name* P"
+        },
+        {
+          "term": "Saratoga Springs",
+          "text": "Online ▼ Taste the Tradition of Saratoga Gelato Authentic Italian Gelato, in the heart of Saratoga Springs Weddings • Private Celebrations • Corporate Events • Restaurants Visit Us Today Book Your Event Order Online ▼ Saratoga Gelato The Capital "
+        }
+      ],
+      "productSignals": [
+        {
+          "term": "gelato",
+          "text": "We're Open! Come say hi. Saratoga Gelato Home Flavors Instagram Visit Us Your Party, Our Passion Newsletter Contact Order Online ▼ Taste the Tradition of Saratoga Gelato Authentic "
+        },
+        {
+          "term": "scoop",
+          "text": "batch creation is rich, creamy, and bursting with flavor — a true taste of Italy in every scoop. We are pleased to offer a selection that is completely gluten-free, along with a variety of delicious dairy-free options. Just strolling d"
+        },
+        {
+          "term": "sorbet",
+          "text": "reat your guests will savor — and remember. Our Flavors Stracciatella Pistachio Raspberry Sorbet Salted Caramel Tiramisu Lemon Sorbet Chocolate Hazelnut Mint Chip Follow Us on Instagram Visit Us Open in Google Maps Address: 458 Broadway"
+        },
+        {
+          "term": "gluten-free",
+          "text": "rue taste of Italy in every scoop. We are pleased to offer a selection that is completely gluten-free, along with a variety of delicious dairy-free options. Just strolling down Broadway, or hosting an event? Our gelato delivers an unforgetta"
+        }
+      ],
+      "currentSignals": [
+        {
+          "term": "2026",
+          "text": "scribe Contact Us Full Name* Email* Phone Message* Send Message Copyright Saratoga Gelato 2026. All rights reserved. Employment Application"
+        },
+        {
+          "term": "order online",
+          "text": "aratoga Gelato Home Flavors Instagram Visit Us Your Party, Our Passion Newsletter Contact Order Online ▼ Taste the Tradition of Saratoga Gelato Authentic Italian Gelato, in the heart of Saratoga Springs Weddings • Private Celebrations • Corpo"
+        },
+        {
+          "term": "open",
+          "text": "We're Open! Come say hi. Saratoga Gelato Home Flavors Instagram Visit Us Your Party, Our Passion Newsletter Contact Order Online ▼ Taste the Tradition"
+        }
+      ],
+      "socialLinks": [],
+      "photoCandidates": [
+        {
+          "url": "https://www.saratogagelato.com/images/raspberry.jpg",
+          "alt": "Raspberry Sorbet",
+          "nearbyText": "Raspberry Sorbet",
+          "width": 310,
+          "height": 325,
+          "matchedProductTerms": [
+            "gelato",
+            "sorbet"
+          ],
+          "score": 5,
+          "rejectReason": null
+        },
+        {
+          "url": "https://www.saratogagelato.com/images/lemon.jpg",
+          "alt": "Lemon Sorbet",
+          "nearbyText": "Lemon Sorbet",
+          "width": 311,
+          "height": 324,
+          "matchedProductTerms": [
+            "gelato",
+            "sorbet"
+          ],
+          "score": 5,
+          "rejectReason": null
+        },
+        {
+          "url": "https://www.saratogagelato.com/images/gelato-logo.png",
+          "alt": "Saratoga Gelato Logo",
+          "nearbyText": "Saratoga Gelato",
+          "width": 800,
+          "height": 800,
+          "matchedProductTerms": [
+            "gelato"
+          ],
+          "score": 3,
+          "rejectReason": "reject_term:logo"
+        },
+        {
+          "url": "https://www.saratogagelato.com/images/stracciatella.jpg",
+          "alt": "Stracciatella",
+          "nearbyText": "Stracciatella",
+          "width": 313,
+          "height": 310,
+          "matchedProductTerms": [
+            "gelato"
+          ],
+          "score": 3,
+          "rejectReason": null
+        },
+        {
+          "url": "https://www.saratogagelato.com/images/pistachio.jpg",
+          "alt": "Pistachio",
+          "nearbyText": "Pistachio",
+          "width": 307,
+          "height": 312,
+          "matchedProductTerms": [
+            "gelato"
+          ],
+          "score": 3,
+          "rejectReason": null
+        },
+        {
+          "url": "https://www.saratogagelato.com/images/salted-caramel.jpg",
+          "alt": "Salted Caramel",
+          "nearbyText": "Salted Caramel",
+          "width": 311,
+          "height": 311,
+          "matchedProductTerms": [
+            "gelato"
+          ],
+          "score": 3,
+          "rejectReason": null
+        },
+        {
+          "url": "https://www.saratogagelato.com/images/tiramisu.jpg",
+          "alt": "Tiramisu",
+          "nearbyText": "Tiramisu",
+          "width": 306,
+          "height": 325,
+          "matchedProductTerms": [
+            "gelato"
+          ],
+          "score": 3,
+          "rejectReason": null
+        },
+        {
+          "url": "https://www.saratogagelato.com/images/chocolate.jpg",
+          "alt": "Chocolate Hazelnut",
+          "nearbyText": "Chocolate Hazelnut",
+          "width": 477,
+          "height": 419,
+          "matchedProductTerms": [
+            "gelato"
+          ],
+          "score": 3,
+          "rejectReason": null
+        },
+        {
+          "url": "https://www.saratogagelato.com/images/mint.jpg",
+          "alt": "Mint Chip",
+          "nearbyText": "Mint Chip",
+          "width": 476,
+          "height": 417,
+          "matchedProductTerms": [
+            "gelato"
+          ],
+          "score": 3,
+          "rejectReason": null
+        }
+      ],
+      "errors": [],
+      "status": 200,
+      "completedAt": "2026-05-29T02:36:57.921Z"
+    },
+    {
+      "entryId": "saratoga-gelato-saratoga-springs-ny",
+      "entryName": "Saratoga Gelato",
+      "expectedAddress": "458 Broadway",
+      "expectedCity": "Saratoga Springs",
+      "expectedRegion": "NY",
+      "url": "https://www.atly.com/gluten-free/location/SaratogaGelato",
+      "sourceKind": "source",
+      "startedAt": "2026-05-29T02:36:58.674Z",
+      "loaded": true,
+      "finalUrl": "https://www.atly.com/gluten-free/location/SaratogaGelato",
+      "title": "Saratoga Gelato - Gluten-Free Restaurant in Saratoga Springs",
+      "canonicalUrl": "https://www.atly.com/gluten-free/location/SaratogaGelato",
+      "metaDescription": "Cozy gelato shop with gluten-free flavors and gluten-free cones, set to Italian music.",
+      "addressSignals": [
+        {
+          "term": "458 Broadway",
+          "text": "late, milkshakes and more. If you haven't been here you need to go.⭐️⭐️⭐️⭐️⭐️ All reviews 458 Broadway, Saratoga Springs, NY 12866, USA 2.4km Featured in Lists Top 10 Gluten-Free Cafes to Delight in Saratoga Springs Top 7 Gluten-Free Allergen"
+        },
+        {
+          "term": "Saratoga Springs",
+          "text": "es and more. If you haven't been here you need to go.⭐️⭐️⭐️⭐️⭐️ All reviews 458 Broadway, Saratoga Springs, NY 12866, USA 2.4km Featured in Lists Top 10 Gluten-Free Cafes to Delight in Saratoga Springs Top 7 Gluten-Free Allergen-Friendly Spots to"
+        },
+        {
+          "term": "NY",
+          "text": "/10 highly recommend. C Community member The flavors were so good! Love that there were many gluten free flavors and even a gf cone! The birthday cake flavor was very good! Also loved the Italian music! 🍦🍨🇮🇹 C Community member A"
+        }
+      ],
+      "productSignals": [
+        {
+          "term": "ice cream",
+          "text": "Saratoga Gelato Ice cream shop $$ • Accommodating gluten-free Delivery Kid Friendly Take Away Pet Friendly More This charming gelato shop offers a wide selection of "
+        },
+        {
+          "term": "gelato",
+          "text": "Saratoga Gelato Ice cream shop $$ • Accommodating gluten-free Delivery Kid Friendly Take Away Pet Friendly More This charming gelato shop offers a wide sel"
+        },
+        {
+          "term": "cone",
+          "text": "riendly More This charming gelato shop offers a wide selection of gluten-free flavors and cones, ensuring a safe and delightful experience for those with dietary needs. The Venetian atmosphere with Italian music creates a welcoming se"
+        },
+        {
+          "term": "shake",
+          "text": "house. The owner is celiac. They also make coffee, espresso beverages, hot chocolate, milkshakes and more. If you haven't been here you need to go.⭐️⭐️⭐️⭐️⭐️ All reviews 458 Broadway, Saratoga Springs, NY 12866, USA 2.4km Featured in L"
+        },
+        {
+          "term": "milkshake",
+          "text": " in house. The owner is celiac. They also make coffee, espresso beverages, hot chocolate, milkshakes and more. If you haven't been here you need to go.⭐️⭐️⭐️⭐️⭐️ All reviews 458 Broadway, Saratoga Springs, NY 12866, USA 2.4km Featured in L"
+        },
+        {
+          "term": "gluten free",
+          "text": "e saying C Community member This place is awesome for everyone, but especially if you are gluten free!! EVERYTHING in the case is gluten free — all flavors, including the cookies and cream and cookie dough! They have gluten free sugar cones "
+        },
+        {
+          "term": "gluten-free",
+          "text": "Saratoga Gelato Ice cream shop $$ • Accommodating gluten-free Delivery Kid Friendly Take Away Pet Friendly More This charming gelato shop offers a wide selection of gluten-free flavors and cones, ensur"
+        }
+      ],
+      "currentSignals": [
+        {
+          "term": "menu",
+          "text": "ecked by Atly Always inquire directly about health and safety. How do we vet places? View menu Gluten-free options marked People are saying C Community member This place is awesome for everyone, but especially if you are gluten free!!"
+        }
+      ],
+      "socialLinks": [],
+      "photoCandidates": [
+        {
+          "url": "https://www.atly.com/top/gluten-free-static/LogoDarkBlue.svg",
+          "alt": "Atly",
+          "nearbyText": "",
+          "width": 79,
+          "height": 25,
+          "matchedProductTerms": [
+            "gluten-free"
+          ],
+          "score": 2,
+          "rejectReason": "reject_term:logo"
+        },
+        {
+          "url": "https://api.steps.me/v1/imagedashboard/GOOGLE_ChIJObwqPtc53okRjSARPzhoF2U_A7V9MuLC7jc?width=239&height=296&reason=gluten_free_main_image&app_platform=top_ten&app_version=1.0.0.0P&q=80",
+          "alt": "Saratoga Gelato 1",
+          "nearbyText": "",
+          "width": 153,
+          "height": 190,
+          "matchedProductTerms": [
+            "gelato"
+          ],
+          "score": 2,
+          "rejectReason": null
+        },
+        {
+          "url": "https://api.steps.me/v1/imagedashboard/GOOGLE_ChIJObwqPtc53okRjSARPzhoF2U_bm2eaUqc3pZ?width=239&height=296&reason=gluten_free_main_image&app_platform=top_ten&app_version=1.0.0.0P&q=80",
+          "alt": "Saratoga Gelato 2",
+          "nearbyText": "",
+          "width": 153,
+          "height": 190,
+          "matchedProductTerms": [
+            "gelato"
+          ],
+          "score": 2,
+          "rejectReason": null
+        },
+        {
+          "url": "https://api.steps.me/v1/imagedashboard/GOOGLE_ChIJObwqPtc53okRjSARPzhoF2U_ygGkuKEt5rJ?width=239&height=296&reason=gluten_free_main_image&app_platform=top_ten&app_version=1.0.0.0P&q=80",
+          "alt": "Saratoga Gelato 3",
+          "nearbyText": "",
+          "width": 153,
+          "height": 190,
+          "matchedProductTerms": [
+            "gelato"
+          ],
+          "score": 2,
+          "rejectReason": null
+        },
+        {
+          "url": "https://www.atly.com/top/gluten-free-static/accommodating-gf-icon.svg",
+          "alt": "Accommodating Icon",
+          "nearbyText": "",
+          "width": 32,
+          "height": 32,
+          "matchedProductTerms": [
+            "gluten-free"
+          ],
+          "score": 2,
+          "rejectReason": "reject_term:icon"
+        },
+        {
+          "url": "https://www.atly.com/top/gluten-free-static/menu-icon.svg",
+          "alt": "Menu Icon",
+          "nearbyText": "",
+          "width": 32,
+          "height": 32,
+          "matchedProductTerms": [
+            "gluten-free"
+          ],
+          "score": 2,
+          "rejectReason": "reject_term:icon"
+        },
+        {
+          "url": "https://www.atly.com/top/gluten-free-static/Frame%2019630.svg",
+          "alt": "Most reliable Celiac Map",
+          "nearbyText": "",
+          "width": 0,
+          "height": 0,
+          "matchedProductTerms": [
+            "gluten-free"
+          ],
+          "score": 2,
+          "rejectReason": "reject_term:map"
+        },
+        {
+          "url": "https://www.atly.com/top/gluten-free-static/Certificate.png",
+          "alt": "Certificate",
+          "nearbyText": "",
+          "width": 32,
+          "height": 32,
+          "matchedProductTerms": [
+            "gluten-free"
+          ],
+          "score": 2,
+          "rejectReason": "too_small"
+        },
+        {
+          "url": "https://www.atly.com/top/gluten-free-static/Faders.png",
+          "alt": "Advanced Filters",
+          "nearbyText": "",
+          "width": 32,
+          "height": 32,
+          "matchedProductTerms": [
+            "gluten-free"
+          ],
+          "score": 2,
+          "rejectReason": "too_small"
+        },
+        {
+          "url": "https://www.atly.com/top/gluten-free-static/ChatCenteredText.png",
+          "alt": "Celiac Community",
+          "nearbyText": "",
+          "width": 32,
+          "height": 32,
+          "matchedProductTerms": [
+            "gluten-free"
+          ],
+          "score": 2,
+          "rejectReason": "too_small"
+        },
+        {
+          "url": "https://www.atly.com/top/api/static-map?lat=43.082723&lon=-73.784739&size=336x220&sig=ff8d2280024a98a84cafda7300c1f6d8&marker=pin-s%2B002551",
+          "alt": "Map showing 458 Broadway",
+          "nearbyText": "",
+          "width": 452,
+          "height": 204,
+          "matchedProductTerms": [],
+          "score": 1,
+          "rejectReason": "reject_term:map,marker"
+        },
+        {
+          "url": "https://www.atly.com/top/_next/image?url=%2Ftop%2Fimages%2Favatars%2FAvatar%20user-1.png&w=48&q=75",
+          "alt": "User 1",
+          "nearbyText": "",
+          "width": 18,
+          "height": 18,
+          "matchedProductTerms": [],
+          "score": 0,
+          "rejectReason": "reject_term:avatar"
+        }
+      ],
+      "errors": [],
+      "status": 200,
+      "completedAt": "2026-05-29T02:36:59.552Z"
+    },
+    {
+      "entryId": "saratoga-gelato-saratoga-springs-ny",
+      "entryName": "Saratoga Gelato",
+      "expectedAddress": "458 Broadway",
+      "expectedCity": "Saratoga Springs",
+      "expectedRegion": "NY",
+      "url": "https://www.restaurantji.com/ny/saratoga-springs/saratoga-gelato-/",
+      "sourceKind": "source",
+      "startedAt": "2026-05-29T02:37:00.303Z",
+      "loaded": true,
+      "finalUrl": "https://www.restaurantji.com/ny/saratoga-springs/saratoga-gelato-/",
+      "title": "Saratoga Gelato, Saratoga Springs - Menu, Reviews (143), Photos (71) - Restaurantji",
+      "canonicalUrl": "https://www.restaurantji.com/ny/saratoga-springs/saratoga-gelato-/",
+      "metaDescription": "Latest reviews, photos and ratings for Saratoga Gelato at 458 Broadway in Saratoga Springs - view the menu, hours, phone number, address and map.",
+      "addressSignals": [
+        {
+          "term": "458 Broadway",
+          "text": "Find Near SEARCH Saratoga Gelato $$ • Ice Cream, Coffee Shops Hours: 458 Broadway, Saratoga Springs (518) 691-6000 Menu Order Online About Saratoga Gelato Saratoga Gelato is a renowned restaurant known for its exceptional"
+        },
+        {
+          "term": "Saratoga Springs",
+          "text": "Find Near SEARCH Saratoga Gelato $$ • Ice Cream, Coffee Shops Hours: 458 Broadway, Saratoga Springs (518) 691-6000 Menu Order Online About Saratoga Gelato Saratoga Gelato is a renowned restaurant known for its exceptional gelato and coffee"
+        },
+        {
+          "term": "NY",
+          "text": "rse clientele. Customers have raved about the wonderful flavors and great service, with many expressing their intention to return regularly. Customers' Favorites Iced Caramel Macchiato Saratogo Gelato With Gelato To Go Saratoga Gela"
+        }
+      ],
+      "productSignals": [
+        {
+          "term": "ice cream",
+          "text": "Find Near SEARCH Saratoga Gelato $$ • Ice Cream, Coffee Shops Hours: 458 Broadway, Saratoga Springs (518) 691-6000 Menu Order Online About Saratoga Gelato Saratoga Gelato is a renowned re"
+        },
+        {
+          "term": "gelato",
+          "text": "Find Near SEARCH Saratoga Gelato $$ • Ice Cream, Coffee Shops Hours: 458 Broadway, Saratoga Springs (518) 691-6000 Menu Order Online About Saratoga Gelato Saratoga Gelato i"
+        },
+        {
+          "term": "cone",
+          "text": " town. The restaurant offers a variety of dietary-friendly options, including gluten-free cones, catering to the needs of its diverse clientele. Customers have raved about the wonderful flavors and great service, with many expressing "
+        },
+        {
+          "term": "gluten-free",
+          "text": "xploring the town. The restaurant offers a variety of dietary-friendly options, including gluten-free cones, catering to the needs of its diverse clientele. Customers have raved about the wonderful flavors and great service, with many expres"
+        }
+      ],
+      "currentSignals": [
+        {
+          "term": "2026",
+          "text": "merican Market Chick-fil-A Debuts Daybright Coffee Concept in Georgia Updated on: Apr 25, 2026 Cookies help us to deliver our services, provide you with a personalised experience on our websites. Decline Accept Quick Links Add Busines"
+        },
+        {
+          "term": "2024",
+          "text": "6 Atmosphere 4.6 Service 4.5 Share your opinion about Saratoga Gelato Write a review July 2024 So glad we stumbled upon this shop while exploring the town. It was so good we went back for more later in the day. Clean shop, friendly em"
+        },
+        {
+          "term": "2023",
+          "text": " employees, lots of flavors to choose from and so delicious! We’ll be back, for sure! May 2023 The gelatos my husband I had were so delicious! The owner was there and was so nice! We felt as if we known him for years! Place was so pre"
+        },
+        {
+          "term": "hours",
+          "text": "Find Near SEARCH Saratoga Gelato $$ • Ice Cream, Coffee Shops Hours: 458 Broadway, Saratoga Springs (518) 691-6000 Menu Order Online About Saratoga Gelato Saratoga Gelato is a renowned restaurant known for i"
+        },
+        {
+          "term": "menu",
+          "text": " Gelato $$ • Ice Cream, Coffee Shops Hours: 458 Broadway, Saratoga Springs (518) 691-6000 Menu Order Online About Saratoga Gelato Saratoga Gelato is a renowned restaurant known for its exceptional gelato and coffee. The gelato has bee"
+        },
+        {
+          "term": "order online",
+          "text": "to $$ • Ice Cream, Coffee Shops Hours: 458 Broadway, Saratoga Springs (518) 691-6000 Menu Order Online About Saratoga Gelato Saratoga Gelato is a renowned restaurant known for its exceptional gelato and coffee. The gelato has been praised for"
+        },
+        {
+          "term": "open",
+          "text": "ntact Blog Follow Us © 2026 Restaurantji ✖ Get more info in our app Download app for free Open Cookies help us to deliver our services, provide you with a personalised experience on our websites. Decline Accept"
+        }
+      ],
+      "socialLinks": [
+        "https://www.facebook.com/SaratogaGelato/",
+        "https://www.instagram.com/saratogagelato/",
+        "https://www.facebook.com/Restaurantji/",
+        "https://www.instagram.com/restaurantjicom/"
+      ],
+      "photoCandidates": [
+        {
+          "url": "https://cdn6.localdatacdn.com/images/3518365/m_saratoga_gelato_menu.jpg?q=69ed54d7be0f2",
+          "alt": "Saratoga Gelato Menu",
+          "nearbyText": "",
+          "width": 800,
+          "height": 600,
+          "matchedProductTerms": [
+            "gelato"
+          ],
+          "score": 3,
+          "rejectReason": null
+        },
+        {
+          "url": "https://cdn6.localdatacdn.com/images/3518365/m_saratoga_gelato_photo.jpg?q=69ed54d7be0ee",
+          "alt": "Saratoga Gelato",
+          "nearbyText": "",
+          "width": 800,
+          "height": 600,
+          "matchedProductTerms": [
+            "gelato"
+          ],
+          "score": 3,
+          "rejectReason": null
+        },
+        {
+          "url": "https://cdn6.localdatacdn.com/images/3518365/d_saratoga_gelato_menu.jpg?q=69ed54d7be0f9",
+          "alt": "Saratoga Gelato Menu",
+          "nearbyText": "",
+          "width": 147,
+          "height": 20,
+          "matchedProductTerms": [
+            "gelato"
+          ],
+          "score": 2,
+          "rejectReason": "too_small"
+        },
+        {
+          "url": "https://cdn6.localdatacdn.com/images/3518365/d_saratoga_gelato_photo.jpg?q=69ed54d7be0f5",
+          "alt": "Saratoga Gelato",
+          "nearbyText": "",
+          "width": 111,
+          "height": 20,
+          "matchedProductTerms": [
+            "gelato"
+          ],
+          "score": 2,
+          "rejectReason": "too_small"
+        },
+        {
+          "url": "https://www.restaurantji.com/images/linkLogos/hand/color.png",
+          "alt": "",
+          "nearbyText": "✖ Get more info in our app Download app for free Open",
+          "width": 1080,
+          "height": 1080,
+          "matchedProductTerms": [],
+          "score": 1,
+          "rejectReason": "reject_term:logo"
+        },
+        {
+          "url": "https://www.restaurantji.com/images/logo.png",
+          "alt": "",
+          "nearbyText": "",
+          "width": 280,
+          "height": 53,
+          "matchedProductTerms": [],
+          "score": 0,
+          "rejectReason": "reject_term:logo"
+        },
+        {
+          "url": "https://www.restaurantji.com/images/stars/full-img.svg",
+          "alt": "Restaurantji Rating",
+          "nearbyText": "",
+          "width": 69,
+          "height": 55,
+          "matchedProductTerms": [],
+          "score": 0,
+          "rejectReason": "too_small"
+        },
+        {
+          "url": "https://www.restaurantji.com/images/stars/full-img.svg",
+          "alt": "Restaurantji Rating",
+          "nearbyText": "",
+          "width": 69,
+          "height": 55,
+          "matchedProductTerms": [],
+          "score": 0,
+          "rejectReason": "too_small"
+        },
+        {
+          "url": "https://www.restaurantji.com/images/stars/full-img.svg",
+          "alt": "",
+          "nearbyText": "",
+          "width": 88,
+          "height": 16,
+          "matchedProductTerms": [],
+          "score": 0,
+          "rejectReason": "too_small"
+        },
+        {
+          "url": "https://www.restaurantji.com/images/stars/full-img.svg",
+          "alt": "",
+          "nearbyText": "",
+          "width": 88,
+          "height": 16,
+          "matchedProductTerms": [],
+          "score": 0,
+          "rejectReason": "too_small"
+        },
+        {
+          "url": "https://www.restaurantji.com/images/stars/full-img.svg",
+          "alt": "",
+          "nearbyText": "",
+          "width": 88,
+          "height": 16,
+          "matchedProductTerms": [],
+          "score": 0,
+          "rejectReason": "too_small"
+        },
+        {
+          "url": "https://www.restaurantji.com/images/stars/full-img.svg",
+          "alt": "",
+          "nearbyText": "",
+          "width": 88,
+          "height": 16,
+          "matchedProductTerms": [],
+          "score": 0,
+          "rejectReason": "too_small"
+        }
+      ],
+      "errors": [],
+      "status": 200,
+      "completedAt": "2026-05-29T02:37:00.767Z"
+    },
+    {
+      "entryId": "country-drive-in-clifton-park-ny",
+      "entryName": "The Country Drive-In",
+      "expectedAddress": "1455 Crescent Vischer Ferry Rd",
+      "expectedCity": "Clifton Park",
+      "expectedRegion": "NY",
+      "url": "https://www.countrydrive-in.com/ice-cream-menu/",
+      "sourceKind": "source",
+      "startedAt": "2026-05-29T02:37:01.519Z",
+      "loaded": true,
+      "finalUrl": "https://www.countrydrive-in.com/ice-cream-menu/",
+      "title": "Ice Cream Menu – The Country Drive-In",
+      "canonicalUrl": "https://www.countrydrive-in.com/ice-cream-menu/",
+      "metaDescription": "The Country Drive-In has been serving the capital district community for generations. Enjoy our extensive lunch and dinner menu including our famous homemade onion rings. Be sure to leave room for dessert!",
+      "addressSignals": [
+        {
+          "term": "1455 Crescent Vischer Ferry Rd",
+          "text": "DWICH Ice Cream Only $10.99+ QUART Ice Cream $10.99 / Yogurt/Dole $11.59 Country Drive-In 1455 Crescent Vischer Ferry Rd. Clifton Park, NY 12065 TEL: 518-371-3455 Hours: Every Day 11am—8pm Weather Pending GET DIRECTIONS JOIN OUR MAILING LIST Full Name Email (r"
+        },
+        {
+          "term": "Clifton Park",
+          "text": "RT Ice Cream $10.99 / Yogurt/Dole $11.59 Country Drive-In 1455 Crescent Vischer Ferry Rd. Clifton Park, NY 12065 TEL: 518-371-3455 Hours: Every Day 11am—8pm Weather Pending GET DIRECTIONS JOIN OUR MAILING LIST Full Name Email (required) Birth"
+        },
+        {
+          "term": "NY",
+          "text": "10.99 / Yogurt/Dole $11.59 Country Drive-In 1455 Crescent Vischer Ferry Rd. Clifton Park, NY 12065 TEL: 518-371-3455 Hours: Every Day 11am—8pm Weather Pending GET DIRECTIONS JOIN OUR MAILING LIST Full Name Email (required) Birth Mon"
+        }
+      ],
+      "productSignals": [
+        {
+          "term": "ice cream",
+          "text": "FOOD MENU ICE CREAM MENU ORDER ONLINE ABOUT US CONTACT US ICE CREAM MENU Soft Serve Only Special Ice Cream, Yogurt & Non-Fat changes every Wednesday. Sherbet F"
+        },
+        {
+          "term": "soft serve",
+          "text": "FOOD MENU ICE CREAM MENU ORDER ONLINE ABOUT US CONTACT US ICE CREAM MENU Soft Serve Only Special Ice Cream, Yogurt & Non-Fat changes every Wednesday. Sherbet Flavor changes every Thursday / Special Dip changes on Sunday. Gl"
+        },
+        {
+          "term": "sundae",
+          "text": ", Cookie Dough, Cheesecake Bites, Gummy Bears, Peanut Butter Cups, Heath Bar $5.89+ SMALL SUNDAE Ice Cream $5.89 / Yogurt/Dole $6.19 Hot Fudge, Caramel, Strawberry, Pineapple, Chocolate Syrup, Peanut Butter, Fat Free Hot Fudge, Marshmal"
+        },
+        {
+          "term": "cone",
+          "text": "HE WEEK* Raspberry SPECIAL DIP OF THE WEEK *(Yogurt & DOLE whip can be Twisted) Ice Cream Cones & Dishes Kids / Sm. / Med. / Lg. We have Gluten Free Cones! $3.29+ ICE CREAM CONES $3.29 / $3.99 / $4.99 / $5.79 $3.69+ YOGURT CONES $3.69"
+        },
+        {
+          "term": "shake",
+          "text": ", Peanut Butter Cups, Heath Bar Ice Cream Specialties With Ice Cream / With Yogurt $5.89+ SHAKES Ice Cream $5.89 / Yogurt/Dole $6.49 Vanilla, Chocolate, Strawberry, Banana, Pineapple, Oreo, Orange Blossom, Coffee, Mocha. $6.39+ MALTS I"
+        },
+        {
+          "term": "gluten free",
+          "text": "s every Wednesday. Sherbet Flavor changes every Thursday / Special Dip changes on Sunday. Gluten Free Items Standard Flavors All Season Vanilla Chocolate Vanilla & Chocolate Twist Flavors of the Week 5/27-6/2 SPECIAL ICE CREAM FLAVOR OF THE "
+        }
+      ],
+      "currentSignals": [
+        {
+          "term": "2026",
+          "text": "— January February March April May June July August September October November December © 2026 · Country Drive-In. All Rights Reserved."
+        },
+        {
+          "term": "hours",
+          "text": "Country Drive-In 1455 Crescent Vischer Ferry Rd. Clifton Park, NY 12065 TEL: 518-371-3455 Hours: Every Day 11am—8pm Weather Pending GET DIRECTIONS JOIN OUR MAILING LIST Full Name Email (required) Birth Month —Please choose an option— J"
+        },
+        {
+          "term": "menu",
+          "text": "FOOD MENU ICE CREAM MENU ORDER ONLINE ABOUT US CONTACT US ICE CREAM MENU Soft Serve Only Special Ice Cream, Yogurt & Non-Fat changes every Wednesday."
+        },
+        {
+          "term": "order online",
+          "text": "FOOD MENU ICE CREAM MENU ORDER ONLINE ABOUT US CONTACT US ICE CREAM MENU Soft Serve Only Special Ice Cream, Yogurt & Non-Fat changes every Wednesday. Sherbet Flavor changes ever"
+        }
+      ],
+      "socialLinks": [],
+      "photoCandidates": [
+        {
+          "url": "https://pixel.wp.com/g.gif?v=ext&blog=188173306&post=2708&tz=-4&srv=www.countrydrive-in.com&j=1%3A15.6&host=www.countrydrive-in.com&ref=&fcp=760&rand=0.6602927944302057",
+          "alt": "",
+          "nearbyText": "Food Menu Ice Cream Menu Order Online About Us Our History In the News Reviews Employment Contact Us Food Menu Ice Cream Menu Order Online About Us Our History In the News Reviews Employment Contact Us Ice Cream Menu Soft Serve Only Special Ice Cream, Yogurt & Non-Fat changes every Wednesday. Sherbe",
+          "width": 6,
+          "height": 5,
+          "matchedProductTerms": [
+            "ice cream",
+            "soft serve"
+          ],
+          "score": 4,
+          "rejectReason": "reject_term:pixel"
+        },
+        {
+          "url": "https://i0.wp.com/www.countrydrive-in.com/wp-content/uploads/2016/05/menu-item-waffle-cone.jpg?fit=300%2C228&ssl=1",
+          "alt": "",
+          "nearbyText": "",
+          "width": 300,
+          "height": 228,
+          "matchedProductTerms": [
+            "cone"
+          ],
+          "score": 3,
+          "rejectReason": null
+        },
+        {
+          "url": "https://i0.wp.com/www.countrydrive-in.com/wp-content/uploads/2016/05/menu-item-strawberry-sundae.jpg?fit=300%2C228&ssl=1",
+          "alt": "",
+          "nearbyText": "",
+          "width": 300,
+          "height": 228,
+          "matchedProductTerms": [
+            "sundae"
+          ],
+          "score": 3,
+          "rejectReason": null
+        },
+        {
+          "url": "https://i0.wp.com/www.countrydrive-in.com/wp-content/uploads/2016/05/menu-item-rice-crispy-sundae.jpg?fit=300%2C228&ssl=1",
+          "alt": "",
+          "nearbyText": "",
+          "width": 300,
+          "height": 228,
+          "matchedProductTerms": [
+            "sundae"
+          ],
+          "score": 3,
+          "rejectReason": null
+        },
+        {
+          "url": "https://i0.wp.com/www.countrydrive-in.com/wp-content/uploads/2016/05/menu-item-hot-fudge-parfait.jpg?fit=300%2C228&ssl=1",
+          "alt": "",
+          "nearbyText": "",
+          "width": 300,
+          "height": 228,
+          "matchedProductTerms": [],
+          "score": 1,
+          "rejectReason": null
+        },
+        {
+          "url": "https://i0.wp.com/www.countrydrive-in.com/wp-content/uploads/2016/05/menu-item-orange-float.jpg?fit=300%2C228&ssl=1",
+          "alt": "",
+          "nearbyText": "",
+          "width": 300,
+          "height": 228,
+          "matchedProductTerms": [],
+          "score": 1,
+          "rejectReason": null
+        },
+        {
+          "url": "https://i0.wp.com/www.countrydrive-in.com/wp-content/uploads/2016/05/menu-item-bananna-split.jpg?fit=300%2C228&ssl=1",
+          "alt": "",
+          "nearbyText": "",
+          "width": 300,
+          "height": 228,
+          "matchedProductTerms": [],
+          "score": 1,
+          "rejectReason": null
+        },
+        {
+          "url": "https://i0.wp.com/www.countrydrive-in.com/wp-content/uploads/2016/05/menu-item-strawberry-shortcake.jpg?fit=300%2C228&ssl=1",
+          "alt": "",
+          "nearbyText": "",
+          "width": 300,
+          "height": 228,
+          "matchedProductTerms": [],
+          "score": 1,
+          "rejectReason": null
+        },
+        {
+          "url": "https://i0.wp.com/www.countrydrive-in.com/wp-content/uploads/2016/05/menu-item-brownie-delight.jpg?fit=300%2C228&ssl=1",
+          "alt": "",
+          "nearbyText": "",
+          "width": 300,
+          "height": 228,
+          "matchedProductTerms": [],
+          "score": 1,
+          "rejectReason": null
+        },
+        {
+          "url": "https://i0.wp.com/www.countrydrive-in.com/wp-content/uploads/2016/05/menu-item-ice-cream-sandwiches.jpg?fit=300%2C228&ssl=1",
+          "alt": "",
+          "nearbyText": "",
+          "width": 300,
+          "height": 228,
+          "matchedProductTerms": [],
+          "score": 1,
+          "rejectReason": null
+        },
+        {
+          "url": "https://www.countrydrive-in.com/wp-content/uploads/2016/05/cdi-logo-new-horz2.png",
+          "alt": "The Country Drive-In",
+          "nearbyText": "",
+          "width": 423,
+          "height": 124,
+          "matchedProductTerms": [],
+          "score": 0,
+          "rejectReason": "reject_term:logo"
+        },
+        {
+          "url": "https://www.countrydrive-in.com/wp-content/uploads/2016/05/cdi-logo-new-horz2.png",
+          "alt": "The Country Drive-In",
+          "nearbyText": "",
+          "width": 423,
+          "height": 124,
+          "matchedProductTerms": [],
+          "score": 0,
+          "rejectReason": "reject_term:logo"
+        }
+      ],
+      "errors": [],
+      "status": 200,
+      "completedAt": "2026-05-29T02:37:02.426Z"
+    },
+    {
+      "entryId": "country-drive-in-clifton-park-ny",
+      "entryName": "The Country Drive-In",
+      "expectedAddress": "1455 Crescent Vischer Ferry Rd",
+      "expectedCity": "Clifton Park",
+      "expectedRegion": "NY",
+      "url": "https://www.allmenus.com/ny/clifton-park/638901-country-drive-in/menu/",
+      "sourceKind": "source",
+      "startedAt": "2026-05-29T02:37:03.176Z",
+      "loaded": true,
+      "finalUrl": "https://www.allmenus.com/ny/clifton-park/638901-country-drive-in/menu/",
+      "title": "Country Drive-in menu - Clifton Park NY 12065 - (518) 371-3455",
+      "canonicalUrl": "https://pp.allmenus.com/ny/clifton-park/638901-country-drive-in/menu/",
+      "metaDescription": "Restaurant menu, map for Country Drive-in located in 12065, Clifton Park NY, 1455 Crescent Vischer Ferry Road.",
+      "addressSignals": [
+        {
+          "term": "Clifton Park",
+          "text": "New York Clifton Park Country Drive-in Country Drive-in (518) 371-3455 Own this business? Learn more about offering online ordering to your diners. 1455 Crescent"
+        },
+        {
+          "term": "NY",
+          "text": " offering online ordering to your diners. 1455 Crescent Vischer Ferry Road, Clifton Park, NY 12065 No cuisines specified Menu Salads Blue cheese, honey mustard, lite Italian, raspberry vinaigrette, ranch, garlic Parmesan, or oil and"
+        }
+      ],
+      "productSignals": [
+        {
+          "term": "ice cream",
+          "text": "ith lettuce, tomato, and mayo, on a hard roll. Crab Salad $6.99 Lettuce and hot dog roll. Ice Cream Cones and Dishes Kids, small, medium or large. We have gluten free cones! Ice Cream Cones $1.99+ Yogurt Cones $2.29+ Ice Cream in a Dish $2"
+        },
+        {
+          "term": "sundae",
+          "text": "am or with yogurt. Shakes $3.99+ Malts $4.39+ Cake Shake $4.39+ Mind Blender $4.89+ Small Sundae $3.89+ Large Sundae $4.89+ Parfait $5.49+ Floats $3.99+ Ice Cream Soda $3.99+ Banana Split $6.69+ Strawberry Shortcake $6.69+ Hot Fudge Bro"
+        },
+        {
+          "term": "cone",
+          "text": "e, tomato, and mayo, on a hard roll. Crab Salad $6.99 Lettuce and hot dog roll. Ice Cream Cones and Dishes Kids, small, medium or large. We have gluten free cones! Ice Cream Cones $1.99+ Yogurt Cones $2.29+ Ice Cream in a Dish $2.89+ "
+        },
+        {
+          "term": "shake",
+          "text": "kles $0.79+ Dips $0.79+ Candy $0.89+ Ice Cream Specialties With ice cream or with yogurt. Shakes $3.99+ Malts $4.39+ Cake Shake $4.39+ Mind Blender $4.89+ Small Sundae $3.89+ Large Sundae $4.89+ Parfait $5.49+ Floats $3.99+ Ice Cream S"
+        },
+        {
+          "term": "gluten free",
+          "text": "n, chicken salad or tuna for an additional charge. Soup $3.99 Spring and fall only. Grill Gluten free items. Hot Dog $2.99+ With meat sauce or sauerkraut for an additional charge. The works with meat sauce, onion, and mustard for an addition"
+        }
+      ],
+      "currentSignals": [
+        {
+          "term": "2023",
+          "text": "act Us Chain Restaurants Terms & Conditions Privacy Policy Notice of Financial Incentive ©2023 GrubHub, Inc. All rights reserved."
+        },
+        {
+          "term": "menu",
+          "text": "ur diners. 1455 Crescent Vischer Ferry Road, Clifton Park, NY 12065 No cuisines specified Menu Salads Blue cheese, honey mustard, lite Italian, raspberry vinaigrette, ranch, garlic Parmesan, or oil and vinegar. Macaroni Salad $2.89 Po"
+        }
+      ],
+      "socialLinks": [],
+      "photoCandidates": [
+        {
+          "url": "https://www.allmenus.com/static/images/allmenus-logo.svg",
+          "alt": "Allmenus.com",
+          "nearbyText": "",
+          "width": 375,
+          "height": 100,
+          "matchedProductTerms": [],
+          "score": 0,
+          "rejectReason": "reject_term:logo"
+        },
+        {
+          "url": "https://maps.googleapis.com/maps/api/staticmap?center=42.820984%2C-73.750923&zoom=16&size=309x170&maptype=roadmap&markers=false&client=gme-grubhubinc&channel=allmenus&signature=Nvh8qC3ml1C_zoE2z5g1HxFqSA4=",
+          "alt": "Google map",
+          "nearbyText": "",
+          "width": 309,
+          "height": 170,
+          "matchedProductTerms": [],
+          "score": 0,
+          "rejectReason": "reject_term:map,marker"
+        },
+        {
+          "url": "https://secure.adnxs.com/seg?add=5258752&t=2",
+          "alt": "",
+          "nearbyText": "Find menus New York Clifton Park Country Drive-in Country Drive-in (518) 371-3455 Own this business? Learn more about offering online ordering to your diners. 1455 Crescent Vischer Ferry Road, Clifton Park, NY 12065 No cuisines specified Country Drive-in (518) 371-3455 Menu Salads Blue cheese, honey",
+          "width": 1,
+          "height": 1,
+          "matchedProductTerms": [],
+          "score": 0,
+          "rejectReason": "too_small"
+        },
+        {
+          "url": "https://secure.adnxs.com/seg?add=5258600&t=2",
+          "alt": "",
+          "nearbyText": "Find menus New York Clifton Park Country Drive-in Country Drive-in (518) 371-3455 Own this business? Learn more about offering online ordering to your diners. 1455 Crescent Vischer Ferry Road, Clifton Park, NY 12065 No cuisines specified Country Drive-in (518) 371-3455 Menu Salads Blue cheese, honey",
+          "width": 1,
+          "height": 1,
+          "matchedProductTerms": [],
+          "score": 0,
+          "rejectReason": "too_small"
+        }
+      ],
+      "errors": [],
+      "status": 200,
+      "completedAt": "2026-05-29T02:37:03.913Z"
+    },
+    {
+      "entryId": "country-drive-in-clifton-park-ny",
+      "entryName": "The Country Drive-In",
+      "expectedAddress": "1455 Crescent Vischer Ferry Rd",
+      "expectedCity": "Clifton Park",
+      "expectedRegion": "NY",
+      "url": "https://i0.wp.com/www.countrydrive-in.com/wp-content/uploads/2016/05/menu-item-strawberry-sundae.jpg?fit=300%2C228&ssl=1",
+      "sourceKind": "photo",
+      "startedAt": "2026-05-29T02:37:04.663Z",
+      "loaded": true,
+      "finalUrl": "https://i0.wp.com/www.countrydrive-in.com/wp-content/uploads/2016/05/menu-item-strawberry-sundae.jpg?fit=300%2C228&ssl=1",
+      "title": "menu-item-strawberry-sundae.jpg (300×228)",
+      "canonicalUrl": null,
+      "metaDescription": null,
+      "addressSignals": [],
+      "productSignals": [],
+      "currentSignals": [],
+      "socialLinks": [],
+      "photoCandidates": [
+        {
+          "url": "https://i0.wp.com/www.countrydrive-in.com/wp-content/uploads/2016/05/menu-item-strawberry-sundae.jpg?fit=300%2C228&ssl=1",
+          "alt": "",
+          "nearbyText": "",
+          "width": 300,
+          "height": 228,
+          "matchedProductTerms": [
+            "sundae"
+          ],
+          "score": 3,
+          "rejectReason": null
+        }
+      ],
+      "errors": [],
+      "status": 200,
+      "completedAt": "2026-05-29T02:38:04.763Z"
+    }
+  ],
+  "nextSteps": [
+    "Review addressSignals, productSignals, currentSignals, and photoCandidates.",
+    "Use this artifact as supporting evidence only; do not promote entries until human/agent review confirms exact address and real product photos.",
+    "For candidates without concrete URLs, run the deep research prompt pack first, then feed its passed[] artifact into this verifier."
+  ]
+}

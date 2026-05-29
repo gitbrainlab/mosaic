@@ -30,6 +30,8 @@ Your job:
    - at least two real product photos from the actual place
    - non-chain/non-convenience-store relevance
 6. Produce a structured enrichment artifact only. Do not edit public entries.json unless the candidates fully pass validation.
+7. After producing concrete source URLs, run the Playwright verifier to generate a second evidence artifact:
+   npx tsx scripts/verify-enrichment-sources.ts --input=data/enrichment-runs/{your-result}.json --limit=10 --max-urls=4
 
 Output target:
 Create a new file under data/enrichment-runs/, for example:
@@ -117,6 +119,7 @@ When finished, summarize:
 - passed count
 - rejected count
 - strongest 5 candidates
+- verifier artifact path, if `scripts/verify-enrichment-sources.ts` was run
 - any sources/photos that need manual review
 - exact files changed
 ```
