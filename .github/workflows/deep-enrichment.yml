@@ -1,0 +1,95 @@
+name: Deep Enrichment Runner
+
+on:
+  workflow_dispatch:
+    inputs:
+      prompt_pack:
+        description: 'Prompt-pack artifact path under data/enrichment-runs/'
+        required: true
+        default: 'data/enrichment-runs/ice-cream-quality-recovery-wave-1-2026-05-29T02-27-49-370Z-prompt-pack.json'
+      model:
+        description: 'xAI/Grok model'
+        required: true
+        default: 'grok-4.3'
+      verify:
+        description: 'Run Playwright source verification after model result'
+        required: true
+        type: boolean
+        default: true
+      dry_run:
+        description: 'Validate the prompt pack without calling the model'
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  deep-enrichment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        if: ${{ github.event.inputs.verify == 'true' }}
+        run: npx playwright install --with-deps chromium
+
+      - name: Run deep enrichment
+        env:
+          XAI_API_KEY: ${{ secrets.XAI_KEY }}
+          XAI_KEY: ${{ secrets.XAI_KEY }}
+        run: |
+          PROMPT_PACK="${{ github.event.inputs.prompt_pack }}"
+          MODEL="${{ github.event.inputs.model }}"
+          FLAGS=("--input=${PROMPT_PACK}" "--model=${MODEL}")
+
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            FLAGS+=("--dry-run")
+          fi
+
+          if [ "${{ github.event.inputs.verify }}" = "true" ] && [ "${{ github.event.inputs.dry_run }}" != "true" ]; then
+            FLAGS+=("--verify")
+          fi
+
+          npm run deep-enrichment -- "${FLAGS[@]}"
+
+      - name: Validate public map data unchanged and valid
+        run: npm run validate-data
+
+      - name: Upload enrichment artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enrichment-runs-${{ github.run_id }}
+          path: data/enrichment-runs/
+          if-no-files-found: error
+
+      - name: Commit enrichment artifacts
+        run: |
+          git config user.name "Mosaic Deep Enrichment Agent"
+          git config user.email "deep-enrichment@mosaic.local"
+
+          git add data/enrichment-runs/ || true
+
+          if git diff --staged --quiet; then
+            echo "No enrichment artifact changes to commit"
+          else
+            git commit -m "chore(enrichment): run deep enrichment"
+            git push
+          fi

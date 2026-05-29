@@ -221,7 +221,24 @@ npx tsx scripts/enrich-candidates.ts \
 
 It writes a prompt-pack artifact into `data/enrichment-runs/` and marks it `publicPromotionAllowed: false`.
 
-After a deep research pass returns concrete `passed[]` entries with source URLs, run the browser verifier:
+To execute that prompt pack with xAI/Grok and write a model-result artifact:
+
+```bash
+npm run deep-enrichment -- \
+  --input=data/enrichment-runs/{prompt-pack}.json \
+  --model=grok-4.3
+```
+
+Use `--dry-run` to validate the prompt pack without calling the model. Use `--verify` to run the Playwright source verifier automatically after the model result is written:
+
+```bash
+npm run deep-enrichment -- \
+  --input=data/enrichment-runs/{prompt-pack}.json \
+  --model=grok-4.3 \
+  --verify
+```
+
+After a deep research pass returns concrete `passed[]` entries with source URLs, run the browser verifier directly:
 
 ```bash
 npx tsx scripts/verify-enrichment-sources.ts \
@@ -240,3 +257,14 @@ npx tsx scripts/verify-enrichment-sources.ts \
 ```
 
 The verifier writes `*-source-verification.json` artifacts with address snippets, product snippets, current-operation signals, social links, and scored image candidates. These artifacts are supporting evidence only; they do not promote public map entries.
+
+## GitHub-Native Execution
+
+The same model-backed runner can be launched from GitHub Actions through **Deep Enrichment Runner** (`.github/workflows/deep-enrichment.yml`). Use workflow dispatch with:
+
+- `prompt_pack`: the prompt-pack artifact path.
+- `model`: default `grok-4.3`.
+- `verify`: whether to run Playwright source verification after the model result.
+- `dry_run`: validate the prompt pack without calling the model.
+
+The workflow commits only `data/enrichment-runs/` artifacts. It does not commit public map entries.

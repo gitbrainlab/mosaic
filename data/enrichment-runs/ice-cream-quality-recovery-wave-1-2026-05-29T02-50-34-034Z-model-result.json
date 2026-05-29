@@ -1,0 +1,139 @@
+{
+  "wave": "ice-cream-quality-recovery-wave-1",
+  "generatedAt": "2026-05-29T02:50:34.034Z",
+  "sourcePromptPack": "data/enrichment-runs/ice-cream-quality-recovery-wave-1-2026-05-29T02-27-49-370Z-prompt-pack.json",
+  "status": "model_result_no_passes",
+  "publicPromotionAllowed": false,
+  "model": "grok-4.3",
+  "selectedCount": 12,
+  "passedCount": 0,
+  "rejectedCount": 12,
+  "qualityIssues": [],
+  "passed": [],
+  "rejected": [
+    {
+      "candidateId": "chocolate-bar-albany",
+      "name": "The Chocolate Bar",
+      "reasons": [
+        "missing_verified_product_photos",
+        "thin_evidence"
+      ],
+      "notes": "No official site, Instagram, or Facebook product photos located; address verified but no 2023-2026 operation signal or real product images meeting criteria.",
+      "nextBestAction": "Provide two source-attributed real product photos from official channels with URLs."
+    },
+    {
+      "candidateId": "cure-albany",
+      "name": "Cure",
+      "reasons": [
+        "missing_verified_product_photos",
+        "thin_evidence"
+      ],
+      "notes": "Address confirmed but no recent product photos or menu evidence found for ice cream; lacks current operation proof.",
+      "nextBestAction": "Supply official Instagram/Facebook product photos and 2024+ review links."
+    },
+    {
+      "candidateId": "hofmanns-hot-haus-albany",
+      "name": "Hofmann's Hot Haus",
+      "reasons": [
+        "missing_verified_product_photos",
+        "no_recent_2023_2026_signal",
+        "thin_evidence"
+      ],
+      "notes": "No current signals or photos; appears potentially closed or non-operational for ice cream focus.",
+      "nextBestAction": "Confirm 2024+ operation with menu and photos or remove."
+    },
+    {
+      "candidateId": "cure-ice-cream-troy",
+      "name": "Cure Ice Cream",
+      "reasons": [
+        "missing_verified_product_photos"
+      ],
+      "notes": "Address-level location present but zero verified real product photos from business sources.",
+      "nextBestAction": "Add two source-attributed product photos from Instagram or official site."
+    },
+    {
+      "candidateId": "lickety-splits-ice-cream-troy",
+      "name": "Lickety Splits Ice Cream",
+      "reasons": [
+        "missing_verified_product_photos"
+      ],
+      "notes": "Exact address available; no qualifying real product photos or recent evidence provided.",
+      "nextBestAction": "Locate and attribute two real product photos from official channels."
+    },
+    {
+      "candidateId": "snowman-ice-cream-troy",
+      "name": "Snowman Ice Cream",
+      "reasons": [
+        "missing_verified_product_photos"
+      ],
+      "notes": "Address confirmed but lacks any source-attributed product photos meeting standards.",
+      "nextBestAction": "Provide recent Instagram/Facebook product photos with attribution."
+    },
+    {
+      "candidateId": "hoffmans-ice-cream-cliftonpark",
+      "name": "Hoffman's Ice Cream",
+      "reasons": [
+        "missing_verified_product_photos",
+        "thin_evidence"
+      ],
+      "notes": "Address-level coords exist; no real product photos or strong 2023-2026 signals found.",
+      "nextBestAction": "Add verified product photos and recent review/menu sources."
+    },
+    {
+      "candidateId": "candy-kitchen-ballston-spa",
+      "name": "The Candy Kitchen",
+      "reasons": [
+        "missing_verified_product_photos",
+        "no_recent_2023_2026_signal"
+      ],
+      "notes": "Address present but no current operation evidence or product photos.",
+      "nextBestAction": "Verify 2024+ status and attach two real product photos."
+    },
+    {
+      "candidateId": "marthas-dandee-cream-ballston-spa",
+      "name": "Martha's Dandee Cream",
+      "reasons": [
+        "missing_verified_product_photos",
+        "no_recent_2023_2026_signal"
+      ],
+      "notes": "Address confirmed; missing recent signals and any qualifying product photos.",
+      "nextBestAction": "Provide current evidence and source-attributed photos."
+    },
+    {
+      "candidateId": "sweet-sues-phoenicia",
+      "name": "Sweet Sue's Restaurant",
+      "reasons": [
+        "missing_verified_product_photos",
+        "thin_evidence"
+      ],
+      "notes": "Address-level location; no ice cream-specific product photos or strong recent proof.",
+      "nextBestAction": "Add two real product photos and menu/reviews from 2023+."
+    },
+    {
+      "candidateId": "janes-homemade-ice-cream-kingston",
+      "name": "Jane's Homemade Ice Cream",
+      "reasons": [
+        "missing_verified_product_photos"
+      ],
+      "notes": "Exact address available but zero verified real product photos from the location.",
+      "nextBestAction": "Locate and attribute two official product photos."
+    },
+    {
+      "candidateId": "morano-gelato-lenox",
+      "name": "Morano Gelato",
+      "reasons": [
+        "missing_verified_product_photos",
+        "thin_evidence"
+      ],
+      "notes": "Address confirmed; lacks sufficient real product photos and current signals.",
+      "nextBestAction": "Supply two source-attributed gelato product photos with URLs."
+    }
+  ],
+  "openQuestions": [],
+  "rawModelResponse": "{\n  \"wave\": \"ice-cream-quality-recovery-wave-1\",\n  \"generatedAt\": \"2024-10-05T18:42:00Z\",\n  \"passed\": [],\n  \"rejected\": [\n    {\n      \"candidateId\": \"chocolate-bar-albany\",\n      \"name\": \"The Chocolate Bar\",\n      \"reasons\": [\n        \"missing_verified_product_photos\",\n        \"thin_evidence\"\n      ],\n      \"notes\": \"No official site, Instagram, or Facebook product photos located; address verified but no 2023-2026 operation signal or real product images meeting criteria.\",\n      \"nextBestAction\": \"Provide two source-attributed real product photos from official channels with URLs.\"\n    },\n    {\n      \"candidateId\": \"cure-albany\",\n      \"name\": \"Cure\",\n      \"reasons\": [\n        \"missing_verified_product_photos\",\n        \"thin_evidence\"\n      ],\n      \"notes\": \"Address confirmed but no recent product photos or menu evidence found for ice cream; lacks current operation proof.\",\n      \"nextBestAction\": \"Supply official Instagram/Facebook product photos and 2024+ review links.\"\n    },\n    {\n      \"candidateId\": \"hofmanns-hot-haus-albany\",\n      \"name\": \"Hofmann's Hot Haus\",\n      \"reasons\": [\n        \"missing_verified_product_photos\",\n        \"no_recent_2023_2026_signal\",\n        \"thin_evidence\"\n      ],\n      \"notes\": \"No current signals or photos; appears potentially closed or non-operational for ice cream focus.\",\n      \"nextBestAction\": \"Confirm 2024+ operation with menu and photos or remove.\"\n    },\n    {\n      \"candidateId\": \"cure-ice-cream-troy\",\n      \"name\": \"Cure Ice Cream\",\n      \"reasons\": [\n        \"missing_verified_product_photos\"\n      ],\n      \"notes\": \"Address-level location present but zero verified real product photos from business sources.\",\n      \"nextBestAction\": \"Add two source-attributed product photos from Instagram or official site.\"\n    },\n    {\n      \"candidateId\": \"lickety-splits-ice-cream-troy\",\n      \"name\": \"Lickety Splits Ice Cream\",\n      \"reasons\": [\n        \"missing_verified_product_photos\"\n      ],\n      \"notes\": \"Exact address available; no qualifying real product photos or recent evidence provided.\",\n      \"nextBestAction\": \"Locate and attribute two real product photos from official channels.\"\n    },\n    {\n      \"candidateId\": \"snowman-ice-cream-troy\",\n      \"name\": \"Snowman Ice Cream\",\n      \"reasons\": [\n        \"missing_verified_product_photos\"\n      ],\n      \"notes\": \"Address confirmed but lacks any source-attributed product photos meeting standards.\",\n      \"nextBestAction\": \"Provide recent Instagram/Facebook product photos with attribution.\"\n    },\n    {\n      \"candidateId\": \"hoffmans-ice-cream-cliftonpark\",\n      \"name\": \"Hoffman's Ice Cream\",\n      \"reasons\": [\n        \"missing_verified_product_photos\",\n        \"thin_evidence\"\n      ],\n      \"notes\": \"Address-level coords exist; no real product photos or strong 2023-2026 signals found.\",\n      \"nextBestAction\": \"Add verified product photos and recent review/menu sources.\"\n    },\n    {\n      \"candidateId\": \"candy-kitchen-ballston-spa\",\n      \"name\": \"The Candy Kitchen\",\n      \"reasons\": [\n        \"missing_verified_product_photos\",\n        \"no_recent_2023_2026_signal\"\n      ],\n      \"notes\": \"Address present but no current operation evidence or product photos.\",\n      \"nextBestAction\": \"Verify 2024+ status and attach two real product photos.\"\n    },\n    {\n      \"candidateId\": \"marthas-dandee-cream-ballston-spa\",\n      \"name\": \"Martha's Dandee Cream\",\n      \"reasons\": [\n        \"missing_verified_product_photos\",\n        \"no_recent_2023_2026_signal\"\n      ],\n      \"notes\": \"Address confirmed; missing recent signals and any qualifying product photos.\",\n      \"nextBestAction\": \"Provide current evidence and source-attributed photos.\"\n    },\n    {\n      \"candidateId\": \"sweet-sues-phoenicia\",\n      \"name\": \"Sweet Sue's Restaurant\",\n      \"reasons\": [\n        \"missing_verified_product_photos\",\n        \"thin_evidence\"\n      ],\n      \"notes\": \"Address-level location; no ice cream-specific product photos or strong recent proof.\",\n      \"nextBestAction\": \"Add two real product photos and menu/reviews from 2023+.\"\n    },\n    {\n      \"candidateId\": \"janes-homemade-ice-cream-kingston\",\n      \"name\": \"Jane's Homemade Ice Cream\",\n      \"reasons\": [\n        \"missing_verified_product_photos\"\n      ],\n      \"notes\": \"Exact address available but zero verified real product photos from the location.\",\n      \"nextBestAction\": \"Locate and attribute two official product photos.\"\n    },\n    {\n      \"candidateId\": \"morano-gelato-lenox\",\n      \"name\": \"Morano Gelato\",\n      \"reasons\": [\n        \"missing_verified_product_photos\",\n        \"thin_evidence\"\n      ],\n      \"notes\": \"Address confirmed; lacks sufficient real product photos and current signals.\",\n      \"nextBestAction\": \"Supply two source-attributed gelato product photos with URLs.\"\n    }\n  ],\n  \"openQuestions\": []\n}",
+  "nextSteps": [
+    "Run scripts/verify-enrichment-sources.ts against this artifact.",
+    "Review verifier output and qualityIssues before any public map promotion.",
+    "Do not edit public/data/maps/*/entries.json until exact address, current evidence, and real product photos are confirmed."
+  ]
+}
