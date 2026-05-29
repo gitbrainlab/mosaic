@@ -18,7 +18,8 @@
     "ingest-research": "tsx scripts/ingest-research.ts",
     "prepare-photos": "tsx scripts/prepare-photos.ts",
     "scrape": "tsx scripts/scrapers/run-scraper.ts",
-    "aggregate-runs": "tsx scripts/aggregate-research-runs.ts"
+    "aggregate-runs": "tsx scripts/aggregate-research-runs.ts",
+    "deep-enrichment": "tsx scripts/run-deep-enrichment.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",
