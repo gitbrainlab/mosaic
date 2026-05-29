@@ -3,6 +3,13 @@
   "lastUpdated": "2026-05-28",
   "maps": [
     {
+      "slug": "ice-cream-nationwide-albany-radial",
+      "title": "Ice Cream Nationwide - Albany Radial 300",
+      "tagline": "A 300-stop nationwide ice cream research atlas, centered on Albany and fanning outward",
+      "entryCount": 300,
+      "lastUpdated": "2026-05-28"
+    },
+    {
       "slug": "gluten-free-cone-ice-cream-capital-region",
       "title": "Gluten-Free Cone Ice Cream - Capital Region",
       "tagline": "Verified Capital Region ice cream shops with gluten-free cones and real product photos",
