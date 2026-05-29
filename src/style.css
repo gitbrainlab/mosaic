@@ -128,3 +128,17 @@ body {
     background-color: #1a1916;
   }
 }
+
+.studio-review-card[aria-pressed="true"] {
+  border-left-color: #1f1d1a;
+  background: #f1efea;
+}
+
+.dark .studio-review-card[aria-pressed="true"] {
+  border-left-color: #f4f1e9;
+  background: #24221d;
+}
+
+.studio-review-preview[hidden] {
+  display: none;
+}
