@@ -143,15 +143,28 @@ test.describe('@smoke UI hardening checks', () => {
     test.skip(testInfo.project.name !== 'mobile-light', 'Studio queue check runs once.');
 
     await page.goto('/mosaic/v3/?/studio');
-    await expect(page.getByText('Verification Queue')).toBeVisible({ timeout: 15000 });
-    await expect(page.getByText('Needs Photo Review')).toBeVisible();
-    await expect(page.getByText('Refinement Requested')).toBeVisible();
-    await expect(page.getByText('Approved / Committed')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Verification Queue' })).toBeVisible({ timeout: 15000 });
+    await expect(page.getByRole('heading', { name: 'Needs Photo Review' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Refinement Requested' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Approved / Committed' })).toBeVisible();
+    await expect(page.getByText('Select a card')).toBeVisible();
+    await expect(page.getByText('Inspect the preview')).toBeVisible();
+    const activePreview = page.locator('[data-review-preview]:not([hidden])');
+    await expect(activePreview.getByText('Profile Preview')).toBeVisible();
+    await expect(activePreview.getByText('What to Assess')).toBeVisible();
 
-    const action = page.locator('[data-review-action]').first();
+    const secondCard = page.locator('[data-review-card]').nth(1);
+    await expect(secondCard).toBeVisible();
+    await secondCard.click();
+    await expect(secondCard).toHaveAttribute('aria-pressed', 'true');
+
+    const action = activePreview.locator('[data-review-action]').first();
     await expect(action).toBeVisible();
     await action.click();
-    await expect(page.locator('#studio-action-payload')).toHaveValue(/"targetState"/);
-    await expect(page.locator('#studio-action-payload')).toHaveValue(/"entryId"/);
+    await expect(page.locator('#studio-action-payload')).toContainText(/"targetState"/);
+    await expect(page.locator('#studio-action-payload')).toContainText(/"entryId"/);
+    await expect(page.getByRole('button', { name: /Copy payload/i })).toBeEnabled();
+    await page.getByRole('button', { name: /Clear/i }).click();
+    await expect(page.locator('#studio-action-payload')).toContainText('Choose a next-stage action');
   });
 });
