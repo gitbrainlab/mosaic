@@ -1,0 +1,93 @@
+{
+  "slug": "ice-cream-nationwide-albany-radial",
+  "title": "Ice Cream Nationwide - Albany Radial 300",
+  "tagline": "A 300-stop nationwide ice cream research atlas, centered on Albany and fanning outward",
+  "version": "0.9.0",
+  "totalEntries": 300,
+  "lastUpdated": "2026-05-29",
+  "defaultCenter": [
+    42.6526,
+    -73.7562
+  ],
+  "defaultZoom": 3,
+  "filterFields": [
+    "city",
+    "confidence"
+  ],
+  "chunks": [
+    "entries.json"
+  ],
+  "intent": {
+    "statement": "Build a nationwide ice cream atlas that starts with Albany and expands outward by radial distance while preserving rich product detail, evidence, coordinates, and photo-sourcing briefs.",
+    "scope": "United States ice cream, gelato, frozen custard, soft serve, paletas, shave ice, and regional frozen dessert shops. Entry ordering and ring metadata prioritize Albany outward expansion.",
+    "photoPolicy": "Do not use stock or generic images. This wave stores photo-sourcing briefs and only displays photos when source-attributed real product imagery is available from the actual place."
+  },
+  "intentHistory": [
+    {
+      "changedAt": "2026-05-29T01:23:45.305Z",
+      "author": "codex",
+      "summary": "Aggregated 483 raw ice-cream research profiles into 450 deduped candidates, then selected a 300-entry Albany-radial nationwide atlas with photo-sourcing status metadata."
+    }
+  ],
+  "validation": {
+    "coordinateBounds": {
+      "minLat": 19.217,
+      "maxLat": 65.335,
+      "minLng": -160.088,
+      "maxLng": -67.7039
+    }
+  },
+  "research": {
+    "sourceAggregate": "data/imports/ice-cream-nationwide-albany-radial-aggregate.json",
+    "rawEntriesBeforeDedup": 483,
+    "uniqueEntriesAfterDedup": 450,
+    "selectedEntries": 300,
+    "selection": [
+      {
+        "ring": "Albany core and immediate Capital Region",
+        "distanceMiles": "0-50",
+        "targetQuota": 60
+      },
+      {
+        "ring": "Capital Region outer ring and near Northeast",
+        "distanceMiles": "50-150",
+        "targetQuota": 55
+      },
+      {
+        "ring": "Regional Northeast day-trip ring",
+        "distanceMiles": "150-300",
+        "targetQuota": 50
+      },
+      {
+        "ring": "Northeast and Mid-Atlantic extension",
+        "distanceMiles": "300-600",
+        "targetQuota": 25
+      },
+      {
+        "ring": "Eastern US fan-out",
+        "distanceMiles": "600-1000",
+        "targetQuota": 35
+      },
+      {
+        "ring": "Midwest and South fan-out",
+        "distanceMiles": "1000-1600",
+        "targetQuota": 30
+      },
+      {
+        "ring": "Rockies and Plains fan-out",
+        "distanceMiles": "1600-2400",
+        "targetQuota": 25
+      },
+      {
+        "ring": "West Coast and Pacific fan-out",
+        "distanceMiles": "2400-4000",
+        "targetQuota": 15
+      },
+      {
+        "ring": "Non-contiguous US fan-out",
+        "distanceMiles": "4000-10000",
+        "targetQuota": 5
+      }
+    ]
+  }
+}

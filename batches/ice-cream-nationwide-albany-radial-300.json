@@ -1,0 +1,250 @@
+{
+  "wave": "ice-cream-nationwide-albany-radial-300",
+  "baseTopic": "Exceptional ice cream, gelato, frozen custard, soft serve, and regional frozen treats in the United States",
+  "description": "Nationwide enrichment wave centered on Albany and fanning outward in rings. The goal is roughly 300 high-quality, real, location-accurate ice cream options after dedupe, with rich product detail and strict product-photo sourcing briefs.",
+  "perLocationLimit": 6,
+  "models": ["grok-4.3"],
+  "targets": [
+    {
+      "name": "Albany-Core-NY",
+      "location": "Albany, Colonie, Guilderland, Delmar, Latham, and immediate Albany County, New York"
+    },
+    {
+      "name": "Capital-Region-North-NY",
+      "location": "Saratoga Springs, Ballston Spa, Clifton Park, Wilton, Glens Falls, and Lake George, New York"
+    },
+    {
+      "name": "Capital-Region-East-NY",
+      "location": "Troy, Rensselaer, East Greenbush, Wynantskill, and Hudson, New York"
+    },
+    {
+      "name": "Capital-Region-West-NY",
+      "location": "Schenectady, Scotia, Rotterdam, Amsterdam, and Johnstown, New York"
+    },
+    {
+      "name": "Hudson-Valley-NY",
+      "location": "Kingston, Rhinebeck, Poughkeepsie, Beacon, Cold Spring, and New Paltz, New York"
+    },
+    {
+      "name": "Catskills-NY",
+      "location": "Woodstock, Phoenicia, Tannersville, Livingston Manor, Roscoe, and northern Catskills, New York"
+    },
+    {
+      "name": "Berkshires-Western-MA",
+      "location": "Pittsfield, Lenox, Great Barrington, North Adams, Williamstown, and the Berkshires, Massachusetts"
+    },
+    {
+      "name": "Pioneer-Valley-MA",
+      "location": "Northampton, Amherst, Easthampton, Greenfield, Hadley, and Springfield-adjacent Pioneer Valley, Massachusetts"
+    },
+    {
+      "name": "Southern-VT",
+      "location": "Bennington, Manchester, Brattleboro, Wilmington, and southern Vermont"
+    },
+    {
+      "name": "Northern-VT",
+      "location": "Burlington, Shelburne, Stowe, Waterbury, Montpelier, and northern Vermont"
+    },
+    {
+      "name": "Adirondacks-NY",
+      "location": "Lake Placid, Saranac Lake, Ticonderoga, Old Forge, and Adirondack Park towns, New York"
+    },
+    {
+      "name": "Central-NY",
+      "location": "Utica, Rome, Syracuse, Cazenovia, Ithaca, and Central New York"
+    },
+    {
+      "name": "Finger-Lakes-NY",
+      "location": "Rochester, Canandaigua, Geneva, Seneca Falls, Watkins Glen, and Finger Lakes, New York"
+    },
+    {
+      "name": "Western-NY",
+      "location": "Buffalo, Niagara Falls, East Aurora, Chautauqua, and Western New York"
+    },
+    {
+      "name": "NYC-Brooklyn-Queens",
+      "location": "Manhattan, Brooklyn, Queens, the Bronx, and Staten Island, New York City"
+    },
+    {
+      "name": "Long-Island-NY",
+      "location": "Nassau County, Suffolk County, North Fork, South Fork, and the Hamptons, Long Island, New York"
+    },
+    {
+      "name": "North-Jersey",
+      "location": "Jersey City, Hoboken, Montclair, Ridgewood, Morristown, and northern New Jersey"
+    },
+    {
+      "name": "Central-South-Jersey-Shore",
+      "location": "Princeton, Trenton, Asbury Park, Red Bank, Cape May, and the Jersey Shore, New Jersey"
+    },
+    {
+      "name": "Philadelphia-PA",
+      "location": "Philadelphia, Manayunk, Fishtown, South Philadelphia, Main Line, and nearby Pennsylvania suburbs"
+    },
+    {
+      "name": "Pennsylvania-Dutch-Central-PA",
+      "location": "Lancaster, Harrisburg, Hershey, York, Reading, and Pennsylvania Dutch Country"
+    },
+    {
+      "name": "Pittsburgh-Western-PA",
+      "location": "Pittsburgh, Lawrenceville, Squirrel Hill, Sewickley, Greensburg, and western Pennsylvania"
+    },
+    {
+      "name": "Connecticut-Shoreline",
+      "location": "New Haven, Guilford, Madison, Mystic, Stonington, and Connecticut shoreline towns"
+    },
+    {
+      "name": "Connecticut-Inland",
+      "location": "Hartford, West Hartford, Litchfield, New Milford, Simsbury, and inland Connecticut"
+    },
+    {
+      "name": "Rhode-Island",
+      "location": "Providence, Pawtucket, Newport, Narragansett, Westerly, and Rhode Island"
+    },
+    {
+      "name": "Boston-Cambridge-MA",
+      "location": "Boston, Cambridge, Somerville, Brookline, Newton, and inner Boston suburbs, Massachusetts"
+    },
+    {
+      "name": "North-Shore-Cape-Ann-MA",
+      "location": "Salem, Beverly, Gloucester, Rockport, Ipswich, and Cape Ann, Massachusetts"
+    },
+    {
+      "name": "Cape-Cod-Islands-MA",
+      "location": "Cape Cod, Martha's Vineyard, Nantucket, Plymouth, and South Shore coastal Massachusetts"
+    },
+    {
+      "name": "New-Hampshire-Seacoast",
+      "location": "Portsmouth, Rye, Hampton, Dover, Exeter, and New Hampshire Seacoast"
+    },
+    {
+      "name": "New-Hampshire-Lakes-Mountains",
+      "location": "Concord, Manchester, Meredith, Wolfeboro, North Conway, and New Hampshire Lakes Region and White Mountains"
+    },
+    {
+      "name": "Maine-Coast",
+      "location": "Portland, South Portland, Kennebunk, Biddeford, Brunswick, Camden, Bar Harbor, and coastal Maine"
+    },
+    {
+      "name": "Delaware-Maryland",
+      "location": "Wilmington, Rehoboth Beach, Baltimore, Annapolis, Frederick, and coastal Maryland and Delaware"
+    },
+    {
+      "name": "Washington-DC-Northern-VA",
+      "location": "Washington DC, Arlington, Alexandria, Fairfax, and Northern Virginia"
+    },
+    {
+      "name": "Virginia-Carolinas",
+      "location": "Richmond, Charlottesville, Raleigh, Durham, Chapel Hill, Charlotte, Asheville, and the Virginia-Carolinas corridor"
+    },
+    {
+      "name": "Georgia-South-Carolina",
+      "location": "Atlanta, Savannah, Charleston, Greenville, Athens, and Georgia/South Carolina"
+    },
+    {
+      "name": "Florida",
+      "location": "Miami, Key West, Tampa, St. Petersburg, Orlando, Gainesville, Jacksonville, and Florida beach towns"
+    },
+    {
+      "name": "New-Orleans-Gulf-Coast",
+      "location": "New Orleans, Baton Rouge, Mobile, Biloxi, Pensacola, and the Gulf Coast"
+    },
+    {
+      "name": "Tennessee-Kentucky",
+      "location": "Nashville, Memphis, Knoxville, Louisville, Lexington, and Tennessee/Kentucky"
+    },
+    {
+      "name": "Ohio",
+      "location": "Cleveland, Columbus, Cincinnati, Dayton, Toledo, and Ohio"
+    },
+    {
+      "name": "Detroit-Michigan",
+      "location": "Detroit, Ann Arbor, Grand Rapids, Traverse City, Mackinac Island, and Michigan"
+    },
+    {
+      "name": "Chicago-Illinois",
+      "location": "Chicago, Evanston, Oak Park, Naperville, and northern Illinois"
+    },
+    {
+      "name": "Wisconsin",
+      "location": "Milwaukee, Madison, Door County, Green Bay, and Wisconsin"
+    },
+    {
+      "name": "Minnesota-Twin-Cities",
+      "location": "Minneapolis, Saint Paul, Duluth, Stillwater, and Minnesota"
+    },
+    {
+      "name": "Iowa-Nebraska",
+      "location": "Des Moines, Iowa City, Cedar Rapids, Omaha, Lincoln, and Iowa/Nebraska"
+    },
+    {
+      "name": "Missouri-Kansas",
+      "location": "Kansas City, St. Louis, Columbia, Lawrence, Wichita, and Missouri/Kansas"
+    },
+    {
+      "name": "Texas-North-Central",
+      "location": "Dallas, Fort Worth, Austin, Waco, San Antonio, and central/north Texas"
+    },
+    {
+      "name": "Texas-Houston-Gulf",
+      "location": "Houston, Galveston, Corpus Christi, and Texas Gulf Coast"
+    },
+    {
+      "name": "Colorado-Rockies",
+      "location": "Denver, Boulder, Fort Collins, Colorado Springs, Aspen, and Colorado mountain towns"
+    },
+    {
+      "name": "Southwest",
+      "location": "Santa Fe, Albuquerque, Phoenix, Tucson, Flagstaff, and the Southwest"
+    },
+    {
+      "name": "Las-Vegas-Utah",
+      "location": "Las Vegas, Salt Lake City, Park City, Provo, and Utah/Nevada"
+    },
+    {
+      "name": "Southern-California",
+      "location": "Los Angeles, Pasadena, Santa Monica, Long Beach, Orange County, San Diego, and Southern California"
+    },
+    {
+      "name": "Central-Coast-California",
+      "location": "Santa Barbara, San Luis Obispo, Paso Robles, Monterey, Carmel, and California Central Coast"
+    },
+    {
+      "name": "Bay-Area-California",
+      "location": "San Francisco, Oakland, Berkeley, San Jose, Marin, and the Bay Area, California"
+    },
+    {
+      "name": "Northern-California",
+      "location": "Sacramento, Davis, Napa, Sonoma, Mendocino, Humboldt County, and Northern California"
+    },
+    {
+      "name": "Portland-Oregon",
+      "location": "Portland, Beaverton, Hood River, Willamette Valley, and Oregon"
+    },
+    {
+      "name": "Seattle-Washington",
+      "location": "Seattle, Bellevue, Tacoma, Olympia, Bellingham, and western Washington"
+    },
+    {
+      "name": "Inland-Northwest",
+      "location": "Spokane, Coeur d'Alene, Boise, Missoula, Bozeman, and the inland Northwest"
+    },
+    {
+      "name": "Alaska",
+      "location": "Anchorage, Juneau, Fairbanks, Seward, and Alaska"
+    },
+    {
+      "name": "Hawaii",
+      "location": "Honolulu, Oahu, Maui, Kauai, and Hawaii"
+    },
+    {
+      "name": "Upper-Midwest-Great-Plains",
+      "location": "Fargo, Sioux Falls, Rapid City, Bismarck, Omaha-adjacent Great Plains, and upper Midwest"
+    },
+    {
+      "name": "Arkansas-Oklahoma",
+      "location": "Little Rock, Bentonville, Fayetteville, Tulsa, Oklahoma City, and Arkansas/Oklahoma"
+    }
+  ],
+  "notes": "Run with max_parallel 3-4. Expected raw output is 60 targets x 6 entries = 360 before dedupe. Use existing ice cream research artifacts as seed context, then aggregate/dedupe to approximately 300 entries. Product photo rules remain strict: no stock, no exterior-only photos, and all photo briefs should target real product close-ups from official or customer sources."
+}
