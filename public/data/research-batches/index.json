@@ -1,7 +1,17 @@
 {
   "version": 1,
-  "lastUpdated": "2026-05-28",
+  "lastUpdated": "2026-05-30",
   "batches": [
+    {
+      "id": "hunt-veal-parm-in-capital-district-1780154339826",
+      "name": "Hunt: veal parm in capital district",
+      "topic": "veal parm in capital district",
+      "status": "ready-for-review",
+      "totalProfiles": 6,
+      "profilesWithPhotos": 6,
+      "createdAt": "2026-05-30T15:18:59.825Z",
+      "file": "hunts/hunt-veal-parm-in-capital-district-1780154339826/review-batch.json"
+    },
     {
       "id": "batch-2026-05-28-ice-cream-capital",
       "name": "Ice Cream – Capital District (May 2026 Refresh)",

@@ -1,0 +1,243 @@
+[
+  {
+    "entry": {
+      "id": "lombardos-albany-vealparm",
+      "name": "Lombardo's Restaurant",
+      "location": {
+        "address": "121 Madison Avenue",
+        "city": "Albany",
+        "region": "NY",
+        "country": "USA",
+        "lat": 42.6505,
+        "lng": -73.7533
+      },
+      "description": "Classic Italian restaurant serving traditional veal parmigiana.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "type": "review",
+          "source": "Yelp",
+          "detail": "Multiple reviews praise veal parmigiana as standout classic",
+          "date": "2023"
+        }
+      ],
+      "tags": [
+        "italian",
+        "veal parm"
+      ],
+      "photoBriefs": [
+        {
+          "searchQuery": "Lombardo's Albany veal parmigiana plated dish",
+          "expectedVisual": "Breaded veal cutlet topped with marinara and melted mozzarella on a white plate",
+          "priority": "high",
+          "suggestedSource": "Local review photos 2023"
+        }
+      ]
+    },
+    "reviewState": "needs_photo_review",
+    "qualityIssues": [
+      "verified_real_photos_required"
+    ]
+  },
+  {
+    "entry": {
+      "id": "cafecapriccio-albany-vealparm",
+      "name": "Cafe Capriccio",
+      "location": {
+        "address": "49 Grand Street",
+        "city": "Albany",
+        "region": "NY",
+        "country": "USA",
+        "lat": 42.6512,
+        "lng": -73.7518
+      },
+      "description": "Italian spot known for house-made veal parmigiana.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "type": "review",
+          "source": "Yelp",
+          "detail": "Signature item noted by local reviewers",
+          "date": "2022"
+        }
+      ],
+      "tags": [
+        "italian",
+        "veal parm"
+      ],
+      "photoBriefs": [
+        {
+          "searchQuery": "Cafe Capriccio Albany veal parm house-made",
+          "expectedVisual": "Veal cutlet with red sauce and cheese served with pasta",
+          "priority": "high",
+          "suggestedSource": "Capital Region food blog 2024"
+        }
+      ]
+    },
+    "reviewState": "needs_photo_review",
+    "qualityIssues": [
+      "verified_real_photos_required"
+    ]
+  },
+  {
+    "entry": {
+      "id": "testos-schenectady-vealparm",
+      "name": "Testo's Restaurant",
+      "location": {
+        "address": "1600 Union Street",
+        "city": "Schenectady",
+        "region": "NY",
+        "country": "USA",
+        "lat": 42.8148,
+        "lng": -73.9271
+      },
+      "description": "Longstanding Schenectady Italian restaurant serving traditional veal parmigiana.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "type": "article",
+          "source": "Schenectady Gazette",
+          "detail": "Featured as local favorite for veal parm",
+          "date": "2021"
+        }
+      ],
+      "tags": [
+        "italian",
+        "veal parm"
+      ],
+      "photoBriefs": [
+        {
+          "searchQuery": "Testo's Schenectady veal parmigiana traditional",
+          "expectedVisual": "Large portion of breaded veal with sauce and cheese",
+          "priority": "high",
+          "suggestedSource": "Yelp reviewer photo 2023"
+        }
+      ]
+    },
+    "reviewState": "needs_photo_review",
+    "qualityIssues": [
+      "recent_evidence_required",
+      "verified_real_photos_required"
+    ]
+  },
+  {
+    "entry": {
+      "id": "davinci-schenectady-vealparm",
+      "name": "Da Vinci Italian Restaurant",
+      "location": {
+        "address": "1915 Van Vranken Avenue",
+        "city": "Schenectady",
+        "region": "NY",
+        "country": "USA",
+        "lat": 42.8089,
+        "lng": -73.9234
+      },
+      "description": "Italian restaurant frequently cited for quality veal parm.",
+      "confidence": "medium",
+      "evidence": [
+        {
+          "type": "review",
+          "source": "TripAdvisor",
+          "detail": "Singled out as one of the best in Capital District",
+          "date": "2023"
+        }
+      ],
+      "tags": [
+        "italian",
+        "veal parm"
+      ],
+      "photoBriefs": [
+        {
+          "searchQuery": "Da Vinci Schenectady veal parm best",
+          "expectedVisual": "Plated veal parmigiana with melted cheese",
+          "priority": "high",
+          "suggestedSource": "Google review photo 2024"
+        }
+      ]
+    },
+    "reviewState": "needs_photo_review",
+    "qualityIssues": [
+      "verified_real_photos_required"
+    ]
+  },
+  {
+    "entry": {
+      "id": "russos-troy-vealparm",
+      "name": "Russo's Italian Restaurant",
+      "location": {
+        "address": "62 3rd Street",
+        "city": "Troy",
+        "region": "NY",
+        "country": "USA",
+        "lat": 42.7321,
+        "lng": -73.6872
+      },
+      "description": "Troy Italian restaurant with strong local following for veal parm.",
+      "confidence": "medium",
+      "evidence": [
+        {
+          "type": "review",
+          "source": "Yelp",
+          "detail": "Top choice in Troy dining threads",
+          "date": "2022"
+        }
+      ],
+      "tags": [
+        "italian",
+        "veal parm"
+      ],
+      "photoBriefs": [
+        {
+          "searchQuery": "Russo's Troy veal parmigiana portion",
+          "expectedVisual": "Generous serving of veal with marinara and mozzarella",
+          "priority": "high",
+          "suggestedSource": "Local Troy review 2023"
+        }
+      ]
+    },
+    "reviewState": "needs_photo_review",
+    "qualityIssues": [
+      "verified_real_photos_required"
+    ]
+  },
+  {
+    "entry": {
+      "id": "johnnys-albany-vealparm",
+      "name": "Johnny's Italian-American Restaurant",
+      "location": {
+        "address": "278 1st Street",
+        "city": "Albany",
+        "region": "NY",
+        "country": "USA",
+        "lat": 42.6531,
+        "lng": -73.7492
+      },
+      "description": "Reliable portions of veal parmigiana at this Albany spot.",
+      "confidence": "medium",
+      "evidence": [
+        {
+          "type": "review",
+          "source": "Review aggregator",
+          "detail": "Mentioned for generous veal parm portions",
+          "date": "2023"
+        }
+      ],
+      "tags": [
+        "italian",
+        "veal parm"
+      ],
+      "photoBriefs": [
+        {
+          "searchQuery": "Johnny's Albany veal parmigiana generous",
+          "expectedVisual": "Veal cutlet covered in sauce and cheese on plate",
+          "priority": "high",
+          "suggestedSource": "Capital Region review 2024"
+        }
+      ]
+    },
+    "reviewState": "needs_photo_review",
+    "qualityIssues": [
+      "verified_real_photos_required"
+    ]
+  }
+]

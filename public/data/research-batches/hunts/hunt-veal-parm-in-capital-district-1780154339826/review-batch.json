@@ -1,0 +1,117 @@
+{
+  "id": "hunt-veal-parm-in-capital-district-1780154339826",
+  "name": "Hunt: veal parm in capital district",
+  "topic": "veal parm in capital district",
+  "createdAt": "2026-05-30T15:18:59.825Z",
+  "status": "ready-for-review",
+  "source": {
+    "type": "github-issue",
+    "reference": ""
+  },
+  "runs": [
+    {
+      "id": "hunt-veal-parm-in-capital-district-1780154339826-run-1",
+      "batchId": "hunt-veal-parm-in-capital-district-1780154339826",
+      "startedAt": "2026-05-30T15:18:59.825Z",
+      "completedAt": "2026-05-30T15:21:16.487Z",
+      "modelConfig": {
+        "models": [
+          "grok-4.3"
+        ],
+        "locationTargets": [
+          "Capital District / Albany region"
+        ],
+        "perLocationLimit": 8
+      },
+      "summary": {
+        "totalCandidates": 6,
+        "entriesProduced": 6,
+        "photosWithBriefs": 6,
+        "averageConfidence": "mixed"
+      },
+      "outputFile": "public/data/research-batches/hunts/hunt-veal-parm-in-capital-district-1780154339826/raw-output.json",
+      "githubRunUrl": "https://github.com/gitbrainlab/mosaic/actions/runs/26687446920"
+    }
+  ],
+  "summary": {
+    "totalProfiles": 6,
+    "profilesWithPhotos": 6,
+    "locationsCovered": [
+      "Albany, NY",
+      "Schenectady, NY",
+      "Troy, NY"
+    ],
+    "lastEnrichedAt": "2026-05-30T15:21:16.487Z"
+  },
+  "notes": "GitHub-native Hunt artifact. Review and quality gates must pass before public map promotion. Use only real, location-tied photos that visibly show the thing the map is about. Keep unresolved photo work in review artifacts, not public entries.json.",
+  "reviewState": "needs verification",
+  "workflowStates": [
+    {
+      "state": "queued",
+      "complete": true
+    },
+    {
+      "state": "researching",
+      "complete": true
+    },
+    {
+      "state": "needs verification",
+      "complete": true
+    },
+    {
+      "state": "needs photo review",
+      "complete": false
+    },
+    {
+      "state": "promotion preview",
+      "complete": false
+    },
+    {
+      "state": "approved",
+      "complete": false
+    },
+    {
+      "state": "rejected/refinement requested",
+      "complete": false
+    }
+  ],
+  "artifacts": [
+    {
+      "label": "Hunt Spec",
+      "path": "public/data/research-batches/hunts/hunt-veal-parm-in-capital-district-1780154339826/hunt-spec.json",
+      "kind": "spec"
+    },
+    {
+      "label": "Raw Output",
+      "path": "public/data/research-batches/hunts/hunt-veal-parm-in-capital-district-1780154339826/raw-output.json",
+      "kind": "raw"
+    },
+    {
+      "label": "Candidates",
+      "path": "public/data/research-batches/hunts/hunt-veal-parm-in-capital-district-1780154339826/candidates.json",
+      "kind": "candidates"
+    },
+    {
+      "label": "Evidence / Photo Briefs",
+      "path": "public/data/research-batches/hunts/hunt-veal-parm-in-capital-district-1780154339826/evidence-photo-briefs.json",
+      "kind": "photo-review"
+    },
+    {
+      "label": "Rejected Candidates",
+      "path": "public/data/research-batches/hunts/hunt-veal-parm-in-capital-district-1780154339826/rejected-candidates.json",
+      "kind": "rejections"
+    }
+  ],
+  "promotion": {
+    "approvalRequired": true,
+    "workflow": ".github/workflows/hunt-promotion.yml",
+    "publicDataBlockedUntilApproved": true
+  },
+  "qualityGates": [
+    "exact_address_required",
+    "valid_coordinates_required",
+    "recent_evidence_required",
+    "no_generic_filler",
+    "verified_real_photos_required"
+  ]
+}
