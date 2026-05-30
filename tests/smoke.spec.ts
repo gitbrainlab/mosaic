@@ -1,5 +1,8 @@
 import { test, expect } from '@playwright/test';
 
+const basePath = process.env.MOSAIC_TEST_BASE_PATH || '/mosaic/v4/';
+const route = (path = '') => `${basePath}${path}`;
+
 /**
  * @smoke
  *
@@ -12,10 +15,10 @@ import { test, expect } from '@playwright/test';
 
 test.describe('@smoke Mosaic Smoke Tests', () => {
   test.beforeEach(async ({ page }) => {
-    // The config starts the preview server with the v3 production base path.
+    // The config starts the preview server with the versioned production base path.
     // We try the root first (preview often serves it), then fall back.
     await page.goto('/').catch(() => {});
-    await page.goto('/mosaic/v3/').catch(() => {});
+    await page.goto(basePath).catch(() => {});
 
     await page.waitForSelector('#app', { timeout: 15000 });
   });
@@ -57,7 +60,7 @@ test.describe('@smoke Mosaic Smoke Tests', () => {
   });
 
   test('map view has the header List button (no bottom nav collision)', async ({ page }) => {
-    await page.goto('/mosaic/v3/?/map/ice-cream-capital-district');
+    await page.goto(route('?/map/ice-cream-capital-district'));
     await page.waitForTimeout(1200);
 
     const listBtn = page.locator('#show-list-header');
@@ -66,7 +69,7 @@ test.describe('@smoke Mosaic Smoke Tests', () => {
   });
 
   test('studio loads committed research batches', async ({ page }) => {
-    await page.goto('/mosaic/v3/?/studio');
+    await page.goto(route('?/studio'));
 
     await expect(page.getByRole('heading', { name: 'Research Batches' })).toBeVisible();
     await expect(page.getByText('Ice Cream – Capital District')).toBeVisible();

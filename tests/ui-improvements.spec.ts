@@ -1,8 +1,11 @@
 import { expect, test, type Page } from '@playwright/test';
 
+const basePath = process.env.MOSAIC_TEST_BASE_PATH || '/mosaic/v4/';
+const route = (path = '') => `${basePath}${path}`;
+
 async function gotoMap(page: Page, slug: string, entry?: string) {
   const entryParam = entry ? `&entry=${entry}` : '';
-  await page.goto(`/mosaic/v3/?/map/${slug}${entryParam}`);
+  await page.goto(route(`?/map/${slug}${entryParam}`));
   await page.waitForSelector('#map', { timeout: 15000 });
   await page.waitForTimeout(1600);
 }
@@ -142,7 +145,7 @@ test.describe('@smoke UI hardening checks', () => {
   test('studio exposes static verification queue actions', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name !== 'mobile-light', 'Studio queue check runs once.');
 
-    await page.goto('/mosaic/v3/?/studio');
+    await page.goto(route('?/studio'));
     await expect(page.getByRole('button', { name: /Verification Queue/i })).toBeVisible({ timeout: 15000 });
     await expect(page.getByRole('button', { name: /Needs Photo Review/i })).toBeVisible();
     await expect(page.getByRole('button', { name: /Refinement Requested/i })).toBeVisible();
