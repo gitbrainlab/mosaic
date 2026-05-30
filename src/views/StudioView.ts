@@ -1,4 +1,4 @@
-import { loadEnrichmentBacklog, loadEntries, loadResearchBatch, loadResearchBatchIndex } from '../lib/data-loader'
+import { loadEnrichmentBacklog, loadEntries, loadResearchBatch, loadResearchBatchIndex, loadResearchCandidates } from '../lib/data-loader'
 import type { KnowledgeEntry, ResearchBatch } from '../types'
 
 interface ReviewFlag {
@@ -10,6 +10,10 @@ interface ReviewFlag {
   confidence: string
   priorityScore: number
   issues: string[]
+  batchId?: string
+  batchName?: string
+  artifactPath?: string
+  sourceType?: 'public-map' | 'hunt-batch'
 }
 
 type QueueState = 'Verification Queue' | 'Needs Photo Review' | 'Refinement Requested'
@@ -17,6 +21,19 @@ type QueueState = 'Verification Queue' | 'Needs Photo Review' | 'Refinement Requ
 interface ReviewItem extends ReviewFlag {
   queueState: QueueState
   entry: KnowledgeEntry | null
+}
+
+interface ResearchCandidate {
+  entry: KnowledgeEntry & {
+    photoBriefs?: Array<{
+      searchQuery: string
+      expectedVisual: string
+      priority: string
+      suggestedSource?: string
+    }>
+  }
+  reviewState?: string
+  qualityIssues?: string[]
 }
 
 const QUEUE_STATES: QueueState[] = ['Verification Queue', 'Needs Photo Review', 'Refinement Requested']
@@ -53,13 +70,16 @@ export default class StudioView {
 
     const backlogResult = await loadEnrichmentBacklog()
     const backlog = backlogResult.data
-    const topFlags = ((backlog?.backlog || []) as ReviewFlag[]).slice(0, 18)
+    const huntItems = await this.loadHuntReviewItems(batches)
+    const topFlags = ((backlog?.backlog || []) as ReviewFlag[]).slice(0, Math.max(0, 18 - huntItems.length))
     const entryLookup = await this.loadFlaggedEntryLookup(topFlags)
-    const reviewItems = topFlags.map(flag => ({
+    const backlogItems = topFlags.map(flag => ({
       ...flag,
+      sourceType: 'public-map' as const,
       queueState: this.classifyQueueState(flag),
       entry: entryLookup.get(this.reviewKey(flag)) || null,
     }))
+    const reviewItems = [...huntItems, ...backlogItems]
     const approvedBatches = batches
       .filter(({ summary }) => /complete|committed|approved|published/i.test(summary.status))
       .slice(0, 4)
@@ -71,7 +91,7 @@ export default class StudioView {
           <h1 class="text-2xl font-semibold tracking-tight text-[#111] dark:text-white">Research Batches</h1>
         </div>
 
-        ${this.renderReviewWorkspace(reviewItems, approvedBatches, backlog)}
+        ${this.renderReviewWorkspace(reviewItems, approvedBatches, backlog, huntItems.length)}
 
         <div class="grid gap-4">
           ${batches.map(({ summary, batch }) => this.renderBatch(summary, batch)).join('')}
@@ -96,10 +116,80 @@ export default class StudioView {
     return lookup
   }
 
+  private async loadHuntReviewItems(
+    batches: Array<{ summary: any; batch: ResearchBatch | null }>
+  ): Promise<ReviewItem[]> {
+    const items: ReviewItem[] = []
+
+    for (const { summary, batch } of batches) {
+      if (!batch || !/ready-for-review|needs|queued|researching|promotion/i.test(`${summary.status} ${batch.reviewState || ''}`)) {
+        continue
+      }
+
+      const candidatesPath = this.candidatesPath(summary, batch)
+      if (!candidatesPath) continue
+
+      const result = await loadResearchCandidates(candidatesPath)
+      const candidates = (result.data || []) as ResearchCandidate[]
+
+      candidates.forEach((candidate, index) => {
+        const entry = candidate.entry
+        const issues = candidate.qualityIssues?.length
+          ? candidate.qualityIssues
+          : this.issuesFromCandidate(candidate, batch)
+
+        items.push({
+          mapSlug: this.preReleaseSlug(summary, batch),
+          mapTitle: `${summary.name} (pre-release)`,
+          entryId: entry.id,
+          entryName: entry.name,
+          city: [entry.location.city, entry.location.region].filter(Boolean).join(', '),
+          confidence: entry.confidence,
+          priorityScore: Math.max(1, 100 - index),
+          issues,
+          batchId: batch.id,
+          batchName: summary.name,
+          artifactPath: candidatesPath,
+          sourceType: 'hunt-batch',
+          queueState: this.classifyQueueState({ issues } as ReviewFlag),
+          entry,
+        })
+      })
+    }
+
+    return items
+  }
+
+  private candidatesPath(summary: any, batch: ResearchBatch) {
+    const artifactPath = batch.artifacts?.find(artifact => artifact.kind === 'candidates')?.path
+    if (artifactPath) return artifactPath
+    if (typeof summary.file === 'string' && summary.file.endsWith('review-batch.json')) {
+      return summary.file.replace(/review-batch\.json$/, 'candidates.json')
+    }
+    return ''
+  }
+
+  private preReleaseSlug(summary: any, batch: ResearchBatch) {
+    return `pre-release:${batch.id || summary.id}`
+  }
+
+  private issuesFromCandidate(candidate: ResearchCandidate, batch: ResearchBatch) {
+    const issues = new Set<string>()
+    const reviewState = candidate.reviewState || batch.reviewState || ''
+
+    if (/photo/i.test(reviewState)) issues.add('verified_real_photos_required')
+    if (/verification|verify/i.test(reviewState)) issues.add('needs_verification')
+    for (const gate of batch.qualityGates || []) issues.add(gate)
+    if (issues.size === 0) issues.add('review_before_promotion')
+
+    return Array.from(issues)
+  }
+
   private renderReviewWorkspace(
     items: ReviewItem[],
     approvedBatches: Array<{ summary: any; batch: ResearchBatch | null }>,
-    backlog: { generatedAt: string; totalFlaggedEntries: number; totalMaps: number } | null
+    backlog: { generatedAt: string; totalFlaggedEntries: number; totalMaps: number } | null,
+    huntItemCount: number
   ) {
     const firstKey = items[0] ? this.reviewKey(items[0]) : ''
 
@@ -111,7 +201,7 @@ export default class StudioView {
               <div class="text-xs uppercase tracking-[1px] font-bold text-[#2563eb] dark:text-[#9db7ff]">Research Review</div>
               <h2 class="text-2xl font-semibold tracking-tight text-[#172033] dark:text-white">Review queued findings before promotion</h2>
               <div class="mt-1 text-sm text-[#3f4b5f] dark:text-[#d4cebf]">
-                ${backlog ? `${backlog.totalFlaggedEntries} flagged entries across ${backlog.totalMaps} maps. Select a card, inspect the preview, then choose the next stage.` : 'No backlog index loaded yet.'}
+                ${this.reviewSummaryCopy(backlog, huntItemCount)}
               </div>
             </div>
             <div class="text-xs text-[#5f6d82] dark:text-[#a39a8c]">
@@ -138,7 +228,7 @@ export default class StudioView {
             <div class="rounded-[18px] border border-[#cfdae8] dark:border-[#3f3b33] bg-white dark:bg-[#181713] shadow-sm overflow-hidden">
               <div class="p-4 border-b border-[#e5eaf2] dark:border-[#3f3b33]">
                 <div class="text-sm font-bold text-[#172033] dark:text-white">Review List</div>
-                <div class="text-xs text-[#5f6d82] dark:text-[#d4cebf]">${items.length} queued items shown by priority</div>
+                <div class="text-xs text-[#5f6d82] dark:text-[#d4cebf]">${items.length} queued items, including ${huntItemCount} pre-release Hunt candidates</div>
               </div>
               <div class="max-h-[620px] overflow-y-auto divide-y divide-[#edf1f6] dark:divide-[#3f3b33]">
                 ${items.length > 0 ? items.map(item => this.renderQueueItem(item, firstKey)).join('') : `
@@ -200,7 +290,7 @@ export default class StudioView {
             <div class="font-semibold text-sm text-[#172033] dark:text-white">${this.escape(item.entryName)}</div>
             <div class="text-xs text-[#5f6d82] dark:text-[#d4cebf]">${this.escape(item.mapTitle)} / ${this.escape(item.city)}</div>
           </div>
-          <div class="text-[11px] px-2 py-0.5 rounded-full bg-[#2563eb] text-white">${item.priorityScore}</div>
+          <div class="text-[11px] px-2 py-0.5 rounded-full ${item.sourceType === 'hunt-batch' ? 'bg-[#0f766e]' : 'bg-[#2563eb]'} text-white">${item.sourceType === 'hunt-batch' ? 'Pre-release' : item.priorityScore}</div>
         </div>
         <div class="mt-2 flex flex-wrap gap-1">
           ${item.issues.slice(0, 3).map(issue => `<span class="text-[11px] px-2 py-0.5 rounded-full bg-[#edf4ff] dark:bg-[#2a2924] text-[#243044] dark:text-[#e8e4d9]">${this.escape(this.formatIssueLabel(item, issue))}</span>`).join('')}
@@ -212,17 +302,19 @@ export default class StudioView {
   private renderPreviewPanel(item: ReviewItem, selected: boolean) {
     const key = this.reviewKey(item)
     const entry = item.entry
-    const mapDetailHref = `?/map/${encodeURIComponent(item.mapSlug)}&entry=${encodeURIComponent(item.entryId)}`
+    const mapDetailHref = item.sourceType === 'hunt-batch'
+      ? this.artifactHref(item.artifactPath || '')
+      : `?/map/${encodeURIComponent(item.mapSlug)}&entry=${encodeURIComponent(item.entryId)}`
 
     return `
       <article class="studio-review-preview p-4" data-review-preview data-review-key="${this.escapeAttr(key)}" ${selected ? '' : 'hidden'}>
         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 border-b border-[#e5e2d9] dark:border-[#3f3b33] pb-3">
           <div>
-            <div class="text-xs uppercase tracking-[1px] font-bold text-[#3f3b33] dark:text-[#d4cebf]">${this.escape(item.queueState)}</div>
+            <div class="text-xs uppercase tracking-[1px] font-bold text-[#3f3b33] dark:text-[#d4cebf]">${this.escape(item.sourceType === 'hunt-batch' ? `Pre-release Hunt / ${item.queueState}` : item.queueState)}</div>
             <h2 class="text-xl font-bold text-[#111] dark:text-white">${this.escape(entry?.name || item.entryName)}</h2>
             <div class="text-sm text-[#5f5a52] dark:text-[#d4cebf]">${this.escape(this.locationLine(entry, item))}</div>
           </div>
-          <a class="min-h-11 inline-flex items-center justify-center px-3 rounded border border-[#a39a8c] text-xs font-semibold text-[#2c2a27] dark:text-[#f1efea] hover:bg-[#f1efea] dark:hover:bg-[#2a2924]" href="${mapDetailHref}">Open map detail</a>
+          <a class="min-h-11 inline-flex items-center justify-center px-3 rounded border border-[#a39a8c] text-xs font-semibold text-[#2c2a27] dark:text-[#f1efea] hover:bg-[#f1efea] dark:hover:bg-[#2a2924]" href="${mapDetailHref}" ${item.sourceType === 'hunt-batch' ? 'target="_blank" rel="noreferrer"' : ''}>${item.sourceType === 'hunt-batch' ? 'Open candidates' : 'Open map detail'}</a>
         </div>
 
         <div class="mt-4 grid gap-4 xl:grid-cols-[minmax(0,1fr)_280px]">
@@ -242,6 +334,7 @@ export default class StudioView {
                 ${this.previewFact('Address', entry?.location.address || 'Address review needed')}
                 ${this.previewFact('Coordinates', entry ? `${entry.location.lat}, ${entry.location.lng}` : 'Coordinate review needed')}
                 ${this.previewFact('Map', item.mapTitle)}
+                ${item.batchId ? this.previewFact('Batch', item.batchId) : ''}
               </div>
               ${entry?.tags?.length ? `
                 <div class="mt-3 flex flex-wrap gap-1.5">
@@ -251,6 +344,7 @@ export default class StudioView {
             </section>
 
             ${this.renderEvidencePreview(entry)}
+            ${this.renderPhotoBriefs(entry)}
             ${this.renderAttributePreview(entry)}
           </div>
 
@@ -279,7 +373,8 @@ export default class StudioView {
         data-target-state="${this.escapeAttr(targetState)}"
         data-reason="${this.escapeAttr(reason)}"
         data-map-slug="${this.escapeAttr(item.mapSlug)}"
-        data-batch-id="${this.escapeAttr(item.mapSlug)}"
+        data-batch-id="${this.escapeAttr(item.batchId || item.mapSlug)}"
+        data-source-type="${this.escapeAttr(item.sourceType || 'public-map')}"
         data-entry-id="${this.escapeAttr(item.entryId)}">
         ${this.escape(label)}
       </button>
@@ -440,10 +535,12 @@ export default class StudioView {
         const el = button as HTMLElement
         const reviewPayload = {
           mapSlug: el.dataset.mapSlug || el.dataset.batchId,
+          batchId: el.dataset.batchId,
           entryId: el.dataset.entryId,
           action: el.dataset.reviewAction,
           reason: el.dataset.reason,
           targetState: el.dataset.targetState,
+          sourceType: el.dataset.sourceType,
           createdAt: new Date().toISOString(),
           source: 'mosaic-static-studio',
         }
@@ -477,6 +574,10 @@ export default class StudioView {
   private assessmentChecklist(item: ReviewItem) {
     const checks = new Set<string>()
 
+    if (item.sourceType === 'hunt-batch') {
+      checks.add('Treat this as a pre-release candidate: do not promote until the address, coordinates, current evidence, and real-place visuals are confirmed.')
+    }
+
     for (const issue of item.issues) {
       if (/coordinate/i.test(issue)) checks.add('Verify the street address and coordinates against a current source before this appears on the map.')
       if (/source/i.test(issue)) checks.add('Find reachable source URLs for the profile claims and current operating status.')
@@ -506,12 +607,22 @@ export default class StudioView {
     `
   }
 
+  private reviewSummaryCopy(
+    backlog: { totalFlaggedEntries: number; totalMaps: number } | null,
+    huntItemCount: number
+  ) {
+    const backlogCopy = backlog
+      ? `${backlog.totalFlaggedEntries} flagged public entries across ${backlog.totalMaps} maps`
+      : 'No public backlog index loaded yet'
+    return `${huntItemCount} pre-release Hunt candidates and ${backlogCopy}. Select a card, inspect the preview, then choose the next stage.`
+  }
+
   private primaryReason(item: ReviewItem) {
     return item.issues[0] || 'review_requested'
   }
 
   private reviewKey(flag: Pick<ReviewFlag, 'mapSlug' | 'entryId'>) {
-    return `${flag.mapSlug}:${flag.entryId}`
+    return `${'batchId' in flag && flag.batchId ? flag.batchId : flag.mapSlug}:${flag.entryId}`
   }
 
   private locationLine(entry: KnowledgeEntry | null, item: ReviewItem) {
@@ -529,7 +640,30 @@ export default class StudioView {
   }
 
   private noPhotoCopy(item: ReviewItem) {
+    if (item.sourceType === 'hunt-batch') {
+      return 'No verified real-place photo is promoted yet. Use the photo briefs below to confirm the visual source before this candidate becomes public.'
+    }
     return `No ${this.visualNoun(item)} is loaded for this entry yet. Use photo review if the current sources do not prove the visual belongs to the real place.`
+  }
+
+  private renderPhotoBriefs(entry: ReviewItem['entry']) {
+    const briefs = (entry as ResearchCandidate['entry'] | null)?.photoBriefs || []
+    if (!briefs.length) return ''
+
+    return `
+      <section>
+        <div class="text-xs uppercase tracking-[1px] font-bold text-[#3f3b33] dark:text-[#d4cebf] mb-2">Photo Briefs</div>
+        <div class="grid gap-2">
+          ${briefs.slice(0, 4).map(brief => `
+            <div class="border border-[#e5e2d9] dark:border-[#3f3b33] p-3 bg-[#fbfaf7] dark:bg-[#11100e]">
+              <div class="text-sm font-semibold text-[#111] dark:text-white">${this.escape(brief.searchQuery)}</div>
+              <div class="mt-1 text-xs text-[#2c2a27] dark:text-[#e8e4d9]">${this.escape(brief.expectedVisual)}</div>
+              <div class="mt-1 text-[11px] text-[#6b6761] dark:text-[#a39a8c]">${this.escape([brief.priority, brief.suggestedSource].filter(Boolean).join(' / '))}</div>
+            </div>
+          `).join('')}
+        </div>
+      </section>
+    `
   }
 
   private visualNoun(item: ReviewItem, plural = false) {
