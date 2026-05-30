@@ -15,6 +15,7 @@ import type {
   ResearchBatch,
   LoaderResult,
 } from '../types';
+import type { DraftMap, HuntProfile, HuntState } from '../types/hunt';
 
 interface ResearchBatchIndex {
   version: number;
@@ -70,6 +71,24 @@ async function fetchJson<T>(relativePath: string): Promise<T> {
 
   if (!res.ok) {
     throw new Error(`Failed to load ${relativePath}: ${res.status} ${res.statusText}`);
+  }
+
+  return res.json() as Promise<T>;
+}
+
+const configuredHuntApiBase = (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\/$/, '');
+const huntApiBase = configuredHuntApiBase || (import.meta.env.DEV ? 'http://localhost:8888/.netlify/functions' : '');
+
+async function fetchHuntApi<T>(path: string): Promise<T> {
+  if (!huntApiBase) {
+    throw new Error('Mosaic Hunt API is not configured. Set VITE_API_BASE_URL to the Netlify Functions base URL.');
+  }
+
+  const res = await fetch(`${huntApiBase}/${path}`, { cache: 'no-store' });
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({ error: `HTTP ${res.status}` }));
+    const message = typeof body?.error === 'string' ? body.error : `HTTP ${res.status}`;
+    throw new Error(message);
   }
 
   return res.json() as Promise<T>;
@@ -214,6 +233,26 @@ export async function loadEnrichmentBacklog(): Promise<LoaderResult<EnrichmentBa
     return { data, state: 'loaded' };
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Unknown error loading enrichment backlog';
+    return { data: null, state: 'error', error: message };
+  }
+}
+
+export async function loadHunt(huntId: string): Promise<LoaderResult<HuntState>> {
+  try {
+    const data = await fetchHuntApi<HuntState>(`hunt-status?id=${encodeURIComponent(huntId)}`);
+    return { data, state: 'loaded' };
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Unknown error loading Hunt';
+    return { data: null, state: 'error', error: message };
+  }
+}
+
+export async function loadPublicHunts(): Promise<LoaderResult<{ hunts: Array<{ profile: HuntProfile; draftMap: DraftMap | null }> }>> {
+  try {
+    const data = await fetchHuntApi<{ hunts: Array<{ profile: HuntProfile; draftMap: DraftMap | null }> }>('hunt-list');
+    return { data, state: 'loaded' };
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Unknown error loading public Hunts';
     return { data: null, state: 'error', error: message };
   }
 }

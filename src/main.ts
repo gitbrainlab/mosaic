@@ -1,7 +1,9 @@
 import './style.css'
-import { initRouter, getCurrentRoute, goToGallery, goToMap, goToStudio } from './lib/router'
+import { initRouter, getCurrentRoute, goToGallery, goToHunt, goToMap, goToStudio } from './lib/router'
 import { loadIndex } from './lib/data-loader'
+import { createHunt, refineHunt } from './lib/assistant'
 import type { DataIndex } from './types'
+import type { HuntSpec } from './types/hunt'
 // MapView is loaded dynamically via import() — do not add static import
 
 /**
@@ -114,7 +116,7 @@ function renderGallery(index: DataIndex) {
       <!-- Hero / Hunt launcher -->
       <div class="mb-4"></div>
 
-      <!-- The Hunt Experience (Discovery + Curation Loop demo) -->
+      <!-- The Hunt Experience (Discovery + Curation Loop) -->
       <div id="hunt-panel" class="mb-10">
         <div class="mb-3 px-1">
           <div class="uppercase text-[10px] tracking-[1.5px] font-bold text-[#3f3b33] dark:text-[#d4cebf]">THE LOOP</div>
@@ -122,7 +124,7 @@ function renderGallery(index: DataIndex) {
         </div>
 
         <div class="mosaic-card p-4 sm:p-5 border-2 border-[#3f3b33] dark:border-[#d4cebf] overflow-hidden">
-          <p class="text-[15px] leading-snug mb-4 text-[#1a1816] dark:text-[#f4f1e9]">Tell the research agents what to hunt. They will open an Issue, run deep LLM research (Grok), validate locations &amp; evidence, and commit fresh structured data to the static maps.</p>
+          <p class="text-[15px] leading-snug mb-4 text-[#1a1816] dark:text-[#f4f1e9]">Tell Mosaic what to hunt. Netlify brokers the fast LLM draft, then strong candidates can be promoted into the GitHub review and validation path.</p>
 
           <div class="flex flex-wrap gap-2 mb-4" id="suggestions">
             <button data-suggestion="Ice Cream in the Capital District" class="sugg text-sm px-4 py-1.5 rounded-full border-2 border-[#1f1d1a] bg-[#1f1d1a] text-white hover:bg-black active:bg-[#0a0a0a] dark:border-[#f4f1e9] dark:bg-[#f4f1e9] dark:text-[#111] dark:hover:bg-white transition-colors">Ice Cream – Capital District</button>
@@ -148,10 +150,10 @@ function renderGallery(index: DataIndex) {
               Additional instructions for the research agents (highly recommended for niche results)
             </label>
             <textarea id="hunt-guidance" rows="3" placeholder="Example: Only soft serve. Must have offered coffee flavors before (not flavorburst). Not gas stations. Must have gluten-free cones available." class="w-full px-3 py-2 text-[16px] sm:text-sm border border-[#a39a8c] rounded-md bg-white dark:bg-[#111] text-[#111] dark:text-[#f4f1e9] focus:outline-none"></textarea>
-            <div class="text-[10px] text-[#6b6761] dark:text-[#8a8178] mt-1">This will be included in the GitHub Issue the agents receive.</div>
+            <div class="text-[10px] text-[#6b6761] dark:text-[#8a8178] mt-1">This becomes part of the structured Hunt profile.</div>
           </div>
 
-          <div class="text-xs mt-3 px-1 text-[#3f3b33] dark:text-[#d4cebf]">Real agents run via GitHub Issues → LLM (Grok) → commits. This is a vivid simulation of the loop for the demo.</div>
+          <div class="text-xs mt-3 px-1 text-[#3f3b33] dark:text-[#d4cebf]">Draft Hunts are provisional. GitHub remains the source of truth for promoted public maps.</div>
         </div>
       </div>
 
@@ -220,7 +222,7 @@ function renderGallery(index: DataIndex) {
   const launchHunt = () => {
     const topic = (input.value || 'A new knowledge map').trim()
     const guidance = guidanceInput?.value?.trim() || ''
-    startHuntSimulation(container, topic, guidance, index)
+    startRealHunt(topic, guidance)
   }
 
   launchBtn.addEventListener('click', launchHunt)
@@ -233,171 +235,124 @@ function renderGallery(index: DataIndex) {
   })
 }
 
-/**
- * Vivid simulation of the GitHub Agent research workflow.
- * Matches the architecture in the notebook diagram: Issues → Input → parallel Jobs (LLM) → Commit.
- */
-function startHuntSimulation(container: HTMLElement, topic: string, guidance: string, index: DataIndex) {
+async function startRealHunt(topic: string, guidance: string) {
   const panel = document.getElementById('hunt-panel')!
-  const fullRequest = guidance ? `${topic}\n\nAdditional guidance:\n${guidance}` : topic
+  const escapedTopic = escapeHtml(topic)
 
   panel.innerHTML = `
     <div class="mosaic-card overflow-hidden border-[#2c2a27]">
       <div class="px-5 pt-5 pb-4 bg-[#1f1d1a] text-white">
-        <div class="uppercase tracking-[2px] text-[10px] text-white/60 mb-1">GITHUB AGENT WORKFLOW</div>
-        <div class="font-semibold text-xl tracking-tighter">Hunt: ${topic}</div>
+        <div class="uppercase tracking-[2px] text-[10px] text-white/60 mb-1">MOSAIC HUNT GATEWAY</div>
+        <div class="font-semibold text-xl tracking-tighter">Hunt: ${escapedTopic}</div>
       </div>
-
-      <div class="p-5 space-y-6 bg-white">
-        <!-- Step 1: Input -->
-        <div>
-          <div class="flex items-center gap-2 text-xs uppercase tracking-widest font-bold text-[#5c5549] mb-2">
-            <span class="inline-block w-2 h-2 rounded-full bg-emerald-600"></span>
-            STEP 1 — INPUT RECEIVED
-          </div>
-          <div class="text-sm">GitHub Issue opened with research request. Agents notified.</div>
-          <div class="mt-2 text-[11px] font-mono bg-[#f8f7f4] px-3 py-2 rounded text-[#3f3b33] border border-[#e5e2d9] whitespace-pre-wrap">
-            #research • "${fullRequest}" • opened just now
-          </div>
+      <div class="p-5 bg-white dark:bg-[#1a1916]">
+        <div class="flex items-center gap-2 text-xs uppercase tracking-widest font-bold text-[#5c5549] dark:text-[#d4cebf] mb-2">
+          <span class="inline-block w-2 h-2 rounded-full bg-amber-600 animate-pulse"></span>
+          REFINING HUNT PROFILE
         </div>
-
-        <!-- Step 2: Agents Dispatched (the parallel jobs from the diagram) -->
-        <div>
-          <div class="flex items-center gap-2 text-xs uppercase tracking-widest font-bold text-[#5c5549] mb-2">
-            <span class="inline-block w-2 h-2 rounded-full bg-emerald-600"></span>
-            STEP 2 — AGENTS DISPATCHED
-          </div>
-          <div class="grid grid-cols-3 gap-2" id="agent-jobs">
-            <div class="agent-job border border-[#d4cebf] rounded p-2 text-xs" data-job="1">
-              <div class="font-semibold">Job A — Sources</div>
-              <div class="text-[10px] text-[#8a8178]">Scanning local media &amp; archives</div>
-            </div>
-            <div class="agent-job border border-[#d4cebf] rounded p-2 text-xs" data-job="2">
-              <div class="font-semibold">Job B — Locations</div>
-              <div class="text-[10px] text-[#8a8178]">Geocoding &amp; validation</div>
-            </div>
-            <div class="agent-job border border-[#d4cebf] rounded p-2 text-xs" data-job="3">
-              <div class="font-semibold">Job C — Evidence</div>
-              <div class="text-[10px] text-[#8a8178]">Cross-referencing claims</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Step 3: LLM Research (the actual Grok calls happening in the real agents) -->
-        <div>
-          <div class="flex items-center gap-2 text-xs uppercase tracking-widest font-bold text-[#5c5549] mb-2">
-            <span class="inline-block w-2 h-2 rounded-full bg-amber-600 animate-pulse"></span>
-            STEP 3 — DEEP RESEARCH (GROK)
-          </div>
-          <div id="research-log" class="font-mono text-[11px] bg-[#0f0e0c] text-emerald-400 p-3 rounded h-20 overflow-auto leading-tight"></div>
-        </div>
-
-        <!-- Step 4: Commit -->
-        <div id="commit-step" class="opacity-40">
-          <div class="flex items-center gap-2 text-xs uppercase tracking-widest font-bold text-[#5c5549] mb-2">
-            <span class="inline-block w-2 h-2 rounded-full bg-emerald-600"></span>
-            STEP 4 — COMMIT
-          </div>
-          <div class="text-sm">Validated data written to <span class="font-mono text-xs">public/data/maps/...</span></div>
-        </div>
-      </div>
-
-      <div class="border-t p-4 bg-[#f8f7f4] flex items-center justify-between">
-        <div id="status-line" class="text-xs text-[#5c5549]">Agents running…</div>
-        <button id="view-map-btn" disabled class="px-4 py-2 text-sm font-semibold bg-[#d4cebf] text-[#3f3b33] rounded disabled:opacity-50 transition">Map not ready</button>
+        <div class="text-sm text-[#2c2a27] dark:text-[#e8e4d9]">Calling the Netlify Hunt gateway to normalize scope, constraints, photo policy, and quality targets.</div>
       </div>
     </div>
   `
 
-  // Animate the agent jobs lighting up (visual of the parallel boxes in the diagram)
-  const jobs = panel.querySelectorAll('.agent-job')
-  jobs.forEach((job, i) => {
-    setTimeout(() => {
-      job.classList.add('!border-[#1f1d1a]', '!bg-[#f8f7f4]')
-      ;(job as HTMLElement).innerHTML = (job as HTMLElement).innerHTML.replace('border-[#d4cebf]', 'border-[#1f1d1a]')
-    }, 420 * (i + 1))
-  })
-
-  // The research log — this is the "LLM thinking" that the real Grok agents do
-  const logEl = document.getElementById('research-log')!
-  const hasGuidance = !!guidance
-  const researchLines = hasGuidance
-    ? [
-        '→ Parsing detailed user constraints...',
-        '→ Applying niche filters (soft serve, flavor history, dietary, exclusions)...',
-        '→ Cross-referencing against guidance in the Issue...',
-        '→ Filtering out gas stations and non-matching profiles',
-        '→ Validating gluten-free options and historical flavors',
-        '→ 5 high-confidence entries matching all criteria ready',
-      ]
-    : [
-        '→ Querying local historical societies...',
-        '→ Found 14 candidate locations with 3+ mentions',
-        '→ Filtering for verifiable addresses only',
-        '→ Geocoding with confidence scoring...',
-        '→ Cross-checking against primary sources',
-        '→ 5 high-confidence entries ready for commit',
-      ]
-
-  let lineIndex = 0
-  const logInterval = setInterval(() => {
-    if (lineIndex < researchLines.length) {
-      logEl.textContent += researchLines[lineIndex] + '\n'
-      logEl.scrollTop = logEl.scrollHeight
-      lineIndex++
-    } else {
-      clearInterval(logInterval)
-      // Complete the workflow
-      completeHunt(panel, topic, index, container)
-    }
-  }, 620)
+  try {
+    const { spec, mode } = await refineHunt({ topic, guidance })
+    renderHuntConfirmation(panel, spec, mode)
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Unable to reach the Hunt gateway.'
+    renderHuntError(panel, topic, guidance, message)
+  }
 }
 
-function completeHunt(panel: HTMLElement, _topic: string, _index: DataIndex, _rootContainer: HTMLElement) {
-  const status = document.getElementById('status-line')!
-  const commit = document.getElementById('commit-step')!
-  const btn = document.getElementById('view-map-btn') as HTMLButtonElement
-
-  commit.classList.remove('opacity-40')
-  commit.innerHTML = `
-    <div class="flex items-center gap-2 text-xs uppercase tracking-widest font-bold text-emerald-700 mb-1">
-      <span class="inline-block w-2 h-2 rounded-full bg-emerald-600"></span>
-      COMMIT SUCCESSFUL
+function renderHuntConfirmation(panel: HTMLElement, spec: HuntSpec, mode: string) {
+  panel.innerHTML = `
+    <div class="mosaic-card overflow-hidden border-[#2c2a27]">
+      <div class="px-5 pt-5 pb-4 bg-[#1f1d1a] text-white">
+        <div class="uppercase tracking-[2px] text-[10px] text-white/60 mb-1">REFINED HUNT PROFILE</div>
+        <div class="font-semibold text-xl tracking-tighter">${escapeHtml(spec.title)}</div>
+      </div>
+      <div class="p-5 space-y-4 bg-white dark:bg-[#1a1916]">
+        <div class="text-xs uppercase tracking-[1px] font-bold text-[#3f3b33] dark:text-[#d4cebf]">Intent</div>
+        <p class="text-sm leading-relaxed text-[#2c2a27] dark:text-[#e8e4d9]">${escapeHtml(spec.intent)}</p>
+        <div class="grid sm:grid-cols-2 gap-3 text-sm">
+          ${profileBlock('Geography', spec.geography.label)}
+          ${profileBlock('Scale', `${spec.desiredScale.initialEntries} draft / ${spec.desiredScale.targetEntries} target`)}
+          ${profileBlock('Must Have', spec.mustHaveConstraints.join('; ') || 'Address-level evidence')}
+          ${profileBlock('Exclusions', spec.exclusions.join('; ') || 'Weak filler')}
+        </div>
+        <div class="text-xs text-[#6b6761] dark:text-[#a39a8c]">Refinement mode: ${escapeHtml(mode)}. The next step creates a public provisional draft in Netlify Blobs.</div>
+      </div>
+      <div class="border-t p-4 bg-[#f8f7f4] dark:bg-[#141310] flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
+        <div id="hunt-create-status" class="text-xs text-[#5c5549] dark:text-[#a39a8c]">Confirm to generate the rapid draft map.</div>
+        <button id="confirm-hunt" class="min-h-11 px-5 rounded bg-[#111] text-white dark:bg-white dark:text-[#111] text-sm font-bold">Generate Draft Map</button>
+      </div>
     </div>
-    <div class="text-sm">5 new entries committed by research agent. Map is now live.</div>
   `
 
-  status.textContent = 'Research complete. Data committed.'
-  btn.disabled = false
-  btn.textContent = 'Open live map →'
-  btn.classList.remove('!bg-[#d4cebf]', 'text-[#3f3b33]')
-  btn.classList.add('!bg-[#1f1d1a]', '!text-white')
+  panel.querySelector('#confirm-hunt')?.addEventListener('click', () => void createConfirmedHunt(panel, spec))
+}
 
-  btn.onclick = () => {
-    // For the demo we always deliver the high-quality Ice Cream map
-    // (the "result" of the simulated hunt the user just triggered)
-    goToMap('ice-cream-capital-district')
+async function createConfirmedHunt(panel: HTMLElement, spec: HuntSpec) {
+  const status = panel.querySelector('#hunt-create-status')
+  const button = panel.querySelector('#confirm-hunt') as HTMLButtonElement | null
+  if (button) button.disabled = true
+  if (status) status.textContent = 'Generating draft map through the Netlify Hunt gateway...'
 
-    // Bonus: after mount, give a little progressive "new entries appeared" feel
-    // by briefly highlighting the list area (visual cue that data just landed)
-    setTimeout(() => {
-      const list = document.getElementById('entry-list')
-      if (list) {
-        list.style.transition = 'box-shadow 200ms'
-        list.style.boxShadow = '0 0 0 3px rgba(31, 29, 26, 0.15)'
-        setTimeout(() => {
-          if (list) list.style.boxShadow = 'none'
-        }, 1400)
-      }
-    }, 900)
+  try {
+    const state = await createHunt(spec)
+    goToHunt(state.profile.id)
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Draft generation failed.'
+    if (status) status.textContent = message
+    if (button) button.disabled = false
   }
+}
 
-  // Also allow clicking the whole panel to open the map (nice affordance)
-  panel.onclick = (e) => {
-    if ((e.target as HTMLElement).id !== 'view-map-btn') {
-      btn.click()
-    }
-  }
+function renderHuntError(panel: HTMLElement, topic: string, guidance: string, message: string) {
+  const issueUrl = buildIssueUrl(topic, guidance)
+  panel.innerHTML = `
+    <div class="mosaic-card p-5 border-2 border-[#7f1d1d]">
+      <div class="text-sm font-semibold text-red-700 dark:text-red-300">Hunt gateway unavailable</div>
+      <p class="mt-2 text-sm text-[#2c2a27] dark:text-[#e8e4d9]">${escapeHtml(message)}</p>
+      <a class="inline-flex mt-4 min-h-11 px-4 items-center rounded bg-[#111] text-white dark:bg-white dark:text-[#111] text-sm font-bold" href="${issueUrl}" target="_blank" rel="noreferrer">Open GitHub Hunt Issue</a>
+    </div>
+  `
+}
+
+function profileBlock(label: string, value: string) {
+  return `
+    <div class="border border-[#e5e2d9] dark:border-[#3f3b33] rounded p-3">
+      <div class="text-[10px] uppercase tracking-[1px] font-bold text-[#5f5a52] dark:text-[#d4cebf]">${label}</div>
+      <div class="mt-1 text-[#111] dark:text-white">${escapeHtml(value)}</div>
+    </div>
+  `
+}
+
+function buildIssueUrl(topic: string, guidance: string) {
+  const body = [
+    '## Hunt Request',
+    '',
+    `Topic: ${topic}`,
+    '',
+    '## Guidance',
+    '',
+    guidance || 'None',
+  ].join('\n')
+  const params = new URLSearchParams({
+    title: `Hunt: ${topic}`,
+    body,
+    labels: 'research',
+  })
+  return `https://github.com/gitbrainlab/mosaic/issues/new?${params.toString()}`
+}
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;')
 }
 
 // ===== App Bootstrap =====
@@ -433,6 +388,11 @@ initRouter((route) => {
       mountView(new MapViewClass(), { slug: route.slug })
     })
     updateBottomNavActive('map')
+  } else if (route.name === 'hunt') {
+    import('./views/HuntView').then(({ default: HuntViewClass }) => {
+      mountView(new HuntViewClass(), { id: route.id })
+    })
+    updateBottomNavActive('gallery')
   } else if (route.name === 'studio') {
     import('./views/StudioView').then(({ default: StudioViewClass }) => {
       mountView(new StudioViewClass())

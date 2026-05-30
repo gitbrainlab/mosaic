@@ -49,6 +49,31 @@ This site is deployed automatically via GitHub Actions.
 
 The deployment workflow builds v3 with `VITE_BASE_PATH=/mosaic/v3/` and publishes the artifact under `v3/` for GitHub Pages.
 
+## Netlify Hunt Gateway
+
+Mosaic can use Netlify as an API-only rapid Hunt gateway while keeping GitHub as the source of truth.
+
+- Netlify Functions live in `netlify/functions/`.
+- Netlify Blobs store draft Hunt profiles, provisional maps, events, and promotion requests.
+- Draft Hunts are public/provisional at `/hunts/{id}` and are not canonical map data.
+- Promotion creates a GitHub `hunt-promotion` issue and the `Hunt Promotion Intake` workflow captures it into a review PR artifact.
+- Public map data is still written only after GitHub validation/review promotes entries into `public/data/`.
+
+Required Netlify environment variables:
+
+- `XAI_API_KEY` or `XAI_KEY` — server-side LLM key.
+- `MOSAIC_GITHUB_TOKEN` — optional token for creating promotion issues.
+- `MOSAIC_GITHUB_REPOSITORY` — defaults to `gitbrainlab/mosaic`.
+- `ALLOWED_ORIGIN` — allowed frontend origin.
+
+GitHub Pages needs `VITE_API_BASE_URL` set as a repository variable or secret when the Netlify API is live, for example:
+
+```text
+https://your-netlify-site.netlify.app/.netlify/functions
+```
+
+The manual `Seed Netlify Hunt Environment` workflow can copy existing GitHub Actions secrets into Netlify when `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID` are available.
+
 ## Running Research Batches (The Real Power)
 
 mosaic's research system can run large, targeted enrichment jobs.
