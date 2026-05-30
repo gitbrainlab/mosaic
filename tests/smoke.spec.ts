@@ -74,4 +74,15 @@ test.describe('@smoke Mosaic Smoke Tests', () => {
     await expect(page.getByRole('heading', { name: 'Research Batches' })).toBeVisible();
     await expect(page.getByText('Ice Cream – Capital District')).toBeVisible();
   });
+
+  test('studio exposes Hunt candidates as pre-release review items', async ({ page }) => {
+    await page.goto(route('?/studio'));
+
+    await expect(page.getByText('Hunt: veal parm in capital district').first()).toBeVisible({ timeout: 15000 });
+    await expect(page.getByText('pre-release Hunt candidates').first()).toBeVisible();
+    await expect(page.getByText('Lombardo\'s Restaurant').first()).toBeVisible();
+    await expect(page.getByText('Pre-release Hunt / Needs Photo Review').first()).toBeVisible();
+    await expect(page.getByText('Photo Briefs').first()).toBeVisible();
+    await expect(page.getByRole('link', { name: /Open candidates/i })).toBeVisible();
+  });
 });
