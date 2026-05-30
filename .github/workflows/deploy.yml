@@ -26,7 +26,7 @@ jobs:
       - name: Checkout pinned v3 source
         uses: actions/checkout@v4
         with:
-          ref: 507a1c1
+          ref: 507a1c17c8a5edc1128f0a98e88813fee6413245
           path: v3-source
 
       - name: Setup Node
