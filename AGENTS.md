@@ -6,6 +6,7 @@ This repository follows a strict set of principles to keep the platform clean, m
 
 - **100% static only (client)** — The delivered experience (GitHub Pages) is 100% static. No runtime backend, databases, or always-running services in the browser app.
 - **Research agents are GitHub-native** — Deep research, data gathering, and curation happen via GitHub Actions workflows / agents. These are triggered by Issues (and PRs/comments), run LLM calls (Grok/xAI), validate output, and commit structured JSON data into `public/data/`. The static site is the beautiful read-only viewer of that committed data.
+- **Netlify is a rapid Hunt gateway, not the source of truth** — Netlify Functions may broker fast LLM refinement/draft generation and Netlify Blobs may store provisional Hunt state, but promoted public map data must still flow through GitHub review/validation into committed `public/data/`.
 - **Vanilla TypeScript + Vite** — No React, no heavy frameworks. Prefer the simplest solution that works.
 - **Mobile-first PWA** — The experience is designed primarily for mobile. Desktop is an enhancement, not the source of truth.
 - **Neutral foundation in Phase 1a** — All visual work in Phase 1a uses a clean neutral scaffold. The full brand identity (lattice motif, Deep Charcoal #1C1C1E, Warm Bronze #C9A86C, Soft Ivory, Muted Taupe, refined typography) is applied only in Phase 1b after the brand report and mobile research are incorporated.
@@ -15,6 +16,8 @@ This repository follows a strict set of principles to keep the platform clean, m
 
 - All data loading must go through `src/lib/data-loader.ts`.
 - The Curation Studio AI assistant lives only in `src/lib/assistant.ts` — keep its command surface small, deterministic, and extremely reliable.
+- Netlify function code belongs under `netlify/functions/`; keep server-only LLM, Blob, and GitHub token handling out of `src/`.
+- Draft Hunt data from Netlify Blobs must be visually labeled provisional and must not silently override canonical `public/data/` maps.
 - Map rendering logic belongs in `src/lib/map-renderer.ts`.
 - Never introduce a new runtime dependency without a one-paragraph justification and explicit maintainer approval.
 - Prefer the simplest DOM solution that works. Avoid complex abstractions when a focused module will do.

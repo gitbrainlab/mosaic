@@ -2,7 +2,7 @@ name: Research Agent
 
 on:
   issues:
-    types: [labeled]
+    types: [opened, edited, reopened, labeled]
   workflow_dispatch:
     inputs:
       mode:
@@ -34,7 +34,12 @@ permissions:
 jobs:
   research:
     runs-on: ubuntu-latest
-    if: github.event.label.name == 'research' || github.event_name == 'workflow_dispatch'
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      contains(github.event.issue.labels.*.name, 'research') ||
+      contains(github.event.issue.labels.*.name, 'hunt') ||
+      github.event.label.name == 'research' ||
+      github.event.label.name == 'hunt'
 
     steps:
       - name: Checkout
@@ -49,19 +54,44 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run Single Research (legacy)
-        if: github.event.inputs.mode == 'single' || github.event_name == 'issues'
+      - name: Parse Hunt issue into normalized spec
+        if: github.event_name == 'issues' || github.event.inputs.mode == 'single'
+        run: |
+          mkdir -p data/hunt-runtime
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            npx tsx scripts/parse-hunt-issue.ts \
+              --title="Hunt: ${{ github.event.inputs.topic }}" \
+              --runtime-env-file=data/hunt-runtime/hunt.env
+          else
+            npx tsx scripts/parse-hunt-issue.ts \
+              --runtime-env-file=data/hunt-runtime/hunt.env
+          fi
+
+      - name: Run single Hunt research into artifacts
+        if: github.event_name == 'issues' || github.event.inputs.mode == 'single'
         env:
           XAI_API_KEY: ${{ secrets.XAI_KEY }}
           XAI_KEY: ${{ secrets.XAI_KEY }}
         run: |
-          TOPIC="${{ github.event.inputs.topic || github.event.issue.title }}"
-          LIMIT="6"
-          echo "Running single research for: $TOPIC"
-          npx tsx scripts/research-agent.ts "$TOPIC" --limit="$LIMIT"
+          . data/hunt-runtime/hunt.env
+          echo "Running artifact-first Hunt research for: $HUNT_TOPIC"
+          npx tsx scripts/research-agent.ts "$HUNT_TOPIC" \
+            --batch-id="$HUNT_ID" \
+            --location="$HUNT_LOCATION" \
+            --limit=6 \
+            --out-file="$HUNT_ARTIFACT_DIR/raw-output.json"
 
-      - name: Run Batch Enrichment (recommended for large waves)
-        if: github.event.inputs.mode == 'batch'
+      - name: Create Hunt review batch
+        if: github.event_name == 'issues' || github.event.inputs.mode == 'single'
+        run: |
+          . data/hunt-runtime/hunt.env
+          npx tsx scripts/create-hunt-review-batch.ts \
+            --hunt-spec="$HUNT_SPEC_PATH" \
+            --research-output="$HUNT_ARTIFACT_DIR/raw-output.json" \
+            --batch-index=public/data/research-batches/index.json
+
+      - name: Run Batch Enrichment into review artifacts
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'batch'
         env:
           XAI_API_KEY: ${{ secrets.XAI_KEY }}
           XAI_KEY: ${{ secrets.XAI_KEY }}
@@ -71,34 +101,34 @@ jobs:
           echo "Running batch research using config: $WAVE (max parallel: $MAX_PAR)"
           npx tsx scripts/run-batch-research.ts "$WAVE" --max-parallel="$MAX_PAR"
 
-      - name: Validate committed map data
+      - name: Validate current public map data
         run: npm run validate-data
 
-      - name: Upload raw research artifacts
+      - name: Upload review artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: research-runs-${{ github.run_id }}
-          path: data/research-runs/
+          name: research-review-artifacts-${{ github.run_id }}
+          path: |
+            public/data/research-batches/
+            data/research-runs/
           if-no-files-found: ignore
 
-      - name: Commit new research data
+      - name: Commit review artifacts only
         run: |
           git config user.name "Mosaic Research Agent"
           git config user.email "research@mosaic.local"
-          
-          git add public/data/maps/ || true
-          git add public/data/index.json || true
+
           git add public/data/research-batches/ || true
-          
+
           if git diff --staged --quiet; then
-            echo "No changes to commit"
+            echo "No review artifact changes to commit"
           else
-            git commit -m "chore(research): batch enrichment run - ${{ github.event.inputs.wave || github.event.inputs.topic || 'manual' }}"
+            git commit -m "chore(research): create Hunt review artifacts"
             git push
           fi
 
-      - name: Comment on Issue (if triggered by issue)
+      - name: Comment on Issue
         if: github.event_name == 'issues'
         uses: actions/github-script@v7
         with:
@@ -107,5 +137,10 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `✅ Research agent completed.\n\nNew data committed. Check Actions for the full batch output.`
+              body: [
+                '✅ Research agent completed artifact-first Hunt processing.',
+                '',
+                'Review artifacts were committed under `public/data/research-batches/`.',
+                'Public map files were not changed. Promotion requires explicit approval through the promotion workflow.'
+              ].join('\n')
             });

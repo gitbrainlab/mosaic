@@ -1,0 +1,77 @@
+name: Seed Netlify Hunt Environment
+
+on:
+  workflow_dispatch:
+    inputs:
+      allowed_origin:
+        description: 'Allowed browser origin for Hunt API CORS'
+        required: false
+        default: 'http://gitbrain.com'
+      api_base_url:
+        description: 'Netlify Functions base URL to store as VITE_API_BASE_URL repository variable manually if desired'
+        required: false
+        default: ''
+      mock_hunt_mode:
+        description: 'Set MOCK_HUNT_MODE=true to force deterministic fallback drafts'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: read
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    env:
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      XAI_API_KEY_VALUE: ${{ secrets.XAI_API_KEY || secrets.XAI_KEY }}
+      XAI_KEY_VALUE: ${{ secrets.XAI_KEY }}
+      MOSAIC_GITHUB_TOKEN_VALUE: ${{ secrets.MOSAIC_GITHUB_TOKEN }}
+      ALLOWED_ORIGIN_VALUE: ${{ github.event.inputs.allowed_origin }}
+      MOCK_HUNT_MODE_VALUE: ${{ github.event.inputs.mock_hunt_mode }}
+    steps:
+      - name: Validate required secrets
+        run: |
+          if [ -z "$NETLIFY_AUTH_TOKEN" ]; then
+            echo "NETLIFY_AUTH_TOKEN secret is required."
+            exit 1
+          fi
+          if [ -z "$NETLIFY_SITE_ID" ]; then
+            echo "NETLIFY_SITE_ID secret is required."
+            exit 1
+          fi
+          if [ -z "$XAI_API_KEY_VALUE" ]; then
+            echo "XAI_API_KEY or XAI_KEY secret is required."
+            exit 1
+          fi
+
+      - name: Build Netlify env file
+        run: |
+          ENV_FILE="$RUNNER_TEMP/mosaic-netlify.env"
+          touch "$ENV_FILE"
+          chmod 600 "$ENV_FILE"
+          printf 'XAI_API_KEY=%s\n' "$XAI_API_KEY_VALUE" >> "$ENV_FILE"
+          if [ -n "$XAI_KEY_VALUE" ]; then
+            printf 'XAI_KEY=%s\n' "$XAI_KEY_VALUE" >> "$ENV_FILE"
+          fi
+          if [ -n "$MOSAIC_GITHUB_TOKEN_VALUE" ]; then
+            printf 'MOSAIC_GITHUB_TOKEN=%s\n' "$MOSAIC_GITHUB_TOKEN_VALUE" >> "$ENV_FILE"
+          fi
+          printf 'MOSAIC_GITHUB_REPOSITORY=gitbrainlab/mosaic\n' >> "$ENV_FILE"
+          printf 'ALLOWED_ORIGIN=%s\n' "$ALLOWED_ORIGIN_VALUE" >> "$ENV_FILE"
+          printf 'MOCK_HUNT_MODE=%s\n' "$MOCK_HUNT_MODE_VALUE" >> "$ENV_FILE"
+          printf 'CACHE_SCHEMA_VERSION=hunt-v1\n' >> "$ENV_FILE"
+          printf 'XAI_MODEL_REFINE=grok-4-1-fast-non-reasoning\n' >> "$ENV_FILE"
+          printf 'XAI_MODEL_DRAFT=grok-4-1-fast-non-reasoning\n' >> "$ENV_FILE"
+          printf 'XAI_MODEL_ITERATE=grok-4-1-fast-non-reasoning\n' >> "$ENV_FILE"
+
+      - name: Import env vars into Netlify
+        run: npx --yes netlify-cli@latest env:import "$RUNNER_TEMP/mosaic-netlify.env" --auth "$NETLIFY_AUTH_TOKEN" --site "$NETLIFY_SITE_ID"
+
+      - name: Summary
+        run: |
+          echo "Seeded Netlify environment variables for the Mosaic Hunt gateway."
+          if [ -n "${{ github.event.inputs.api_base_url }}" ]; then
+            echo "Set repository variable VITE_API_BASE_URL to: ${{ github.event.inputs.api_base_url }}"
+          fi

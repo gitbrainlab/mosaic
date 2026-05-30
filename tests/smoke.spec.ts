@@ -1,5 +1,8 @@
 import { test, expect } from '@playwright/test';
 
+const basePath = process.env.MOSAIC_TEST_BASE_PATH || '/mosaic/v4/';
+const route = (path = '') => `${basePath}${path}`;
+
 /**
  * @smoke
  *
@@ -12,10 +15,10 @@ import { test, expect } from '@playwright/test';
 
 test.describe('@smoke Mosaic Smoke Tests', () => {
   test.beforeEach(async ({ page }) => {
-    // The config starts the preview server with the v3 production base path.
+    // The config starts the preview server with the versioned production base path.
     // We try the root first (preview often serves it), then fall back.
     await page.goto('/').catch(() => {});
-    await page.goto('/mosaic/v3/').catch(() => {});
+    await page.goto(basePath).catch(() => {});
 
     await page.waitForSelector('#app', { timeout: 15000 });
   });
@@ -27,6 +30,22 @@ test.describe('@smoke Mosaic Smoke Tests', () => {
     // At least one map card should be present (Ice Cream or others)
     const mapCards = page.locator('[data-slug]');
     await expect(mapCards.first()).toBeVisible();
+  });
+
+  test('Hunt launcher creates a static GitHub issue handoff', async ({ page }) => {
+    await page.getByRole('button', { name: /Open GitHub Hunt/i }).click();
+
+    const issueLink = page.getByRole('link', { name: /Open GitHub Hunt/i });
+    await expect(issueLink).toBeVisible();
+
+    const href = await issueLink.getAttribute('href');
+    const issueUrl = new URL(href || '');
+    const body = issueUrl.searchParams.get('body') || '';
+
+    expect(issueUrl.href).toContain('github.com/gitbrainlab/mosaic/issues/new');
+    expect(issueUrl.searchParams.get('template')).toBe('hunt.md');
+    expect(body).toContain('mosaic-hunt-spec:start');
+    expect(body).toContain('Research artifacts first');
   });
 
   test('can navigate to the Ice Cream map', async ({ page }) => {
@@ -41,7 +60,7 @@ test.describe('@smoke Mosaic Smoke Tests', () => {
   });
 
   test('map view has the header List button (no bottom nav collision)', async ({ page }) => {
-    await page.goto('/mosaic/v3/?/map/ice-cream-capital-district');
+    await page.goto(route('?/map/ice-cream-capital-district'));
     await page.waitForTimeout(1200);
 
     const listBtn = page.locator('#show-list-header');
@@ -50,7 +69,7 @@ test.describe('@smoke Mosaic Smoke Tests', () => {
   });
 
   test('studio loads committed research batches', async ({ page }) => {
-    await page.goto('/mosaic/v3/?/studio');
+    await page.goto(route('?/studio'));
 
     await expect(page.getByRole('heading', { name: 'Research Batches' })).toBeVisible();
     await expect(page.getByText('Ice Cream – Capital District')).toBeVisible();

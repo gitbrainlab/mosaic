@@ -1,0 +1,107 @@
+name: Hunt Promotion
+
+on:
+  workflow_dispatch:
+    inputs:
+      hunt_id:
+        description: 'Hunt id under public/data/research-batches/hunts/'
+        required: true
+      target_map_slug:
+        description: 'Map slug to create or update'
+        required: true
+      promotion_artifact:
+        description: 'JSON artifact containing approvedEntries'
+        required: true
+      approval:
+        description: 'Set to PROMOTE to allow public data writes'
+        required: true
+        default: 'DRY_RUN'
+      apply:
+        description: 'Write public/data map files'
+        required: true
+        type: boolean
+        default: false
+      issue_number:
+        description: 'Optional Hunt issue number to comment on'
+        required: false
+
+permissions:
+  contents: write
+  issues: write
+  actions: read
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run promotion gates
+        run: |
+          ARGS=(
+            "--hunt-id=${{ github.event.inputs.hunt_id }}"
+            "--target-map-slug=${{ github.event.inputs.target_map_slug }}"
+            "--promotion-artifact=${{ github.event.inputs.promotion_artifact }}"
+            "--approval=${{ github.event.inputs.approval }}"
+          )
+
+          if [ "${{ github.event.inputs.apply }}" = "true" ]; then
+            ARGS+=("--apply")
+          fi
+
+          npx tsx scripts/promote-hunt-review-batch.ts "${ARGS[@]}"
+
+      - name: Validate public data and UI
+        if: github.event.inputs.apply == 'true'
+        run: npm test
+
+      - name: Upload promotion preview
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hunt-promotion-${{ github.event.inputs.hunt_id }}
+          path: data/hunt-promotions/
+          if-no-files-found: ignore
+
+      - name: Commit approved public data
+        if: github.event.inputs.apply == 'true'
+        run: |
+          git config user.name "Mosaic Hunt Promotion"
+          git config user.email "hunt-promotion@mosaic.local"
+
+          git add public/data/maps/${{ github.event.inputs.target_map_slug }}/ || true
+          git add public/data/index.json || true
+          git add data/hunt-promotions/ || true
+
+          if git diff --staged --quiet; then
+            echo "No approved promotion changes to commit"
+          else
+            git commit -m "chore(hunt): promote approved Hunt ${{ github.event.inputs.hunt_id }}"
+            git push
+          fi
+
+      - name: Comment on Hunt issue
+        if: github.event.inputs.issue_number != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const applied = '${{ github.event.inputs.apply }}' === 'true'
+            github.rest.issues.createComment({
+              issue_number: Number('${{ github.event.inputs.issue_number }}'),
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: applied
+                ? '✅ Approved Hunt promotion passed gates, tests ran, and public map data was committed.'
+                : '🧪 Hunt promotion dry run completed. Review the uploaded promotion preview artifact before applying.'
+            });

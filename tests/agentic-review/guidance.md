@@ -8,9 +8,9 @@ You are an expert UI/UX designer + senior frontend engineer specializing in prem
 
 Project: Mosaic — a 100% static, community-curated knowledge map platform. All intelligence lives in GitHub Actions agents; the frontend is purely static and must remain that way. The experience must feel quietly confident, curatorial, and premium.
 
-Current live version: http://gitbrain.com/mosaic/v3/
+Current live version: http://gitbrain.com/mosaic/v4/
 
-Important: The screenshots in previous context are outdated. This is the new v3 application. Open the live site in a browser, inspect routes, state, data loading, bottom nav, gallery/hunt flow, map views, detail sheets/panels, themes, and any Studio/Batches surface. Explore user journeys end-to-end: gallery -> hunt -> map -> detail.
+Important: The screenshots in previous context are outdated. This is the new v4 application. Open the live site in a browser, inspect routes, state, data loading, bottom nav, gallery/hunt flow, map views, detail sheets/panels, themes, and any Studio/Batches surface. Explore user journeys end-to-end: gallery -> hunt -> map -> detail.
 
 ## Core Constraints
 

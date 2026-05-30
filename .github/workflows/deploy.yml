@@ -18,27 +18,55 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout v4 source
         uses: actions/checkout@v4
+        with:
+          path: v4-source
+
+      - name: Checkout pinned v3 source
+        uses: actions/checkout@v4
+        with:
+          ref: 507a1c1
+          path: v3-source
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: 'npm'
+          cache-dependency-path: |
+            v3-source/package-lock.json
+            v4-source/package-lock.json
 
-      - name: Install dependencies
+      - name: Install v3 dependencies
+        working-directory: v3-source
         run: npm ci
 
-      - name: Build
-        run: VITE_BASE_PATH=/mosaic/v3/ npm run build
+      - name: Build v3
+        working-directory: v3-source
+        run: npm run build
+        env:
+          VITE_BASE_PATH: /mosaic/v3/
+          VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL || secrets.VITE_API_BASE_URL || '' }}
 
-      - name: Prepare v3 Pages artifact
+      - name: Install v4 dependencies
+        working-directory: v4-source
+        run: npm ci
+
+      - name: Build v4
+        working-directory: v4-source
+        run: npm run build
+        env:
+          VITE_BASE_PATH: /mosaic/v4/
+          VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL || secrets.VITE_API_BASE_URL || '' }}
+
+      - name: Prepare versioned Pages artifact
         run: |
           rm -rf pages
-          mkdir -p pages/v3
-          cp -R dist/. pages/v3/
-          cp dist/404.html pages/404.html
+          mkdir -p pages/v3 pages/v4
+          cp -R v3-source/dist/. pages/v3/
+          cp -R v4-source/dist/. pages/v4/
+          cp v4-source/dist/404.html pages/404.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

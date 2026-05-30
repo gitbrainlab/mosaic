@@ -8,6 +8,7 @@
 export type Route = 
   | { name: 'gallery' }
   | { name: 'map'; slug: string }
+  | { name: 'hunt'; id: string }
   | { name: 'studio' };
 
 type RouteHandler = (route: Route) => void;
@@ -27,6 +28,11 @@ function parseRoute(): Route {
     return { name: 'map', slug: decodeURIComponent(mapMatch[1]) };
   }
 
+  const huntMatch = path.match(/^\/hunts\/([^/]+)$/);
+  if (huntMatch) {
+    return { name: 'hunt', id: decodeURIComponent(huntMatch[1]) };
+  }
+
   if (path === '/studio') {
     return { name: 'studio' };
   }
@@ -41,6 +47,8 @@ function updateRoute(route: Route, push = true) {
   let url = '/';
   if (route.name === 'map') {
     url = `/map/${encodeURIComponent(route.slug)}`;
+  } else if (route.name === 'hunt') {
+    url = `/hunts/${encodeURIComponent(route.id)}`;
   } else if (route.name === 'studio') {
     url = '/studio';
   }
@@ -84,4 +92,5 @@ export function getCurrentRoute(): Route {
 // Convenience helpers
 export const goToGallery = () => navigateTo({ name: 'gallery' });
 export const goToMap = (slug: string) => navigateTo({ name: 'map', slug });
+export const goToHunt = (id: string) => navigateTo({ name: 'hunt', id });
 export const goToStudio = () => navigateTo({ name: 'studio' });
