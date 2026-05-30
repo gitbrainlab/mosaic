@@ -17,6 +17,18 @@
   "chunks": [
     "entries.json"
   ],
+  "intent": {
+    "statement": "Track authentic, geographically-correct ice cream destinations across the Berkshires and Western Massachusetts.",
+    "scope": "Berkshire and adjacent Western Massachusetts communities inside the declared bounds.",
+    "photoPolicy": "Use product-focused photos and avoid generic exterior-only images."
+  },
+  "intentHistory": [
+    {
+      "changedAt": "2026-05-28T22:55:00Z",
+      "author": "codex",
+      "summary": "Added intent metadata and photo policy for consistent curation."
+    }
+  ],
   "validation": {
     "coordinateBounds": {
       "minLat": 42.0,

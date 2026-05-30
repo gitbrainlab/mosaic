@@ -561,6 +561,9 @@ export default class StudioView {
     const photoRate = profiles > 0 ? Math.round((photos / profiles) * 100) : 0
     const runs = batch?.runs || []
     const locations = batch?.summary.locationsCovered || []
+    const reviewState = batch?.reviewState
+    const workflowStates = batch?.workflowStates || []
+    const artifacts = batch?.artifacts || []
 
     return `
       <section class="mosaic-card border-2 border-[#3f3b33] dark:border-[#d4cebf] p-4">
@@ -586,6 +589,38 @@ export default class StudioView {
             ${locations.map(location => `
               <span class="text-xs px-2 py-1 rounded bg-[#f1efea] dark:bg-[#2a2924] text-[#2c2a27] dark:text-[#e8e4d9]">${this.escape(location)}</span>
             `).join('')}
+          </div>
+        ` : ''}
+
+        ${reviewState || workflowStates.length > 0 ? `
+          <div class="mt-4 border-t border-[#e5e2d9] dark:border-[#3f3b33] pt-3">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+              <div>
+                <div class="text-xs uppercase tracking-[1px] font-bold text-[#3f3b33] dark:text-[#d4cebf]">Hunt Pipeline State</div>
+                <div class="text-sm text-[#111] dark:text-white">${this.escape(reviewState || summary.status)}</div>
+              </div>
+              ${batch?.promotion?.approvalRequired ? `
+                <div class="text-xs px-2 py-1 rounded bg-[#f1efea] dark:bg-[#2a2924] text-[#2c2a27] dark:text-[#e8e4d9]">Promotion requires explicit approval</div>
+              ` : ''}
+            </div>
+            ${workflowStates.length > 0 ? `
+              <div class="mt-3 flex flex-wrap gap-1.5">
+                ${workflowStates.map(state => `
+                  <span class="text-[11px] px-2 py-1 rounded ${state.complete ? 'bg-[#1f1d1a] text-white dark:bg-white dark:text-[#111]' : 'bg-[#f1efea] dark:bg-[#2a2924] text-[#2c2a27] dark:text-[#e8e4d9]'}">${this.escape(state.state)}</span>
+                `).join('')}
+              </div>
+            ` : ''}
+          </div>
+        ` : ''}
+
+        ${artifacts.length > 0 ? `
+          <div class="mt-4 border-t border-[#e5e2d9] dark:border-[#3f3b33] pt-3">
+            <div class="text-xs uppercase tracking-[1px] font-bold text-[#3f3b33] dark:text-[#d4cebf] mb-2">Review Artifacts</div>
+            <div class="flex flex-wrap gap-2">
+              ${artifacts.map(artifact => `
+                <a class="min-h-11 inline-flex items-center px-3 rounded border border-[#a39a8c] text-xs font-semibold text-[#2c2a27] dark:text-[#f1efea] hover:bg-[#f1efea] dark:hover:bg-[#2a2924]" href="${this.escapeAttr(this.artifactHref(artifact.path))}" target="_blank" rel="noreferrer">${this.escape(artifact.label)}</a>
+              `).join('')}
+            </div>
           </div>
         ` : ''}
 
@@ -615,5 +650,11 @@ export default class StudioView {
         <div class="text-[10px] uppercase tracking-[1px] text-[#6b6761] dark:text-[#a39a8c]">${this.escape(label)}</div>
       </div>
     `
+  }
+
+  private artifactHref(path: string) {
+    const cleaned = path.replace(/^public\//, '')
+    const base = import.meta.env.BASE_URL || '/'
+    return `${base}${cleaned}`.replace(/\/+/g, '/')
   }
 }

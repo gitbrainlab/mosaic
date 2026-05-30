@@ -8,5 +8,17 @@
   "defaultCenter": [37.0, -82.0],
   "defaultZoom": 6,
   "filterFields": ["region", "confidence"],
-  "chunks": ["entries.json"]
+  "chunks": ["entries.json"],
+  "intent": {
+    "statement": "Catalog representative regional folk traditions with accurate origin locations and clear provenance notes.",
+    "scope": "Global cultural examples selected for diversity and educational context.",
+    "photoPolicy": "Prefer respectful, context-relevant imagery tied to the documented tradition."
+  },
+  "intentHistory": [
+    {
+      "changedAt": "2026-05-28T22:55:00Z",
+      "author": "codex",
+      "summary": "Added map intent/history structure for cultural curation traceability."
+    }
+  ]
 }

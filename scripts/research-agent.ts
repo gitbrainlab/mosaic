@@ -21,6 +21,8 @@ const API_BASE = 'https://api.x.ai/v1';
 const modelArg = process.argv.find(a => a.startsWith('--model='));
 const locationArg = process.argv.find(a => a.startsWith('--location='));
 const batchArg = process.argv.find(a => a.startsWith('--batch-id='));
+const outDirArg = process.argv.find(a => a.startsWith('--out-dir='));
+const outFileArg = process.argv.find(a => a.startsWith('--out-file='));
 
 const MODEL = modelArg ? modelArg.split('=')[1] : (process.env.XAI_RESEARCH_MODEL || 'grok-4.3');
 const DEFAULT_LOCATION = locationArg ? locationArg.split('=')[1] : 'Capital District (Albany, Saratoga, Troy, Schenectady, NY area)';
@@ -310,11 +312,11 @@ async function main() {
 
   const result = await researchTopic(topic, { limit });
 
-  const outDir = path.join(process.cwd(), 'data', 'research-runs');
+  const outDir = outDirArg ? path.resolve(outDirArg.split('=')[1]) : path.join(process.cwd(), 'data', 'research-runs');
   fs.mkdirSync(outDir, { recursive: true });
 
   const safeSlug = slugify(topic);
-  const outFile = path.join(outDir, `${safeSlug}-${Date.now()}.json`);
+  const outFile = outFileArg ? path.resolve(outFileArg.split('=')[1]) : path.join(outDir, `${safeSlug}-${Date.now()}.json`);
   fs.writeFileSync(outFile, JSON.stringify(result, null, 2));
 
   console.log(`\n✅ Research complete.`);

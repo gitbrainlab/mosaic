@@ -29,6 +29,22 @@ test.describe('@smoke Mosaic Smoke Tests', () => {
     await expect(mapCards.first()).toBeVisible();
   });
 
+  test('Hunt launcher creates a static GitHub issue handoff', async ({ page }) => {
+    await page.getByRole('button', { name: /Open GitHub Hunt/i }).click();
+
+    const issueLink = page.getByRole('link', { name: /Open GitHub Hunt/i });
+    await expect(issueLink).toBeVisible();
+
+    const href = await issueLink.getAttribute('href');
+    const issueUrl = new URL(href || '');
+    const body = issueUrl.searchParams.get('body') || '';
+
+    expect(issueUrl.href).toContain('github.com/gitbrainlab/mosaic/issues/new');
+    expect(issueUrl.searchParams.get('template')).toBe('hunt.md');
+    expect(body).toContain('mosaic-hunt-spec:start');
+    expect(body).toContain('Research artifacts first');
+  });
+
   test('can navigate to the Ice Cream map', async ({ page }) => {
     const iceCreamCard = page.locator('[data-slug="ice-cream-capital-district"]');
     await expect(iceCreamCard).toBeVisible();

@@ -17,6 +17,18 @@
   "chunks": [
     "entries.json"
   ],
+  "intent": {
+    "statement": "Capture verified veal parmesan destinations in the Capital District with evidence tied to the specific product rather than generic restaurant listings.",
+    "scope": "Capital District municipalities within the declared coordinate bounds.",
+    "photoPolicy": "Prefer verified product images that clearly show veal parm preparation and plating."
+  },
+  "intentHistory": [
+    {
+      "changedAt": "2026-05-28T22:55:00Z",
+      "author": "codex",
+      "summary": "Added intent and evidence policy so enrichment runs can preserve product-level focus."
+    }
+  ],
   "validation": {
     "coordinateBounds": {
       "minLat": 42.45,
