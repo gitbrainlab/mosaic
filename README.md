@@ -39,6 +39,7 @@ This site is deployed automatically via GitHub Actions.
 
 - Push or merge to `main` → `deploy.yml` builds the site and deploys it.
 - Live v3 site: http://gitbrain.com/mosaic/v3/
+- Live v4 experiment: http://gitbrain.com/mosaic/v4/
 
 ### First-Time / Repo Setup (One Time)
 
@@ -47,15 +48,15 @@ This site is deployed automatically via GitHub Actions.
    - Under "Build and deployment", set **Source** to **GitHub Actions**
 2. Ensure the `XAI_KEY` repository secret exists (used for research agents).
 
-The deployment workflow builds v3 with `VITE_BASE_PATH=/mosaic/v3/` and publishes the artifact under `v3/` for GitHub Pages.
+The deployment workflow builds the pinned v3 source with `VITE_BASE_PATH=/mosaic/v3/` and the current v4 source with `VITE_BASE_PATH=/mosaic/v4/`, then publishes both directories in one GitHub Pages artifact.
 
 ## Netlify Hunt Gateway
 
-Mosaic can use Netlify as an API-only rapid Hunt gateway while keeping GitHub as the source of truth.
+Mosaic can use Netlify as an optional API-only rapid Hunt gateway while keeping GitHub as the source of truth. The primary v4 Hunt path is static: frontend to prefilled GitHub Issue to Actions artifacts to Studio review to approval-gated promotion.
 
 - Netlify Functions live in `netlify/functions/`.
 - Netlify Blobs store draft Hunt profiles, provisional maps, events, and promotion requests.
-- Draft Hunts are public/provisional at `/hunts/{id}` and are not canonical map data.
+- Draft Hunts are public/provisional at `/hunts/{id}` when `VITE_API_BASE_URL` is configured and are not canonical map data.
 - Promotion creates a GitHub `hunt-promotion` issue and the `Hunt Promotion Intake` workflow captures it into a review PR artifact.
 - Public map data is still written only after GitHub validation/review promotes entries into `public/data/`.
 
