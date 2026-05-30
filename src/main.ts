@@ -1,7 +1,6 @@
 import './style.css'
-import { initRouter, getCurrentRoute, goToGallery, goToHunt, goToMap, goToStudio } from './lib/router'
+import { initRouter, getCurrentRoute, goToGallery, goToMap, goToStudio } from './lib/router'
 import { loadIndex } from './lib/data-loader'
-import { createHunt, refineHunt } from './lib/assistant'
 import type { DataIndex } from './types'
 import type { HuntSpec } from './types/hunt'
 // MapView is loaded dynamically via import() — do not add static import
@@ -124,7 +123,7 @@ function renderGallery(index: DataIndex) {
         </div>
 
         <div class="mosaic-card p-4 sm:p-5 border-2 border-[#3f3b33] dark:border-[#d4cebf] overflow-hidden">
-          <p class="text-[15px] leading-snug mb-4 text-[#1a1816] dark:text-[#f4f1e9]">Tell Mosaic what to hunt. Netlify brokers the fast LLM draft, then strong candidates can be promoted into the GitHub review and validation path.</p>
+          <p class="text-[15px] leading-snug mb-4 text-[#1a1816] dark:text-[#f4f1e9]">Tell Mosaic what to hunt. The static app opens a structured GitHub Issue; Actions run the research and produce review artifacts before anything can reach public map data.</p>
 
           <div class="flex flex-wrap gap-2 mb-4" id="suggestions">
             <button data-suggestion="Ice Cream in the Capital District" class="sugg text-sm px-4 py-1.5 rounded-full border-2 border-[#1f1d1a] bg-[#1f1d1a] text-white hover:bg-black active:bg-[#0a0a0a] dark:border-[#f4f1e9] dark:bg-[#f4f1e9] dark:text-[#111] dark:hover:bg-white transition-colors">Ice Cream – Capital District</button>
@@ -134,7 +133,7 @@ function renderGallery(index: DataIndex) {
 
           <div class="grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_auto] gap-2">
             <input id="hunt-input" type="text" placeholder="What topic should the agents research?" class="min-w-0 w-full px-4 py-3 text-[16px] sm:text-sm border-2 border-[#1f1d1a] bg-white text-[#111] rounded-lg focus:outline-none focus:border-[#0a0a0a] dark:bg-[#1a1916] dark:border-[#f4f1e9] dark:text-[#f4f1e9]" value="Ice Cream in the Capital District">
-            <button id="launch-hunt" class="w-full sm:w-auto px-6 sm:px-7 py-3 bg-[#111] hover:bg-black active:bg-[#000] text-white text-[16px] sm:text-sm font-bold rounded-lg border-2 border-[#111] transition-all active:scale-[0.985] dark:bg-white dark:text-[#111] dark:border-white dark:hover:bg-[#f4f1e9]">Launch Hunt</button>
+            <button id="launch-hunt" class="w-full sm:w-auto px-6 sm:px-7 py-3 bg-[#111] hover:bg-black active:bg-[#000] text-white text-[16px] sm:text-sm font-bold rounded-lg border-2 border-[#111] transition-all active:scale-[0.985] dark:bg-white dark:text-[#111] dark:border-white dark:hover:bg-[#f4f1e9]">Open GitHub Hunt</button>
           </div>
 
           <!-- Advanced guidance toggle -->
@@ -153,7 +152,7 @@ function renderGallery(index: DataIndex) {
             <div class="text-[10px] text-[#6b6761] dark:text-[#8a8178] mt-1">This becomes part of the structured Hunt profile.</div>
           </div>
 
-          <div class="text-xs mt-3 px-1 text-[#3f3b33] dark:text-[#d4cebf]">Draft Hunts are provisional. GitHub remains the source of truth for promoted public maps.</div>
+          <div class="text-xs mt-3 px-1 text-[#3f3b33] dark:text-[#d4cebf]">No browser token is used. Public maps update only after GitHub Actions validation and approval-gated promotion.</div>
         </div>
       </div>
 
@@ -214,7 +213,7 @@ function renderGallery(index: DataIndex) {
     }
   })
 
-  // Launch Hunt (now captures guidance too)
+  // Launch Hunt (static GitHub issue handoff)
   const launchBtn = document.getElementById('launch-hunt')!
   const input = document.getElementById('hunt-input') as HTMLInputElement
   const guidanceInput = document.getElementById('hunt-guidance') as HTMLTextAreaElement
@@ -235,88 +234,42 @@ function renderGallery(index: DataIndex) {
   })
 }
 
-async function startRealHunt(topic: string, guidance: string) {
+function startRealHunt(topic: string, guidance: string) {
   const panel = document.getElementById('hunt-panel')!
   const escapedTopic = escapeHtml(topic)
+  const spec = buildHuntSpec(topic, guidance)
+  const issueUrl = buildIssueUrl(spec, guidance)
 
   panel.innerHTML = `
     <div class="mosaic-card overflow-hidden border-[#2c2a27]">
       <div class="px-5 pt-5 pb-4 bg-[#1f1d1a] text-white">
-        <div class="uppercase tracking-[2px] text-[10px] text-white/60 mb-1">MOSAIC HUNT GATEWAY</div>
+        <div class="uppercase tracking-[2px] text-[10px] text-white/60 mb-1">GITHUB-NATIVE HUNT</div>
         <div class="font-semibold text-xl tracking-tighter">Hunt: ${escapedTopic}</div>
       </div>
-      <div class="p-5 bg-white dark:bg-[#1a1916]">
-        <div class="flex items-center gap-2 text-xs uppercase tracking-widest font-bold text-[#5c5549] dark:text-[#d4cebf] mb-2">
-          <span class="inline-block w-2 h-2 rounded-full bg-amber-600 animate-pulse"></span>
-          REFINING HUNT PROFILE
-        </div>
-        <div class="text-sm text-[#2c2a27] dark:text-[#e8e4d9]">Calling the Netlify Hunt gateway to normalize scope, constraints, photo policy, and quality targets.</div>
-      </div>
-    </div>
-  `
-
-  try {
-    const { spec, mode } = await refineHunt({ topic, guidance })
-    renderHuntConfirmation(panel, spec, mode)
-  } catch (err) {
-    const message = err instanceof Error ? err.message : 'Unable to reach the Hunt gateway.'
-    renderHuntError(panel, topic, guidance, message)
-  }
-}
-
-function renderHuntConfirmation(panel: HTMLElement, spec: HuntSpec, mode: string) {
-  panel.innerHTML = `
-    <div class="mosaic-card overflow-hidden border-[#2c2a27]">
-      <div class="px-5 pt-5 pb-4 bg-[#1f1d1a] text-white">
-        <div class="uppercase tracking-[2px] text-[10px] text-white/60 mb-1">REFINED HUNT PROFILE</div>
-        <div class="font-semibold text-xl tracking-tighter">${escapeHtml(spec.title)}</div>
-      </div>
       <div class="p-5 space-y-4 bg-white dark:bg-[#1a1916]">
-        <div class="text-xs uppercase tracking-[1px] font-bold text-[#3f3b33] dark:text-[#d4cebf]">Intent</div>
-        <p class="text-sm leading-relaxed text-[#2c2a27] dark:text-[#e8e4d9]">${escapeHtml(spec.intent)}</p>
+        <div>
+          <div class="text-xs uppercase tracking-[1px] font-bold text-[#3f3b33] dark:text-[#d4cebf] mb-2">Intent</div>
+          <p class="text-sm leading-relaxed text-[#2c2a27] dark:text-[#e8e4d9]">${escapeHtml(spec.intent)}</p>
+        </div>
         <div class="grid sm:grid-cols-2 gap-3 text-sm">
           ${profileBlock('Geography', spec.geography.label)}
           ${profileBlock('Scale', `${spec.desiredScale.initialEntries} draft / ${spec.desiredScale.targetEntries} target`)}
           ${profileBlock('Must Have', spec.mustHaveConstraints.join('; ') || 'Address-level evidence')}
           ${profileBlock('Exclusions', spec.exclusions.join('; ') || 'Weak filler')}
         </div>
-        <div class="text-xs text-[#6b6761] dark:text-[#a39a8c]">Refinement mode: ${escapeHtml(mode)}. The next step creates a public provisional draft in Netlify Blobs.</div>
+        <div class="text-xs text-[#6b6761] dark:text-[#a39a8c]">The issue body includes a machine-readable HuntSpec. GitHub Actions will produce research artifacts and a Studio review batch first.</div>
       </div>
       <div class="border-t p-4 bg-[#f8f7f4] dark:bg-[#141310] flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
-        <div id="hunt-create-status" class="text-xs text-[#5c5549] dark:text-[#a39a8c]">Confirm to generate the rapid draft map.</div>
-        <button id="confirm-hunt" class="min-h-11 px-5 rounded bg-[#111] text-white dark:bg-white dark:text-[#111] text-sm font-bold">Generate Draft Map</button>
+        <div id="hunt-create-status" class="text-xs text-[#5c5549] dark:text-[#a39a8c]">Open the GitHub issue, submit it, and the research workflow will handle the rest.</div>
+        <a id="confirm-hunt" class="min-h-11 px-5 inline-flex items-center justify-center rounded bg-[#111] text-white dark:bg-white dark:text-[#111] text-sm font-bold" href="${escapeHtml(issueUrl)}" target="_blank" rel="noreferrer">Open GitHub Hunt</a>
       </div>
     </div>
   `
 
-  panel.querySelector('#confirm-hunt')?.addEventListener('click', () => void createConfirmedHunt(panel, spec))
-}
-
-async function createConfirmedHunt(panel: HTMLElement, spec: HuntSpec) {
-  const status = panel.querySelector('#hunt-create-status')
-  const button = panel.querySelector('#confirm-hunt') as HTMLButtonElement | null
-  if (button) button.disabled = true
-  if (status) status.textContent = 'Generating draft map through the Netlify Hunt gateway...'
-
-  try {
-    const state = await createHunt(spec)
-    goToHunt(state.profile.id)
-  } catch (err) {
-    const message = err instanceof Error ? err.message : 'Draft generation failed.'
-    if (status) status.textContent = message
-    if (button) button.disabled = false
-  }
-}
-
-function renderHuntError(panel: HTMLElement, topic: string, guidance: string, message: string) {
-  const issueUrl = buildIssueUrl(topic, guidance)
-  panel.innerHTML = `
-    <div class="mosaic-card p-5 border-2 border-[#7f1d1d]">
-      <div class="text-sm font-semibold text-red-700 dark:text-red-300">Hunt gateway unavailable</div>
-      <p class="mt-2 text-sm text-[#2c2a27] dark:text-[#e8e4d9]">${escapeHtml(message)}</p>
-      <a class="inline-flex mt-4 min-h-11 px-4 items-center rounded bg-[#111] text-white dark:bg-white dark:text-[#111] text-sm font-bold" href="${issueUrl}" target="_blank" rel="noreferrer">Open GitHub Hunt Issue</a>
-    </div>
-  `
+  panel.querySelector('#confirm-hunt')?.addEventListener('click', () => {
+    const status = panel.querySelector('#hunt-create-status')
+    if (status) status.textContent = 'GitHub issue opened. Submit it to start the Actions research loop.'
+  })
 }
 
 function profileBlock(label: string, value: string) {
@@ -328,22 +281,111 @@ function profileBlock(label: string, value: string) {
   `
 }
 
-function buildIssueUrl(topic: string, guidance: string) {
-  const body = [
-    '## Hunt Request',
-    '',
-    `Topic: ${topic}`,
-    '',
-    '## Guidance',
-    '',
-    guidance || 'None',
-  ].join('\n')
-  const params = new URLSearchParams({
+function buildHuntSpec(topic: string, guidance: string): HuntSpec {
+  const createdAt = new Date().toISOString()
+  const targetScale = parseTargetScale(`${topic} ${guidance}`)
+  const geography = inferGeography(topic, guidance)
+
+  return {
+    id: `hunt-${slugify(topic).slice(0, 56)}-${Date.now()}`,
     title: `Hunt: ${topic}`,
+    topic,
+    intent: `Create a high-quality Mosaic map for "${topic}" using current, verifiable, place-specific evidence before any public data promotion.`,
+    scope: guidance || 'Research the topic broadly enough to produce a useful first review batch while respecting the quality gates.',
+    geography,
+    mustHaveConstraints: [
+      'Exact street-level address for every candidate',
+      'Valid coordinates matching that address',
+      'Current or recent evidence of relevance',
+      'Verified real photos tied to the actual place and map intent',
+      ...(guidance ? [`Curator guidance: ${guidance}`] : []),
+    ],
+    exclusions: [
+      'Stock photos, generic storefronts, parking lots, or unrelated visuals',
+      'Closed, stale, or weakly evidenced places',
+      'Generic chains or filler unless explicitly requested and justified',
+    ],
+    photoPolicy: 'Use only real, location-tied photos that visibly show the thing the map is about. Keep unresolved photo work in review artifacts, not public entries.json.',
+    desiredScale: {
+      initialEntries: Math.min(Math.max(Math.ceil(targetScale / 8), 8), 40),
+      targetEntries: targetScale,
+    },
+    qualityTargets: [
+      'Research artifacts first; no raw candidate may write directly to public/data/maps',
+      'Promotion requires exact address, valid coordinates, recent evidence, and verified real photos',
+      'Rejected candidates must keep a rejection reason for review',
+    ],
+    createdAt,
+    updatedAt: createdAt,
+  }
+}
+
+function buildIssueUrl(spec: HuntSpec, guidance: string) {
+  const body = buildIssueBody(spec, guidance)
+  const params = new URLSearchParams({
+    template: 'hunt.md',
+    title: spec.title,
     body,
-    labels: 'research',
+    labels: 'research,hunt',
   })
   return `https://github.com/gitbrainlab/mosaic/issues/new?${params.toString()}`
+}
+
+function buildIssueBody(spec: HuntSpec, guidance: string) {
+  return [
+    '## Hunt Request',
+    '',
+    `Topic: ${spec.topic}`,
+    `Intent: ${spec.intent}`,
+    `Scope: ${spec.scope}`,
+    '',
+    '## Curator Guidance',
+    '',
+    guidance || 'None provided.',
+    '',
+    '## Normalized HuntSpec',
+    '',
+    '<!-- mosaic-hunt-spec:start -->',
+    '```json',
+    JSON.stringify(spec, null, 2),
+    '```',
+    '<!-- mosaic-hunt-spec:end -->',
+    '',
+    '## Quality Contract',
+    '',
+    '- Create research artifacts and review batches first.',
+    '- Do not publish raw research directly to entries.json.',
+    '- Require exact address, valid coordinates, recent evidence, and verified real location-tied photos before promotion.',
+  ].join('\n')
+}
+
+function inferGeography(topic: string, guidance: string): HuntSpec['geography'] {
+  const text = `${topic} ${guidance}`.toLowerCase()
+  if (/capital district|albany|troy|schenectady|saratoga/.test(text)) {
+    return {
+      label: 'Capital District / Albany region',
+      coordinateBounds: {
+        minLat: 42.35,
+        maxLat: 43.25,
+        minLng: -74.35,
+        maxLng: -73.45,
+      },
+    }
+  }
+  return { label: 'Defined by Hunt request' }
+}
+
+function parseTargetScale(text: string) {
+  const match = text.match(/\b([1-9][0-9]{1,3})\b/)
+  if (!match) return 50
+  return Math.min(Math.max(Number(match[1]), 10), 1000)
+}
+
+function slugify(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '') || 'hunt'
 }
 
 function escapeHtml(value: string) {
