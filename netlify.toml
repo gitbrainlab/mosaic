@@ -1,0 +1,22 @@
+# Mosaic - Netlify Functions (API only)
+# The static frontend remains GitHub Pages / v3. Netlify brokers rapid Hunt
+# drafts, LLM calls, Blob state, and promotion handoff.
+# Keep secrets in Netlify environment variables or seed them from GitHub Actions.
+
+[build]
+  command = "echo 'API functions only - Mosaic frontend hosted on GitHub Pages'"
+  publish = "dist-placeholder"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+  included_files = ["public/data/**", "src/types/**"]
+
+[[headers]]
+  for = "/.netlify/functions/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type, Authorization, X-Mosaic-User"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

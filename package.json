@@ -35,6 +35,7 @@
     "vite": "^8.0.12"
   },
   "dependencies": {
+    "@netlify/blobs": "^10.7.9",
     "@tailwindcss/vite": "^4.3.0",
     "maplibre-gl": "^5.24.0",
     "sortablejs": "^1.15.7",
