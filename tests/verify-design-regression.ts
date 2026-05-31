@@ -81,6 +81,11 @@ async function runRegression() {
       await waitForServer(page);
       await capture(page, `${prefix}-01-gallery`);
 
+      await page.getByRole('button', { name: 'Info' }).click().catch(() => {});
+      await page.waitForTimeout(250);
+      await capture(page, `${prefix}-01-info`);
+      await page.getByRole('button', { name: 'Explore' }).click().catch(() => {});
+
       // Hunt guidance open
       await page.click('#toggle-guidance').catch(() => {});
       await page.waitForTimeout(200);
