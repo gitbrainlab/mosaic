@@ -124,7 +124,7 @@ export const reviewArtifactsRoot = 'tests/agentic-review/artifacts';
 export const reviewGuidancePath = 'tests/agentic-review/guidance.md';
 export const reviewFeedbackSchemaPath = 'tests/agentic-review/panel-feedback.schema.json';
 
-export const defaultReviewBaseURL = 'http://127.0.0.1:5173/mosaic/v4/';
+export const defaultReviewBaseURL = 'http://127.0.0.1:5173/mosaic/v3/';
 
 export const panelChairPrompt = [
   'You are an expert UI/UX designer + senior frontend engineer specializing in premium, timeless, mobile-first static SPAs (GitHub Pages / vanilla JS or lightweight frameworks).',
@@ -199,7 +199,7 @@ const mapFirstLoadPermutations: ReviewJourney[] = reviewMapTargets
     title: `Map First Load: ${target.title}`,
     persona: 'Casual Explorer',
     priority: 'P1',
-    routeHint: `/mosaic/v4/?/map/${target.slug}`,
+    routeHint: `/mosaic/v3/?/map/${target.slug}`,
     expectations: [
       'Every committed map should load into an oriented, inspectable map state.',
       'The map should show markers without requiring the user to understand the data geography first.',
@@ -237,7 +237,7 @@ const noPhotoDetailPermutations: ReviewJourney[] = reviewMapTargets
     title: `No-Photo Detail: ${target.title}`,
     persona: 'Casual Explorer',
     priority: 'P0',
-    routeHint: `/mosaic/v4/?/map/${target.slug}`,
+    routeHint: `/mosaic/v3/?/map/${target.slug}`,
     expectations: [
       'Profiles without real photos should still feel deliberate and premium.',
       'The sourcing state should explain active curation without sounding broken.',
@@ -277,7 +277,7 @@ const photoRichDetailPermutations: ReviewJourney[] = reviewMapTargets
     title: `Photo-Rich Detail: ${target.title}`,
     persona: 'Casual Explorer',
     priority: 'P0',
-    routeHint: `/mosaic/v4/?/map/${target.slug}`,
+    routeHint: `/mosaic/v3/?/map/${target.slug}`,
     expectations: [
       'Real product photos should become the hero element without hiding the map.',
       'Photo captions should feel specific and trustworthy.',
@@ -318,7 +318,7 @@ const deepLinkPermutations: ReviewJourney[] = reviewMapTargets
     title: `Deep Linked Entry: ${target.title}`,
     persona: 'Casual Explorer',
     priority: 'P1',
-    routeHint: `/mosaic/v4/?/map/${target.slug}&entry=${target.detailEntryId}`,
+    routeHint: `/mosaic/v3/?/map/${target.slug}&entry=${target.detailEntryId}`,
     expectations: [
       'Shared links to a specific entry should restore map, selection, and detail context.',
       'The detail surface should open without the user first manipulating the list.',
@@ -354,7 +354,7 @@ const desktopSearchFilterPermutations: ReviewJourney[] = reviewMapTargets.slice(
   title: `Desktop Search and Filter: ${target.title}`,
   persona: 'Curator / Power User',
   priority: 'P1',
-  routeHint: `/mosaic/v4/?/map/${target.slug}`,
+  routeHint: `/mosaic/v3/?/map/${target.slug}`,
   when: ['desktop'],
   expectations: [
     'Desktop users should be able to filter and scan without losing map context.',
@@ -391,7 +391,7 @@ const mobileListSearchPermutations: ReviewJourney[] = reviewMapTargets.slice(0, 
   title: `Mobile List Search: ${target.title}`,
   persona: 'Casual Explorer',
   priority: 'P1',
-  routeHint: `/mosaic/v4/?/map/${target.slug}`,
+  routeHint: `/mosaic/v3/?/map/${target.slug}`,
   when: ['mobile', 'tablet'],
   expectations: [
     'Mobile users should be able to search entries from the list sheet quickly.',
@@ -428,7 +428,7 @@ export const reviewJourneys: ReviewJourney[] = [
     title: 'Gallery to Hunt Intake',
     persona: 'Topic Requester',
     priority: 'P0',
-    routeHint: '/mosaic/v4/',
+    routeHint: '/mosaic/v3/',
     expectations: [
       'The hunt launcher is immediately legible without repeating Mosaic branding in the content area.',
       'Detailed guidance feels useful for research agents without turning the first screen into an admin form.',
@@ -445,7 +445,7 @@ export const reviewJourneys: ReviewJourney[] = [
       'Does the simulated agent workflow teach the real architecture without feeling gimmicky?',
     ],
     steps: [
-      { kind: 'goto', route: '.', note: 'Open the v4 gallery.' },
+      { kind: 'goto', route: '.', note: 'Open the v3 gallery.' },
       { kind: 'hardExpectVisible', selector: 'text=Start a Hunt', timeout: 15000 },
       { kind: 'hardExpectVisible', selector: 'text=LIVE MAPS', timeout: 15000 },
       { kind: 'checkCountAtLeast', selector: '[data-slug]', count: 1, note: 'At least one committed map card should be visible.' },
@@ -472,7 +472,7 @@ export const reviewJourneys: ReviewJourney[] = [
     title: 'Map First Load',
     persona: 'Casual Explorer',
     priority: 'P0',
-    routeHint: '/mosaic/v4/?/map/ice-cream-capital-district',
+    routeHint: '/mosaic/v3/?/map/ice-cream-capital-district',
     expectations: [
       'The map remains the first-class citizen after route load.',
       'Initial camera state should orient to useful data rather than an empty or beige-feeling frame.',
@@ -507,7 +507,7 @@ export const reviewJourneys: ReviewJourney[] = [
     title: 'Map Detail With Photo-First or No-Photo State',
     persona: 'Casual Explorer',
     priority: 'P0',
-    routeHint: '/mosaic/v4/?/map/ice-cream-capital-district',
+    routeHint: '/mosaic/v3/?/map/ice-cream-capital-district',
     expectations: [
       'Opening a detail should not make the map feel abandoned.',
       'A product photo or premium no-photo sourcing state should be the hero element.',
@@ -551,7 +551,7 @@ export const reviewJourneys: ReviewJourney[] = [
     title: 'Studio Batch Review Surface',
     persona: 'Curator / Power User',
     priority: 'P1',
-    routeHint: '/mosaic/v4/?/studio',
+    routeHint: '/mosaic/v3/?/studio',
     expectations: [
       'Studio should feel like the natural continuation of Launch Hunt, not a separate back office.',
       'Batches should expose enough visual and quality context for a curator to give useful feedback.',
@@ -581,7 +581,7 @@ export const reviewJourneys: ReviewJourney[] = [
     title: 'Gallery Map Card Scan',
     persona: 'Casual Explorer',
     priority: 'P1',
-    routeHint: '/mosaic/v4/',
+    routeHint: '/mosaic/v3/',
     expectations: [
       'The gallery should make committed maps feel discoverable and varied.',
       'Map cards should be dense enough for scanning without feeling like a landing page.',
@@ -613,7 +613,7 @@ export const reviewJourneys: ReviewJourney[] = [
     title: 'Minimal Hunt via Enter Key',
     persona: 'Topic Requester',
     priority: 'P1',
-    routeHint: '/mosaic/v4/',
+    routeHint: '/mosaic/v3/',
     expectations: [
       'A simple topic request should launch without requiring detailed guidance.',
       'Keyboard submission should work for fast topic requesters.',
@@ -645,7 +645,7 @@ export const reviewJourneys: ReviewJourney[] = [
     title: 'Hunt Suggestion Chip Permutations',
     persona: 'Topic Requester',
     priority: 'P2',
-    routeHint: '/mosaic/v4/',
+    routeHint: '/mosaic/v3/',
     expectations: [
       'Suggestion chips should be useful accelerators, not generic filler.',
       'Each chip should update the topic field predictably.',

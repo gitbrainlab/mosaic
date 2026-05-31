@@ -2,6 +2,26 @@
 
 This repository follows a strict set of principles to keep the platform clean, maintainable, and true to its vision.
 
+## DESIGN SYSTEM — MOSAIC v4 (STRICT — DO NOT DEVIATE)
+
+**Brand Essence**: Quiet luxury, calm authority, high-signal infrastructure.
+
+**Core Palette**:
+- Deep Charcoal: #0f0f11 (bg)
+- Surface: #17171a (cards)
+- Raised Surface: #1f1d1a
+- Accent Gold: #c9a86c (primary actions + selection only)
+- Text: #e4e4e7 / #a1a1aa
+- Border: #27272a
+
+**Logo**: Always use the geometric hex lattice logo in brand gold. Never use placeholder text or the purple favicon as the main logo.
+
+**Golden Rule**: Gold is sacred. Use it only for primary CTAs, active states, selected cards, and key highlights. Everything else stays cool and muted.
+
+**Hierarchy Principle**: Cards should feel like premium tiles. Use background shifts and gold accents for selection. Avoid visual clutter.
+
+**Enforcement**: Any PR or change that violates these rules must be rejected or corrected before merging.
+
 ## Core Principles
 
 - **100% static only (client)** — The delivered experience (GitHub Pages) is 100% static. No runtime backend, databases, or always-running services in the browser app.
@@ -9,7 +29,7 @@ This repository follows a strict set of principles to keep the platform clean, m
 - **Netlify is a rapid Hunt gateway, not the source of truth** — Netlify Functions may broker fast LLM refinement/draft generation and Netlify Blobs may store provisional Hunt state, but promoted public map data must still flow through GitHub review/validation into committed `public/data/`.
 - **Vanilla TypeScript + Vite** — No React, no heavy frameworks. Prefer the simplest solution that works.
 - **Mobile-first PWA** — The experience is designed primarily for mobile. Desktop is an enhancement, not the source of truth.
-- **Neutral foundation in Phase 1a** — All visual work in Phase 1a uses a clean neutral scaffold. The full brand identity (lattice motif, Deep Charcoal #1C1C1E, Warm Bronze #C9A86C, Soft Ivory, Muted Taupe, refined typography) is applied only in Phase 1b after the brand report and mobile research are incorporated.
+- **Mosaic v4 brand system is active** — v4 uses a dark-first Mosaic brand system: Deep Charcoal #0f0f11, Surface #17171a, Raised Surface #1f1d1a, Accent Gold #c9a86c, text #e4e4e7 / #a1a1aa, border #27272a. Do not reintroduce the old warm-neutral/taupe scaffold.
 - **No domain seeding** — The platform must never feel like "Pizza Atlas plus extras". All example content must be generic and domain-agnostic.
 
 ## Implementation Rules
@@ -59,7 +79,7 @@ See `.github/PUSH_AND_TEST_PLAN.md` for the full model of how testing integrates
 
 ## Phase Awareness
 
-- **Phase 1a**: Functional completeness with neutral visual skin + mobile-first layouts + basic PWA foundations.
-- **Phase 1b**: Full brand identity application + refined mobile/PWA patterns (after brand report + research delivered).
+- **v4 brand pass**: The Mosaic brand system is now the source of truth for the Curator Dashboard and adjacent v4 flows.
+- **Functional work** must preserve the dark-first design direction unless the user explicitly asks for a separate design exploration.
 
 Follow the approved plan at `.grok/sessions/.../plan.md` for the current execution order.

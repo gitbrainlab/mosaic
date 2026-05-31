@@ -136,10 +136,10 @@ function qualityIssues(entry: KnowledgeEntry, manifest: MapManifest, existingIds
     'sonic',
   ];
   if (blocked.some(pattern => new RegExp(`\\b(${pattern})\\b`, 'i').test(entry.name))) {
-    issues.push('no_generic_filler');
+    issues.push('generic_chain_or_filler_review');
   }
 
-  if (!hasVerifiedPhotos(entry)) issues.push('verified_real_photos_required');
+  if (!hasVerifiedPhotos(entry)) issues.push('verified_real_location_tied_photos_required');
 
   return issues;
 }

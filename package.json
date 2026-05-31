@@ -8,13 +8,15 @@
     "build": "tsc && vite build",
     "typecheck": "tsc --noEmit",
     "preview": "vite preview",
-    "validate-data": "tsx scripts/validate-map-coordinates.ts public/data/maps/*/entries.json",
-    "test": "npm run typecheck && npm run validate-data && npm run test:smoke",
+    "dev:hunt-service": "node --import tsx scripts/dev-hunt-service.ts",
+    "validate-data": "node --import tsx scripts/validate-map-coordinates.ts public/data/maps/*/entries.json",
+    "test": "npm run typecheck && npm run validate-data && npm run test:hunt-queue && npm run test:hunt-journey && npm run test:smoke",
     "test:smoke": "playwright test --project=mobile-light --project=mobile-dark --project=desktop-light --grep @smoke",
-    "test:responsive": "playwright test tests/responsive-map.spec.ts --project=mobile-light --project=mobile-dark --project=desktop-light",
+    "test:hunt-queue": "node --import tsx scripts/verify-hunt-queue-contract.ts",
+    "test:hunt-journey": "node --import tsx scripts/verify-hunt-journey.ts",
     "test:regression": "tsx tests/verify-design-regression.ts && tsx tests/regression-full.ts",
     "test:agentic": "playwright test --grep @agentic --project=agentic-review-mobile-light --project=agentic-review-mobile-dark --project=agentic-review-tablet-light --project=agentic-review-desktop-light --project=agentic-review-desktop-dark && tsx tests/agentic-review/build-report.ts",
-    "test:agentic:live": "MOSAIC_REVIEW_BASE_URL=http://gitbrain.com/mosaic/v4/ MOSAIC_SKIP_WEBSERVER=1 playwright test --grep @agentic --project=agentic-review-mobile-light --project=agentic-review-mobile-dark --project=agentic-review-tablet-light --project=agentic-review-desktop-light --project=agentic-review-desktop-dark && tsx tests/agentic-review/build-report.ts",
+    "test:agentic:live": "MOSAIC_REVIEW_BASE_URL=http://gitbrain.com/mosaic/v3/ MOSAIC_SKIP_WEBSERVER=1 playwright test --grep @agentic --project=agentic-review-mobile-light --project=agentic-review-mobile-dark --project=agentic-review-tablet-light --project=agentic-review-desktop-light --project=agentic-review-desktop-dark && tsx tests/agentic-review/build-report.ts",
     "test:agentic:report": "tsx tests/agentic-review/build-report.ts",
     "benchmark:google-maps": "tsx tests/agentic-review/google-maps-benchmark.ts",
     "test:ui": "playwright test --ui",
@@ -24,7 +26,14 @@
     "prepare-photos": "tsx scripts/prepare-photos.ts",
     "scrape": "tsx scripts/scrapers/run-scraper.ts",
     "aggregate-runs": "tsx scripts/aggregate-research-runs.ts",
-    "deep-enrichment": "tsx scripts/run-deep-enrichment.ts"
+    "enrichment-backlog": "tsx scripts/generate-enrichment-backlog.ts",
+    "import-enriched-index": "tsx scripts/import-enriched-index.ts",
+    "audit:map": "tsx scripts/audit-map-quality.ts",
+    "enrichment:prompt": "tsx scripts/enrich-candidates.ts",
+    "enrichment:run": "tsx scripts/run-enrichment-prompt.ts",
+    "enrichment:verify": "tsx scripts/verify-enrichment-sources.ts",
+    "enrichment:promote": "tsx scripts/promote-enrichment-artifact.ts",
+    "enrichment:benchmark": "tsx scripts/benchmark-enrichment-models.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",
@@ -35,6 +44,7 @@
     "vite": "^8.0.12"
   },
   "dependencies": {
+    "@netlify/async-workloads": "^0.0.106",
     "@netlify/blobs": "^10.7.9",
     "@tailwindcss/vite": "^4.3.0",
     "maplibre-gl": "^5.24.0",

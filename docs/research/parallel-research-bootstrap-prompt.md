@@ -30,10 +30,7 @@ Your job:
    - at least two real product photos from the actual place
    - non-chain/non-convenience-store relevance
 6. Produce a structured enrichment artifact only. Do not edit public entries.json unless the candidates fully pass validation.
-7. If you are using the repo-native model runner, execute the prompt pack:
-   npm run deep-enrichment -- --input=data/enrichment-runs/{prompt-pack}.json --model=grok-4.3 --verify
-8. If you want GitHub to run it instead, dispatch the "Deep Enrichment Runner" workflow with the prompt-pack path.
-9. After producing concrete source URLs, run the Playwright verifier to generate a second evidence artifact:
+7. After producing concrete source URLs, run the Playwright verifier to generate a second evidence artifact:
    npx tsx scripts/verify-enrichment-sources.ts --input=data/enrichment-runs/{your-result}.json --limit=10 --max-urls=4
 
 Output target:

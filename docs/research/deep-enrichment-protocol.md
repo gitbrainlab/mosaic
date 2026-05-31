@@ -6,6 +6,8 @@ This protocol is for turning rough research candidates into public-quality Mosai
 
 Run deep enrichment in this repository, not in a separate project, but keep it in an experimental lane until entries pass validation.
 
+For prompt measurement, experiment design, and progressive evidence assimilation across runs, use `docs/research/prompt-effectiveness-and-progressive-assimilation.md`.
+
 Why:
 
 - The real product contract lives here: `KnowledgeEntry`, map manifests, validators, image paths, and GitHub Pages deployment.
@@ -221,24 +223,7 @@ npx tsx scripts/enrich-candidates.ts \
 
 It writes a prompt-pack artifact into `data/enrichment-runs/` and marks it `publicPromotionAllowed: false`.
 
-To execute that prompt pack with xAI/Grok and write a model-result artifact:
-
-```bash
-npm run deep-enrichment -- \
-  --input=data/enrichment-runs/{prompt-pack}.json \
-  --model=grok-4.3
-```
-
-Use `--dry-run` to validate the prompt pack without calling the model. Use `--verify` to run the Playwright source verifier automatically after the model result is written:
-
-```bash
-npm run deep-enrichment -- \
-  --input=data/enrichment-runs/{prompt-pack}.json \
-  --model=grok-4.3 \
-  --verify
-```
-
-After a deep research pass returns concrete `passed[]` entries with source URLs, run the browser verifier directly:
+After a deep research pass returns concrete `passed[]` entries with source URLs, run the browser verifier:
 
 ```bash
 npx tsx scripts/verify-enrichment-sources.ts \
@@ -258,13 +243,102 @@ npx tsx scripts/verify-enrichment-sources.ts \
 
 The verifier writes `*-source-verification.json` artifacts with address snippets, product snippets, current-operation signals, social links, and scored image candidates. These artifacts are supporting evidence only; they do not promote public map entries.
 
-## GitHub-Native Execution
+## Promotion Pipeline
 
-The same model-backed runner can be launched from GitHub Actions through **Deep Enrichment Runner** (`.github/workflows/deep-enrichment.yml`). Use workflow dispatch with:
+Use the enrichment pipeline as staged gates. Public entries should only change in the final promotion stage.
 
-- `prompt_pack`: the prompt-pack artifact path.
-- `model`: default `grok-4.3`.
-- `verify`: whether to run Playwright source verification after the model result.
-- `dry_run`: validate the prompt pack without calling the model.
+1. Audit an existing public map:
 
-The workflow commits only `data/enrichment-runs/` artifacts. It does not commit public map entries.
+```bash
+npm run audit:map -- --map=ice-cream-nationwide-albany-radial
+```
+
+This writes a `data/enrichment-runs/*quality-audit*.json` artifact showing exact-address, coordinate, recency, photo, and chain/convenience-store gaps.
+
+2. Build a prompt pack:
+
+```bash
+npm run enrichment:prompt -- \
+  --input=public/data/enrichment/ice-cream-nationwide-albany-radial-rejected-candidates.json \
+  --batch=batches/ice-cream-quality-recovery-wave-1.json \
+  --limit=12 \
+  --offset=0 \
+  --exclude-map=ice-cream-nationwide-albany-radial
+```
+
+3. Run the prompt pack through the research model:
+
+```bash
+npm run enrichment:run -- \
+  --prompt-pack=data/enrichment-runs/{prompt-pack}.json \
+  --model=grok-4.3
+```
+
+This writes a research-only `*-deep-research.json` artifact. By default the runner uses xAI's Responses API with web search, image search, and image understanding enabled so the model can cite current source pages and discover product-photo candidates. It does not edit public map data.
+
+4. Verify source pages and photo candidates:
+
+```bash
+npm run enrichment:verify -- \
+  --input=data/enrichment-runs/{deep-research}.json \
+  --limit=10 \
+  --max-urls=4
+```
+
+5. Build a promotion preview:
+
+```bash
+npm run enrichment:promote -- \
+  --input=data/enrichment-runs/{deep-research}.json \
+  --map=ice-cream-nationwide-albany-radial
+```
+
+The preview enforces exact street addresses, numeric address-level coordinates, current evidence, map bounds, non-chain policy, and at least two verified product photos. By default it rejects manual-review tags, proof-only photos, and out-of-bounds candidates.
+
+6. Optional model benchmark:
+
+```bash
+npm run enrichment:benchmark -- \
+  --input=public/data/enrichment/ice-cream-nationwide-albany-radial-rejected-candidates.json \
+  --batch=batches/ice-cream-quality-recovery-wave-1.json \
+  --limit=3 \
+  --offset=0 \
+  --models=grok-4.3,grok-4.20-0309-non-reasoning \
+  --map=ice-cream-capital-district
+```
+
+This runs the same prompt pack against multiple models, writes a benchmark artifact, and creates dry-run promotion previews for each model. It still does not edit public entries.
+
+For wider Northeast scale-out, prefer targeted cluster runs instead of broad regional prompts:
+
+```bash
+npm run enrichment:benchmark -- \
+  --input=public/data/enrichment/ice-cream-nationwide-albany-radial-rejected-candidates.json \
+  --batch=batches/ice-cream-northeast-targeted-clusters-v1.json \
+  --target=Portland-ME-Peninsula \
+  --limit=3 \
+  --models=grok-4.20-0309-non-reasoning,grok-4.20-multi-agent \
+  --reasoning-effort=low \
+  --map=ice-cream-northeast-pilot \
+  --transport=responses
+```
+
+Use `grok-4.20-multi-agent` only through the Responses API. Its `reasoning.effort` parameter controls agent count, not thinking depth: `low`/`medium` use a smaller 4-agent configuration for focused cluster checks, while `high`/`xhigh` use the larger 16-agent configuration and should be reserved for expensive follow-up.
+
+7. Promote only after review:
+
+```bash
+npm run enrichment:promote -- \
+  --input=data/enrichment-runs/{reviewed-deep-research}.json \
+  --map=ice-cream-nationwide-albany-radial \
+  --apply
+```
+
+Then run:
+
+```bash
+npm run validate-data
+npm test
+```
+
+The GitHub Actions workflow `.github/workflows/enrichment-pipeline.yml` exposes the same stages: `audit`, `prompt-pack`, `research`, `verify`, `promotion-preview`, `benchmark`, and `promote`. The `promote` stage requires `confirm_public_promotion=PROMOTE`.

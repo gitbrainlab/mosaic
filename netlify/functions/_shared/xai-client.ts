@@ -26,9 +26,9 @@ export function hasXaiKey(): boolean {
 }
 
 export function modelFor(stage: 'refine' | 'draft' | 'iterate'): string {
-  if (stage === 'refine') return process.env.XAI_MODEL_REFINE || process.env.XAI_RESEARCH_MODEL || 'grok-4-1-fast-non-reasoning';
-  if (stage === 'iterate') return process.env.XAI_MODEL_ITERATE || process.env.XAI_RESEARCH_MODEL || 'grok-4-1-fast-non-reasoning';
-  return process.env.XAI_MODEL_DRAFT || process.env.XAI_RESEARCH_MODEL || 'grok-4-1-fast-non-reasoning';
+  if (stage === 'refine') return process.env.XAI_MODEL_REFINE || process.env.XAI_REASONING_MODEL || process.env.XAI_RESEARCH_MODEL || 'grok-4.3';
+  if (stage === 'iterate') return process.env.XAI_MODEL_ITERATE || process.env.XAI_REASONING_MODEL || process.env.XAI_RESEARCH_MODEL || 'grok-4.3';
+  return process.env.XAI_MODEL_DRAFT || process.env.XAI_REASONING_MODEL || process.env.XAI_RESEARCH_MODEL || 'grok-4.3';
 }
 
 export async function chatComplete(messages: ChatMessage[], options: ChatOptions = {}): Promise<string> {

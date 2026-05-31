@@ -1,0 +1,219 @@
+name: Enrichment Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: 'Pipeline stage to run'
+        required: true
+        default: 'promotion-preview'
+        type: choice
+        options:
+          - audit
+          - prompt-pack
+          - research
+          - verify
+          - promotion-preview
+          - benchmark
+          - promote
+      map_slug:
+        description: 'Target public map slug'
+        required: true
+        default: 'ice-cream-nationwide-albany-radial'
+      candidate_input:
+        description: 'Rejected-candidate backlog for prompt-pack/research'
+        required: false
+        default: 'public/data/enrichment/ice-cream-nationwide-albany-radial-rejected-candidates.json'
+      batch_config:
+        description: 'Batch config for prompt-pack/research'
+        required: false
+        default: 'batches/ice-cream-quality-recovery-wave-1.json'
+      enrichment_artifact:
+        description: 'Existing enrichment artifact for verify/promotion stages'
+        required: false
+        default: ''
+      limit:
+        description: 'Candidate or entry limit'
+        required: false
+        default: '12'
+      offset:
+        description: 'Ranked candidate offset for prompt-pack/benchmark stages'
+        required: false
+        default: '0'
+      max_urls:
+        description: 'Max URLs per entry during verification'
+        required: false
+        default: '4'
+      model:
+        description: 'xAI model for research stage'
+        required: false
+        default: 'grok-4.3'
+      benchmark_models:
+        description: 'Comma-separated xAI models for benchmark stage'
+        required: false
+        default: 'grok-4.3,grok-4.20-0309-non-reasoning'
+      target:
+        description: 'Optional batch target name for targeted prompt-pack/benchmark stages'
+        required: false
+        default: ''
+      reasoning_effort:
+        description: 'Optional xAI reasoning effort; for multi-agent this controls agent count'
+        required: false
+        default: ''
+      confirm_public_promotion:
+        description: 'Required for promote stage. Type PROMOTE to edit public map data.'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  enrichment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Audit target map
+        if: github.event.inputs.stage == 'audit'
+        run: npm run audit:map -- --map=${{ github.event.inputs.map_slug }}
+
+      - name: Build prompt pack
+        if: github.event.inputs.stage == 'prompt-pack' || github.event.inputs.stage == 'research'
+        env:
+          TARGET: ${{ github.event.inputs.target }}
+        run: |
+          npm run enrichment:prompt -- \
+            --input=${{ github.event.inputs.candidate_input }} \
+            --batch=${{ github.event.inputs.batch_config }} \
+            --limit=${{ github.event.inputs.limit }} \
+            --offset=${{ github.event.inputs.offset }} \
+            --exclude-map=${{ github.event.inputs.map_slug }} \
+            ${TARGET:+--target="$TARGET"}
+
+      - name: Run enrichment research prompt
+        if: github.event.inputs.stage == 'research'
+        env:
+          XAI_API_KEY: ${{ secrets.XAI_KEY }}
+          XAI_KEY: ${{ secrets.XAI_KEY }}
+          REASONING_EFFORT: ${{ github.event.inputs.reasoning_effort }}
+        run: |
+          PROMPT_PACK="$(ls -t data/enrichment-runs/*prompt-pack.json | head -n 1)"
+          echo "Using prompt pack: $PROMPT_PACK"
+          npm run enrichment:run -- \
+            --prompt-pack="$PROMPT_PACK" \
+            --model=${{ github.event.inputs.model }} \
+            ${REASONING_EFFORT:+--reasoning-effort="$REASONING_EFFORT"}
+
+      - name: Install Playwright browser for source verification
+        if: github.event.inputs.stage == 'verify'
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify enrichment sources
+        if: github.event.inputs.stage == 'verify'
+        run: |
+          INPUT="${{ github.event.inputs.enrichment_artifact }}"
+          if [ -z "$INPUT" ]; then
+            INPUT="$(find data/enrichment-runs -type f -name '*.json' | sort | tail -n 1)"
+          fi
+          echo "Verifying enrichment artifact: $INPUT"
+          npm run enrichment:verify -- \
+            --input="$INPUT" \
+            --limit=${{ github.event.inputs.limit }} \
+            --max-urls=${{ github.event.inputs.max_urls }}
+
+      - name: Build promotion preview
+        if: github.event.inputs.stage == 'promotion-preview'
+        run: |
+          INPUT="${{ github.event.inputs.enrichment_artifact }}"
+          if [ -z "$INPUT" ]; then
+            INPUT="$(find data/enrichment-runs -type f -name '*.json' | sort | tail -n 1)"
+          fi
+          echo "Building promotion preview from: $INPUT"
+          npm run enrichment:promote -- \
+            --input="$INPUT" \
+            --map=${{ github.event.inputs.map_slug }}
+
+      - name: Benchmark enrichment models
+        if: github.event.inputs.stage == 'benchmark'
+        env:
+          XAI_API_KEY: ${{ secrets.XAI_API_KEY || secrets.XAI_KEY }}
+          XAI_KEY: ${{ secrets.XAI_KEY }}
+          TARGET: ${{ github.event.inputs.target }}
+          REASONING_EFFORT: ${{ github.event.inputs.reasoning_effort }}
+        run: |
+          npm run enrichment:benchmark -- \
+            --input=${{ github.event.inputs.candidate_input }} \
+            --batch=${{ github.event.inputs.batch_config }} \
+            --limit=${{ github.event.inputs.limit }} \
+            --offset=${{ github.event.inputs.offset }} \
+            --models=${{ github.event.inputs.benchmark_models }} \
+            --map=${{ github.event.inputs.map_slug }} \
+            ${TARGET:+--target="$TARGET"} \
+            ${REASONING_EFFORT:+--reasoning-effort="$REASONING_EFFORT"}
+
+      - name: Apply public promotions
+        if: github.event.inputs.stage == 'promote' && github.event.inputs.confirm_public_promotion == 'PROMOTE'
+        run: |
+          INPUT="${{ github.event.inputs.enrichment_artifact }}"
+          if [ -z "$INPUT" ]; then
+            echo "promote stage requires enrichment_artifact"
+            exit 1
+          fi
+          npm run enrichment:promote -- \
+            --input="$INPUT" \
+            --map=${{ github.event.inputs.map_slug }} \
+            --apply
+
+      - name: Refuse unconfirmed promotion
+        if: github.event.inputs.stage == 'promote' && github.event.inputs.confirm_public_promotion != 'PROMOTE'
+        run: |
+          echo "Public promotion refused. Re-run with confirm_public_promotion=PROMOTE."
+          exit 1
+
+      - name: Validate public data
+        run: npm run validate-data
+
+      - name: Test after public promotion
+        if: github.event.inputs.stage == 'promote'
+        run: npm test
+
+      - name: Upload enrichment artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enrichment-runs-${{ github.run_id }}
+          path: data/enrichment-runs/
+          if-no-files-found: ignore
+
+      - name: Commit pipeline artifacts
+        run: |
+          git config user.name "Mosaic Enrichment Agent"
+          git config user.email "enrichment@mosaic.local"
+
+          git add data/enrichment-runs/ || true
+
+          if [ "${{ github.event.inputs.stage }}" = "promote" ]; then
+            git add public/data/maps/${{ github.event.inputs.map_slug }}/ || true
+            git add public/data/index.json || true
+          fi
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore(enrichment): ${{ github.event.inputs.stage }} for ${{ github.event.inputs.map_slug }}"
+            git push
+          fi

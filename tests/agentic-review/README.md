@@ -16,15 +16,15 @@ This harness turns Playwright into a reusable review pipeline for multi-agent UI
 npm run test:agentic
 ```
 
-The Playwright config starts the production-shaped Vite preview under `/mosaic/v4/`.
+The Playwright config starts the production-shaped Vite preview under `/mosaic/v3/`.
 
-## Run Against Live v4
+## Run Against Live v3
 
 ```sh
 npm run test:agentic:live
 ```
 
-This points the same journeys at `http://gitbrain.com/mosaic/v4/` and skips the local web server.
+This points the same journeys at `http://gitbrain.com/mosaic/v3/` and skips the local web server.
 
 ## Rebuild The Report Only
 

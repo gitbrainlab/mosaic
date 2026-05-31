@@ -38,28 +38,25 @@ jobs:
         with:
           node-version: 22
           cache: 'npm'
-          cache-dependency-path: |
-            v3-source/package-lock.json
-            v4-source/package-lock.json
+          cache-dependency-path: v4-source/package-lock.json
 
       - name: Install v3 dependencies
-        working-directory: v3-source
         run: npm ci
-
-      - name: Build v3
         working-directory: v3-source
+
+      - name: Build pinned v3
         run: npm run build
+        working-directory: v3-source
         env:
           VITE_BASE_PATH: /mosaic/v3/
-          VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL || secrets.VITE_API_BASE_URL || '' }}
 
       - name: Install v4 dependencies
-        working-directory: v4-source
         run: npm ci
+        working-directory: v4-source
 
       - name: Build v4
-        working-directory: v4-source
         run: npm run build
+        working-directory: v4-source
         env:
           VITE_BASE_PATH: /mosaic/v4/
           VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL || secrets.VITE_API_BASE_URL || '' }}

@@ -110,6 +110,11 @@ function collectTargets(entries: SourceEntry[], maxUrlsPerEntry: number): Verifi
   for (const entry of entries) {
     const urls: Array<{ url: string; sourceKind: VerificationTarget['sourceKind'] }> = [];
 
+    for (const photo of [...(entry.photoEvidence || []), ...(entry.photos || [])]) {
+      const url = normalizeUrl(photo.url);
+      if (url) urls.push({ url, sourceKind: 'photo' });
+    }
+
     for (const source of entry.sources || []) {
       const url = normalizeUrl(source);
       if (url) urls.push({ url, sourceKind: 'source' });
@@ -118,11 +123,6 @@ function collectTargets(entries: SourceEntry[], maxUrlsPerEntry: number): Verifi
     for (const evidence of entry.evidence || []) {
       const url = normalizeUrl(evidence.url);
       if (url) urls.push({ url, sourceKind: 'evidence' });
-    }
-
-    for (const photo of [...(entry.photos || []), ...(entry.photoEvidence || [])]) {
-      const url = normalizeUrl(photo.url);
-      if (url) urls.push({ url, sourceKind: 'photo' });
     }
 
     const seen = new Set<string>();

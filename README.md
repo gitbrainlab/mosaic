@@ -24,6 +24,14 @@ npm run dev
 
 Open http://localhost:5173
 
+To run the Hunt gateway locally as well, use a second terminal:
+
+```bash
+npm run dev:hunt-service
+```
+
+That starts the local Netlify function host on `http://127.0.0.1:8888/.netlify/functions` so the v4 Hunt and Studio flows can create, queue, and inspect local provisional state without needing the deployed Netlify site.
+
 ### Useful Scripts
 
 - `npm run build` — Production build
@@ -32,6 +40,7 @@ Open http://localhost:5173
 - `npm run validate-data` — Run coordinate sanity checks on all maps
 - `npm test` — Typecheck + data validation + smoke tests
 - `npm run test:regression` — Full visual design regression (multi-viewport + light/dark)
+- `npm run dev:hunt-service` — Local Netlify Hunt gateway on port 8888
 
 ## Deployment (GitHub Pages)
 
@@ -39,7 +48,6 @@ This site is deployed automatically via GitHub Actions.
 
 - Push or merge to `main` → `deploy.yml` builds the site and deploys it.
 - Live v3 site: http://gitbrain.com/mosaic/v3/
-- Live v4 experiment: http://gitbrain.com/mosaic/v4/
 
 ### First-Time / Repo Setup (One Time)
 
@@ -48,15 +56,15 @@ This site is deployed automatically via GitHub Actions.
    - Under "Build and deployment", set **Source** to **GitHub Actions**
 2. Ensure the `XAI_KEY` repository secret exists (used for research agents).
 
-The deployment workflow builds the pinned v3 source with `VITE_BASE_PATH=/mosaic/v3/` and the current v4 source with `VITE_BASE_PATH=/mosaic/v4/`, then publishes both directories in one GitHub Pages artifact.
+The deployment workflow builds v3 with `VITE_BASE_PATH=/mosaic/v3/` and publishes the artifact under `v3/` for GitHub Pages.
 
 ## Netlify Hunt Gateway
 
-Mosaic can use Netlify as an optional API-only rapid Hunt gateway while keeping GitHub as the source of truth. The primary v4 Hunt path is static: frontend to prefilled GitHub Issue to Actions artifacts to Studio review to approval-gated promotion.
+Mosaic can use Netlify as an API-only rapid Hunt gateway while keeping GitHub as the source of truth.
 
 - Netlify Functions live in `netlify/functions/`.
 - Netlify Blobs store draft Hunt profiles, provisional maps, events, and promotion requests.
-- Draft Hunts are public/provisional at `/hunts/{id}` when `VITE_API_BASE_URL` is configured and are not canonical map data.
+- Draft Hunts are public/provisional at `/hunts/{id}` and are not canonical map data.
 - Promotion creates a GitHub `hunt-promotion` issue and the `Hunt Promotion Intake` workflow captures it into a review PR artifact.
 - Public map data is still written only after GitHub validation/review promotes entries into `public/data/`.
 
@@ -74,6 +82,10 @@ https://your-netlify-site.netlify.app/.netlify/functions
 ```
 
 The manual `Seed Netlify Hunt Environment` workflow can copy existing GitHub Actions secrets into Netlify when `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID` are available.
+
+## Curation Studio Workflow
+
+The Studio review flow is documented in [docs/studio-workflow.md](docs/studio-workflow.md). It covers the queue, preview panel, curator notes, Grok refinement, live enrichment, and the Hunt promotion path.
 
 ## Running Research Batches (The Real Power)
 

@@ -167,3 +167,16 @@ export type {
   EnrichmentRun,
   BatchStatus,
 } from './research-batch';
+
+export type {
+  StudioEnrichmentCandidate,
+  StudioEnrichmentJob,
+  StudioEnrichmentJobKind,
+  StudioEnrichmentJobStatus,
+  StudioEnrichmentRequest,
+  StudioEnrichmentResult,
+  StudioReviewActionPayload,
+  StudioReviewActionRecord,
+  StudioReviewActionStatus,
+  StudioReviewActionType,
+} from './studio-review';

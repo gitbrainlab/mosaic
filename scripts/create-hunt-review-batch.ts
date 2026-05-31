@@ -178,7 +178,7 @@ function qualityIssues(entry: KnowledgeEntry, spec: HuntSpec) {
     issues.push('recent_evidence_required');
   }
   if (isLikelyGenericFiller(entry.name)) {
-    issues.push('no_generic_filler');
+    issues.push('generic_chain_or_filler_review');
   }
   if (!hasVerifiedPhotos(entry)) {
     issues.push('verified_real_photos_required');

@@ -12,6 +12,19 @@ on:
       promotion_artifact:
         description: 'JSON artifact containing approvedEntries'
         required: true
+      promotion_source:
+        description: 'Artifact source: local or netlify'
+        required: false
+        default: 'local'
+      promotion_id:
+        description: 'Netlify promotion id when promotion_source=netlify'
+        required: false
+      netlify_export_url:
+        description: 'Protected Netlify artifact export URL'
+        required: false
+      netlify_callback_url:
+        description: 'Protected Netlify promotion status callback URL'
+        required: false
       approval:
         description: 'Set to PROMOTE to allow public data writes'
         required: true
@@ -46,6 +59,28 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Download Netlify promotion artifact
+        if: github.event.inputs.promotion_source == 'netlify'
+        env:
+          NETLIFY_SERVICE_TOKEN: ${{ secrets.MOSAIC_NETLIFY_SERVICE_TOKEN }}
+          NETLIFY_EXPORT_URL: ${{ github.event.inputs.netlify_export_url }}
+          PROMOTION_ARTIFACT: ${{ github.event.inputs.promotion_artifact }}
+        run: |
+          if [ -z "$NETLIFY_SERVICE_TOKEN" ]; then
+            echo "MOSAIC_NETLIFY_SERVICE_TOKEN is required for Netlify promotion artifacts" >&2
+            exit 1
+          fi
+          if [ -z "$NETLIFY_EXPORT_URL" ]; then
+            echo "netlify_export_url is required when promotion_source=netlify" >&2
+            exit 1
+          fi
+
+          mkdir -p "$(dirname "$PROMOTION_ARTIFACT")"
+          curl -fsSL \
+            -H "Authorization: Bearer $NETLIFY_SERVICE_TOKEN" \
+            "$NETLIFY_EXPORT_URL" \
+            -o "$PROMOTION_ARTIFACT"
 
       - name: Run promotion gates
         run: |
@@ -105,3 +140,26 @@ jobs:
                 ? '✅ Approved Hunt promotion passed gates, tests ran, and public map data was committed.'
                 : '🧪 Hunt promotion dry run completed. Review the uploaded promotion preview artifact before applying.'
             });
+
+      - name: Report Netlify promotion status
+        if: always() && github.event.inputs.promotion_source == 'netlify' && github.event.inputs.netlify_callback_url != ''
+        env:
+          NETLIFY_SERVICE_TOKEN: ${{ secrets.MOSAIC_NETLIFY_SERVICE_TOKEN }}
+          NETLIFY_CALLBACK_URL: ${{ github.event.inputs.netlify_callback_url }}
+          HUNT_ID: ${{ github.event.inputs.hunt_id }}
+          PROMOTION_ID: ${{ github.event.inputs.promotion_id }}
+          WORKFLOW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          JOB_CONCLUSION: ${{ job.status }}
+        run: |
+          if [ -z "$NETLIFY_SERVICE_TOKEN" ] || [ -z "$PROMOTION_ID" ]; then
+            echo "Skipping Netlify callback because token or promotion id is missing"
+            exit 0
+          fi
+
+          node -e "process.stdout.write(JSON.stringify({ huntId: process.env.HUNT_ID, promotionId: process.env.PROMOTION_ID, conclusion: process.env.JOB_CONCLUSION, workflowRunUrl: process.env.WORKFLOW_RUN_URL }))" > callback.json
+          curl -fsSL \
+            -X POST \
+            -H "Authorization: Bearer $NETLIFY_SERVICE_TOKEN" \
+            -H "Content-Type: application/json" \
+            --data @callback.json \
+            "$NETLIFY_CALLBACK_URL" || true

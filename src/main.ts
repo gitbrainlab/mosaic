@@ -1,6 +1,7 @@
 import './style.css'
-import { initRouter, getCurrentRoute, goToGallery, goToMap, goToStudio } from './lib/router'
+import { initRouter, getCurrentRoute, goToGallery, goToMap, goToStudio, goToHunt } from './lib/router'
 import { loadIndex } from './lib/data-loader'
+import { createHunt } from './lib/assistant'
 import type { DataIndex } from './types'
 import type { HuntSpec } from './types/hunt'
 // MapView is loaded dynamically via import() — do not add static import
@@ -21,14 +22,16 @@ interface View {
 let currentView: View | null = null
 
 function renderShell() {
+  const base = import.meta.env.BASE_URL || '/'
+  const logoSrc = `${base}logo.svg`.replace(/\/+/g, '/')
   app.innerHTML = `
-    <div class="min-h-screen flex flex-col bg-[#f8f7f4] dark:bg-[#1a1916]">
+    <div class="min-h-screen flex flex-col bg-[#0f0f11] text-[#e4e4e7]">
       <!-- Top bar (contextual) -->
-      <header id="app-header" class="sticky top-0 z-50 border-b border-[#e5e2d9] bg-[#f8f7f4]/95 dark:bg-[#1a1916]/95 backdrop-blur">
+      <header id="app-header" class="sticky top-0 z-50 border-b border-[#27272a] bg-[#0f0f11]/95 backdrop-blur">
         <div class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
-          <button id="logo" class="font-semibold tracking-tight text-xl text-[#111] dark:text-white flex items-center gap-2">
-            <span class="text-xl">◈</span>
-            <span>mosaic</span>
+          <button id="logo" class="flex items-center gap-2 text-[#e4e4e7]">
+            <img src="${logoSrc}" alt="Mosaic" class="h-7 w-auto">
+            <span class="font-semibold tracking-[-0.02em] text-xl">mosaic</span>
           </button>
         </div>
       </header>
@@ -37,19 +40,19 @@ function renderShell() {
       <main id="main-content" class="flex-1 max-w-7xl mx-auto w-full"></main>
 
       <!-- Bottom Navigation (mobile-first foundation per PWA research) -->
-      <nav id="bottom-nav" class="sticky bottom-0 z-50 border-t border-[#e5e2d9] bg-[#f8f7f4] dark:bg-[#1a1916] safe-bottom">
+      <nav id="bottom-nav" class="sticky bottom-0 z-50 border-t border-[#27272a] bg-[#0f0f11] safe-bottom">
         <div class="max-w-7xl mx-auto grid grid-cols-3 text-sm">
           <button data-nav="gallery" class="nav-btn flex flex-col items-center py-3 active">
-            <span class="text-lg text-[#111] dark:text-white">◈</span>
-            <span class="text-[10px] mt-0.5 text-[#111] dark:text-[#f4f1e9]">Explore</span>
+            <span class="text-lg text-[#c9a86c]">◈</span>
+            <span class="text-[10px] mt-0.5 text-[#e4e4e7]">Explore</span>
           </button>
           <button data-nav="map" class="nav-btn flex flex-col items-center py-3 hover:opacity-100">
-            <span class="text-lg text-[#111] dark:text-white">◎</span>
-            <span class="text-[10px] mt-0.5 text-[#3f3b33] dark:text-[#d4cebf]">Map</span>
+            <span class="text-lg text-[#a1a1aa]">◎</span>
+            <span class="text-[10px] mt-0.5 text-[#a1a1aa]">Map</span>
           </button>
           <button data-nav="studio" class="nav-btn flex flex-col items-center py-3 opacity-50 hover:opacity-100">
-            <span class="text-lg text-[#111] dark:text-white">✎</span>
-            <span class="text-[10px] mt-0.5 text-[#3f3b33] dark:text-[#d4cebf]">Studio</span>
+            <span class="text-lg text-[#a1a1aa]">✎</span>
+            <span class="text-[10px] mt-0.5 text-[#a1a1aa]">Studio</span>
           </button>
         </div>
       </nav>
@@ -93,7 +96,7 @@ async function showGallery() {
   const container = document.getElementById('main-content')!
   container.innerHTML = `
     <div class="p-8 text-center">
-      <div class="animate-pulse text-[#8a8178]">Loading maps...</div>
+      <div class="animate-pulse text-[#a1a1aa]">Loading maps...</div>
     </div>
   `
 
@@ -118,66 +121,66 @@ function renderGallery(index: DataIndex) {
       <!-- The Hunt Experience (Discovery + Curation Loop) -->
       <div id="hunt-panel" class="mb-10">
         <div class="mb-3 px-1">
-          <div class="uppercase text-[10px] tracking-[1.5px] font-bold text-[#3f3b33] dark:text-[#d4cebf]">THE LOOP</div>
-          <div class="font-semibold text-xl tracking-tight text-[#111] dark:text-white">Start a Hunt</div>
+          <div class="uppercase text-[10px] tracking-[1.5px] font-bold text-[#a1a1aa]">THE LOOP</div>
+          <div class="font-semibold text-xl tracking-tight text-[#e4e4e7]">Start a Hunt</div>
         </div>
 
-        <div class="mosaic-card p-4 sm:p-5 border-2 border-[#3f3b33] dark:border-[#d4cebf] overflow-hidden">
-          <p class="text-[15px] leading-snug mb-4 text-[#1a1816] dark:text-[#f4f1e9]">Tell Mosaic what to hunt. The static app opens a structured GitHub Issue; Actions run the research and produce review artifacts before anything can reach public map data.</p>
+        <div class="mosaic-card p-4 sm:p-5 border border-[#27272a] overflow-hidden">
+          <p class="text-[15px] leading-snug mb-4 text-[#e4e4e7]">Tell Mosaic what to hunt. The static app queues a Netlify Hunt job; drafts stay provisional until GitHub Actions validation and approval-gated promotion.</p>
 
           <div class="flex flex-wrap gap-2 mb-4" id="suggestions">
-            <button data-suggestion="Ice Cream in the Capital District" class="sugg text-sm px-4 py-1.5 rounded-full border-2 border-[#1f1d1a] bg-[#1f1d1a] text-white hover:bg-black active:bg-[#0a0a0a] dark:border-[#f4f1e9] dark:bg-[#f4f1e9] dark:text-[#111] dark:hover:bg-white transition-colors">Ice Cream – Capital District</button>
-            <button data-suggestion="Mid-century modern furniture makers in New York" class="sugg text-sm px-4 py-1.5 rounded-full border-2 border-[#1f1d1a] bg-white text-[#1f1d1a] hover:bg-[#f1efea] dark:border-[#f4f1e9] dark:bg-[#111] dark:text-[#f4f1e9] dark:hover:bg-[#2a2924] transition-colors">Mid-century furniture makers</button>
-            <button data-suggestion="Hidden swimming holes in the Adirondacks" class="sugg text-sm px-4 py-1.5 rounded-full border-2 border-[#1f1d1a] bg-white text-[#1f1d1a] hover:bg-[#f1efea] dark:border-[#f4f1e9] dark:bg-[#111] dark:text-[#f4f1e9] dark:hover:bg-[#2a2924] transition-colors">Adirondack swimming holes</button>
+            <button data-suggestion="Ice Cream in the Capital District" class="sugg text-sm px-4 py-1.5 rounded-full border border-[#c9a86c] bg-[#c9a86c] text-[#0f0f11] transition-colors">Ice Cream – Capital District</button>
+            <button data-suggestion="Mid-century modern furniture makers in New York" class="sugg text-sm px-4 py-1.5 rounded-full border border-[#27272a] bg-[#17171a] text-[#e4e4e7] hover:bg-[#1f1d1a] transition-colors">Mid-century furniture makers</button>
+            <button data-suggestion="Hidden swimming holes in the Adirondacks" class="sugg text-sm px-4 py-1.5 rounded-full border border-[#27272a] bg-[#17171a] text-[#e4e4e7] hover:bg-[#1f1d1a] transition-colors">Adirondack swimming holes</button>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_auto] gap-2">
-            <input id="hunt-input" type="text" placeholder="What topic should the agents research?" class="min-w-0 w-full px-4 py-3 text-[16px] sm:text-sm border-2 border-[#1f1d1a] bg-white text-[#111] rounded-lg focus:outline-none focus:border-[#0a0a0a] dark:bg-[#1a1916] dark:border-[#f4f1e9] dark:text-[#f4f1e9]" value="Ice Cream in the Capital District">
-            <button id="launch-hunt" class="w-full sm:w-auto px-6 sm:px-7 py-3 bg-[#111] hover:bg-black active:bg-[#000] text-white text-[16px] sm:text-sm font-bold rounded-lg border-2 border-[#111] transition-all active:scale-[0.985] dark:bg-white dark:text-[#111] dark:border-white dark:hover:bg-[#f4f1e9]">Open GitHub Hunt</button>
+            <input id="hunt-input" type="text" placeholder="What topic should the agents research?" class="min-w-0 w-full px-4 py-3 text-[16px] sm:text-sm border border-[#27272a] bg-[#0f0f11] text-[#e4e4e7] rounded-lg focus:outline-none focus:border-[#c9a86c]" value="Ice Cream in the Capital District">
+            <button id="launch-hunt" class="w-full sm:w-auto px-6 sm:px-7 py-3 bg-[#c9a86c] hover:bg-[#d7bc82] active:bg-[#b99755] text-[#0f0f11] text-[16px] sm:text-sm font-bold rounded-lg border border-[#c9a86c] transition-all active:scale-[0.985]">Start Hunt</button>
           </div>
 
           <!-- Advanced guidance toggle -->
           <div class="mt-2">
-            <button id="toggle-guidance" class="text-xs text-[#5c5549] dark:text-[#a39a8c] hover:text-[#2c2a27] dark:hover:text-[#d4cebf] underline decoration-dotted">
+            <button id="toggle-guidance" class="text-xs text-[#a1a1aa] hover:text-[#c9a86c] underline decoration-dotted">
               Need more specific results? Add detailed guidance →
             </button>
           </div>
 
           <!-- Advanced guidance panel (hidden by default) -->
-          <div id="guidance-panel" class="hidden mt-3 p-3 border border-[#d4cebf] dark:border-[#3f3b33] rounded-lg bg-[#f8f7f4] dark:bg-[#1a1916]">
-            <label class="block text-xs font-semibold text-[#3f3b33] dark:text-[#d4cebf] mb-1">
+          <div id="guidance-panel" class="hidden mt-3 p-3 border border-[#27272a] rounded-lg bg-[#17171a]">
+            <label class="block text-xs font-semibold text-[#a1a1aa] mb-1">
               Additional instructions for the research agents (highly recommended for niche results)
             </label>
-            <textarea id="hunt-guidance" rows="3" placeholder="Example: Only soft serve. Must have offered coffee flavors before (not flavorburst). Not gas stations. Must have gluten-free cones available." class="w-full px-3 py-2 text-[16px] sm:text-sm border border-[#a39a8c] rounded-md bg-white dark:bg-[#111] text-[#111] dark:text-[#f4f1e9] focus:outline-none"></textarea>
-            <div class="text-[10px] text-[#6b6761] dark:text-[#8a8178] mt-1">This becomes part of the structured Hunt profile.</div>
+            <textarea id="hunt-guidance" rows="3" placeholder="Example: Only soft serve. Must have offered coffee flavors before (not flavorburst). Not gas stations. Must have gluten-free cones available." class="w-full px-3 py-2 text-[16px] sm:text-sm border border-[#27272a] rounded-md bg-[#0f0f11] text-[#e4e4e7] focus:outline-none focus:border-[#c9a86c]"></textarea>
+            <div class="text-[10px] text-[#a1a1aa] mt-1">This becomes part of the structured Hunt profile.</div>
           </div>
 
-          <div class="text-xs mt-3 px-1 text-[#3f3b33] dark:text-[#d4cebf]">No browser token is used. Public maps update only after GitHub Actions validation and approval-gated promotion.</div>
+          <div class="text-xs mt-3 px-1 text-[#a1a1aa]">Draft jobs run through Netlify. Public maps update only after GitHub Actions validation and approval-gated promotion.</div>
         </div>
       </div>
 
       <!-- Previously hunted maps -->
       <div class="mb-3 px-1">
-        <div class="uppercase text-[10px] tracking-[1.5px] font-bold text-[#3f3b33] dark:text-[#d4cebf]">LIVE MAPS</div>
-        <div class="text-sm text-[#2c2a27] dark:text-[#e8e4d9]">Results of past successful hunts (committed data)</div>
+        <div class="uppercase text-[10px] tracking-[1.5px] font-bold text-[#a1a1aa]">LIVE MAPS</div>
+        <div class="text-sm text-[#e4e4e7]">Results of past successful hunts (committed data)</div>
       </div>
 
       <div class="grid gap-3">
         ${index.maps.map(map => `
-          <div class="mosaic-card p-5 cursor-pointer hover:border-[#111] active:bg-[#f8f7f4] dark:hover:border-white dark:active:bg-[#2a2924] transition-colors group border-2 border-[#3f3b33] dark:border-[#d4cebf]" data-slug="${map.slug}">
+          <div class="mosaic-card p-5 cursor-pointer hover:border-[#c9a86c] active:bg-[#1f1d1a] transition-colors group border border-[#27272a]" data-slug="${map.slug}">
             <div class="flex justify-between items-start gap-4">
               <div>
-                <div class="font-bold text-lg tracking-tight text-[#111] dark:text-white group-hover:underline">${map.title}</div>
-                <div class="text-[#2c2a27] dark:text-[#d4cebf] mt-0.5 text-sm">${map.tagline}</div>
+                <div class="font-bold text-lg tracking-tight text-[#e4e4e7] group-hover:underline">${map.title}</div>
+                <div class="text-[#a1a1aa] mt-0.5 text-sm">${map.tagline}</div>
               </div>
-              <div class="text-right shrink-0 text-xs px-3 py-1 rounded-full bg-[#1f1d1a] text-white font-semibold dark:bg-white dark:text-[#111]">${map.entryCount} entries</div>
+              <div class="text-right shrink-0 text-xs px-3 py-1 rounded-full bg-[#c9a86c] text-[#0f0f11] font-semibold">${map.entryCount} entries</div>
             </div>
           </div>
         `).join('')}
       </div>
 
       <div class="mt-10 text-center">
-        <div class="text-xs text-[#3f3b33] dark:text-[#d4cebf]">The real research agents read Issues, call Grok, and push commits. The browser only ever sees static JSON.</div>
+        <div class="text-xs text-[#a1a1aa]">Hunt drafts are provisional Netlify jobs. Canonical maps are committed static JSON after validation.</div>
       </div>
     </div>
   `
@@ -213,7 +216,7 @@ function renderGallery(index: DataIndex) {
     }
   })
 
-  // Launch Hunt (static GitHub issue handoff)
+  // Launch Hunt (Netlify-managed job queue)
   const launchBtn = document.getElementById('launch-hunt')!
   const input = document.getElementById('hunt-input') as HTMLInputElement
   const guidanceInput = document.getElementById('hunt-guidance') as HTMLTextAreaElement
@@ -221,7 +224,7 @@ function renderGallery(index: DataIndex) {
   const launchHunt = () => {
     const topic = (input.value || 'A new knowledge map').trim()
     const guidance = guidanceInput?.value?.trim() || ''
-    startRealHunt(topic, guidance)
+    void startRealHunt(topic, guidance)
   }
 
   launchBtn.addEventListener('click', launchHunt)
@@ -234,22 +237,22 @@ function renderGallery(index: DataIndex) {
   })
 }
 
-function startRealHunt(topic: string, guidance: string) {
+async function startRealHunt(topic: string, guidance: string) {
   const panel = document.getElementById('hunt-panel')!
   const escapedTopic = escapeHtml(topic)
   const spec = buildHuntSpec(topic, guidance)
   const issueUrl = buildIssueUrl(spec, guidance)
 
   panel.innerHTML = `
-    <div class="mosaic-card overflow-hidden border-[#2c2a27]">
-      <div class="px-5 pt-5 pb-4 bg-[#1f1d1a] text-white">
-        <div class="uppercase tracking-[2px] text-[10px] text-white/60 mb-1">GITHUB-NATIVE HUNT</div>
+    <div class="mosaic-card overflow-hidden border-[#27272a]">
+      <div class="px-5 pt-5 pb-4 bg-[#17171a] text-[#e4e4e7]">
+        <div class="uppercase tracking-[2px] text-[10px] text-[#a1a1aa] mb-1">NETLIFY QUEUED HUNT</div>
         <div class="font-semibold text-xl tracking-tighter">Hunt: ${escapedTopic}</div>
       </div>
-      <div class="p-5 space-y-4 bg-white dark:bg-[#1a1916]">
+      <div class="p-5 space-y-4 bg-[#17171a]">
         <div>
-          <div class="text-xs uppercase tracking-[1px] font-bold text-[#3f3b33] dark:text-[#d4cebf] mb-2">Intent</div>
-          <p class="text-sm leading-relaxed text-[#2c2a27] dark:text-[#e8e4d9]">${escapeHtml(spec.intent)}</p>
+          <div class="text-xs uppercase tracking-[1px] font-bold text-[#a1a1aa] mb-2">Intent</div>
+          <p class="text-sm leading-relaxed text-[#e4e4e7]">${escapeHtml(spec.intent)}</p>
         </div>
         <div class="grid sm:grid-cols-2 gap-3 text-sm">
           ${profileBlock('Geography', spec.geography.label)}
@@ -257,26 +260,40 @@ function startRealHunt(topic: string, guidance: string) {
           ${profileBlock('Must Have', spec.mustHaveConstraints.join('; ') || 'Address-level evidence')}
           ${profileBlock('Exclusions', spec.exclusions.join('; ') || 'Weak filler')}
         </div>
-        <div class="text-xs text-[#6b6761] dark:text-[#a39a8c]">The issue body includes a machine-readable HuntSpec. GitHub Actions will produce research artifacts and a Studio review batch first.</div>
+        <div class="text-xs text-[#a1a1aa]">The HuntSpec is saved as provisional Netlify state. Promotion still runs through GitHub Actions quality gates before public data can change.</div>
       </div>
-      <div class="border-t p-4 bg-[#f8f7f4] dark:bg-[#141310] flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
-        <div id="hunt-create-status" class="text-xs text-[#5c5549] dark:text-[#a39a8c]">Open the GitHub issue, submit it, and the research workflow will handle the rest.</div>
-        <a id="confirm-hunt" class="min-h-11 px-5 inline-flex items-center justify-center rounded bg-[#111] text-white dark:bg-white dark:text-[#111] text-sm font-bold" href="${escapeHtml(issueUrl)}" target="_blank" rel="noreferrer">Open GitHub Hunt</a>
+      <div class="border-t border-[#27272a] p-4 bg-[#0f0f11] flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
+        <div id="hunt-create-status" class="text-xs text-[#a1a1aa]">Queuing Hunt job...</div>
+        <button id="confirm-hunt" disabled class="min-h-11 px-5 inline-flex items-center justify-center rounded bg-[#c9a86c] text-[#0f0f11] text-sm font-bold disabled:opacity-50">Starting...</button>
       </div>
     </div>
   `
 
-  panel.querySelector('#confirm-hunt')?.addEventListener('click', () => {
-    const status = panel.querySelector('#hunt-create-status')
-    if (status) status.textContent = 'GitHub issue opened. Submit it to start the Actions research loop.'
-  })
+  const status = panel.querySelector('#hunt-create-status')
+  try {
+    const state = await createHunt(spec)
+    if (status) status.textContent = 'Hunt queued. Opening the live draft workspace...'
+    goToHunt(state.profile.id)
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Failed to start Hunt'
+    panel.querySelector('#confirm-hunt')?.remove()
+    const footer = panel.querySelector('.border-t')
+    if (status) status.innerHTML = `
+      <div class="font-semibold text-[#8a2f18] dark:text-[#ffb199]">Hunt service unavailable</div>
+      <div class="mt-1">${escapeHtml(message)}</div>
+      <div class="mt-2">Manual fallback remains available while Netlify queue setup is being completed.</div>
+    `
+    footer?.insertAdjacentHTML('beforeend', `
+      <a class="min-h-11 px-5 inline-flex items-center justify-center rounded border border-[#27272a] text-[#e4e4e7] text-sm font-bold" href="${escapeHtml(issueUrl)}" target="_blank" rel="noreferrer">Manual GitHub fallback</a>
+    `)
+  }
 }
 
 function profileBlock(label: string, value: string) {
   return `
-    <div class="border border-[#e5e2d9] dark:border-[#3f3b33] rounded p-3">
-      <div class="text-[10px] uppercase tracking-[1px] font-bold text-[#5f5a52] dark:text-[#d4cebf]">${label}</div>
-      <div class="mt-1 text-[#111] dark:text-white">${escapeHtml(value)}</div>
+    <div class="border border-[#27272a] rounded p-3 bg-[#0f0f11]">
+      <div class="text-[10px] uppercase tracking-[1px] font-bold text-[#a1a1aa]">${label}</div>
+      <div class="mt-1 text-[#e4e4e7]">${escapeHtml(value)}</div>
     </div>
   `
 }
@@ -414,6 +431,7 @@ function updateBottomNavActive(routeName: string) {
 
 function updateShellMode(routeName: string) {
   app.classList.toggle('mosaic-route-map', routeName === 'map')
+  app.classList.toggle('mosaic-route-studio', routeName === 'studio')
 }
 
 initRouter((route) => {
@@ -446,4 +464,4 @@ initRouter((route) => {
 // Make router available for debugging
 ;(window as any).mosaicRouter = { getCurrentRoute } 
 
-console.log('%c[Mosaic] Phase 1a shell initialized — mobile-first foundations in progress', 'color:#8a8178')
+console.log('%c[Mosaic] v4 shell initialized — dark-first brand system active', 'color:#c9a86c')

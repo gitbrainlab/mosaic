@@ -49,12 +49,6 @@ interface EnrichmentBacklogIndex {
   }>;
 }
 
-interface ResearchCandidate {
-  entry: KnowledgeEntry;
-  reviewState?: string;
-  qualityIssues?: string[];
-}
-
 // ============================================
 // Internal Cache (in-memory for the session)
 // ============================================
@@ -90,7 +84,13 @@ async function fetchHuntApi<T>(path: string): Promise<T> {
     throw new Error('Mosaic Hunt API is not configured. Set VITE_API_BASE_URL to the Netlify Functions base URL.');
   }
 
-  const res = await fetch(`${huntApiBase}/${path}`, { cache: 'no-store' });
+  let res: Response;
+  try {
+    res = await fetch(`${huntApiBase}/${path}`, { cache: 'no-store' });
+  } catch (err) {
+    const detail = err instanceof Error ? err.message : 'network request failed';
+    throw new Error(`Unable to reach Mosaic Hunt API at ${huntApiBase}. Check VITE_API_BASE_URL and Netlify allowed origins. (${detail})`);
+  }
   if (!res.ok) {
     const body = await res.json().catch(() => ({ error: `HTTP ${res.status}` }));
     const message = typeof body?.error === 'string' ? body.error : `HTTP ${res.status}`;
@@ -219,30 +219,6 @@ export async function loadResearchBatch(file: string): Promise<LoaderResult<Rese
     return { data, state: 'loaded' };
   } catch (err) {
     const message = err instanceof Error ? err.message : `Failed to load research batch ${file}`;
-    return { data: null, state: 'error', error: message };
-  }
-}
-
-export async function loadResearchCandidates(path: string): Promise<LoaderResult<ResearchCandidate[]>> {
-  const cleanedPath = path
-    .replace(/^public\//, '')
-    .replace(/^data\/research-batches\//, '');
-  const relativePath = `data/research-batches/${cleanedPath}`;
-  const key = getCacheKey(relativePath);
-
-  if (cache.has(key)) {
-    return {
-      data: cache.get(key) as ResearchCandidate[],
-      state: 'loaded',
-    };
-  }
-
-  try {
-    const data = await fetchJson<ResearchCandidate[]>(relativePath);
-    cache.set(key, data);
-    return { data, state: 'loaded' };
-  } catch (err) {
-    const message = err instanceof Error ? err.message : `Failed to load research candidates ${path}`;
     return { data: null, state: 'error', error: message };
   }
 }
