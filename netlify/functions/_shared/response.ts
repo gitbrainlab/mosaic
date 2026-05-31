@@ -11,7 +11,7 @@ function corsHeaders(req?: Request): Record<string, string> {
   return {
     'Access-Control-Allow-Origin': allowOrigin,
     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Mosaic-User',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Mosaic-User, X-Mosaic-Hunt-Key, X-Mosaic-Service-Token',
     'X-Content-Type-Options': 'nosniff',
   };
 }

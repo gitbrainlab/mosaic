@@ -183,7 +183,7 @@ export default defineConfig({
   // so `npm run test:smoke` works without the developer having to run `npm run dev` first.
   webServer: shouldStartWebServer
     ? {
-        command: 'VITE_BASE_PATH=/mosaic/v3/ npm run build && rm -rf pages && mkdir -p pages/v3 && cp -R dist/. pages/v3/ && cp dist/404.html pages/404.html && vite preview --outDir pages --port 5173 --host 127.0.0.1',
+        command: 'VITE_BASE_PATH=/mosaic/v3/ VITE_API_BASE_URL=http://127.0.0.1:5173/.netlify/functions npm run build && rm -rf pages && mkdir -p pages/v3 && cp -R dist/. pages/v3/ && cp dist/404.html pages/404.html && vite preview --outDir pages --port 5173 --host 127.0.0.1',
         url: localPreviewBaseURL,
         reuseExistingServer: !process.env.CI,
         timeout: 120 * 1000,

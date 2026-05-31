@@ -84,7 +84,13 @@ async function fetchHuntApi<T>(path: string): Promise<T> {
     throw new Error('Mosaic Hunt API is not configured. Set VITE_API_BASE_URL to the Netlify Functions base URL.');
   }
 
-  const res = await fetch(`${huntApiBase}/${path}`, { cache: 'no-store' });
+  let res: Response;
+  try {
+    res = await fetch(`${huntApiBase}/${path}`, { cache: 'no-store' });
+  } catch (err) {
+    const detail = err instanceof Error ? err.message : 'network request failed';
+    throw new Error(`Unable to reach Mosaic Hunt API at ${huntApiBase}. Check VITE_API_BASE_URL and Netlify allowed origins. (${detail})`);
+  }
   if (!res.ok) {
     const body = await res.json().catch(() => ({ error: `HTTP ${res.status}` }));
     const message = typeof body?.error === 'string' ? body.error : `HTTP ${res.status}`;

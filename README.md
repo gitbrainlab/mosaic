@@ -24,6 +24,14 @@ npm run dev
 
 Open http://localhost:5173
 
+To run the Hunt gateway locally as well, use a second terminal:
+
+```bash
+npm run dev:hunt-service
+```
+
+That starts the local Netlify function host on `http://127.0.0.1:8888/.netlify/functions` so the v4 Hunt and Studio flows can create, queue, and inspect local provisional state without needing the deployed Netlify site.
+
 ### Useful Scripts
 
 - `npm run build` — Production build
@@ -32,6 +40,7 @@ Open http://localhost:5173
 - `npm run validate-data` — Run coordinate sanity checks on all maps
 - `npm test` — Typecheck + data validation + smoke tests
 - `npm run test:regression` — Full visual design regression (multi-viewport + light/dark)
+- `npm run dev:hunt-service` — Local Netlify Hunt gateway on port 8888
 
 ## Deployment (GitHub Pages)
 
@@ -73,6 +82,10 @@ https://your-netlify-site.netlify.app/.netlify/functions
 ```
 
 The manual `Seed Netlify Hunt Environment` workflow can copy existing GitHub Actions secrets into Netlify when `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID` are available.
+
+## Curation Studio Workflow
+
+The Studio review flow is documented in [docs/studio-workflow.md](docs/studio-workflow.md). It covers the queue, preview panel, curator notes, Grok refinement, live enrichment, and the Hunt promotion path.
 
 ## Running Research Batches (The Real Power)
 

@@ -1,6 +1,7 @@
-# Mosaic - Netlify Functions (API only)
-# The static frontend remains GitHub Pages / v3. Netlify brokers rapid Hunt
-# drafts, LLM calls, Blob state, and promotion handoff.
+# Mosaic - Netlify Functions (Hunt queue API)
+# The static frontend remains GitHub Pages. v4 uses Netlify as the managed Hunt
+# job queue for provisional drafts and iterations. Canonical public map data is
+# still promoted only through GitHub Actions validation and committed public/data.
 # Keep secrets in Netlify environment variables or seed them from GitHub Actions.
 
 [build]
@@ -17,6 +18,6 @@
   [headers.values]
     Access-Control-Allow-Origin = "*"
     Access-Control-Allow-Methods = "GET, POST, OPTIONS"
-    Access-Control-Allow-Headers = "Content-Type, Authorization, X-Mosaic-User"
+    Access-Control-Allow-Headers = "Content-Type, Authorization, X-Mosaic-User, X-Mosaic-Hunt-Key, X-Mosaic-Service-Token"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"

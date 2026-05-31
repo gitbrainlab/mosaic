@@ -198,31 +198,77 @@ function fallbackDraftMap(spec: HuntSpec, iteration = 0): DraftMap {
   };
 }
 
-export async function generateDraftMap(spec: HuntSpec, iteration = 0, instruction = ''): Promise<{ draftMap: DraftMap; mode: 'live' | 'fallback' }> {
+export async function generateDraftMap(spec: HuntSpec, iteration = 0, instruction = '', previousDraft?: DraftMap | null): Promise<{ draftMap: DraftMap; mode: 'live' | 'fallback' }> {
   if (!hasXaiKey() || process.env.MOCK_HUNT_MODE === 'true') {
     return { draftMap: fallbackDraftMap(spec, iteration), mode: 'fallback' };
   }
 
+  const previousNames = previousDraft?.entries.map(entry => entry.name).filter(Boolean) || [];
+  const previousNameKeys = new Set(previousNames.map(normalizeNameForComparison));
+  const qualityInstruction = iteration > 0
+    ? [
+      'This is a secondary quality hunt.',
+      'Exclude every previous entry name unless the user explicitly asks to repair that exact record.',
+      'Find replacement candidates that are currently operating and better supported.',
+      'Suppress closed, rebranded, stale, or weakly evidenced places.',
+      'Reject candidates whose only evidence is old directory pages, historical posts, or unverifiable social chatter.',
+      'Each accepted entry must include a current operating-status signal and at least one concrete public URL in evidenceHints.',
+    ].join(' ')
+    : [
+      'Prioritize quality over coverage.',
+      'Suppress closed, stale, rebranded, or weakly evidenced places.',
+      'Each accepted entry must include a current operating-status signal and at least one concrete public URL in evidenceHints.',
+    ].join(' ');
+
   const raw = await chatComplete([
     {
       role: 'system',
-      content: `You generate rapid Mosaic draft maps. Return only JSON with keys title, tagline, narrative, entries, suppressedCandidates. Entries must be provisional and include name, location { address, city, region, country, lat, lng }, summary, confidence, evidenceHints, tags, photoStatus, provisionalReason. It is acceptable to mark photos pending. Do not claim canonical verification.`,
+      content: [
+        'You generate rapid Mosaic draft maps.',
+        'Return only JSON with keys title, tagline, narrative, entries, suppressedCandidates.',
+        'Every entry must be a real named place with an exact street address and plausible coordinates.',
+        'Do not use placeholder names such as "candidate 1", "test entry", "draft place", or generic category names.',
+        'Do not include places known to be closed, permanently closed, rebranded into another concept, or unsupported by recent evidence.',
+        'Current/recent evidence means an official website/menu/profile, active social account, ordering page, public business profile, or review/source lead from 2024 or later.',
+        'Evidence hints must include at least one concrete public URL such as an official site, menu, ordering page, social page, business profile, or review page. Do not use vague leads like "official website" without a URL.',
+        'For narrow product, flavor, or style topics, every accepted entry must explicitly support the requested product/style in its summary, tags, or evidence hints. A generic restaurant dessert menu is not enough.',
+        'If a candidate cannot be supported as a real place, put it in suppressedCandidates with a reason instead of entries.',
+        'Entries must be provisional and include name, location { address, city, region, country, lat, lng }, summary, confidence, evidenceHints, tags, photoStatus, provisionalReason.',
+        'Evidence hints must name source types or source leads that a curator can verify, include URLs, and must not merely say verification is needed.',
+        'It is acceptable to mark photos pending. Do not claim canonical verification.',
+        'Return fewer entries if necessary. Never fill the list with weak substitutes.',
+      ].join(' '),
     },
     {
       role: 'user',
-      content: JSON.stringify({ spec, iteration, instruction }, null, 2),
+      content: JSON.stringify({
+        spec,
+        iteration,
+        instruction,
+        qualityInstruction,
+        excludePreviousEntryNames: previousNames,
+      }, null, 2),
     },
   ], {
     model: modelFor(iteration > 0 ? 'iterate' : 'draft'),
     jsonMode: true,
     maxTokens: 4200,
-    temperature: 0.45,
+    temperature: iteration > 0 ? 0.15 : 0.3,
     timeoutMs: 55000,
   });
 
   const parsed = JSON.parse(extractJsonObject(raw)) as Record<string, unknown>;
   const entriesRaw = Array.isArray(parsed.entries) ? parsed.entries : [];
   const fallback = fallbackDraftMap(spec, iteration);
+  const entries = entriesRaw
+    .slice(0, 10)
+    .map((entry, index) => normalizeEntry(entry as Record<string, unknown>, spec, index))
+    .filter(entry => !previousNameKeys.has(normalizeNameForComparison(entry.name)))
+    .filter(entry => isUsableLiveEntry(entry, spec));
+
+  if (entries.length === 0) {
+    throw new Error('Live Hunt draft did not return usable real-place entries. Refine the request or run a deeper batch pass.');
+  }
 
   return {
     draftMap: {
@@ -230,7 +276,7 @@ export async function generateDraftMap(spec: HuntSpec, iteration = 0, instructio
       title: typeof parsed.title === 'string' && parsed.title.trim() ? parsed.title.trim() : fallback.title,
       tagline: typeof parsed.tagline === 'string' && parsed.tagline.trim() ? parsed.tagline.trim() : fallback.tagline,
       narrative: typeof parsed.narrative === 'string' && parsed.narrative.trim() ? parsed.narrative.trim() : fallback.narrative,
-      entries: entriesRaw.slice(0, 10).map((entry, index) => normalizeEntry(entry as Record<string, unknown>, spec, index)),
+      entries,
       suppressedCandidates: Array.isArray(parsed.suppressedCandidates)
         ? parsed.suppressedCandidates.slice(0, 12).map((item: unknown) => {
           const candidate = item && typeof item === 'object' ? item as Record<string, unknown> : {};
@@ -243,6 +289,59 @@ export async function generateDraftMap(spec: HuntSpec, iteration = 0, instructio
     },
     mode: 'live',
   };
+}
+
+function isUsableLiveEntry(entry: DraftHuntEntry, spec: HuntSpec): boolean {
+  const name = entry.name.toLowerCase();
+  const fallbackNamePrefix = `${spec.topic} candidate`.toLowerCase();
+  if (!entry.name.trim() || name.startsWith(fallbackNamePrefix)) return false;
+  if (/\b(candidate|placeholder|test entry|draft place)\b/i.test(entry.name)) return false;
+  if (!entry.location.address.trim() || entry.location.address === 'Address pending verification') return false;
+  if (!Number.isFinite(entry.location.lat) || !Number.isFinite(entry.location.lng)) return false;
+  if (!entryMatchesTopic(entry, spec)) return false;
+  const evidenceText = [entry.summary, entry.provisionalReason, ...entry.evidenceHints].join(' ').toLowerCase();
+  if (/\b(permanently closed|closed years ago|out of business|no longer operating|former location|rebranded)\b/i.test(evidenceText)) return false;
+  if (!/(202[4-6]|current|recent|active|official|menu|ordering|business profile|instagram|facebook|website|posted|listed|open|operating)/i.test(evidenceText)) return false;
+  const concreteHint = entry.evidenceHints.some(hint =>
+    /(official|menu|ordering|business profile|instagram|facebook|website|posted|listed|review|google|yelp|source|social)/i.test(hint) &&
+    /https?:\/\/[^\s)]+/i.test(hint) &&
+    !/\b(needs?|pending|requires?|verify|verification|llm draft)\b/i.test(hint),
+  );
+  if (!concreteHint) return false;
+  return true;
+}
+
+function normalizeNameForComparison(value: string): string {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+}
+
+function entryMatchesTopic(entry: DraftHuntEntry, spec: HuntSpec): boolean {
+  const terms = requiredTopicTerms(spec);
+  if (terms.length === 0) return true;
+  const entryText = [
+    entry.name,
+    entry.summary,
+    entry.provisionalReason,
+    ...entry.tags,
+    ...entry.evidenceHints,
+  ].join(' ').toLowerCase();
+  return terms.every(term => entryText.includes(term));
+}
+
+function requiredTopicTerms(spec: HuntSpec): string[] {
+  const source = spec.topic || spec.title;
+  const stopwords = new Set([
+    'and', 'the', 'for', 'with', 'near', 'from', 'that', 'this', 'hunt', 'map',
+    'maps', 'location', 'locations', 'place', 'places', 'capital', 'district',
+    'albany', 'region', 'regional', 'new', 'york', 'usa', 'only', 'current',
+    'currently', 'operating', 'independent', 'verified', 'best', 'top',
+  ]);
+  const terms = source
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .split(/\s+/)
+    .filter(term => term.length > 2 && !stopwords.has(term));
+  return Array.from(new Set(terms)).slice(0, 5);
 }
 
 export function eventFor(huntId: string, stage: string, message: string, type = 'status'): HuntEvent {

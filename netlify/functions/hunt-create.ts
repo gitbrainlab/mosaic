@@ -1,11 +1,15 @@
-import type { HuntProfile, HuntSpec, HuntState } from '../../src/types/hunt';
+import type { HuntJob, HuntProfile, HuntSpec, HuntState } from '../../src/types/hunt';
+import { requireHuntAccess } from './_shared/auth';
 import { errorResponse, jsonResponse, optionsResponse } from './_shared/response';
-import { eventFor, generateDraftMap } from './_shared/hunt-generation';
-import { saveHuntState } from './_shared/hunt-store';
+import { createId, eventFor } from './_shared/hunt-generation';
+import { saveHuntJob, saveHuntState } from './_shared/hunt-store';
+import { emitHuntWorkload } from './_shared/workload-client';
 
 export default async function handler(req: Request): Promise<Response> {
   if (req.method === 'OPTIONS') return optionsResponse(req);
   if (req.method !== 'POST') return errorResponse('Method not allowed', 405, req);
+  const authError = requireHuntAccess(req);
+  if (authError) return authError;
 
   try {
     const body = await req.json() as { spec?: HuntSpec };
@@ -18,7 +22,7 @@ export default async function handler(req: Request): Promise<Response> {
         ...body.spec,
         updatedAt: timestamp,
       },
-      status: 'drafting',
+      status: 'queued',
       visibility: 'public',
       iterationCount: 0,
       maxIterations: 3,
@@ -29,26 +33,31 @@ export default async function handler(req: Request): Promise<Response> {
 
     const events = [
       eventFor(profile.id, 'created', 'Hunt profile created.'),
-      eventFor(profile.id, 'drafting', 'Generating rapid provisional map.'),
+      eventFor(profile.id, 'queued', 'Hunt draft job queued.'),
     ];
 
-    const { draftMap, mode } = await generateDraftMap(profile.spec, 0);
-    const readyProfile = {
-      ...profile,
-      status: 'ready' as const,
-      updatedAt: new Date().toISOString(),
+    const job: HuntJob = {
+      jobId: createId('job', profile.id),
+      huntId: profile.id,
+      kind: 'create',
+      eventName: 'hunt.create',
+      status: 'queued',
+      attemptCount: 0,
+      createdAt: timestamp,
     };
 
     const state: HuntState = {
-      profile: readyProfile,
-      draftMap,
-      events: [
-        ...events,
-        eventFor(profile.id, 'ready', `Rapid draft map ready (${mode} mode).`),
-      ],
+      profile,
+      draftMap: null,
+      events,
+      jobs: [job],
     };
 
-    await saveHuntState(state);
+    await Promise.all([
+      saveHuntState(state),
+      saveHuntJob(job),
+    ]);
+    await emitHuntWorkload('hunt.create', { huntId: profile.id, jobId: job.jobId });
     return jsonResponse(state, 200, req);
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Failed to create Hunt';

@@ -152,6 +152,7 @@ test.describe('@smoke UI hardening checks', () => {
     const activePreview = page.locator('[data-review-preview]:not([hidden])');
     await expect(activePreview.getByText('Profile Preview')).toBeVisible();
     await expect(activePreview.getByText('What to Assess')).toBeVisible();
+    await expect(page.getByRole('button', { name: /Change curator key/i })).toBeVisible();
 
     const secondCard = page.locator('[data-review-card]').nth(1);
     await expect(secondCard).toBeVisible();
@@ -162,9 +163,39 @@ test.describe('@smoke UI hardening checks', () => {
     await expect(action).toBeVisible();
     await action.click();
     await expect(page.locator('#studio-action-payload')).toContainText(/"targetState"/);
+    await expect(page.locator('#studio-action-payload')).toContainText(/"actionType"/);
+    await expect(page.locator('#studio-action-payload')).toContainText(/"actionMode": "live"/);
     await expect(page.locator('#studio-action-payload')).toContainText(/"entryId"/);
+    await page.getByLabel('Batch promotion').check();
+    await expect(page.locator('#studio-action-payload')).toContainText(/"actionMode": "batch"/);
+    await expect(page.getByRole('button', { name: /Submit action/i })).toBeEnabled();
     await expect(page.getByRole('button', { name: /Copy payload/i })).toBeEnabled();
     await page.getByRole('button', { name: /Clear/i }).click();
     await expect(page.locator('#studio-action-payload')).toContainText('Choose a next-stage action');
+  });
+
+  test('studio shows live enrichment controls only where relevant', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'desktop-light', 'Studio enrichment check runs once.');
+
+    await page.goto('/mosaic/v3/?/studio');
+    await expect(page.getByRole('heading', { name: 'Curation Dashboard' })).toBeVisible({ timeout: 15000 });
+
+    const photoSection = page.locator('[data-queue-section="Needs Photo Review"]');
+    const firstPhotoCard = photoSection.locator('[data-review-card]').first();
+    await expect(firstPhotoCard).toBeVisible();
+    await firstPhotoCard.click();
+
+    const activePreview = page.locator('[data-review-preview]:not([hidden])');
+    await expect(activePreview.getByRole('button', { name: /Find real photos/i })).toBeVisible();
+    await expect(activePreview.getByRole('button', { name: /Enrich evidence/i })).toBeVisible();
+    await expect(activePreview.getByRole('button', { name: /Verify address/i })).toBeVisible();
+
+    const verificationSection = page.locator('[data-queue-section="Verification Queue"]');
+    const firstVerificationCard = verificationSection.locator('[data-review-card]').first();
+    if (await firstVerificationCard.count()) {
+      await firstVerificationCard.click();
+      await expect(activePreview.getByRole('button', { name: /Enrich evidence/i })).toBeVisible();
+      await expect(activePreview.getByRole('button', { name: /Find real photos/i })).toHaveCount(0);
+    }
   });
 });

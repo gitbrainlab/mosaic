@@ -17,7 +17,14 @@ let currentRoute: Route = { name: 'gallery' };
 let handler: RouteHandler | null = null;
 
 function parseRoute(): Route {
-  const path = window.location.pathname.replace(import.meta.env.BASE_URL, '/').replace(/\/$/, '') || '/';
+  const base = import.meta.env.BASE_URL || '/';
+  let path = window.location.pathname;
+  if (base !== '/' && path.startsWith(base)) {
+    path = `/${path.slice(base.length)}`;
+  } else {
+    path = path.replace(/^\/mosaic\/v\d+\b/, '') || '/';
+  }
+  path = path.replace(/\/$/, '') || '/';
 
   if (path === '/' || path === '') {
     return { name: 'gallery' };

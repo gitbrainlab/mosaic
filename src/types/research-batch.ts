@@ -60,4 +60,23 @@ export interface ResearchBatch {
   // Links for humans
   githubIssueUrl?: string;
   notes?: string;
+
+  // GitHub-native Hunt pipeline metadata. These fields are static artifacts
+  // produced by Actions and read by Studio; they never require a browser token.
+  reviewState?: 'queued' | 'researching' | 'needs verification' | 'needs photo review' | 'promotion preview' | 'approved' | 'rejected/refinement requested';
+  workflowStates?: Array<{
+    state: string;
+    complete: boolean;
+  }>;
+  artifacts?: Array<{
+    label: string;
+    path: string;
+    kind: string;
+  }>;
+  promotion?: {
+    approvalRequired: boolean;
+    workflow: string;
+    publicDataBlockedUntilApproved: boolean;
+  };
+  qualityGates?: string[];
 }

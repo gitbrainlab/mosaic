@@ -1,23 +1,52 @@
-name: Hunt Promotion Intake
+name: Hunt Promotion
 
 on:
-  issues:
-    types: [labeled]
   workflow_dispatch:
     inputs:
-      issue_number:
-        description: 'Promotion issue number'
+      hunt_id:
+        description: 'Hunt id under public/data/research-batches/hunts/'
         required: true
+      target_map_slug:
+        description: 'Map slug to create or update'
+        required: true
+      promotion_artifact:
+        description: 'JSON artifact containing approvedEntries'
+        required: true
+      promotion_source:
+        description: 'Artifact source: local or netlify'
+        required: false
+        default: 'local'
+      promotion_id:
+        description: 'Netlify promotion id when promotion_source=netlify'
+        required: false
+      netlify_export_url:
+        description: 'Protected Netlify artifact export URL'
+        required: false
+      netlify_callback_url:
+        description: 'Protected Netlify promotion status callback URL'
+        required: false
+      approval:
+        description: 'Set to PROMOTE to allow public data writes'
+        required: true
+        default: 'DRY_RUN'
+      apply:
+        description: 'Write public/data map files'
+        required: true
+        type: boolean
+        default: false
+      issue_number:
+        description: 'Optional Hunt issue number to comment on'
+        required: false
 
 permissions:
   contents: write
   issues: write
-  pull-requests: write
+  actions: read
 
 jobs:
-  intake:
-    if: github.event_name == 'workflow_dispatch' || github.event.label.name == 'hunt-promotion'
+  promote:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -31,55 +60,106 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Write promotion artifact
+      - name: Download Netlify promotion artifact
+        if: github.event.inputs.promotion_source == 'netlify'
+        env:
+          NETLIFY_SERVICE_TOKEN: ${{ secrets.MOSAIC_NETLIFY_SERVICE_TOKEN }}
+          NETLIFY_EXPORT_URL: ${{ github.event.inputs.netlify_export_url }}
+          PROMOTION_ARTIFACT: ${{ github.event.inputs.promotion_artifact }}
+        run: |
+          if [ -z "$NETLIFY_SERVICE_TOKEN" ]; then
+            echo "MOSAIC_NETLIFY_SERVICE_TOKEN is required for Netlify promotion artifacts" >&2
+            exit 1
+          fi
+          if [ -z "$NETLIFY_EXPORT_URL" ]; then
+            echo "netlify_export_url is required when promotion_source=netlify" >&2
+            exit 1
+          fi
+
+          mkdir -p "$(dirname "$PROMOTION_ARTIFACT")"
+          curl -fsSL \
+            -H "Authorization: Bearer $NETLIFY_SERVICE_TOKEN" \
+            "$NETLIFY_EXPORT_URL" \
+            -o "$PROMOTION_ARTIFACT"
+
+      - name: Run promotion gates
+        run: |
+          ARGS=(
+            "--hunt-id=${{ github.event.inputs.hunt_id }}"
+            "--target-map-slug=${{ github.event.inputs.target_map_slug }}"
+            "--promotion-artifact=${{ github.event.inputs.promotion_artifact }}"
+            "--approval=${{ github.event.inputs.approval }}"
+          )
+
+          if [ "${{ github.event.inputs.apply }}" = "true" ]; then
+            ARGS+=("--apply")
+          fi
+
+          npx tsx scripts/promote-hunt-review-batch.ts "${ARGS[@]}"
+
+      - name: Validate public data and UI
+        if: github.event.inputs.apply == 'true'
+        run: npm test
+
+      - name: Upload promotion preview
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hunt-promotion-${{ github.event.inputs.hunt_id }}
+          path: data/hunt-promotions/
+          if-no-files-found: ignore
+
+      - name: Commit approved public data
+        if: github.event.inputs.apply == 'true'
+        run: |
+          git config user.name "Mosaic Hunt Promotion"
+          git config user.email "hunt-promotion@mosaic.local"
+
+          git add public/data/maps/${{ github.event.inputs.target_map_slug }}/ || true
+          git add public/data/index.json || true
+          git add data/hunt-promotions/ || true
+
+          if git diff --staged --quiet; then
+            echo "No approved promotion changes to commit"
+          else
+            git commit -m "chore(hunt): promote approved Hunt ${{ github.event.inputs.hunt_id }}"
+            git push
+          fi
+
+      - name: Comment on Hunt issue
+        if: github.event.inputs.issue_number != ''
         uses: actions/github-script@v7
         with:
           script: |
-            const fs = require('fs')
-            const path = require('path')
-            const issueNumber = context.eventName === 'workflow_dispatch'
-              ? Number('${{ github.event.inputs.issue_number }}')
-              : context.payload.issue.number
-            const { data: issue } = await github.rest.issues.get({
+            const applied = '${{ github.event.inputs.apply }}' === 'true'
+            github.rest.issues.createComment({
+              issue_number: Number('${{ github.event.inputs.issue_number }}'),
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: issueNumber,
-            })
-            const dir = path.join(process.cwd(), 'data', 'hunt-promotions')
-            fs.mkdirSync(dir, { recursive: true })
-            const artifact = {
-              issueNumber,
-              title: issue.title,
-              url: issue.html_url,
-              labels: issue.labels.map(label => typeof label === 'string' ? label : label.name),
-              capturedAt: new Date().toISOString(),
-              body: issue.body || '',
-            }
-            fs.writeFileSync(
-              path.join(dir, `issue-${issueNumber}.json`),
-              `${JSON.stringify(artifact, null, 2)}\n`,
-            )
+              body: applied
+                ? '✅ Approved Hunt promotion passed gates, tests ran, and public map data was committed.'
+                : '🧪 Hunt promotion dry run completed. Review the uploaded promotion preview artifact before applying.'
+            });
 
-      - name: Validate current public data
-        run: npm run validate-data
-
-      - name: Open promotion review PR
+      - name: Report Netlify promotion status
+        if: always() && github.event.inputs.promotion_source == 'netlify' && github.event.inputs.netlify_callback_url != ''
         env:
-          GH_TOKEN: ${{ github.token }}
+          NETLIFY_SERVICE_TOKEN: ${{ secrets.MOSAIC_NETLIFY_SERVICE_TOKEN }}
+          NETLIFY_CALLBACK_URL: ${{ github.event.inputs.netlify_callback_url }}
+          HUNT_ID: ${{ github.event.inputs.hunt_id }}
+          PROMOTION_ID: ${{ github.event.inputs.promotion_id }}
+          WORKFLOW_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          JOB_CONCLUSION: ${{ job.status }}
         run: |
-          ISSUE_NUMBER="${{ github.event.inputs.issue_number || github.event.issue.number }}"
-          BRANCH="hunt-promotion/issue-${ISSUE_NUMBER}"
-          git config user.name "Mosaic Hunt Gateway"
-          git config user.email "hunt-gateway@mosaic.local"
-          git checkout -b "$BRANCH"
-          git add data/hunt-promotions/
-          if git diff --staged --quiet; then
-            echo "No promotion artifact changes to commit."
+          if [ -z "$NETLIFY_SERVICE_TOKEN" ] || [ -z "$PROMOTION_ID" ]; then
+            echo "Skipping Netlify callback because token or promotion id is missing"
             exit 0
           fi
-          git commit -m "chore(hunt): capture promotion request #${ISSUE_NUMBER}"
-          git push --set-upstream origin "$BRANCH"
-          gh pr create \
-            --draft \
-            --title "Hunt promotion review #${ISSUE_NUMBER}" \
-            --body "Captures the Netlify draft Hunt promotion request from issue #${ISSUE_NUMBER}. Public map data is not promoted until a follow-up validation commit passes the quality gates."
+
+          node -e "process.stdout.write(JSON.stringify({ huntId: process.env.HUNT_ID, promotionId: process.env.PROMOTION_ID, conclusion: process.env.JOB_CONCLUSION, workflowRunUrl: process.env.WORKFLOW_RUN_URL }))" > callback.json
+          curl -fsSL \
+            -X POST \
+            -H "Authorization: Bearer $NETLIFY_SERVICE_TOKEN" \
+            -H "Content-Type: application/json" \
+            --data @callback.json \
+            "$NETLIFY_CALLBACK_URL" || true

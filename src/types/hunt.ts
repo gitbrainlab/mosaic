@@ -1,13 +1,21 @@
 export type HuntConfidence = 'high' | 'medium' | 'low' | 'unknown';
 
 export type HuntStatus =
+  | 'queued'
+  | 'running'
   | 'refined'
   | 'drafting'
   | 'ready'
   | 'iterating'
+  | 'promotion_queued'
+  | 'promotion_dispatched'
   | 'promotion_requested'
   | 'promoted'
   | 'failed';
+
+export type HuntJobKind = 'create' | 'iterate' | 'promote';
+export type HuntJobEventName = 'hunt.create' | 'hunt.iterate' | 'hunt.promote';
+export type HuntJobStatus = 'queued' | 'running' | 'ready' | 'failed' | 'promotion_dispatched';
 
 export type DraftPhotoStatus = 'verified' | 'pending' | 'needs_sourcing' | 'suppressed';
 
@@ -104,13 +112,35 @@ export interface PromotionRequest {
   huntId: string;
   status: 'queued' | 'issue_created' | 'workflow_dispatched' | 'pr_opened' | 'failed';
   requestedAt: string;
+  targetMapSlug?: string;
+  promotionArtifactKey?: string;
+  workflowUrl?: string;
+  workflowRunUrl?: string;
   githubIssueUrl?: string;
   githubPrUrl?: string;
   error?: string;
 }
 
+export interface HuntJob {
+  jobId: string;
+  huntId: string;
+  kind: HuntJobKind;
+  eventName: HuntJobEventName;
+  status: HuntJobStatus;
+  attemptCount: number;
+  createdAt: string;
+  startedAt?: string;
+  completedAt?: string;
+  lastError?: string;
+  targetMapSlug?: string;
+  promotionId?: string;
+  workflowUrl?: string;
+  workflowRunUrl?: string;
+}
+
 export interface HuntState {
   profile: HuntProfile;
-  draftMap: DraftMap;
+  draftMap: DraftMap | null;
   events: HuntEvent[];
+  jobs?: HuntJob[];
 }

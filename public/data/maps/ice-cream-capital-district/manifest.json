@@ -17,6 +17,18 @@
   "chunks": [
     "entries.json"
   ],
+  "intent": {
+    "statement": "Document high-confidence, location-accurate ice cream and gelato destinations in New York's Capital District with product-centered visual evidence.",
+    "scope": "Albany, Troy, Schenectady, Saratoga Springs, and nearby communities within the declared coordinate bounds.",
+    "photoPolicy": "Prefer verified product photos (scoops/cones/sundaes) and avoid storefront-only imagery."
+  },
+  "intentHistory": [
+    {
+      "changedAt": "2026-05-28T22:55:00Z",
+      "author": "codex",
+      "summary": "Established explicit map intent and photo evidence policy for quality enforcement."
+    }
+  ],
   "validation": {
     "coordinateBounds": {
       "minLat": 42.45,
