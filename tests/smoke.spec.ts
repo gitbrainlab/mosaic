@@ -29,22 +29,20 @@ test.describe('@smoke Mosaic Smoke Tests', () => {
     await expect(mapCards.first()).toBeVisible();
   });
 
+  test('Info tab opens the technical design review', async ({ page }) => {
+    await page.getByRole('button', { name: 'Info' }).click();
+    await expect(page.getByText('TECHNICAL DESIGN REVIEW')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'How Mosaic is wired' })).toBeVisible();
+    await expect(page.getByText('What happens when you press Approve in Studio')).toBeVisible();
+  });
+
   test('Hunt launcher starts Netlify queue path or shows manual fallback', async ({ page }) => {
     await page.getByRole('button', { name: /Start Hunt/i }).click();
 
     await expect(page.getByText('NETLIFY QUEUED HUNT')).toBeVisible();
-    await expect(page.getByText('Hunt service unavailable')).toBeVisible();
-    const fallbackLink = page.getByRole('link', { name: /Manual GitHub fallback/i });
-    await expect(fallbackLink).toBeVisible();
-
-    const href = await fallbackLink.getAttribute('href');
-    const issueUrl = new URL(href || '');
-    const body = issueUrl.searchParams.get('body') || '';
-
-    expect(issueUrl.href).toContain('github.com/gitbrainlab/mosaic/issues/new');
-    expect(issueUrl.searchParams.get('template')).toBe('hunt.md');
-    expect(body).toContain('mosaic-hunt-spec:start');
-    expect(body).toContain('Research artifacts first');
+    await expect(page.getByRole('dialog')).toContainText('Curator key');
+    await expect(page.getByRole('dialog')).toContainText('Enter the shared key');
+    await expect(page.getByRole('button', { name: 'Use key' })).toBeVisible();
   });
 
   test('Hunt journey creates, views, and requests promotion for a draft map', async ({ page }, testInfo) => {

@@ -100,6 +100,30 @@ body {
   border-color: var(--color-accent);
 }
 
+.nav-btn {
+  min-height: 56px;
+  color: var(--text-muted);
+  transition: color 0.15s ease, opacity 0.15s ease, transform 0.15s ease;
+}
+
+.nav-btn .nav-icon,
+.nav-btn .nav-label {
+  transition: color 0.15s ease;
+}
+
+.nav-btn.is-active .nav-icon {
+  color: var(--accent);
+}
+
+.nav-btn.is-active .nav-label {
+  color: var(--text);
+}
+
+.nav-btn:hover .nav-icon,
+.nav-btn:hover .nav-label {
+  color: var(--text);
+}
+
 .mosaic-focus-ring:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;

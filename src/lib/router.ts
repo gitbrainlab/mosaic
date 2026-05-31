@@ -9,7 +9,8 @@ export type Route =
   | { name: 'gallery' }
   | { name: 'map'; slug: string }
   | { name: 'hunt'; id: string }
-  | { name: 'studio' };
+  | { name: 'studio' }
+  | { name: 'info' };
 
 type RouteHandler = (route: Route) => void;
 
@@ -44,6 +45,10 @@ function parseRoute(): Route {
     return { name: 'studio' };
   }
 
+  if (path === '/info') {
+    return { name: 'info' };
+  }
+
   // Fallback
   return { name: 'gallery' };
 }
@@ -58,6 +63,8 @@ function updateRoute(route: Route, push = true) {
     url = `/hunts/${encodeURIComponent(route.id)}`;
   } else if (route.name === 'studio') {
     url = '/studio';
+  } else if (route.name === 'info') {
+    url = '/info';
   }
 
   const fullUrl = (import.meta.env.BASE_URL || '/') + url.replace(/^\//, '');
@@ -101,3 +108,4 @@ export const goToGallery = () => navigateTo({ name: 'gallery' });
 export const goToMap = (slug: string) => navigateTo({ name: 'map', slug });
 export const goToHunt = (id: string) => navigateTo({ name: 'hunt', id });
 export const goToStudio = () => navigateTo({ name: 'studio' });
+export const goToInfo = () => navigateTo({ name: 'info' });
