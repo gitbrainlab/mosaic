@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "huntId": "hunt-veal-parm-in-capital-district-1780154339826",
+  "status": "queued",
+  "spec": {
+    "id": "hunt-veal-parm-in-capital-district-1780154339826",
+    "title": "Hunt: veal parm in capital district",
+    "topic": "veal parm in capital district",
+    "intent": "Create a high-quality Mosaic map for \"veal parm in capital district\" using current, verifiable, place-specific evidence before any public data promotion.",
+    "scope": "Research the topic broadly enough to produce a useful first review batch while respecting the quality gates.",
+    "geography": {
+      "label": "Capital District / Albany region",
+      "coordinateBounds": {
+        "minLat": 42.35,
+        "maxLat": 43.25,
+        "minLng": -74.35,
+        "maxLng": -73.45
+      }
+    },
+    "mustHaveConstraints": [
+      "Exact street-level address for every candidate",
+      "Valid coordinates matching that address",
+      "Current or recent evidence of relevance",
+      "Verified real photos tied to the actual place and map intent"
+    ],
+    "exclusions": [
+      "Stock photos, generic storefronts, parking lots, or unrelated visuals",
+      "Closed, stale, or weakly evidenced places",
+      "Generic chains or filler unless explicitly requested and justified"
+    ],
+    "photoPolicy": "Use only real, location-tied photos that visibly show the thing the map is about. Keep unresolved photo work in review artifacts, not public entries.json.",
+    "desiredScale": {
+      "initialEntries": 8,
+      "targetEntries": 50
+    },
+    "qualityTargets": [
+      "Research artifacts first; no raw candidate may write directly to public/data/maps",
+      "Promotion requires exact address, valid coordinates, recent evidence, and verified real photos",
+      "Rejected candidates must keep a rejection reason for review"
+    ],
+    "createdAt": "2026-05-30T15:18:59.825Z",
+    "updatedAt": "2026-05-30T15:20:41.390Z"
+  },
+  "sourceIssue": {
+    "number": 15,
+    "title": "Hunt: veal parm in capital district",
+    "url": "https://github.com/gitbrainlab/mosaic/issues/15",
+    "repository": "gitbrainlab/mosaic",
+    "labels": [
+      "research",
+      "hunt"
+    ]
+  },
+  "artifacts": {
+    "huntSpec": "public/data/research-batches/hunts/hunt-veal-parm-in-capital-district-1780154339826/hunt-spec.json",
+    "status": "public/data/research-batches/hunts/hunt-veal-parm-in-capital-district-1780154339826/status.json",
+    "rawOutput": "public/data/research-batches/hunts/hunt-veal-parm-in-capital-district-1780154339826/raw-output.json",
+    "candidates": "public/data/research-batches/hunts/hunt-veal-parm-in-capital-district-1780154339826/candidates.json",
+    "evidencePhotoBriefs": "public/data/research-batches/hunts/hunt-veal-parm-in-capital-district-1780154339826/evidence-photo-briefs.json",
+    "rejectedCandidates": "public/data/research-batches/hunts/hunt-veal-parm-in-capital-district-1780154339826/rejected-candidates.json",
+    "reviewBatch": "public/data/research-batches/hunts/hunt-veal-parm-in-capital-district-1780154339826/review-batch.json"
+  },
+  "qualityGates": [
+    {
+      "id": "exact_address_required",
+      "required": true,
+      "description": "Every promoted candidate must have a full street-level address."
+    },
+    {
+      "id": "valid_coordinates_required",
+      "required": true,
+      "description": "Coordinates must be numeric, match the street address, and stay inside declared bounds when present."
+    },
+    {
+      "id": "recent_evidence_required",
+      "required": true,
+      "description": "Evidence must show the place is current or recently corroborated."
+    },
+    {
+      "id": "no_generic_filler",
+      "required": true,
+      "description": "Generic chains, stale places, and weak filler stay rejected unless explicitly justified."
+    },
+    {
+      "id": "verified_real_photos_required",
+      "required": true,
+      "description": "Public promotion requires real, location-tied photos that match the Hunt intent."
+    }
+  ],
+  "createdAt": "2026-05-30T15:20:41.390Z"
+}

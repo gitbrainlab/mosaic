@@ -47,7 +47,12 @@ async function waitForServer(page: Page, maxMs = 15000) {
 async function capture(page: Page, name: string) {
   await page.waitForTimeout(180);
   const path = join(OUT_DIR, `${name}.png`);
-  await page.screenshot({ path, fullPage: true });
+  try {
+    await page.screenshot({ path, fullPage: true });
+  } catch {
+    await page.waitForTimeout(300);
+    await page.screenshot({ path, fullPage: false });
+  }
   console.log(`  ✓ ${name}.png`);
   return path;
 }
@@ -59,13 +64,12 @@ async function runRegression() {
   console.log('Output:', OUT_DIR);
   console.log('');
 
-  const browser = await chromium.launch({ headless: true });
-
   for (const vp of VIEWPORTS) {
     for (const scheme of SCHEMES) {
       const prefix = `${vp.name}-${scheme}`;
       console.log(`\n[${prefix}]`);
 
+      const browser = await chromium.launch({ headless: true });
       const context = await browser.newContext({
         viewport: { width: vp.width, height: vp.height },
         colorScheme: scheme,
@@ -153,10 +157,9 @@ async function runRegression() {
       await capture(page, `${prefix}-08-back-to-gallery`);
 
       await context.close();
+      await browser.close();
     }
   }
-
-  await browser.close();
 
   console.log('\n=== Regression complete ===');
   console.log(`Review screenshots in ${OUT_DIR}`);

@@ -1,0 +1,92 @@
+[
+  {
+    "entryId": "lombardos-albany-vealparm",
+    "name": "Lombardo's Restaurant",
+    "city": "Albany",
+    "photoBriefs": [
+      {
+        "searchQuery": "Lombardo's Albany veal parmigiana plated dish",
+        "expectedVisual": "Breaded veal cutlet topped with marinara and melted mozzarella on a white plate",
+        "priority": "high",
+        "suggestedSource": "Local review photos 2023"
+      }
+    ],
+    "existingPhotos": [],
+    "reviewState": "needs_photo_review"
+  },
+  {
+    "entryId": "cafecapriccio-albany-vealparm",
+    "name": "Cafe Capriccio",
+    "city": "Albany",
+    "photoBriefs": [
+      {
+        "searchQuery": "Cafe Capriccio Albany veal parm house-made",
+        "expectedVisual": "Veal cutlet with red sauce and cheese served with pasta",
+        "priority": "high",
+        "suggestedSource": "Capital Region food blog 2024"
+      }
+    ],
+    "existingPhotos": [],
+    "reviewState": "needs_photo_review"
+  },
+  {
+    "entryId": "testos-schenectady-vealparm",
+    "name": "Testo's Restaurant",
+    "city": "Schenectady",
+    "photoBriefs": [
+      {
+        "searchQuery": "Testo's Schenectady veal parmigiana traditional",
+        "expectedVisual": "Large portion of breaded veal with sauce and cheese",
+        "priority": "high",
+        "suggestedSource": "Yelp reviewer photo 2023"
+      }
+    ],
+    "existingPhotos": [],
+    "reviewState": "needs_photo_review"
+  },
+  {
+    "entryId": "davinci-schenectady-vealparm",
+    "name": "Da Vinci Italian Restaurant",
+    "city": "Schenectady",
+    "photoBriefs": [
+      {
+        "searchQuery": "Da Vinci Schenectady veal parm best",
+        "expectedVisual": "Plated veal parmigiana with melted cheese",
+        "priority": "high",
+        "suggestedSource": "Google review photo 2024"
+      }
+    ],
+    "existingPhotos": [],
+    "reviewState": "needs_photo_review"
+  },
+  {
+    "entryId": "russos-troy-vealparm",
+    "name": "Russo's Italian Restaurant",
+    "city": "Troy",
+    "photoBriefs": [
+      {
+        "searchQuery": "Russo's Troy veal parmigiana portion",
+        "expectedVisual": "Generous serving of veal with marinara and mozzarella",
+        "priority": "high",
+        "suggestedSource": "Local Troy review 2023"
+      }
+    ],
+    "existingPhotos": [],
+    "reviewState": "needs_photo_review"
+  },
+  {
+    "entryId": "johnnys-albany-vealparm",
+    "name": "Johnny's Italian-American Restaurant",
+    "city": "Albany",
+    "photoBriefs": [
+      {
+        "searchQuery": "Johnny's Albany veal parmigiana generous",
+        "expectedVisual": "Veal cutlet covered in sauce and cheese on plate",
+        "priority": "high",
+        "suggestedSource": "Capital Region review 2024"
+      }
+    ],
+    "existingPhotos": [],
+    "reviewState": "needs_photo_review"
+  }
+]

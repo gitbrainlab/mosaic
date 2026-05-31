@@ -1,0 +1,39 @@
+{
+  "id": "hunt-veal-parm-in-capital-district-1780154339826",
+  "title": "Hunt: veal parm in capital district",
+  "topic": "veal parm in capital district",
+  "intent": "Create a high-quality Mosaic map for \"veal parm in capital district\" using current, verifiable, place-specific evidence before any public data promotion.",
+  "scope": "Research the topic broadly enough to produce a useful first review batch while respecting the quality gates.",
+  "geography": {
+    "label": "Capital District / Albany region",
+    "coordinateBounds": {
+      "minLat": 42.35,
+      "maxLat": 43.25,
+      "minLng": -74.35,
+      "maxLng": -73.45
+    }
+  },
+  "mustHaveConstraints": [
+    "Exact street-level address for every candidate",
+    "Valid coordinates matching that address",
+    "Current or recent evidence of relevance",
+    "Verified real photos tied to the actual place and map intent"
+  ],
+  "exclusions": [
+    "Stock photos, generic storefronts, parking lots, or unrelated visuals",
+    "Closed, stale, or weakly evidenced places",
+    "Generic chains or filler unless explicitly requested and justified"
+  ],
+  "photoPolicy": "Use only real, location-tied photos that visibly show the thing the map is about. Keep unresolved photo work in review artifacts, not public entries.json.",
+  "desiredScale": {
+    "initialEntries": 8,
+    "targetEntries": 50
+  },
+  "qualityTargets": [
+    "Research artifacts first; no raw candidate may write directly to public/data/maps",
+    "Promotion requires exact address, valid coordinates, recent evidence, and verified real photos",
+    "Rejected candidates must keep a rejection reason for review"
+  ],
+  "createdAt": "2026-05-30T15:18:59.825Z",
+  "updatedAt": "2026-05-30T15:20:41.390Z"
+}
