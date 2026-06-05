@@ -78,6 +78,23 @@ test.describe('@smoke UI hardening checks', () => {
     await expect(page.getByText('Appalachian Dulcimer Making')).toBeVisible();
   });
 
+  test('desktop sidebar entries are keyboard-operable buttons', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'desktop-light', 'Desktop sidebar accessibility check runs once.');
+
+    await gotoMap(page, 'upside-down-pizza');
+    const firstEntry = page.locator('#entry-list .entry-row').first();
+    await expect(firstEntry).toBeVisible({ timeout: 8000 });
+    await expect(firstEntry).toHaveJSProperty('tagName', 'BUTTON');
+    await expect(firstEntry).toHaveAttribute('aria-label', /Open .+ in .+/);
+
+    await firstEntry.focus();
+    await expect(firstEntry).toBeFocused();
+    await page.keyboard.press('Enter');
+
+    await expect(page.locator('[data-component="desktop-detail-panel"]')).toBeVisible({ timeout: 8000 });
+    expect(new URL(page.url()).searchParams.get('entry')).toBeTruthy();
+  });
+
   test('non-product maps do not show product-photo copy', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name !== 'mobile-light', 'No-photo copy check runs once.');
 
