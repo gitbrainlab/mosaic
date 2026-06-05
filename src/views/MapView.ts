@@ -632,6 +632,14 @@ export default class MapView {
     `
   }
 
+  private renderPhotoUnavailableNotice() {
+    return `
+      <div class="border border-dashed border-[#27272a] bg-[#17171a] p-3 text-xs leading-snug text-[#a1a1aa]" data-photo-unavailable role="note">
+        Photo unavailable. Keep source provenance visible and route this image through photo review.
+      </div>
+    `
+  }
+
   private renderMobileDetailPeekContract(entry: KnowledgeEntry, heroPhoto: NonNullable<KnowledgeEntry['photos']>[number] | null) {
     const visualStatus = heroPhoto
       ? 'Visual evidence ready'
@@ -741,7 +749,7 @@ export default class MapView {
           <div class="flex gap-3 overflow-x-auto pb-2">
             ${entry.photos.map(photo => `
               <div class="flex-shrink-0 w-72 border border-[#e5e2d9] dark:border-[#3f3b33] rounded-lg overflow-hidden">
-                <img src="${this.escapeAttr(this.normalizePhotoUrl(photo.url, this.slug))}" alt="${this.escapeAttr(photo.caption)}" class="w-72 h-48 object-cover" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<div class=\\'p-3 text-xs text-[#6b6761] dark:text-[#a39a8c]\\'>Photo unavailable</div>')" />
+                <img src="${this.escapeAttr(this.normalizePhotoUrl(photo.url, this.slug))}" alt="${this.escapeAttr(photo.caption)}" class="w-72 h-48 object-cover" data-photo-fallback />
                 <div class="p-3 text-sm text-[#3f3b33] dark:text-[#d4cebf]">${this.escape(photo.caption)}${this.renderPhotoTrustCue(photo)}</div>
               </div>
             `).join('')}
@@ -784,6 +792,7 @@ export default class MapView {
 
     closeBtn.addEventListener('click', close)
     this.bindDetailActions(panel, entry)
+    this.bindPhotoFallbacks(panel)
 
     const escHandler = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -827,7 +836,7 @@ export default class MapView {
 
       ${heroPhoto ? `
       <div class="-mx-4 mb-4">
-        <img src="${this.escapeAttr(this.normalizePhotoUrl(heroPhoto.url, this.slug))}" alt="${this.escapeAttr(heroPhoto.caption)}" class="w-full h-44 object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML = '<div class=\\'border border-dashed border-[#d4cebf] rounded p-3 text-xs text-[#6b6761]\\'>Photo unavailable (sourcing in progress)</div>'" />
+        <img src="${this.escapeAttr(this.normalizePhotoUrl(heroPhoto.url, this.slug))}" alt="${this.escapeAttr(heroPhoto.caption)}" class="w-full h-44 object-cover" data-photo-fallback />
         <div class="px-4 py-2 text-xs text-[#3f3b33] dark:text-[#d4cebf] bg-[#f8f7f4] dark:bg-[#1a1916]">${this.escape(heroPhoto.caption)}</div>
         ${this.renderPhotoTrustCue(heroPhoto, true)}
       </div>` : `
@@ -846,7 +855,7 @@ export default class MapView {
         <div class="flex gap-2 overflow-x-auto pb-1">
           ${entry.photos.slice(1).map(photo => `
             <div class="flex-shrink-0 w-40 border border-[#e5e2d9] rounded overflow-hidden">
-              <img src="${this.escapeAttr(this.normalizePhotoUrl(photo.url, this.slug))}" alt="${this.escapeAttr(photo.caption)}" class="w-40 h-24 object-cover" onerror="this.style.display='none'" />
+              <img src="${this.escapeAttr(this.normalizePhotoUrl(photo.url, this.slug))}" alt="${this.escapeAttr(photo.caption)}" class="w-40 h-24 object-cover" data-photo-fallback />
               <div class="p-2 text-xs">${this.escape(photo.caption)}${this.renderPhotoTrustCue(photo)}</div>
             </div>
           `).join('')}
@@ -870,9 +879,26 @@ export default class MapView {
 
     sheet.setContent(content)
     this.bindDetailActions(content, entry)
+    this.bindPhotoFallbacks(content)
     sheet.open('peek')
     this.currentSheet = sheet
     this.setSelectedEntryInURL(entry.id)
+  }
+
+  private bindPhotoFallbacks(root: ParentNode) {
+    root.querySelectorAll<HTMLImageElement>('img[data-photo-fallback]').forEach(image => {
+      const showFallback = () => {
+        if (image.dataset.fallbackShown === 'true') return
+        image.dataset.fallbackShown = 'true'
+        image.hidden = true
+        image.insertAdjacentHTML('afterend', this.renderPhotoUnavailableNotice())
+      }
+
+      image.addEventListener('error', showFallback, { once: true })
+      if (image.complete && image.naturalWidth === 0) {
+        showFallback()
+      }
+    })
   }
 
   private showMobileList() {

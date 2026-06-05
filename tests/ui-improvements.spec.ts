@@ -100,6 +100,18 @@ test.describe('@smoke UI hardening checks', () => {
     await expect(page.getByText(/Type: Product/i).first()).toBeVisible();
   });
 
+  test('unavailable detail photos keep provenance visible', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'mobile-light', 'Photo fallback check runs once.');
+
+    await page.route('**/images/stracciatella.jpg', route => route.abort());
+    await gotoMap(page, 'ice-cream-nationwide-albany-radial', 'saratoga-gelato-saratoga-springs-ny');
+
+    await expect(page.locator('[data-photo-unavailable]').first()).toBeVisible({ timeout: 8000 });
+    await expect(page.getByText(/route this image through photo review/i).first()).toBeVisible();
+    await expect(page.getByText(/Source: Official Saratoga Gelato website/i).first()).toBeVisible();
+    await expect(page.getByText(/Type: Product/i).first()).toBeVisible();
+  });
+
   test('map header controls meet 44px hit target', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name !== 'mobile-light', 'Touch target check runs once.');
 
