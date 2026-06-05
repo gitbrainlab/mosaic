@@ -7,13 +7,12 @@ import type {
 } from '../types/studio-review';
 
 const configuredApiBase = (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\/$/, '');
-const API_BASES = configuredApiBase
-  ? [configuredApiBase]
-  : [
-      `${window.location.origin}/.netlify/functions`,
-      'http://127.0.0.1:8888/.netlify/functions',
-      'http://localhost:8888/.netlify/functions',
-    ];
+const localApiBases = [
+  `${window.location.origin}/.netlify/functions`,
+  'http://127.0.0.1:8888/.netlify/functions',
+  'http://localhost:8888/.netlify/functions',
+];
+const API_BASES = resolveApiBases(configuredApiBase);
 
 export class AssistantApiError extends Error {
   readonly status: number;
@@ -25,9 +24,22 @@ export class AssistantApiError extends Error {
   }
 }
 
+function resolveApiBases(configuredBase?: string): string[] {
+  const isLocalDevHost = /^(localhost|127\.0\.0\.1|::1)$/.test(window.location.hostname);
+  if (!configuredBase) return localApiBases;
+  if (isLocalDevHost) {
+    const ordered = [...localApiBases];
+    if (!ordered.includes(configuredBase)) ordered.push(configuredBase);
+    return ordered;
+  }
+  return [configuredBase];
+}
+
 interface RequestJsonOptions {
   requiresAccessKey?: boolean;
 }
+
+let activeHuntKeyPrompt: Promise<string> | null = null;
 
 function readStoredHuntKey(): string {
   try {
@@ -53,11 +65,17 @@ export function clearStoredHuntKey() {
   }
 }
 
-function getHuntAccessKey(): string {
+async function getHuntAccessKey(): Promise<string> {
   const stored = readStoredHuntKey();
   if (stored) return stored;
 
-  const prompted = window.prompt('Enter curator key to start Hunts, submit Studio actions, or run live enrichment.')?.trim() || '';
+  if (!activeHuntKeyPrompt) {
+    activeHuntKeyPrompt = promptForHuntAccessKey().finally(() => {
+      activeHuntKeyPrompt = null;
+    });
+  }
+
+  const prompted = (await activeHuntKeyPrompt).trim();
   if (prompted) writeStoredHuntKey(prompted);
   return prompted;
 }
@@ -67,9 +85,8 @@ async function requestJson<T>(path: string, init?: RequestInit, options: Request
     throw new AssistantApiError('Mosaic Hunt API is not configured. Set VITE_API_BASE_URL to the Netlify Functions base URL.');
   }
 
-  let retriedAccessKey = false;
   const performRequest = async (base: string): Promise<Response> => {
-    const accessKey = options.requiresAccessKey ? getHuntAccessKey() : '';
+    const accessKey = options.requiresAccessKey ? await getHuntAccessKey() : '';
     if (options.requiresAccessKey && !accessKey) {
       throw new AssistantApiError('Mosaic Hunt access key is required.', 401);
     }
@@ -92,10 +109,10 @@ async function requestJson<T>(path: string, init?: RequestInit, options: Request
         lastError = new AssistantApiError(`HTTP ${res.status}`, res.status);
         continue;
       }
-      if (res.status === 401 && options.requiresAccessKey && !retriedAccessKey) {
-        retriedAccessKey = true;
-        clearStoredHuntKey();
-        res = await performRequest(base);
+      if (res.status === 401 && options.requiresAccessKey) {
+        const body = await res.json().catch(() => ({ error: `HTTP ${res.status}` }));
+        const message = typeof body?.error === 'string' ? body.error : 'Mosaic Hunt access key is required.';
+        throw new AssistantApiError(message, 401);
       }
 
       if (!res.ok) {
@@ -148,6 +165,9 @@ export async function submitStudioReviewAction(action: StudioReviewActionPayload
       body: JSON.stringify({ action }),
     }, { requiresAccessKey: true });
   } catch (err) {
+    if (err instanceof AssistantApiError && err.status === 401) {
+      throw err;
+    }
     const record = persistLocalStudioReviewAction(action);
     return {
       actionId: record.id,
@@ -186,4 +206,85 @@ function persistLocalStudioReviewAction(action: StudioReviewActionPayload): Stud
   }
 
   return record;
+}
+
+function promptForHuntAccessKey(): Promise<string> {
+  return new Promise(resolve => {
+    const existing = document.getElementById('mosaic-hunt-key-dialog');
+    if (existing) existing.remove();
+
+    const stored = readStoredHuntKey();
+    const overlay = document.createElement('div');
+    overlay.id = 'mosaic-hunt-key-dialog';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.className = 'fixed inset-0 z-[1000] flex items-center justify-center bg-black/70 px-4';
+
+    const panel = document.createElement('div');
+    panel.className = 'w-full max-w-md rounded-2xl border border-[#c9a86c]/60 bg-[#111111] p-4 text-[#f4f1e9] shadow-2xl';
+    panel.innerHTML = `
+      <div class="text-[10px] uppercase tracking-[1.5px] font-bold text-[#c9a86c]">Curator key</div>
+      <h2 class="mt-1 text-lg font-semibold">Enter the shared key</h2>
+      <p class="mt-2 text-sm leading-relaxed text-[#b8b2a8]">This unlocks Hunts, Studio submissions, and live enrichment. You can replace or clear the saved key here.</p>
+      <label class="mt-4 block text-xs uppercase tracking-[1px] font-bold text-[#a1a1aa]" for="mosaic-hunt-key-input">Curator key</label>
+      <input id="mosaic-hunt-key-input" type="password" autocomplete="off" spellcheck="false" value="${escapeHtml(stored)}" class="mt-2 w-full rounded-xl border border-[#3f3b33] bg-[#0f0f11] px-3 py-3 text-sm text-[#f4f1e9] outline-none focus:border-[#c9a86c]" placeholder="Enter curator key" />
+      <div class="mt-3 flex flex-wrap gap-2">
+        <button type="button" data-save class="min-h-11 rounded-xl bg-[#c9a86c] px-4 text-sm font-semibold text-[#0f0f11]">Use key</button>
+        <button type="button" data-clear class="min-h-11 rounded-xl border border-[#3f3b33] px-4 text-sm font-semibold text-[#f4f1e9]">Clear saved key</button>
+        <button type="button" data-cancel class="min-h-11 rounded-xl border border-[#3f3b33] px-4 text-sm font-semibold text-[#f4f1e9]">Cancel</button>
+      </div>
+      <div class="mt-3 text-xs text-[#a1a1aa]">Press Enter to use the key, Escape to cancel.</div>
+    `;
+
+    overlay.appendChild(panel);
+    document.body.appendChild(overlay);
+
+    const input = panel.querySelector<HTMLInputElement>('#mosaic-hunt-key-input');
+    const save = panel.querySelector<HTMLButtonElement>('[data-save]');
+    const clear = panel.querySelector<HTMLButtonElement>('[data-clear]');
+    const cancel = panel.querySelector<HTMLButtonElement>('[data-cancel]');
+    const cleanup = () => {
+      overlay.removeEventListener('keydown', onKeydown);
+      overlay.remove();
+    };
+    const finish = (value: string) => {
+      cleanup();
+      resolve(value);
+    };
+    const onKeydown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        finish('');
+      }
+      if (event.key === 'Enter' && event.target === input) {
+        event.preventDefault();
+        finish(input?.value || '');
+      }
+    };
+
+    save?.addEventListener('click', () => finish(input?.value || ''));
+    clear?.addEventListener('click', () => {
+      clearStoredHuntKey();
+      if (input) {
+        input.value = '';
+        input.focus();
+        input.setSelectionRange(0, 0);
+      }
+    });
+    cancel?.addEventListener('click', () => finish(''));
+    overlay.addEventListener('click', event => {
+      if (event.target === overlay) finish('');
+    });
+    overlay.addEventListener('keydown', onKeydown);
+    setTimeout(() => input?.focus(), 0);
+  });
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }

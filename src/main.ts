@@ -33,6 +33,20 @@ function renderShell() {
             <img src="${logoSrc}" alt="Mosaic" class="h-7 w-auto">
             <span class="font-semibold tracking-[-0.02em] text-xl">mosaic</span>
           </button>
+          <nav class="hidden lg:flex items-center gap-2" aria-label="Primary">
+            <button data-nav="gallery" class="nav-btn is-active min-h-11 px-3 rounded-lg border border-transparent hover:border-[#27272a]" aria-current="page">
+              <span class="nav-label text-sm text-[#e4e4e7]">Explore</span>
+            </button>
+            <button data-nav="map" class="nav-btn min-h-11 px-3 rounded-lg border border-transparent hover:border-[#27272a]">
+              <span class="nav-label text-sm text-[#a1a1aa]">Map</span>
+            </button>
+            <button data-nav="studio" class="nav-btn min-h-11 px-3 rounded-lg border border-transparent hover:border-[#27272a]">
+              <span class="nav-label text-sm text-[#a1a1aa]">Studio</span>
+            </button>
+            <button data-nav="info" class="nav-btn min-h-11 px-3 rounded-lg border border-transparent hover:border-[#27272a]">
+              <span class="nav-label text-sm text-[#a1a1aa]">Info</span>
+            </button>
+          </nav>
         </div>
       </header>
 
@@ -40,7 +54,7 @@ function renderShell() {
       <main id="main-content" class="flex-1 max-w-7xl mx-auto w-full"></main>
 
       <!-- Bottom Navigation (mobile-first foundation per PWA research) -->
-      <nav id="bottom-nav" class="sticky bottom-0 z-50 border-t border-[#27272a] bg-[#0f0f11] safe-bottom">
+      <nav id="bottom-nav" class="sticky bottom-0 z-50 border-t border-[#27272a] bg-[#0f0f11] safe-bottom lg:hidden">
         <div class="max-w-7xl mx-auto grid grid-cols-4 text-sm">
           <button data-nav="gallery" class="nav-btn is-active flex flex-col items-center py-3" aria-current="page">
             <span class="nav-icon text-lg text-[#c9a86c]">◈</span>

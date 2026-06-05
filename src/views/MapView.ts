@@ -38,12 +38,12 @@ export default class MapView {
     this.initialRenderComplete = false
 
     container.innerHTML = `
-      <div class="flex flex-col h-[calc(100dvh-4.25rem)] lg:h-[calc(100dvh-4.5rem)] min-h-0">
+      <div class="flex flex-col h-[calc(100dvh-4.25rem)] lg:h-screen min-h-0">
         <div class="flex items-center justify-between px-3 py-2 border-b border-[#e5e2d9] dark:border-[#3f3b33] bg-[#f8f7f4] dark:bg-[#141310]">
           <button id="back-btn" class="min-h-11 px-3 text-sm flex items-center gap-1 text-[#4f4a42] dark:text-[#e8e4d9] rounded-md hover:bg-[#f1efea] dark:hover:bg-[#2a2924] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8a8178]">
             ← Maps
           </button>
-          <div class="font-medium text-center px-2 truncate" id="map-title">Loading...</div>
+          <div class="font-medium text-center px-2 truncate text-[#2c2a27] dark:text-[#f1efea]" id="map-title">Loading...</div>
           <button id="show-list-header" class="min-h-11 min-w-11 text-sm px-4 rounded-md border border-[#a39a8c] text-[#2c2a27] dark:text-[#f1efea] hover:bg-[#f1efea] dark:hover:bg-[#2a2924] active:bg-[#e8e4d9] dark:active:bg-[#34312b] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8a8178]">List</button>
         </div>
 

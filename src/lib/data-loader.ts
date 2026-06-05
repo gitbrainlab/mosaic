@@ -77,27 +77,50 @@ async function fetchJson<T>(relativePath: string): Promise<T> {
 }
 
 const configuredHuntApiBase = (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\/$/, '');
-const huntApiBase = configuredHuntApiBase || (import.meta.env.DEV ? 'http://localhost:8888/.netlify/functions' : '');
+const huntApiBases = resolveHuntApiBases(configuredHuntApiBase);
+
+function resolveHuntApiBases(configuredBase?: string): string[] {
+  const localBases = [
+    `${window.location.origin}/.netlify/functions`,
+    'http://127.0.0.1:8888/.netlify/functions',
+    'http://localhost:8888/.netlify/functions',
+  ];
+  const isLocalDevHost = /^(localhost|127\.0\.0\.1|::1)$/.test(window.location.hostname);
+  if (!configuredBase) return localBases;
+  if (isLocalDevHost) {
+    const ordered = [...localBases];
+    if (!ordered.includes(configuredBase)) ordered.push(configuredBase);
+    return ordered;
+  }
+  return [configuredBase];
+}
 
 async function fetchHuntApi<T>(path: string): Promise<T> {
-  if (!huntApiBase) {
+  if (huntApiBases.length === 0) {
     throw new Error('Mosaic Hunt API is not configured. Set VITE_API_BASE_URL to the Netlify Functions base URL.');
   }
 
-  let res: Response;
-  try {
-    res = await fetch(`${huntApiBase}/${path}`, { cache: 'no-store' });
-  } catch (err) {
-    const detail = err instanceof Error ? err.message : 'network request failed';
-    throw new Error(`Unable to reach Mosaic Hunt API at ${huntApiBase}. Check VITE_API_BASE_URL and Netlify allowed origins. (${detail})`);
-  }
-  if (!res.ok) {
-    const body = await res.json().catch(() => ({ error: `HTTP ${res.status}` }));
-    const message = typeof body?.error === 'string' ? body.error : `HTTP ${res.status}`;
-    throw new Error(message);
+  let lastError: unknown = null;
+  for (const huntApiBase of huntApiBases) {
+    let res: Response;
+    try {
+      res = await fetch(`${huntApiBase}/${path}`, { cache: 'no-store' });
+    } catch (err) {
+      const detail = err instanceof Error ? err.message : 'network request failed';
+      lastError = new Error(`Unable to reach Mosaic Hunt API at ${huntApiBase}. Check VITE_API_BASE_URL and Netlify allowed origins. (${detail})`);
+      continue;
+    }
+    if (!res.ok) {
+      const body = await res.json().catch(() => ({ error: `HTTP ${res.status}` }));
+      const message = typeof body?.error === 'string' ? body.error : `HTTP ${res.status}`;
+      lastError = new Error(message);
+      continue;
+    }
+
+    return res.json() as Promise<T>;
   }
 
-  return res.json() as Promise<T>;
+  throw (lastError instanceof Error ? lastError : new Error('Mosaic Hunt service is unavailable.'));
 }
 
 // ============================================
