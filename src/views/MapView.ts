@@ -632,6 +632,35 @@ export default class MapView {
     `
   }
 
+  private renderMobileDetailPeekContract(entry: KnowledgeEntry, heroPhoto: NonNullable<KnowledgeEntry['photos']>[number] | null) {
+    const visualStatus = heroPhoto
+      ? 'Visual evidence ready'
+      : this.getVisualLanguage().title.replace(/ in progress$/i, ' pending')
+    const place = [
+      entry.location.city,
+      entry.location.region || entry.location.country,
+    ].filter(Boolean).join(', ')
+
+    return `
+      <section class="rounded-lg border border-[#27272a] bg-[#17171a] p-3 text-[#e4e4e7] shadow-sm" data-detail-snap-contract aria-label="Detail summary">
+        <div class="grid grid-cols-3 gap-2 text-[11px] leading-tight">
+          <div>
+            <div class="uppercase tracking-[1px] font-bold text-[#a1a1aa]">Place</div>
+            <div class="mt-1 font-semibold text-[#e4e4e7]">${this.escape(place || entry.location.country)}</div>
+          </div>
+          <div>
+            <div class="uppercase tracking-[1px] font-bold text-[#a1a1aa]">Confidence</div>
+            <div class="mt-1 font-semibold text-[#c9a86c]">${this.escape(entry.confidence)}</div>
+          </div>
+          <div>
+            <div class="uppercase tracking-[1px] font-bold text-[#a1a1aa]">Visual</div>
+            <div class="mt-1 font-semibold text-[#e4e4e7]">${this.escape(visualStatus)}</div>
+          </div>
+        </div>
+      </section>
+    `
+  }
+
   private formatPhotoType(type: NonNullable<KnowledgeEntry['photos']>[number]['type']) {
     if (!type) return ''
     return type.replace(/-/g, ' ').replace(/\b\w/g, character => character.toUpperCase())
@@ -641,7 +670,7 @@ export default class MapView {
     const next = this.getNextNearbyEntry(entry)
     return `
       <div class="flex gap-2 overflow-x-auto pb-1" data-detail-actions>
-        ${next ? `<button data-detail-action="next-nearby" class="flex-shrink-0 min-h-11 px-3 rounded-full bg-[#1f1d1a] text-white dark:bg-[#f1efea] dark:text-[#111] text-sm font-semibold">Next nearby</button>` : ''}
+        ${next ? `<button data-detail-action="next-nearby" class="flex-shrink-0 min-h-11 px-3 rounded-full border border-[#c9a86c] bg-[#c9a86c] text-[#0f0f11] text-sm font-semibold">Next nearby</button>` : ''}
         <button data-detail-action="nearby-list" class="flex-shrink-0 min-h-11 px-3 rounded-full border border-[#a39a8c] text-[#2c2a27] dark:text-[#f1efea] text-sm font-semibold">Nearby entries</button>
         <button data-detail-action="request-refinement" class="flex-shrink-0 min-h-11 px-3 rounded-full border border-[#a39a8c] text-[#2c2a27] dark:text-[#f1efea] text-sm font-semibold">${this.getVisualLanguage().action}</button>
       </div>
@@ -792,8 +821,12 @@ export default class MapView {
 
     const heroPhoto = entry.photos && entry.photos.length > 0 ? entry.photos[0] : null
     content.innerHTML = `
+      ${this.renderMobileDetailPeekContract(entry, heroPhoto)}
+
+      ${this.renderDetailActionRail(entry)}
+
       ${heroPhoto ? `
-      <div class="-mx-4 -mt-4 mb-4">
+      <div class="-mx-4 mb-4">
         <img src="${this.escapeAttr(this.normalizePhotoUrl(heroPhoto.url, this.slug))}" alt="${this.escapeAttr(heroPhoto.caption)}" class="w-full h-44 object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML = '<div class=\\'border border-dashed border-[#d4cebf] rounded p-3 text-xs text-[#6b6761]\\'>Photo unavailable (sourcing in progress)</div>'" />
         <div class="px-4 py-2 text-xs text-[#3f3b33] dark:text-[#d4cebf] bg-[#f8f7f4] dark:bg-[#1a1916]">${this.escape(heroPhoto.caption)}</div>
         ${this.renderPhotoTrustCue(heroPhoto, true)}
@@ -804,8 +837,6 @@ export default class MapView {
         ${entry.location.address}<br>
         ${entry.location.city}${entry.location.region ? ', ' + entry.location.region : ''}, ${entry.location.country}
       </div>
-
-      ${this.renderDetailActionRail(entry)}
 
       <div class="text-[15px] leading-snug">${entry.description}</div>
 

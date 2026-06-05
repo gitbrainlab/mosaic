@@ -132,6 +132,36 @@ test.describe('@smoke UI hardening checks', () => {
     expect(after).not.toEqual(before);
   });
 
+  test('mobile detail peek exposes summary and primary actions', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'mobile-light', 'Mobile detail peek contract runs once.');
+
+    await gotoMap(page, 'ice-cream-nationwide-albany-radial', 'saratoga-gelato-saratoga-springs-ny');
+
+    const sheet = page.locator('[data-component="bottom-sheet"]').first();
+    const summary = sheet.locator('[data-detail-snap-contract]');
+    await expect(sheet).toBeVisible({ timeout: 8000 });
+    await expect(summary).toBeVisible();
+    await expect(summary.getByText('Saratoga Springs, NY', { exact: true })).toBeVisible();
+    await expect(summary.getByText('Confidence')).toBeVisible();
+    await expect(summary.getByText('Visual evidence ready')).toBeVisible();
+    await expect(sheet.locator('[data-detail-actions]')).toBeVisible();
+    await expect(sheet.getByRole('button', { name: /Next nearby/i })).toBeVisible();
+
+    const geometry = await sheet.evaluate(element => {
+      const sheetRect = element.getBoundingClientRect();
+      const summaryRect = element.querySelector('[data-detail-snap-contract]')?.getBoundingClientRect();
+      const actionsRect = element.querySelector('[data-detail-actions]')?.getBoundingClientRect();
+
+      return {
+        summaryVisibleInPeek: Boolean(summaryRect && summaryRect.top >= sheetRect.top && summaryRect.bottom <= sheetRect.bottom),
+        actionsVisibleInPeek: Boolean(actionsRect && actionsRect.top >= sheetRect.top && actionsRect.bottom <= sheetRect.bottom),
+      };
+    });
+
+    expect(geometry.summaryVisibleInPeek).toBe(true);
+    expect(geometry.actionsVisibleInPeek).toBe(true);
+  });
+
   test('first load has a visible marker in the map viewport', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name !== 'mobile-light', 'Visible marker geometry check runs once.');
 
