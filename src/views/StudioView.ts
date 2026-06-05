@@ -1,5 +1,12 @@
 import { loadEnrichmentBacklog, loadEntries, loadIndex, loadPublicHunts, loadResearchBatch, loadResearchBatchIndex } from '../lib/data-loader'
-import { clearStoredHuntKey, getStudioEnrichmentJob, refineHunt, requestStudioEnrichment, submitStudioReviewAction } from '../lib/assistant'
+import {
+  AssistantApiError,
+  clearStoredHuntKey,
+  getStudioEnrichmentJob,
+  refineHunt,
+  requestStudioEnrichment,
+  submitStudioReviewAction,
+} from '../lib/assistant'
 import type { KnowledgeEntry, MapSummary, ResearchBatch } from '../types'
 import type { DraftMap, HuntProfile } from '../types/hunt'
 import type { StudioEnrichmentJob, StudioEnrichmentJobKind, StudioReviewActionPayload, StudioReviewActionType } from '../types/studio-review'
@@ -907,6 +914,10 @@ export default class StudioView {
             await this.pollEnrichmentJob(result.job.jobId, panel)
           }
         } catch (err) {
+          if (err instanceof AssistantApiError && err.status === 401) {
+            if (panel) panel.innerHTML = this.renderEnrichmentState('failed', 'Curator key was rejected by the service. Use Change curator key to update or clear it, then try again.')
+            return
+          }
           const message = err instanceof Error ? err.message : 'Enrichment request failed'
           if (panel) panel.innerHTML = this.renderEnrichmentState('failed', `${message}. Copy/paste fallback remains available.`)
         } finally {
@@ -992,6 +1003,10 @@ export default class StudioView {
             : `Submitted for live provisional Studio processing as ${result.actionId}.`
       } catch (err) {
         submitButton.disabled = false
+        if (err instanceof AssistantApiError && err.status === 401) {
+          if (status) status.textContent = `Curator key was rejected by the service. Use Change curator key to update or clear it, then try again.`
+          return
+        }
         const message = err instanceof Error ? err.message : 'Submission failed'
         if (status) status.textContent = `Submit failed: ${message}. Copy remains available as fallback.`
       }

@@ -42,6 +42,19 @@ async function run() {
       await page.waitForTimeout(600);
       await capture(page, `${OUT}/${prefix}-01-gallery.png`);
 
+      if (vp.name === 'mobile') {
+        await page.setViewportSize({ width: 812, height: 375 });
+        await page.waitForTimeout(250);
+        await capture(page, `${OUT}/${prefix}-01a-gallery-landscape.png`);
+        await page.setViewportSize({ width: 375, height: 812 });
+        await page.waitForTimeout(200);
+      }
+
+      await page.getByRole('button', { name: 'Info' }).click().catch(() => {});
+      await page.waitForTimeout(300);
+      await capture(page, `${OUT}/${prefix}-01b-info.png`);
+      await page.getByRole('button', { name: 'Explore' }).click().catch(() => {});
+
       // Open advanced guidance
       await page.click('#toggle-guidance').catch(() => {});
       await page.waitForTimeout(300);
