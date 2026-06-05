@@ -45,6 +45,10 @@ test.describe('@journey Mosaic user journeys', () => {
       await expect(firstDetail.locator('dt', { hasText: 'Exact address' })).toBeVisible();
       await expect(firstDetail.locator('dt', { hasText: 'Evidence leads' })).toBeVisible();
       await expect(firstDetail.locator('dt', { hasText: 'Provisional note' })).toBeVisible();
+      await expect(firstDetail.getByText('Photo review', { exact: true })).toBeVisible();
+      await expect(firstDetail.getByRole('button', { name: 'Next candidate' })).toBeVisible();
+      await firstDetail.getByRole('button', { name: 'Prioritize photos' }).click();
+      await expect(page.locator('#iteration-instruction')).toHaveValue(/Prioritize photo verification/);
 
       await page.getByRole('button', { name: /Deepen Draft/i }).click();
       await expect(page.getByText('Secondary quality pass')).toBeVisible();
