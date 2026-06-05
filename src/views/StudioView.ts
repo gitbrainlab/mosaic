@@ -491,6 +491,21 @@ export default class StudioView {
           <a class="studio-action-secondary" href="${mapDetailHref}">Open map detail</a>
         </div>
 
+        <section class="studio-current-path mt-4" data-current-review-path>
+          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+            <div>
+              <div class="text-xs uppercase tracking-[1px] font-bold text-[#a1a1aa]">Current review path</div>
+              <div class="mt-1 text-sm text-[#e4e4e7]">${this.escape(entry?.name || item.entryName)} / ${this.escape(item.mapTitle)}</div>
+            </div>
+            <a class="studio-primary-link" href="${mapDetailHref}">Open selected map detail</a>
+          </div>
+          <div class="mt-3 grid gap-2 md:grid-cols-3">
+            ${this.reviewPathStep('1', 'Profile', 'Check queued issues and evidence.', true)}
+            ${this.reviewPathStep('2', 'Map detail', 'Confirm the place in spatial context.')}
+            ${this.reviewPathStep('3', 'Decision', 'Approve, refine, reject, or flag.')}
+          </div>
+        </section>
+
         <div class="mt-5 grid gap-5 xl:grid-cols-[minmax(0,1fr)_300px]">
           <div class="grid gap-5">
             <section>
@@ -559,6 +574,18 @@ export default class StudioView {
         data-entry-id="${this.escapeAttr(item.entryId)}">
         ${this.escape(label)}
       </button>
+    `
+  }
+
+  private reviewPathStep(number: string, title: string, copy: string, active = false) {
+    return `
+      <div class="studio-path-step ${active ? 'is-active' : ''}">
+        <div class="flex items-center gap-2">
+          <span>${this.escape(number)}</span>
+          <strong>${this.escape(title)}</strong>
+        </div>
+        <p>${this.escape(copy)}</p>
+      </div>
     `
   }
 
@@ -1210,7 +1237,10 @@ export default class StudioView {
 
   private appHref(path: string) {
     const base = import.meta.env.BASE_URL || '/'
-    return `${base}${path.replace(/^\//, '')}`.replace(/\/+/g, '/')
+    const cleaned = path.replace(/^\//, '')
+    if (!cleaned) return base
+    const [route, query = ''] = cleaned.split('?')
+    return `${base}?/${route}${query ? `&${query}` : ''}`.replace(/\/+/g, '/')
   }
 
   private escape(value: unknown) {

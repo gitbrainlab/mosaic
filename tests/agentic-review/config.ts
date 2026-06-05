@@ -610,6 +610,8 @@ export const reviewJourneys: ReviewJourney[] = [
         note: 'Studio should expose committed/static batch artifacts without depending on legacy section copy.',
       },
       { kind: 'checkVisible', selector: 'text=Verification Queue', note: 'If present, the verification queue should be prominent and readable.' },
+      { kind: 'checkVisible', selector: 'text=Current review path', note: 'Studio should keep the selected item and map-detail path visible.' },
+      { kind: 'checkVisible', selector: 'text=Open selected map detail', note: 'Curators should have a clear route from Studio review back to the public map context.' },
       { kind: 'checkCountAtLeast', selector: '.mosaic-card', count: 1, note: 'Studio should render at least one review card.' },
       { kind: 'snapshot', name: '01-studio-dom' },
       { kind: 'screenshot', name: '01-studio' },

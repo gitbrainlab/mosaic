@@ -6,8 +6,9 @@
     <title>mosaic</title>
     <script>
       (function(location) {
-        var base = '/mosaic/v3/';
         var path = location.pathname;
+        var match = path.match(/^(.*\/mosaic\/v\d+\/)/);
+        var base = match ? match[1] : '/mosaic/v4/';
         var baseIndex = path.indexOf(base);
         var route = baseIndex >= 0 ? path.slice(baseIndex + base.length - 1) : '/';
         var target = base + '?' + route.replace(/&/g, '~and~') + location.search.replace(/^\?/, '&') + location.hash;
