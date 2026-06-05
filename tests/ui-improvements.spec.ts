@@ -84,7 +84,20 @@ test.describe('@smoke UI hardening checks', () => {
     await gotoMap(page, 'modernist-architecture', 'ma-001');
 
     await expect(page.getByText('Visual documentation in progress')).toBeVisible({ timeout: 8000 });
+    await expect(page.getByText('Photo standard')).toBeVisible();
+    await expect(page.getByText(/canonical building images/i)).toBeVisible();
+    await expect(page.getByText(/Target: Villa Savoye in Poissy/i)).toBeVisible();
     await expect(page.getByText(/product photos/i)).toHaveCount(0);
+  });
+
+  test('photo-rich details pair photos with trust cues', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'mobile-light', 'Photo provenance check runs once.');
+
+    await gotoMap(page, 'ice-cream-nationwide-albany-radial', 'saratoga-gelato-saratoga-springs-ny');
+
+    await expect(page.locator('[data-photo-trust-cue]').first()).toBeVisible({ timeout: 8000 });
+    await expect(page.getByText(/Source: Official Saratoga Gelato website/i).first()).toBeVisible();
+    await expect(page.getByText(/Type: Product/i).first()).toBeVisible();
   });
 
   test('map header controls meet 44px hit target', async ({ page }, testInfo) => {

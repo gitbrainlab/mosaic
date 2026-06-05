@@ -594,15 +594,47 @@ export default class MapView {
     }
   }
 
-  private renderNoPhotoState() {
+  private renderNoPhotoState(entry: KnowledgeEntry) {
     const language = this.getVisualLanguage()
     return `
       <div class="border border-dashed border-[#d4cebf] dark:border-[#3f3b33] rounded-lg p-4 bg-[#f8f7f4] dark:bg-[#1a1916]">
         <div class="text-xs uppercase tracking-[1px] font-bold text-[#1f1d1a] dark:text-[#f4f1e9] mb-1">${language.title}</div>
         <div class="text-sm text-[#5f5a52] dark:text-[#d4cebf]">${language.body}</div>
+        ${this.renderPhotoPolicyCue(entry)}
         <button data-detail-action="request-refinement" class="mt-3 min-h-10 px-3 rounded-md border border-[#a39a8c] text-xs font-semibold text-[#2c2a27] dark:text-[#f1efea] hover:bg-[#f1efea] dark:hover:bg-[#2a2924]">${language.action}</button>
       </div>
     `
+  }
+
+  private renderPhotoPolicyCue(entry: KnowledgeEntry) {
+    const policy = this.manifest?.intent?.photoPolicy
+      || 'Use only real, location-tied visual evidence that clearly supports this map.'
+
+    return `
+      <div class="mt-3 rounded-md border border-[#e5e2d9] dark:border-[#3f3b33] bg-white/70 dark:bg-[#141310] p-3" data-photo-policy-cue>
+        <div class="text-[10px] uppercase tracking-[1px] font-bold text-[#5f5a52] dark:text-[#a39a8c]">Photo standard</div>
+        <div class="mt-1 text-xs leading-snug text-[#3f3b33] dark:text-[#d4cebf]">${this.escape(policy)}</div>
+        <div class="mt-1 text-[11px] leading-snug text-[#6b6761] dark:text-[#a39a8c]">Target: ${this.escape(entry.name)} in ${this.escape(entry.location.city)}.</div>
+      </div>
+    `
+  }
+
+  private renderPhotoTrustCue(photo: NonNullable<KnowledgeEntry['photos']>[number], compact = false) {
+    const meta = [
+      photo.credit ? `Source: ${photo.credit}` : 'Source review required',
+      photo.type ? `Type: ${this.formatPhotoType(photo.type)}` : null,
+    ].filter(Boolean)
+
+    return `
+      <div class="${compact ? 'px-4 pb-3' : 'mt-2'} text-[11px] leading-snug text-[#6b6761] dark:text-[#a39a8c]" data-photo-trust-cue>
+        ${meta.map(item => `<span class="mr-2">${this.escape(item)}</span>`).join('')}
+      </div>
+    `
+  }
+
+  private formatPhotoType(type: NonNullable<KnowledgeEntry['photos']>[number]['type']) {
+    if (!type) return ''
+    return type.replace(/-/g, ' ').replace(/\b\w/g, character => character.toUpperCase())
   }
 
   private renderDetailActionRail(entry: KnowledgeEntry) {
@@ -680,13 +712,13 @@ export default class MapView {
           <div class="flex gap-3 overflow-x-auto pb-2">
             ${entry.photos.map(photo => `
               <div class="flex-shrink-0 w-72 border border-[#e5e2d9] dark:border-[#3f3b33] rounded-lg overflow-hidden">
-                <img src="${this.normalizePhotoUrl(photo.url, this.slug)}" alt="${photo.caption}" class="w-72 h-48 object-cover" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<div class=\\'p-3 text-xs text-[#6b6761] dark:text-[#a39a8c]\\'>Photo unavailable</div>')" />
-                <div class="p-3 text-sm text-[#3f3b33] dark:text-[#d4cebf]">${photo.caption}</div>
+                <img src="${this.escapeAttr(this.normalizePhotoUrl(photo.url, this.slug))}" alt="${this.escapeAttr(photo.caption)}" class="w-72 h-48 object-cover" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<div class=\\'p-3 text-xs text-[#6b6761] dark:text-[#a39a8c]\\'>Photo unavailable</div>')" />
+                <div class="p-3 text-sm text-[#3f3b33] dark:text-[#d4cebf]">${this.escape(photo.caption)}${this.renderPhotoTrustCue(photo)}</div>
               </div>
             `).join('')}
           </div>
         </div>` : `
-        ${this.renderNoPhotoState()}`}
+        ${this.renderNoPhotoState(entry)}`}
 
         ${this.renderDetailActionRail(entry)}
 
@@ -762,10 +794,11 @@ export default class MapView {
     content.innerHTML = `
       ${heroPhoto ? `
       <div class="-mx-4 -mt-4 mb-4">
-        <img src="${this.normalizePhotoUrl(heroPhoto.url, this.slug)}" alt="${heroPhoto.caption}" class="w-full h-44 object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML = '<div class=\\'border border-dashed border-[#d4cebf] rounded p-3 text-xs text-[#6b6761]\\'>Photo unavailable (sourcing in progress)</div>'" />
-        <div class="px-4 py-2 text-xs text-[#3f3b33] dark:text-[#d4cebf] bg-[#f8f7f4] dark:bg-[#1a1916]">${heroPhoto.caption}</div>
+        <img src="${this.escapeAttr(this.normalizePhotoUrl(heroPhoto.url, this.slug))}" alt="${this.escapeAttr(heroPhoto.caption)}" class="w-full h-44 object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML = '<div class=\\'border border-dashed border-[#d4cebf] rounded p-3 text-xs text-[#6b6761]\\'>Photo unavailable (sourcing in progress)</div>'" />
+        <div class="px-4 py-2 text-xs text-[#3f3b33] dark:text-[#d4cebf] bg-[#f8f7f4] dark:bg-[#1a1916]">${this.escape(heroPhoto.caption)}</div>
+        ${this.renderPhotoTrustCue(heroPhoto, true)}
       </div>` : `
-      <div class="mb-4">${this.renderNoPhotoState()}</div>`}
+      <div class="mb-4">${this.renderNoPhotoState(entry)}</div>`}
 
       <div class="text-[15px] font-semibold leading-tight">
         ${entry.location.address}<br>
@@ -782,8 +815,8 @@ export default class MapView {
         <div class="flex gap-2 overflow-x-auto pb-1">
           ${entry.photos.slice(1).map(photo => `
             <div class="flex-shrink-0 w-40 border border-[#e5e2d9] rounded overflow-hidden">
-              <img src="${this.normalizePhotoUrl(photo.url, this.slug)}" class="w-40 h-24 object-cover" onerror="this.style.display='none'" />
-              <div class="p-2 text-xs">${photo.caption}</div>
+              <img src="${this.escapeAttr(this.normalizePhotoUrl(photo.url, this.slug))}" alt="${this.escapeAttr(photo.caption)}" class="w-40 h-24 object-cover" onerror="this.style.display='none'" />
+              <div class="p-2 text-xs">${this.escape(photo.caption)}${this.renderPhotoTrustCue(photo)}</div>
             </div>
           `).join('')}
         </div>
@@ -900,6 +933,19 @@ export default class MapView {
       return `${import.meta.env.BASE_URL}${url}`.replace(/\/+/g, '/')
     }
     return url
+  }
+
+  private escape(value: unknown) {
+    return String(value ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;')
+  }
+
+  private escapeAttr(value: unknown) {
+    return this.escape(value)
   }
 
   unmount() {
