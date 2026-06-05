@@ -188,24 +188,32 @@ test.describe('@smoke UI hardening checks', () => {
     const sheet = page.getByRole('dialog', { name: 'Entries' });
     const closeButton = sheet.getByRole('button', { name: /Close details/i });
     const search = sheet.getByPlaceholder('Search entries...');
+    const firstEntry = sheet.locator('#mobile-list .entry').first();
+    const lastEntry = sheet.locator('#mobile-list .entry').last();
 
     await expect(sheet).toBeVisible({ timeout: 8000 });
     await expect(sheet).toHaveAttribute('aria-modal', 'true');
+    await expect(firstEntry).toHaveJSProperty('tagName', 'BUTTON');
+    await expect(firstEntry).toHaveAttribute('aria-label', /Open .+ in .+/);
 
     await closeButton.focus();
     await page.keyboard.press('Shift+Tab');
-    await expect(search).toBeFocused();
+    await expect(lastEntry).toBeFocused();
 
     await page.keyboard.press('Tab');
     await expect(closeButton).toBeFocused();
 
     await search.focus();
     await page.keyboard.press('Tab');
-    await expect(closeButton).toBeFocused();
+    await expect(firstEntry).toBeFocused();
+
+    await page.keyboard.press('Enter');
+    await expect(sheet).toHaveCount(0);
+    await expect(page.locator('[data-component="bottom-sheet"][aria-modal="false"]')).toBeVisible({ timeout: 8000 });
+    expect(new URL(page.url()).searchParams.get('entry')).toBeTruthy();
 
     await page.keyboard.press('Escape');
     await expect(page.locator('[data-component="bottom-sheet"]')).toHaveCount(0);
-    await expect(page.locator('#show-list-header')).toBeFocused();
   });
 
   test('first load has a visible marker in the map viewport', async ({ page }, testInfo) => {
