@@ -641,6 +641,254 @@ body {
   line-height: 1.55;
 }
 
+.roadmap-shell {
+  max-width: 1180px;
+}
+
+.roadmap-header {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.roadmap-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.roadmap-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.roadmap-stat-card,
+.roadmap-summary-card,
+.roadmap-step,
+.roadmap-commitment {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.roadmap-stat-card {
+  padding: 1rem;
+}
+
+.roadmap-stat-label,
+.roadmap-section-kicker {
+  color: var(--text-muted);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.roadmap-stat-value {
+  margin-top: 0.35rem;
+  color: var(--text);
+  font-size: 1.6rem;
+  font-weight: 750;
+  line-height: 1;
+}
+
+.roadmap-stat-detail {
+  margin-top: 0.55rem;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.roadmap-grid {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.roadmap-grid-2 {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.roadmap-grid-3 {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.roadmap-panel {
+  min-width: 0;
+}
+
+.roadmap-section-title {
+  margin-top: 0.25rem;
+  color: var(--text);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.roadmap-section-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.9rem;
+}
+
+.roadmap-card-list {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+}
+
+.roadmap-summary-card {
+  padding: 1rem;
+}
+
+.roadmap-card-head {
+  display: flex;
+  gap: 0.7rem;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.roadmap-card-head h3 {
+  min-width: 0;
+  color: var(--text);
+  font-size: 0.98rem;
+  font-weight: 760;
+  letter-spacing: 0;
+}
+
+.roadmap-summary-card p,
+.roadmap-step p,
+.roadmap-commitment li {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.roadmap-summary-card p,
+.roadmap-step p {
+  margin-top: 0.55rem;
+}
+
+.roadmap-status {
+  display: inline-flex;
+  min-height: 1.55rem;
+  flex: 0 0 auto;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  font-weight: 850;
+  line-height: 1;
+  padding: 0.25rem 0.55rem;
+  white-space: nowrap;
+}
+
+.roadmap-status-current {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+
+.roadmap-status-done {
+  background: #202024;
+  color: var(--text);
+}
+
+.roadmap-status-next {
+  background: var(--surface-raised);
+  color: var(--text);
+}
+
+.roadmap-status-later {
+  background: transparent;
+}
+
+.roadmap-timeline {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.roadmap-step {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.9rem;
+  padding: 1rem;
+}
+
+.roadmap-step-index {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--surface-raised);
+  color: var(--text);
+  font-size: 0.8rem;
+  font-weight: 850;
+}
+
+.roadmap-step:first-child {
+  border-color: rgba(201, 168, 108, 0.62);
+  background: var(--surface-raised);
+}
+
+.roadmap-step:first-child .roadmap-step-index {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.roadmap-step ul,
+.roadmap-commitment ul {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 0.75rem;
+}
+
+.roadmap-step li {
+  border-left: 2px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.45;
+  padding-left: 0.7rem;
+}
+
+.roadmap-step:first-child li {
+  border-left-color: rgba(201, 168, 108, 0.38);
+}
+
+.roadmap-commitment {
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .roadmap-header {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+  }
+
+  .roadmap-actions {
+    justify-content: flex-end;
+  }
+
+  .roadmap-stat-value {
+    font-size: 1.9rem;
+  }
+
+  .roadmap-grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .roadmap-grid-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 1023px) {
   .studio-shell {
     padding-left: 0.75rem;

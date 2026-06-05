@@ -15,6 +15,7 @@ export default class InfoView {
           <div class="flex flex-wrap gap-2">
             <a class="studio-secondary-link" href="${this.escapeAttr(base)}">Explore</a>
             <a class="studio-secondary-link" href="${this.escapeAttr(`${base}studio`)}">Studio</a>
+            <a class="studio-secondary-link" href="${this.escapeAttr(`${base}roadmap`)}">Roadmap</a>
           </div>
         </div>
 
