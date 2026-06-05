@@ -19,7 +19,10 @@ let handler: RouteHandler | null = null;
 
 function parseRoute(): Route {
   const base = import.meta.env.BASE_URL || '/';
-  let path = window.location.pathname;
+  const legacyQueryPath = window.location.search.startsWith('?/')
+    ? window.location.search.slice(1).split('&')[0]
+    : '';
+  let path = legacyQueryPath || window.location.pathname;
   if (base !== '/' && path.startsWith(base)) {
     path = `/${path.slice(base.length)}`;
   } else {

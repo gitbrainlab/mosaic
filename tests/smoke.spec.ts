@@ -12,10 +12,10 @@ import { test, expect } from '@playwright/test';
 
 test.describe('@smoke Mosaic Smoke Tests', () => {
   test.beforeEach(async ({ page }) => {
-    // The config starts the preview server with the v3 production base path.
+    // The config starts the preview server with the v4 production base path.
     // We try the root first (preview often serves it), then fall back.
     await page.goto('/').catch(() => {});
-    await page.goto('/mosaic/v3/').catch(() => {});
+    await page.goto('/mosaic/v4/').catch(() => {});
 
     await page.waitForSelector('#app', { timeout: 15000 });
   });
@@ -271,7 +271,7 @@ test.describe('@smoke Mosaic Smoke Tests', () => {
   });
 
   test('map view has the header List button (no bottom nav collision)', async ({ page }) => {
-    await page.goto('/mosaic/v3/?/map/ice-cream-capital-district');
+    await page.goto('/mosaic/v4/?/map/ice-cream-capital-district');
     await page.waitForTimeout(1200);
 
     const listBtn = page.locator('#show-list-header');
@@ -280,7 +280,7 @@ test.describe('@smoke Mosaic Smoke Tests', () => {
   });
 
   test('studio loads committed research batches', async ({ page }) => {
-    await page.goto('/mosaic/v3/?/studio');
+    await page.goto('/mosaic/v4/?/studio');
 
     await expect(page.getByRole('heading', { name: 'Curation Dashboard' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Committed maps' })).toBeVisible();

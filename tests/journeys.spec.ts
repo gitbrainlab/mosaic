@@ -23,7 +23,7 @@ test.describe('@journey Mosaic user journeys', () => {
       const hunt = buildHuntHarness(persona);
       await installHuntRoutes(page, hunt);
 
-      await page.goto('/mosaic/v3/');
+      await page.goto('/mosaic/v4/');
       await expect(page.getByText('Start a Hunt')).toBeVisible();
       await page.locator('#hunt-input').fill(persona.huntTopic);
       await page.locator('#toggle-guidance').click();
@@ -79,7 +79,7 @@ test.describe('@journey Mosaic user journeys', () => {
     const reviewState = buildStudioHarness(personas[0]);
     await installStudioRoutes(page, reviewState);
 
-    await page.goto('/mosaic/v3/?/studio');
+    await page.goto('/mosaic/v4/?/studio');
     await expect(page.getByRole('heading', { name: 'Curation Dashboard' })).toBeVisible({ timeout: 15000 });
 
     const photoQueueCard = page.locator('[data-queue-section="Needs Photo Review"] [data-review-card]').first();
@@ -111,7 +111,7 @@ test.describe('@journey Mosaic user journeys', () => {
   test('mobile rotation keeps the shell, info view, and map list stable', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name !== 'mobile-light', 'Rotation coverage runs on mobile-light.');
 
-    await page.goto('/mosaic/v3/');
+    await page.goto('/mosaic/v4/');
     await expect(page.getByText('Start a Hunt')).toBeVisible();
 
     await page.setViewportSize({ width: 812, height: 375 });
@@ -126,7 +126,7 @@ test.describe('@journey Mosaic user journeys', () => {
     await page.getByRole('button', { name: 'Studio' }).click();
     await expect(page.getByRole('heading', { name: 'Curation Dashboard' })).toBeVisible();
 
-    await page.goto('/mosaic/v3/?/map/ice-cream-capital-district');
+    await page.goto('/mosaic/v4/?/map/ice-cream-capital-district');
     await expect(page.locator('#map')).toBeVisible({ timeout: 15000 });
     await page.locator('#show-list-header').click();
     await expect(page.locator('#mobile-list .entry').first()).toBeVisible();

@@ -2,7 +2,7 @@ import { expect, test, type Page } from '@playwright/test';
 
 async function gotoMap(page: Page, slug: string, entry?: string) {
   const entryParam = entry ? `&entry=${entry}` : '';
-  await page.goto(`/mosaic/v3/?/map/${slug}${entryParam}`);
+  await page.goto(`/mosaic/v4/?/map/${slug}${entryParam}`);
   await page.waitForSelector('#map', { timeout: 15000 });
   await page.waitForTimeout(1600);
 }
@@ -142,7 +142,7 @@ test.describe('@smoke UI hardening checks', () => {
   test('studio exposes static verification queue actions', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name !== 'mobile-light', 'Studio queue check runs once.');
 
-    await page.goto('/mosaic/v3/?/studio');
+    await page.goto('/mosaic/v4/?/studio');
     await expect(page.getByRole('heading', { name: 'Verification Queue' })).toBeVisible({ timeout: 15000 });
     await expect(page.getByRole('heading', { name: 'Needs Photo Review' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Refinement Requested' })).toBeVisible();
@@ -177,7 +177,7 @@ test.describe('@smoke UI hardening checks', () => {
   test('studio shows live enrichment controls only where relevant', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name !== 'desktop-light', 'Studio enrichment check runs once.');
 
-    await page.goto('/mosaic/v3/?/studio');
+    await page.goto('/mosaic/v4/?/studio');
     await expect(page.getByRole('heading', { name: 'Curation Dashboard' })).toBeVisible({ timeout: 15000 });
 
     const photoSection = page.locator('[data-queue-section="Needs Photo Review"]');
