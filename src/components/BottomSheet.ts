@@ -6,6 +6,8 @@
 
 export type SheetSnap = 'peek' | 'half' | 'full';
 
+let sheetId = 0;
+
 interface BottomSheetOptions {
   title?: string;
   snap?: SheetSnap;
@@ -26,6 +28,17 @@ export class BottomSheet {
   private dragDeltaY = 0;
   private dragCleanup: (() => void) | null = null;
   private viewportFrame: number | null = null;
+  private previousFocus: HTMLElement | null = null;
+  private readonly titleId: string;
+  private readonly onKeyDown = (event: KeyboardEvent) => {
+    if (!this.isOpen || !this.options.dismissible || event.key !== 'Escape') return;
+
+    const sheets = Array.from(document.querySelectorAll('[data-component="bottom-sheet"]'));
+    if (sheets[sheets.length - 1] !== this.el) return;
+
+    event.preventDefault();
+    this.close();
+  };
   private readonly onViewportChange = () => {
     if (!this.isOpen) return;
 
@@ -49,6 +62,7 @@ export class BottomSheet {
       ...options
     };
     this.currentSnap = this.options.snap!;
+    this.titleId = `bottom-sheet-title-${++sheetId}`;
 
     // Backdrop
     this.backdrop = document.createElement('div');
@@ -67,6 +81,10 @@ export class BottomSheet {
     `;
     this.el.style.transform = 'translateY(100%)';
     this.el.dataset.component = 'bottom-sheet';
+    this.el.tabIndex = -1;
+    this.el.setAttribute('role', 'dialog');
+    this.el.setAttribute('aria-modal', this.options.modal ? 'true' : 'false');
+    this.el.setAttribute('aria-label', this.options.title || 'Sheet');
 
     // Safe area padding
     this.el.style.paddingBottom = 'env(safe-area-inset-bottom, 0px)';
@@ -86,9 +104,12 @@ export class BottomSheet {
 
     if (this.options.title) {
       const titleEl = document.createElement('div');
+      titleEl.id = this.titleId;
       titleEl.className = 'font-semibold px-14 text-lg mb-2 text-[#111] dark:text-white text-center leading-tight';
       titleEl.textContent = this.options.title;
       header.appendChild(titleEl);
+      this.el.setAttribute('aria-labelledby', this.titleId);
+      this.el.removeAttribute('aria-label');
     }
 
     // Content area
@@ -183,12 +204,14 @@ export class BottomSheet {
   open(initialSnap: SheetSnap = 'half') {
     if (this.isOpen) return;
     this.isOpen = true;
+    this.previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
 
     if (this.options.modal) {
       document.body.appendChild(this.backdrop);
     }
     document.body.appendChild(this.el);
     this.bindViewportListeners();
+    document.addEventListener('keydown', this.onKeyDown);
 
     // Force reflow then animate in
     requestAnimationFrame(() => {
@@ -198,6 +221,7 @@ export class BottomSheet {
         this.backdrop.style.pointerEvents = 'auto';
       }
       this.snapTo(initialSnap);
+      this.el.focus({ preventScroll: true });
     });
   }
 
@@ -205,6 +229,7 @@ export class BottomSheet {
     if (!this.isOpen) return;
     this.isOpen = false;
     this.unbindViewportListeners();
+    document.removeEventListener('keydown', this.onKeyDown);
 
     this.el.style.transition = 'transform 200ms ease-in';
     this.el.style.transform = 'translateY(100%)';
@@ -220,6 +245,14 @@ export class BottomSheet {
       this.el.remove();
       this.dragCleanup?.();
       this.dragCleanup = null;
+      if (
+        this.previousFocus &&
+        document.contains(this.previousFocus) &&
+        (document.activeElement === document.body || this.el.contains(document.activeElement))
+      ) {
+        this.previousFocus.focus({ preventScroll: true });
+      }
+      this.previousFocus = null;
       this.options.onClose?.();
     }, 220);
   }
