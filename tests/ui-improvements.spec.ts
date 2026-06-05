@@ -179,6 +179,35 @@ test.describe('@smoke UI hardening checks', () => {
     expect(new URL(page.url()).searchParams.get('entry')).toBeNull();
   });
 
+  test('modal mobile list sheet keeps keyboard focus contained', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'mobile-light', 'Modal focus loop check runs once.');
+
+    await gotoMap(page, 'upside-down-pizza');
+    await page.locator('#show-list-header').click();
+
+    const sheet = page.getByRole('dialog', { name: 'Entries' });
+    const closeButton = sheet.getByRole('button', { name: /Close details/i });
+    const search = sheet.getByPlaceholder('Search entries...');
+
+    await expect(sheet).toBeVisible({ timeout: 8000 });
+    await expect(sheet).toHaveAttribute('aria-modal', 'true');
+
+    await closeButton.focus();
+    await page.keyboard.press('Shift+Tab');
+    await expect(search).toBeFocused();
+
+    await page.keyboard.press('Tab');
+    await expect(closeButton).toBeFocused();
+
+    await search.focus();
+    await page.keyboard.press('Tab');
+    await expect(closeButton).toBeFocused();
+
+    await page.keyboard.press('Escape');
+    await expect(page.locator('[data-component="bottom-sheet"]')).toHaveCount(0);
+    await expect(page.locator('#show-list-header')).toBeFocused();
+  });
+
   test('first load has a visible marker in the map viewport', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name !== 'mobile-light', 'Visible marker geometry check runs once.');
 
