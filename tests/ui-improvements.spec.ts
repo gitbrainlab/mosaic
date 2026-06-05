@@ -144,6 +144,60 @@ test.describe('@smoke UI hardening checks', () => {
     }
   });
 
+  test('mobile shell reserves bottom safe area and keeps nav focus visible', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'mobile-light', 'Mobile PWA shell contract runs once.');
+
+    await page.goto('/mosaic/v4/');
+    await expect(page.getByText('Start a Hunt')).toBeVisible({ timeout: 15000 });
+
+    const galleryContract = await page.evaluate(() => {
+      const main = document.querySelector<HTMLElement>('#main-content');
+      const nav = document.querySelector<HTMLElement>('#bottom-nav');
+      if (!main || !nav) return null;
+
+      return {
+        hasSafeClass: nav.classList.contains('safe-bottom'),
+        mainPaddingBottom: parseFloat(getComputedStyle(main).paddingBottom),
+        navHeight: nav.getBoundingClientRect().height,
+      };
+    });
+
+    expect(galleryContract).not.toBeNull();
+    if (!galleryContract) return;
+    expect(galleryContract.hasSafeClass).toBe(true);
+    expect(galleryContract.mainPaddingBottom).toBeGreaterThanOrEqual(galleryContract.navHeight - 2);
+
+    const mapButton = page.locator('#bottom-nav [data-nav="map"]');
+    await mapButton.focus();
+    const focusStyle = await mapButton.evaluate(element => {
+      const style = getComputedStyle(element);
+      return {
+        outlineColor: style.outlineColor,
+        outlineStyle: style.outlineStyle,
+        outlineWidth: parseFloat(style.outlineWidth),
+      };
+    });
+    expect(focusStyle.outlineColor).toBe('rgb(201, 168, 108)');
+    expect(focusStyle.outlineStyle).not.toBe('none');
+    expect(focusStyle.outlineWidth).toBeGreaterThanOrEqual(2);
+
+    await gotoMap(page, 'upside-down-pizza');
+    const mapContract = await page.evaluate(() => {
+      const shell = document.querySelector<HTMLElement>('.mosaic-map-shell');
+      const nav = document.querySelector<HTMLElement>('#bottom-nav');
+      if (!shell || !nav) return null;
+      return {
+        viewportHeight: window.innerHeight,
+        shellHeight: shell.getBoundingClientRect().height,
+        navHeight: nav.getBoundingClientRect().height,
+      };
+    });
+
+    expect(mapContract).not.toBeNull();
+    if (!mapContract) return;
+    expect(Math.abs(mapContract.shellHeight + mapContract.navHeight - mapContract.viewportHeight)).toBeLessThanOrEqual(12);
+  });
+
   test('detail exposes next nearby action and updates selected entry', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name !== 'mobile-light', 'Nearby action check runs once.');
 

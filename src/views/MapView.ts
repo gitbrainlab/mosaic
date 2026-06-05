@@ -38,7 +38,7 @@ export default class MapView {
     this.initialRenderComplete = false
 
     container.innerHTML = `
-      <div class="flex flex-col h-[calc(100dvh-4.25rem)] lg:h-screen min-h-0">
+      <div class="mosaic-map-shell flex flex-col min-h-0">
         <div class="flex items-center justify-between px-3 py-2 border-b border-[#e5e2d9] dark:border-[#3f3b33] bg-[#f8f7f4] dark:bg-[#141310]">
           <button id="back-btn" class="min-h-11 px-3 text-sm flex items-center gap-1 text-[#4f4a42] dark:text-[#e8e4d9] rounded-md hover:bg-[#f1efea] dark:hover:bg-[#2a2924] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8a8178]">
             ← Maps
