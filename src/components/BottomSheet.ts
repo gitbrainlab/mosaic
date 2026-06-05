@@ -31,10 +31,17 @@ export class BottomSheet {
   private previousFocus: HTMLElement | null = null;
   private readonly titleId: string;
   private readonly onKeyDown = (event: KeyboardEvent) => {
-    if (!this.isOpen || !this.options.dismissible || event.key !== 'Escape') return;
+    if (!this.isOpen) return;
 
     const sheets = Array.from(document.querySelectorAll('[data-component="bottom-sheet"]'));
     if (sheets[sheets.length - 1] !== this.el) return;
+
+    if (event.key === 'Tab' && this.options.modal) {
+      this.trapFocus(event);
+      return;
+    }
+
+    if (!this.options.dismissible || event.key !== 'Escape') return;
 
     event.preventDefault();
     this.close();
@@ -310,6 +317,52 @@ export class BottomSheet {
     return snaps
       .map(snap => ({ snap, distance: Math.abs(this.getSnapHeight(snap) - currentHeight) }))
       .sort((a, b) => a.distance - b.distance)[0].snap;
+  }
+
+  private getFocusableElements() {
+    const selector = [
+      'a[href]',
+      'button:not([disabled])',
+      'input:not([disabled])',
+      'select:not([disabled])',
+      'textarea:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])',
+    ].join(',');
+
+    return Array.from(this.el.querySelectorAll<HTMLElement>(selector))
+      .filter(element => element.offsetParent !== null && !element.hasAttribute('aria-hidden'));
+  }
+
+  private trapFocus(event: KeyboardEvent) {
+    const focusable = this.getFocusableElements();
+    const fallback = focusable[0] || this.el;
+    const activeElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+
+    if (!activeElement || !this.el.contains(activeElement)) {
+      event.preventDefault();
+      fallback.focus({ preventScroll: true });
+      return;
+    }
+
+    if (focusable.length === 0) {
+      event.preventDefault();
+      this.el.focus({ preventScroll: true });
+      return;
+    }
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (event.shiftKey && (activeElement === first || activeElement === this.el)) {
+      event.preventDefault();
+      last.focus({ preventScroll: true });
+      return;
+    }
+
+    if (!event.shiftKey && activeElement === last) {
+      event.preventDefault();
+      first.focus({ preventScroll: true });
+    }
   }
 
   private bindViewportListeners() {
