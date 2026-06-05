@@ -905,10 +905,10 @@ export default class MapView {
       }
 
       listContainer.innerHTML = filtered.map(entry => `
-        <div class="py-3.5 entry cursor-pointer active:bg-[#f1efea] dark:active:bg-[#2a2924] border-b border-[#e5e2d9] dark:border-[#3f3b33] last:border-b-0" data-id="${entry.id}">
-          <div class="font-semibold text-[#0f0e0c] dark:text-[#f7f3ea]">${entry.name}</div>
-          <div class="text-xs text-[#3f3b33] dark:text-[#d4cebf] mt-0.5">${entry.location.city}, ${entry.location.country}</div>
-        </div>
+        <button type="button" class="w-full py-3.5 entry cursor-pointer text-left active:bg-[#f1efea] dark:active:bg-[#2a2924] border-b border-[#e5e2d9] dark:border-[#3f3b33] last:border-b-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[#c9a86c]" data-id="${this.escapeAttr(entry.id)}" aria-label="Open ${this.escapeAttr(entry.name)} in ${this.escapeAttr(`${entry.location.city}, ${entry.location.country}`)}">
+          <div class="font-semibold text-[#0f0e0c] dark:text-[#f7f3ea]">${this.escape(entry.name)}</div>
+          <div class="text-xs text-[#3f3b33] dark:text-[#d4cebf] mt-0.5">${this.escape(entry.location.city)}, ${this.escape(entry.location.country)}</div>
+        </button>
       `).join('')
 
       listContainer.querySelectorAll('.entry').forEach(element => {
