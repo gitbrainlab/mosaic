@@ -11,7 +11,7 @@ import { defineConfig, devices } from '@playwright/test';
  */
 
 const localPreviewPort = process.env.MOSAIC_PLAYWRIGHT_PORT || '4173';
-const localPreviewBaseURL = `http://127.0.0.1:${localPreviewPort}/mosaic/v3/`;
+const localPreviewBaseURL = `http://127.0.0.1:${localPreviewPort}/mosaic/v4/`;
 const personaWaveSeed = process.env.MOSAIC_PERSONA_WAVE
   || process.env.MOSAIC_PERSONA_SEED
   || process.env.GITHUB_RUN_ID
@@ -192,7 +192,7 @@ export default defineConfig({
   // so `npm run test:smoke` works without the developer having to run `npm run dev` first.
   webServer: shouldStartWebServer
     ? {
-        command: `VITE_BASE_PATH=/mosaic/v3/ VITE_API_BASE_URL=http://127.0.0.1:5173/.netlify/functions npm run build && rm -rf pages && mkdir -p pages/v3 && cp -R dist/. pages/v3/ && cp dist/404.html pages/404.html && vite preview --outDir pages --port ${localPreviewPort} --host 127.0.0.1`,
+        command: `VITE_BASE_PATH=/mosaic/v4/ VITE_API_BASE_URL=http://127.0.0.1:5173/.netlify/functions npm run build && rm -rf pages && mkdir -p pages/v4 && cp -R dist/. pages/v4/ && cp dist/404.html pages/404.html && vite preview --outDir pages --port ${localPreviewPort} --host 127.0.0.1`,
         url: localPreviewBaseURL,
         reuseExistingServer: !process.env.CI,
         timeout: 120 * 1000,

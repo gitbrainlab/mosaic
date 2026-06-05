@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 
-const DETAIL_URL = '/mosaic/v3/?/map/upside-down-pizza&entry=big-jays-pizzeria-rome-marcy-ny';
+const DETAIL_URL = '/mosaic/v4/?/map/upside-down-pizza&entry=big-jays-pizzeria-rome-marcy-ny';
 
 type ViewportCase = {
   name: string;

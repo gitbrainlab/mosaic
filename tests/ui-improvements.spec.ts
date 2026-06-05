@@ -2,7 +2,7 @@ import { expect, test, type Page } from '@playwright/test';
 
 async function gotoMap(page: Page, slug: string, entry?: string) {
   const entryParam = entry ? `&entry=${entry}` : '';
-  await page.goto(`/mosaic/v3/?/map/${slug}${entryParam}`);
+  await page.goto(`/mosaic/v4/?/map/${slug}${entryParam}`);
   await page.waitForSelector('#map', { timeout: 15000 });
   await page.waitForTimeout(1600);
 }
@@ -142,7 +142,7 @@ test.describe('@smoke UI hardening checks', () => {
   test('studio exposes static verification queue actions', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name !== 'mobile-light', 'Studio queue check runs once.');
 
-    await page.goto('/mosaic/v3/?/studio');
+    await page.goto('/mosaic/v4/?/studio');
     await expect(page.getByRole('heading', { name: 'Verification Queue' })).toBeVisible({ timeout: 15000 });
     await expect(page.getByRole('heading', { name: 'Needs Photo Review' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Refinement Requested' })).toBeVisible();
@@ -150,6 +150,8 @@ test.describe('@smoke UI hardening checks', () => {
     await expect(page.getByText('Select a card')).toBeVisible();
     await expect(page.getByText('Inspect the preview')).toBeVisible();
     const activePreview = page.locator('[data-review-preview]:not([hidden])');
+    await expect(activePreview.getByText('Current review path')).toBeVisible();
+    await expect(activePreview.getByRole('link', { name: /Open selected map detail/i })).toBeVisible();
     await expect(activePreview.getByText('Profile Preview')).toBeVisible();
     await expect(activePreview.getByText('What to Assess')).toBeVisible();
     await expect(page.getByRole('button', { name: /Change curator key/i })).toBeVisible();
@@ -174,10 +176,31 @@ test.describe('@smoke UI hardening checks', () => {
     await expect(page.locator('#studio-action-payload')).toContainText('Choose a next-stage action');
   });
 
+  test('studio review path opens the selected entry on the map', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'mobile-light', 'Studio to map path check runs once.');
+
+    await page.goto('/mosaic/v4/?/studio');
+    await expect(page.getByRole('heading', { name: 'Curation Dashboard' })).toBeVisible({ timeout: 15000 });
+
+    const secondCard = page.locator('[data-review-card]').nth(1);
+    await expect(secondCard).toBeVisible();
+    await secondCard.click();
+    const selectedKey = await secondCard.getAttribute('data-review-key');
+    expect(selectedKey).toBeTruthy();
+    const [, entryId] = selectedKey!.split(':');
+
+    const activePreview = page.locator('[data-review-preview]:not([hidden])');
+    await expect(activePreview.locator('[data-current-review-path]')).toBeVisible();
+    await activePreview.getByRole('link', { name: /Open selected map detail/i }).click();
+
+    await expect(page).toHaveURL(new RegExp(`/map/.+entry=${entryId}`));
+    await expect(page.locator('#map')).toBeVisible({ timeout: 15000 });
+  });
+
   test('studio shows live enrichment controls only where relevant', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name !== 'desktop-light', 'Studio enrichment check runs once.');
 
-    await page.goto('/mosaic/v3/?/studio');
+    await page.goto('/mosaic/v4/?/studio');
     await expect(page.getByRole('heading', { name: 'Curation Dashboard' })).toBeVisible({ timeout: 15000 });
 
     const photoSection = page.locator('[data-queue-section="Needs Photo Review"]');
