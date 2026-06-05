@@ -113,7 +113,7 @@ export default class HuntView {
 
             ${draftMap ? `
               <div class="divide-y divide-[#e5e2d9] dark:divide-[#3f3b33]">
-                ${draftMap.entries.map(entry => this.renderEntry(entry)).join('')}
+                ${draftMap.entries.map((entry, index) => this.renderEntry(entry, index, draftMap.entries)).join('')}
               </div>
             ` : ''}
 
@@ -159,9 +159,15 @@ export default class HuntView {
     if (draftMap) this.renderMap()
   }
 
-  private renderEntry(entry: DraftHuntEntry) {
+  private renderEntry(entry: DraftHuntEntry, index: number, entries: DraftHuntEntry[]) {
     const entryName = this.escape(entry.name)
     const detailId = `hunt-entry-detail-${this.escapeAttr(entry.id)}`
+    const nextEntry = entries[(index + 1) % entries.length]
+    const hasNextEntry = entries.length > 1 && nextEntry.id !== entry.id
+    const photoLabel = this.photoReviewLabel(entry.photoStatus)
+    const evidenceCount = entry.evidenceHints.length
+    const photoPrompt = this.qualityPrompt(entry, 'photo')
+    const currencyPrompt = this.qualityPrompt(entry, 'currency')
     return `
       <article class="p-4" data-entry-id="${this.escapeAttr(entry.id)}">
         <div class="flex items-start justify-between gap-3">
@@ -186,6 +192,25 @@ export default class HuntView {
           Details
         </button>
         <div id="${detailId}" class="mt-3 hidden rounded border border-[#e5e2d9] bg-[#f8f7f4] p-3 text-xs text-[#2c2a27] dark:border-[#3f3b33] dark:bg-[#141310] dark:text-[#e8e4d9]" data-hunt-entry-detail="${this.escapeAttr(entry.id)}">
+          <div class="grid gap-2 sm:grid-cols-3" aria-label="Draft quality signals">
+            <div class="rounded border border-[#d4cebf] bg-white p-2 dark:border-[#3f3b33] dark:bg-[#1a1916]">
+              <div class="font-bold uppercase tracking-[1px] text-[#5f5a52] dark:text-[#d4cebf]">Photo review</div>
+              <div class="mt-1 text-[#111] dark:text-white">${photoLabel}</div>
+            </div>
+            <div class="rounded border border-[#d4cebf] bg-white p-2 dark:border-[#3f3b33] dark:bg-[#1a1916]">
+              <div class="font-bold uppercase tracking-[1px] text-[#5f5a52] dark:text-[#d4cebf]">Evidence leads</div>
+              <div class="mt-1 text-[#111] dark:text-white">${evidenceCount} lead${evidenceCount === 1 ? '' : 's'}</div>
+            </div>
+            <div class="rounded border border-[#d4cebf] bg-white p-2 dark:border-[#3f3b33] dark:bg-[#1a1916]">
+              <div class="font-bold uppercase tracking-[1px] text-[#5f5a52] dark:text-[#d4cebf]">Currency gate</div>
+              <div class="mt-1 text-[#111] dark:text-white">Verify before promotion</div>
+            </div>
+          </div>
+          <div class="mt-3 flex gap-2 overflow-x-auto pb-1" aria-label="Draft review actions">
+            ${hasNextEntry ? `<button type="button" class="flex-shrink-0 min-h-11 rounded-full bg-[#1f1d1a] px-3 text-sm font-semibold text-white dark:bg-[#f1efea] dark:text-[#111]" data-hunt-entry-next="${this.escapeAttr(nextEntry.id)}">Next candidate</button>` : ''}
+            <button type="button" class="flex-shrink-0 min-h-11 rounded-full border border-[#a39a8c] px-3 text-sm font-semibold text-[#1f1d1a] dark:text-[#f4f1e9]" data-hunt-quality-prompt="${this.escapeAttr(photoPrompt)}">Prioritize photos</button>
+            <button type="button" class="flex-shrink-0 min-h-11 rounded-full border border-[#a39a8c] px-3 text-sm font-semibold text-[#1f1d1a] dark:text-[#f4f1e9]" data-hunt-quality-prompt="${this.escapeAttr(currencyPrompt)}">Require currency proof</button>
+          </div>
           <dl class="grid gap-2">
             <div>
               <dt class="font-bold uppercase tracking-[1px] text-[#5f5a52] dark:text-[#d4cebf]">Exact address</dt>
@@ -220,6 +245,20 @@ export default class HuntView {
         this.setEntryDetailsOpen(entryId, !expanded)
       })
     })
+
+    container.querySelectorAll('[data-hunt-entry-next]').forEach(node => {
+      node.addEventListener('click', () => {
+        const entryId = (node as HTMLButtonElement).dataset.huntEntryNext || ''
+        if (entryId) this.setEntryDetailsOpen(entryId, true)
+      })
+    })
+
+    container.querySelectorAll('[data-hunt-quality-prompt]').forEach(node => {
+      node.addEventListener('click', () => {
+        const prompt = (node as HTMLButtonElement).dataset.huntQualityPrompt || ''
+        this.applyQualityPrompt(prompt)
+      })
+    })
   }
 
   private setEntryDetailsOpen(entryId: string, open: boolean) {
@@ -233,6 +272,44 @@ export default class HuntView {
     }
     if (detail) detail.classList.toggle('hidden', !open)
     if (open) card?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  }
+
+  private applyQualityPrompt(prompt: string) {
+    const input = document.getElementById('iteration-instruction') as HTMLTextAreaElement | null
+    if (!input) return
+    input.value = prompt
+    input.focus()
+    input.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+  }
+
+  private photoReviewLabel(status: DraftHuntEntry['photoStatus']) {
+    switch (status) {
+      case 'verified':
+        return 'Location-tied photo ready'
+      case 'suppressed':
+        return 'Photo issue suppressed'
+      case 'needs_sourcing':
+        return 'Needs real photo sourcing'
+      case 'pending':
+      default:
+        return 'Pending real-photo review'
+    }
+  }
+
+  private qualityPrompt(entry: DraftHuntEntry, kind: 'photo' | 'currency') {
+    if (kind === 'photo') {
+      return [
+        `Prioritize photo verification for ${entry.name}.`,
+        'Find real, location-tied photos that visibly show the map topic.',
+        'Suppress this candidate if only stock, storefront, parking-lot, or unrelated visuals are available.',
+      ].join(' ')
+    }
+
+    return [
+      `Require current operating and topic-specific evidence for ${entry.name}.`,
+      'Verify exact address, valid coordinates, and recent source-backed relevance before this candidate can be promoted.',
+      'Suppress stale, closed, rebranded, or weakly evidenced candidates.',
+    ].join(' ')
   }
 
   private renderControlNote(hasDraft: boolean, status: string, isBusy: boolean, canIterate: boolean) {
