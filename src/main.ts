@@ -1,5 +1,5 @@
 import './style.css'
-import { initRouter, getCurrentRoute, goToGallery, goToInfo, goToMap, goToStudio, goToHunt } from './lib/router'
+import { initRouter, getCurrentRoute, goToGallery, goToInfo, goToMap, goToRoadmap, goToStudio, goToHunt } from './lib/router'
 import { loadIndex } from './lib/data-loader'
 import { createHunt } from './lib/assistant'
 import type { DataIndex } from './types'
@@ -43,6 +43,9 @@ function renderShell() {
             <button data-nav="studio" class="nav-btn min-h-11 px-3 rounded-lg border border-transparent hover:border-[#27272a]">
               <span class="nav-label text-sm text-[#a1a1aa]">Studio</span>
             </button>
+            <button data-nav="roadmap" class="nav-btn min-h-11 px-3 rounded-lg border border-transparent hover:border-[#27272a]">
+              <span class="nav-label text-sm text-[#a1a1aa]">Plan</span>
+            </button>
             <button data-nav="info" class="nav-btn min-h-11 px-3 rounded-lg border border-transparent hover:border-[#27272a]">
               <span class="nav-label text-sm text-[#a1a1aa]">Info</span>
             </button>
@@ -55,7 +58,7 @@ function renderShell() {
 
       <!-- Bottom Navigation (mobile-first foundation per PWA research) -->
       <nav id="bottom-nav" class="sticky bottom-0 z-50 border-t border-[#27272a] bg-[#0f0f11] safe-bottom lg:hidden">
-        <div class="max-w-7xl mx-auto grid grid-cols-4 text-sm">
+        <div class="max-w-7xl mx-auto grid grid-cols-5 text-sm">
           <button data-nav="gallery" class="nav-btn is-active flex flex-col items-center py-3" aria-current="page">
             <span class="nav-icon text-lg text-[#c9a86c]">◈</span>
             <span class="nav-label text-[10px] mt-0.5 text-[#e4e4e7]">Explore</span>
@@ -67,6 +70,10 @@ function renderShell() {
           <button data-nav="studio" class="nav-btn flex flex-col items-center py-3 opacity-50 hover:opacity-100">
             <span class="nav-icon text-lg text-[#a1a1aa]">✎</span>
             <span class="nav-label text-[10px] mt-0.5 text-[#a1a1aa]">Studio</span>
+          </button>
+          <button data-nav="roadmap" class="nav-btn flex flex-col items-center py-3 opacity-50 hover:opacity-100">
+            <span class="nav-icon text-lg text-[#a1a1aa]">▤</span>
+            <span class="nav-label text-[10px] mt-0.5 text-[#a1a1aa]">Plan</span>
           </button>
           <button data-nav="info" class="nav-btn flex flex-col items-center py-3 opacity-50 hover:opacity-100">
             <span class="nav-icon text-lg text-[#a1a1aa]">ⓘ</span>
@@ -94,6 +101,8 @@ function renderShell() {
         goToMap(lastMap)
       } else if (nav === 'studio') {
         goToStudio()
+      } else if (nav === 'roadmap') {
+        goToRoadmap()
       } else if (nav === 'info') {
         goToInfo()
       }
@@ -482,6 +491,11 @@ initRouter((route) => {
       mountView(new StudioViewClass())
     })
     updateBottomNavActive('studio')
+  } else if (route.name === 'roadmap') {
+    import('./views/RoadmapView').then(({ default: RoadmapViewClass }) => {
+      mountView(new RoadmapViewClass())
+    })
+    updateBottomNavActive('roadmap')
   } else if (route.name === 'info') {
     import('./views/InfoView').then(({ default: InfoViewClass }) => {
       mountView(new InfoViewClass())

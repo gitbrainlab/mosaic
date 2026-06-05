@@ -36,6 +36,14 @@ test.describe('@smoke Mosaic Smoke Tests', () => {
     await expect(page.getByText('What happens when you press Approve in Studio')).toBeVisible();
   });
 
+  test('Plan tab opens the roadmap', async ({ page }) => {
+    await page.getByRole('button', { name: 'Plan' }).click();
+    await expect(page.getByText('ROADMAP', { exact: true })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Where Mosaic sits' })).toBeVisible();
+    await expect(page.getByText('IMPLEMENTATION ORDER')).toBeVisible();
+    await expect(page.getByText('Visual trust and photo proof')).toBeVisible();
+  });
+
   test('Hunt launcher starts Netlify queue path or shows manual fallback', async ({ page }) => {
     await page.getByRole('button', { name: /Start Hunt/i }).click();
 
