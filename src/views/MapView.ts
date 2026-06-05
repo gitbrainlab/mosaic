@@ -308,11 +308,11 @@ export default class MapView {
     }
 
     listEl.innerHTML = filteredEntries.map(entry => `
-      <div class="p-3.5 hover:bg-[#f1efea] dark:hover:bg-[#2a2924] active:bg-[#e8e4d9] dark:active:bg-[#34312b] cursor-pointer entry-row border-l-[3px] border-transparent hover:border-[#1f1d1a] dark:hover:border-[#d4cebf] active:border-[#0a0a0a] transition-colors" data-id="${entry.id}">
-        <div class="font-semibold text-[15px] text-[#0f0e0c] dark:text-[#f7f3ea]">${entry.name}</div>
-        <div class="text-xs text-[#3f3b33] dark:text-[#d4cebf] mt-0.5">${entry.location.city}, ${entry.location.country}</div>
-        <div class="text-[10px] mt-1.5 inline-block px-1.5 py-px rounded bg-[#f1efea] dark:bg-[#34312b] text-[#3f3b33] dark:text-[#f1efea] font-medium">${entry.confidence}</div>
-      </div>
+      <button type="button" class="w-full p-3.5 text-left hover:bg-[#f1efea] dark:hover:bg-[#2a2924] active:bg-[#e8e4d9] dark:active:bg-[#34312b] cursor-pointer entry-row border-l-[3px] border-transparent hover:border-[#1f1d1a] dark:hover:border-[#d4cebf] active:border-[#0a0a0a] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[#c9a86c]" data-id="${this.escapeAttr(entry.id)}" aria-label="Open ${this.escapeAttr(entry.name)} in ${this.escapeAttr(`${entry.location.city}, ${entry.location.country}`)}">
+        <div class="font-semibold text-[15px] text-[#0f0e0c] dark:text-[#f7f3ea]">${this.escape(entry.name)}</div>
+        <div class="text-xs text-[#3f3b33] dark:text-[#d4cebf] mt-0.5">${this.escape(entry.location.city)}, ${this.escape(entry.location.country)}</div>
+        <div class="text-[10px] mt-1.5 inline-block px-1.5 py-px rounded bg-[#f1efea] dark:bg-[#34312b] text-[#3f3b33] dark:text-[#f1efea] font-medium">${this.escape(entry.confidence)}</div>
+      </button>
     `).join('')
 
     listEl.querySelectorAll('.entry-row').forEach(row => {
@@ -725,6 +725,7 @@ export default class MapView {
     if (!this.map) return
 
     const panel = document.createElement('div')
+    panel.dataset.component = 'desktop-detail-panel'
     panel.className = `
       fixed bottom-0 left-0 right-0 z-[250]
       bg-white dark:bg-[#1a1916] border-t border-[#e5e2d9] dark:border-[#3f3b33]
