@@ -162,6 +162,23 @@ test.describe('@smoke UI hardening checks', () => {
     expect(geometry.actionsVisibleInPeek).toBe(true);
   });
 
+  test('mobile detail sheet exposes dialog semantics and keyboard dismissal', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'mobile-light', 'Mobile accessibility contract runs once.');
+
+    await gotoMap(page, 'ice-cream-nationwide-albany-radial', 'saratoga-gelato-saratoga-springs-ny');
+
+    const sheet = page.getByRole('dialog', { name: /Saratoga Gelato/i });
+    await expect(sheet).toBeVisible({ timeout: 8000 });
+    await expect(sheet).toHaveAttribute('aria-modal', 'false');
+
+    const activeComponent = await page.evaluate(() => (document.activeElement as HTMLElement | null)?.dataset.component);
+    expect(activeComponent).toBe('bottom-sheet');
+
+    await page.keyboard.press('Escape');
+    await expect(page.locator('[data-component="bottom-sheet"]')).toHaveCount(0);
+    expect(new URL(page.url()).searchParams.get('entry')).toBeNull();
+  });
+
   test('first load has a visible marker in the map viewport', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name !== 'mobile-light', 'Visible marker geometry check runs once.');
 
